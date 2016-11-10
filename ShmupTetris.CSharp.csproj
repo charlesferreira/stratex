@@ -81,6 +81,8 @@
     <Compile Include="Assets\Puzzle\Scripts\Puzzle.cs" />
     <Compile Include="Assets\Puzzle\Scripts\PuzzleInput.cs" />
     <Compile Include="Assets\Puzzle\Scripts\PuzzleInterface.cs" />
+    <Compile Include="Assets\ShipMovement.cs" />
+    <Compile Include="Assets\ShipWeapons.cs" />
     <Compile Include="Assets\Space\Scripts\Ship.cs" />
     <Compile Include="Assets\Space\Scripts\ShipInput.cs" />
     <Compile Include="Assets\Space\Scripts\ShipInterface.cs" />

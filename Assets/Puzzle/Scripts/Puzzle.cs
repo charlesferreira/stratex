@@ -2,8 +2,6 @@
 
 public class Puzzle : MonoBehaviour {
 
-    public Transform alliedShip;
-
     PuzzleInput input;
     ShipInterface ship;
 

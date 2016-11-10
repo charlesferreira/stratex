@@ -1,15 +1,11 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class PuzzleInterface : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    public Transform alliedPuzzle;
+
+	public void NotifyDamageTaken()
+    {
+
+    }
 }

@@ -1,15 +1,16 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class Ship : MonoBehaviour {
 
-	// Use this for initialization
+    ShipInput input;
+    PuzzleInterface puzzle;
+
 	void Start () {
+        input = GetComponent<ShipInput>();
+        puzzle = GetComponent<PuzzleInterface>();
+    }
 	
-	}
-	
-	// Update is called once per frame
 	void Update () {
-	
+	    
 	}
 }
