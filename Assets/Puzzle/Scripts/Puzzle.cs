@@ -2,12 +2,12 @@
 
 public class Puzzle : MonoBehaviour {
 
-    PuzzleInput input;
-    ShipInterface ship;
+    //PuzzleInput input;
+    //ShipInterface ship;
 
 	void Start () {
-        input = GetComponent<PuzzleInput>();
-        ship = GetComponent<ShipInterface>();
+        //input = GetComponent<PuzzleInput>();
+        //ship = GetComponent<ShipInterface>();
 	}
 	
 	void Update () {

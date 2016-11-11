@@ -2,10 +2,9 @@
 
 public class PuzzleInterface : MonoBehaviour {
 
-    public Transform alliedPuzzle;
+    //public Transform alliedPuzzle;
 
-	public void NotifyDamageTaken()
-    {
+	public void NotifyDamageTaken() {
 
     }
 }
