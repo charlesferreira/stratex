@@ -2,15 +2,16 @@
 
 public class ShipMovement : MonoBehaviour {
     
-    public ShipInput input;
     public float trusterPower;
     public float maxSpeed;
     public float turningSpeed;
 
     Rigidbody2D rb;
+    ShipInput input;
 
     void Start () {
         rb = GetComponent<Rigidbody2D>();
+        input = GetComponent<ShipInput>();
     }
 
     void Update () {
@@ -25,7 +26,7 @@ public class ShipMovement : MonoBehaviour {
     }
 
     void Thrust () {
-        if (!input.Thruster) return;
+        if (!input.Thrusting) return;
 
         var force = transform.right * trusterPower * Time.deltaTime;
         rb.AddForce(force);

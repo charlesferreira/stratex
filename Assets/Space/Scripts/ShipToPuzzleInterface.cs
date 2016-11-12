@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class PuzzleInterface : MonoBehaviour {
+public class ShipToPuzzleInterface : MonoBehaviour {
 
     //public Transform alliedPuzzle;
 

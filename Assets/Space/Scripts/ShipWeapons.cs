@@ -2,7 +2,11 @@
 
 public class ShipWeapons: MonoBehaviour {
 
-    public ShipInput input;
+    ShipInput input;
+
+    void Start() {
+        input = GetComponent<ShipInput>();
+    }
 
     void Update () {
         if (input.Fire1) {

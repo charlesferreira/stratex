@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-public class ShipInterface : MonoBehaviour {
+public class PuzzleToShipInterface : MonoBehaviour {
 
-    public Transform alliedShip;
+    //public Transform alliedShip;
 
     public void NotifyMatch(int color, int size)
     {

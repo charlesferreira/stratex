@@ -9,11 +9,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 43ea0ffbab644ae49920aada434863c6, type: 3}
-  m_Name: Ship1 Input
+  m_Name: Player 4
   m_EditorClassIdentifier: 
-  useAlternativeControls: 1
-  steering: Ship1 Steering
-  thruster: Ship1 Thruster
-  fire1: Ship1 Fire1
-  fire2: Ship1 Fire2
-  showHud: Ship1 Show Hud
+  horizontal: P4 Horizontal
+  vertical: P4 Vertical
+  aButton: P4 AButton
+  bButton: P4 BButton
+  xButton: P4 XButton
+  yButton: P4 YButton
+  useAlternativeControls: 0

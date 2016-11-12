@@ -1,11 +1,10 @@
 fileFormatVersion: 2
-guid: d0d74a7757971ea4097e72399348f220
-timeCreated: 1478913323
+guid: 43ea0ffbab644ae49920aada434863c6
+timeCreated: 1478813103
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences:
-  - joystick: {instanceID: 0}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

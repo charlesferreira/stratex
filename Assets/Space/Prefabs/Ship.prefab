@@ -21,6 +21,7 @@ GameObject:
   - 4: {fileID: 4000013840849326}
   - 50: {fileID: 50000013754979114}
   - 114: {fileID: 114000010873467626}
+  - 114: {fileID: 114000012421871510}
   - 114: {fileID: 114000011187390242}
   - 114: {fileID: 114000011731081780}
   m_Layer: 0
@@ -112,10 +113,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4a2d8a8c5146c6418340b6456dd8073, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  input: {fileID: 11400000, guid: 29e0b2e75bfb05349b45d1afd9dcc031, type: 2}
-  trusterPower: 150
-  maxSpeed: 3
-  turningSpeed: 120
+  trusterPower: 100
+  maxSpeed: 2
+  turningSpeed: 90
 --- !u!114 &114000011731081780
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -127,7 +127,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa076d147cd3e7a41a0d2710f1e00e9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  input: {fileID: 11400000, guid: 29e0b2e75bfb05349b45d1afd9dcc031, type: 2}
+--- !u!114 &114000012421871510
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010637486660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dad7a09d2726aa429ee6c5555696e3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  joystick: {fileID: 0}
 --- !u!212 &212000013363832768
 SpriteRenderer:
   m_ObjectHideFlags: 1
