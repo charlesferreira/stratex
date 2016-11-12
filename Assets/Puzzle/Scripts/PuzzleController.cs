@@ -2,6 +2,8 @@
 
 public class PuzzleController : MonoBehaviour {
 
+    public Transform cursor;
+
     PuzzleInput input;
 
 	void Start () {
@@ -9,10 +11,13 @@ public class PuzzleController : MonoBehaviour {
 	}
 	
 	void Update () {
-        if (input.Up) print("Cima");
-        if (input.Down) print("Baixo");
-        if (input.Left) print("Esquerda");
-        if (input.Right) print("Direita");
+        var cursorMovement = Vector3.zero;
+        if (input.Up) cursorMovement = Vector3.up;
+        else if (input.Down) cursorMovement = Vector3.down;
+        else if (input.Left) cursorMovement = Vector3.left;
+        else if (input.Right) cursorMovement = Vector3.right;
+
+        cursor.Translate(cursorMovement);
 
         if (input.SwapUp) print("Trocar com de Cima");
         if (input.SwapDown) print("Trocar com de Baixo");
