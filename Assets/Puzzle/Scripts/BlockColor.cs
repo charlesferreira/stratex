@@ -1,7 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-
-public enum BlockColor {
+﻿public enum BlockColor {
 
     Red, Yellow
 }
