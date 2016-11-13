@@ -13,16 +13,11 @@ public class Joystick : ScriptableObject {
     [SerializeField] string xButton;
     [SerializeField] string yButton;
 
-    [Header("Alternative Controls")]
-    [SerializeField] bool useAlternativeControls;
-
-    // Propriedades consideram o sufixo "Alt" para controles alternativos
-    string Alt { get { return useAlternativeControls ? " Alt" : ""; } }
-    public string AButton { get { return aButton + Alt; } }
-    public string BButton { get { return bButton + Alt; } }
-    public string XButton { get { return xButton + Alt; } }
-    public string YButton { get { return yButton + Alt; } }
-    public string Horizontal { get { return horizontal + Alt; } }
-    public string Vertical { get { return vertical + Alt; } }
+    public string AButton { get { return aButton; } }
+    public string BButton { get { return bButton; } }
+    public string XButton { get { return xButton; } }
+    public string YButton { get { return yButton; } }
+    public string Horizontal { get { return horizontal; } }
+    public string Vertical { get { return vertical; } }
 
 }

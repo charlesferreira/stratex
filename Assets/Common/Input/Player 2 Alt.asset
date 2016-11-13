@@ -9,11 +9,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 43ea0ffbab644ae49920aada434863c6, type: 3}
-  m_Name: Player 1
+  m_Name: Player 2 Alt
   m_EditorClassIdentifier: 
-  horizontal: P1 Horizontal
-  vertical: P1 Vertical
-  aButton: P1 AButton
-  bButton: P1 BButton
-  xButton: P1 XButton
-  yButton: P1 YButton
+  horizontal: P2 Horizontal Alt
+  vertical: P2 Vertical Alt
+  aButton: P2 AButton Alt
+  bButton: P2 BButton Alt
+  xButton: P2 XButton Alt
+  yButton: P2 YButton Alt
