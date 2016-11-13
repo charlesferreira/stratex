@@ -11,13 +11,11 @@ public class PuzzleController : MonoBehaviour {
 	}
 	
 	void Update () {
-        var cursorMovement = Vector3.zero;
-        if (input.Up) cursorMovement = Vector3.up;
-        else if (input.Down) cursorMovement = Vector3.down;
-        else if (input.Left) cursorMovement = Vector3.left;
-        else if (input.Right) cursorMovement = Vector3.right;
 
-        cursor.Translate(cursorMovement);
+        if (input.Up) cursor.GetComponent<Cursor>().Move(CursorMovement.Up);
+        else if (input.Down) cursor.GetComponent<Cursor>().Move(CursorMovement.Down);
+        else if (input.Left) cursor.GetComponent<Cursor>().Move(CursorMovement.Left);
+        else if (input.Right) cursor.GetComponent<Cursor>().Move(CursorMovement.Right);
 
         if (input.SwapUp) print("Trocar com de Cima");
         if (input.SwapDown) print("Trocar com de Baixo");

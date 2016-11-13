@@ -52,7 +52,7 @@ public class Grid : MonoBehaviour {
         {
             for (int row = 0; row < rows; row++)
             {
-                var newBlock = Instantiate(block, GetGridCoord(new Vector3(column, rows, 0)), Quaternion.identity, blocksContainer) as GameObject;
+                var newBlock = Instantiate(block, transform.position + GetGridCoord(new Vector3(column, rows, 0)), Quaternion.identity, blocksContainer) as GameObject;
                 var color = GetRandomValidColor(column, row);
                 newBlock.GetComponent<Block>().SetColor(color);
                 newBlock.GetComponent<SpriteRenderer>().sprite = GetTexture(color);
@@ -153,9 +153,9 @@ public class Grid : MonoBehaviour {
     public Vector3 GetGridCoord(Vector3 gridPosition)
     {
         return new Vector3(
-            gridPosition.x * transform.localScale.x + transform.position.x + 0.5f,
-            gridPosition.y * transform.localScale.y + transform.position.y + 0.5f,
-            0);
+            gridPosition.x * transform.localScale.x + transform.localPosition.x + 0.5f,
+            gridPosition.y * transform.localScale.y + transform.localPosition.y + 0.5f,
+            gridPosition.z);
     }
 
     void OnDrawGizmos()
@@ -165,10 +165,15 @@ public class Grid : MonoBehaviour {
         {
             // Desenhar limites
             Gizmos.color = Color.white;
-            Gizmos.DrawLine(GetGridCoord(new Vector3(-0.5f, -0.5f, 0)), GetGridCoord(new Vector3(columns - 0.5f, -0.5f, 0)));
-            Gizmos.DrawLine(GetGridCoord(new Vector3(columns - 0.5f, -0.5f, 0)), GetGridCoord(new Vector3(columns - 0.5f, rows - 0.5f, 0)));
-            Gizmos.DrawLine(GetGridCoord(new Vector3(columns - 0.5f, rows - 0.5f, 0)), GetGridCoord(new Vector3(-0.5f, rows - 0.5f, 0)));
-            Gizmos.DrawLine(GetGridCoord(new Vector3(-0.5f, rows - 0.5f, 0)), GetGridCoord(new Vector3(-0.5f, -0.5f, 0)));
+            Vector3 Point1 = transform.position + GetGridCoord(new Vector3(-.5f, -.5f, 0));
+            Vector3 Point2 = transform.position + GetGridCoord(new Vector3(columns - 1 + .5f, -.5f, 0));
+            Vector3 Point3 = transform.position + GetGridCoord(new Vector3(columns - 1 + .5f, rows - 1 + .5f, 0));
+            Vector3 Point4 = transform.position + GetGridCoord(new Vector3(-.5f, rows - 1 + .5f, 0));
+
+            Gizmos.DrawLine(Point1, Point2);
+            Gizmos.DrawLine(Point2, Point3);
+            Gizmos.DrawLine(Point3, Point4);
+            Gizmos.DrawLine(Point4, Point1);
         }
 
         if (grid == null)
@@ -209,11 +214,11 @@ public class Grid : MonoBehaviour {
                     // Setando o tamanho conforme está ativo ou não
                     if (grid[column, row].GetComponent<Block>().GetState() == BlockState.Active)
                     {
-                        Gizmos.DrawSphere(GetGridCoord(new Vector3(column, row, 0)), 0.2f);
+                        Gizmos.DrawSphere(transform.position + GetGridCoord(new Vector3(column, row, 0)), 0.2f);
                     }
                     else
                     {
-                        Gizmos.DrawSphere(GetGridCoord(new Vector3(column, row, 0)), 0.1f);
+                        Gizmos.DrawSphere(transform.position + GetGridCoord(new Vector3(column, row, 0)), 0.1f);
                     }
                 }
             }

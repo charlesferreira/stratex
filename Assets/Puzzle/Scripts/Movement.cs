@@ -25,7 +25,7 @@ public class Movement : MonoBehaviour {
             elapsedTime += Time.deltaTime;
             if (elapsedTime > duration)
             {
-                transform.position = target;
+                transform.localPosition = target;
                 isMoving = false;
                 return;
             }
@@ -98,7 +98,7 @@ public class Movement : MonoBehaviour {
         this.duration = duration;
         this.waitingTime = waitingTime;
 
-        startLocalPosition = transform.position;
+        startLocalPosition = transform.localPosition;
         elapsedTime = 0;
         isMoving = true;
     }
