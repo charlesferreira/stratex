@@ -287,7 +287,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1305309530
 Transform:
   m_ObjectHideFlags: 0
@@ -461,6 +461,30 @@ Prefab:
       propertyPath: joystick
       value: 
       objectReference: {fileID: 11400000, guid: bbcc6c74e425d574eace3f15d5e5c27d,
+        type: 2}
+    - target: {fileID: 114000011731081780, guid: 1acadfdc533b1f24593a9ad92bae0388,
+        type: 2}
+      propertyPath: weapon1.info
+      value: 
+      objectReference: {fileID: 11400000, guid: 32107d3524bd702498881648c76f9310,
+        type: 2}
+    - target: {fileID: 114000011731081780, guid: 1acadfdc533b1f24593a9ad92bae0388,
+        type: 2}
+      propertyPath: weapon2.info
+      value: 
+      objectReference: {fileID: 11400000, guid: cb2b4bf019adf4448a486f79c16bdfdb,
+        type: 2}
+    - target: {fileID: 114000011731081780, guid: 1acadfdc533b1f24593a9ad92bae0388,
+        type: 2}
+      propertyPath: weaponInfo1
+      value: 
+      objectReference: {fileID: 11400000, guid: 32107d3524bd702498881648c76f9310,
+        type: 2}
+    - target: {fileID: 114000011731081780, guid: 1acadfdc533b1f24593a9ad92bae0388,
+        type: 2}
+      propertyPath: weaponInfo2
+      value: 
+      objectReference: {fileID: 11400000, guid: cb2b4bf019adf4448a486f79c16bdfdb,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1acadfdc533b1f24593a9ad92bae0388, type: 2}
