@@ -3,7 +3,7 @@
 [CreateAssetMenu(menuName = "Space/Weapon")]
 public class WeaponInfo : ScriptableObject {
 
-    public Transform projectile;
+    public GameObject projectile;
     public Vector3 offset;
     public float cooldown;
 }

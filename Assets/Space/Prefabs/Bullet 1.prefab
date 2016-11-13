@@ -37,6 +37,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000010442546036}
+  - 58: {fileID: 58000010959707050}
+  - 50: {fileID: 50000010376707844}
   - 114: {fileID: 114000012225122876}
   m_Layer: 0
   m_Name: Bullet 1
@@ -108,6 +110,37 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011135297242}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!50 &50000010376707844
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014070131068}
+  m_UseAutoMass: 1
+  m_Mass: 0.05
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!58 &58000010959707050
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014070131068}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.07
 --- !u!114 &114000012225122876
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -119,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04c31ebe839514c43bc2a1bd22ef89c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
+  speed: 8
   lifeTime: 5
 --- !u!136 &136000013894232676
 CapsuleCollider:

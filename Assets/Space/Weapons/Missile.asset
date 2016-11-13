@@ -11,6 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d96d5434712a6a4596101674558d010, type: 3}
   m_Name: Missile
   m_EditorClassIdentifier: 
-  projectile: {fileID: 4000010442546036, guid: 28d73b06ca0a6964ab19bbddfeea1c34, type: 2}
-  offset: {x: 0.23, y: 0, z: 0}
+  projectile: {fileID: 1000014070131068, guid: 28d73b06ca0a6964ab19bbddfeea1c34, type: 2}
+  offset: {x: 0.28, y: 0, z: 0}
   cooldown: 0

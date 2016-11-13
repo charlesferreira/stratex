@@ -5,12 +5,16 @@ public class Bullet : MonoBehaviour {
     public float speed;
     public float lifeTime;
 
+    Rigidbody2D rb;
+
     void Start() {
+        rb = GetComponent<Rigidbody2D>();
+        rb.velocity = transform.right * speed;
+
         Destroy(gameObject, lifeTime);
     }
-	
-	void Update () {
-        var velocity = transform.right * speed * Time.deltaTime;
-        transform.Translate(velocity);
-	}
+
+    void OnCollisionEnter2D(Collision2D other) {
+        Destroy(gameObject);
+    }
 }

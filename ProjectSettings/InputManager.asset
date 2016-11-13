@@ -585,8 +585,8 @@ InputManager:
     m_Name: P3 Horizontal Alt
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: 
-    positiveButton: 
+    negativeButton: left
+    positiveButton: right
     altNegativeButton: 
     altPositiveButton: 
     gravity: 3
@@ -618,7 +618,7 @@ InputManager:
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: 
+    positiveButton: up
     altNegativeButton: 
     altPositiveButton: 
     gravity: 0
@@ -634,7 +634,7 @@ InputManager:
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: 
+    positiveButton: page up
     altNegativeButton: 
     altPositiveButton: 
     gravity: 0
@@ -650,7 +650,7 @@ InputManager:
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: 
+    positiveButton: page down
     altNegativeButton: 
     altPositiveButton: 
     gravity: 0

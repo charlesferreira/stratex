@@ -1,14 +1,17 @@
 ﻿using UnityEngine;
+using System;
 
+[Serializable]
 public class Weapon {
 
-    WeaponInfo info;
-    Transform ship;
+    public WeaponInfo info;
+    public Transform spawnPoint;
+    
+    int projectilesLayer;
     float cooldown;
 
-    public Weapon(WeaponInfo info, Transform ship) {
-        this.info = info;
-        this.ship = ship;
+    public void Init(int projectilesLayer) {
+        this.projectilesLayer = projectilesLayer;
     }
 
     public void Fire() {
@@ -19,8 +22,10 @@ public class Weapon {
     }
 
     void SpawnProjectile() {
-        var rotation = ship.rotation;
-        var position = ship.position + ship.rotation * info.offset;
-        GameObject.Instantiate(info.projectile, position, rotation);
+        var projectile = GameObject.Instantiate(
+            info.projectile, 
+            spawnPoint.position, 
+            spawnPoint.rotation) as GameObject;
+        projectile.layer = projectilesLayer;
     }
 }
