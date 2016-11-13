@@ -4,19 +4,26 @@ using System.Collections;
 public class Block : MonoBehaviour {
 
     public BlockInfo info;
+    int column, row;
 
     public void Init(BlockInfo info)
     {
         this.info = info;
     }
 
-	// Use this for initialization
 	void Start () {
-        Instantiate(info.sprite, transform);
+        //Instantiate(info.sprite, transform);
 	}
 	
-	// Update is called once per frame
 	void Update () {
 	
 	}
+
+    public void setGridPosition(int column, int row)
+    {
+        this.column = column;
+        this.row = row;
+
+        GetComponent<Movement>().MoveTo(Grid.Instance.GetGridCoord(new Vector3(column, row, 0)), (float)(Grid.Instance.rows - row) / (float)Grid.Instance.rows, (float)row / 3f + (Random.Range(0, 20) / 300f));
+    }
 }
