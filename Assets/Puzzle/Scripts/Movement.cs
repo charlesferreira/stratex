@@ -102,4 +102,9 @@ public class Movement : MonoBehaviour {
         elapsedTime = 0;
         isMoving = true;
     }
+
+    public bool IsMoving()
+    {
+        return isMoving;
+    }
 }

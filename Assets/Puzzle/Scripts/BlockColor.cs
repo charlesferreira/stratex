@@ -1,4 +1,4 @@
 ﻿public enum BlockColor {
 
-    Red, Yellow
+    Blue, Green, Purple, Red, Yellow
 }

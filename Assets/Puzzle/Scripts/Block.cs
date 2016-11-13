@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class Block : MonoBehaviour {
 
     public BlockInfo info;
-    int column, row;
+    //int column, row;
+    BlockColor color;
+    BlockState state;
 
     public void Init(BlockInfo info)
     {
@@ -16,14 +17,49 @@ public class Block : MonoBehaviour {
 	}
 	
 	void Update () {
-	
-	}
+        switch (state)
+        {
+            case BlockState.Active:
+                break;
+            case BlockState.Inactive:
+                break;
+            case BlockState.Moving:
+                Moving();
+                break;
+            default:
+                break;
+        }
+    }
 
-    public void setGridPosition(int column, int row)
+    private void Moving()
     {
-        this.column = column;
-        this.row = row;
+        if (!GetComponent<Movement>().IsMoving())
+        {
+            state = BlockState.Active;
+        }
+    }
 
-        GetComponent<Movement>().MoveTo(Grid.Instance.GetGridCoord(new Vector3(column, row, 0)), (float)(Grid.Instance.rows - row) / (float)Grid.Instance.rows, (float)row / 3f + (Random.Range(0, 20) / 300f));
+    public void SetGridPosition(int column, int row)
+    {
+        //this.column = column;
+        //this.row = row;
+
+        GetComponent<Movement>().MoveTo(Grid.Instance.GetGridCoord(new Vector3(column, row, 0)), (float)(0 + Grid.Instance.rows - row) / (float)Grid.Instance.rows, (float)row / 3f + (Random.Range(0, 20) / 300f));
+        state = BlockState.Moving;
+    }
+
+    public void SetColor(BlockColor color)
+    {
+        this.color = color;
+    }
+
+    public BlockColor GetColor()
+    {
+        return color;
+    }
+
+    public BlockState GetState()
+    {
+        return state;
     }
 }

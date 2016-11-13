@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class Grid : MonoBehaviour {
 
@@ -13,13 +13,13 @@ public class Grid : MonoBehaviour {
     public Transform blocksContainer;
 
     [Header("Textures")]
-    public List<Sprite> blocksSprites;
+    public List<Sprite> blockSprites;
 
     [Header("Gizmos")]
     public bool drawLimits;
     public bool drawPoints;
 
-    public Transform[,] grid;
+    public GameObject[,] grid;
 
     private static Grid instance;
     public static Grid Instance
@@ -41,17 +41,121 @@ public class Grid : MonoBehaviour {
 
     private void StartGrid()
     {
-        grid = new Transform[columns, rows];
+        FillGrid();
+    }
 
-        for (int x = 0; x < columns; x++)
+    private void FillGrid()
+    {
+        grid = new GameObject[columns, rows];
+
+        for (int column = 0; column < columns; column++)
         {
-            for (int y = 0; y < rows; y++)
+            for (int row = 0; row < rows; row++)
             {
-                var newBlock = Instantiate(block, GetGridCoord(new Vector3(x, rows, 0)), Quaternion.identity, blocksContainer) as GameObject;
-                newBlock.GetComponent<SpriteRenderer>().sprite = blocksSprites[Random.Range(0, blocksSprites.Count - 1)];
-                newBlock.GetComponent<Block>().setGridPosition(x, y);
+                var newBlock = Instantiate(block, GetGridCoord(new Vector3(column, rows, 0)), Quaternion.identity, blocksContainer) as GameObject;
+                var color = GetRandomValidColor(column, row);
+                newBlock.GetComponent<Block>().SetColor(color);
+                newBlock.GetComponent<SpriteRenderer>().sprite = GetTexture(color);
+                newBlock.GetComponent<Block>().SetGridPosition(column, row);
+                grid[column, row] = newBlock;
             }
         }
+    }
+
+    private BlockColor GetRandomValidColor(int column, int row)
+    {
+        Array colorsTemp = Enum.GetValues(typeof(BlockColor));
+        List<BlockColor> colors = new List<BlockColor>();
+        foreach (var color in colorsTemp)
+        {
+            colors.Add((BlockColor)color);
+        }
+
+        while (colors.Count > 0)
+        {
+            var newColor = (BlockColor)colors[UnityEngine.Random.Range(0, colors.Count)];
+
+            if (CheckColorValidPosition(column, row, newColor))
+            {
+                return newColor;
+            }
+            else
+            {
+                colors.Remove(newColor);                
+            }
+        }
+        throw new Exception("Impossible to insert a new block");
+    }
+
+    private bool CheckColorValidPosition(int column, int row, BlockColor newColor)
+    {
+        // Se pode acorrer combinação abaixo da peça
+        if (row > 1)
+        {
+            if (grid[column, row - 1].GetComponent<Block>().GetColor() == newColor)
+            {
+                if (grid[column, row - 2].GetComponent<Block>().GetColor() == newColor)
+                {
+                    return false;
+                }
+            }
+        }
+
+        // Se pode acorrer combinação a esquerda
+        if (column > 1)
+        {
+            if (grid[column - 1, row].GetComponent<Block>().GetColor() == newColor)
+            {
+                if (grid[column - 2, row].GetComponent<Block>().GetColor() == newColor)
+                {
+                    return false;
+                }
+            }
+        }
+
+        // Se pode acorrer combinação a direita
+        if (column < columns - 2)
+        {
+            if (grid[column + 1, row] != null)
+            {
+                if (grid[column + 1, row].GetComponent<Block>().GetColor() == newColor)
+                {
+                    if (grid[column + 2, row].GetComponent<Block>().GetColor() == newColor)
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
+    private Sprite GetTexture(BlockColor color)
+    {
+        //TODO: ver com o Charles como criar um dicionário para melhorar isso.
+        switch (color)
+        {
+            case BlockColor.Blue:
+                return blockSprites[0];
+            case BlockColor.Green:
+                return blockSprites[1];
+            case BlockColor.Purple:
+                return blockSprites[2];
+            case BlockColor.Red:
+                return blockSprites[3];
+            case BlockColor.Yellow:
+                return blockSprites[4];
+            default:
+                throw new Exception("Invalid block color");
+        }
+    }
+
+    public Vector3 GetGridCoord(Vector3 gridPosition)
+    {
+        return new Vector3(
+            gridPosition.x * transform.localScale.x + transform.position.x + 0.5f,
+            gridPosition.y * transform.localScale.y + transform.position.y + 0.5f,
+            0);
     }
 
     void OnDrawGizmos()
@@ -79,25 +183,40 @@ public class Grid : MonoBehaviour {
             {
                 for (int row = 0; row < rows; row++)
                 {
-                    if (grid[column, row] == null)
+                    // Setando a cor
+                    switch (grid[column, row].GetComponent<Block>().GetColor())
                     {
-                        Gizmos.color = Color.white;
+                        case BlockColor.Blue:
+                            Gizmos.color = Color.blue;
+                            break;
+                        case BlockColor.Green:
+                            Gizmos.color = Color.green;
+                            break;
+                        case BlockColor.Purple:
+                            Gizmos.color = Color.magenta;
+                            break;
+                        case BlockColor.Red:
+                            Gizmos.color = Color.red;
+                            break;
+                        case BlockColor.Yellow:
+                            Gizmos.color = Color.yellow;
+                            break;
+                        default:
+                            Gizmos.color = Color.white;
+                            break;
+                    }
+
+                    // Setando o tamanho conforme está ativo ou não
+                    if (grid[column, row].GetComponent<Block>().GetState() == BlockState.Active)
+                    {
+                        Gizmos.DrawSphere(GetGridCoord(new Vector3(column, row, 0)), 0.2f);
                     }
                     else
                     {
-                        Gizmos.color = Color.red;
+                        Gizmos.DrawSphere(GetGridCoord(new Vector3(column, row, 0)), 0.1f);
                     }
-                    Gizmos.DrawSphere(GetGridCoord(new Vector3(column, row, 0)), 0.4f);
                 }
             }
         }
-    }
-
-    public Vector3 GetGridCoord(Vector3 gridPosition)
-    {
-        return new Vector3(
-            gridPosition.x * transform.localScale.x + transform.position.x + 0.5f,
-            gridPosition.y * transform.localScale.y + transform.position.y + 0.5f,
-            0);
     }
 }

@@ -320,7 +320,7 @@ MonoBehaviour:
   columns: 6
   block: {fileID: 1000012290589004, guid: 406034a66b722dc4eaf63e28fd6f359d, type: 2}
   blocksContainer: {fileID: 1989574}
-  blocksSprites:
+  blockSprites:
   - {fileID: 21300000, guid: d1f621151bd6ec447b98c3c88689e003, type: 3}
   - {fileID: 21300000, guid: 0ce6d783562a66f499211c281e6d1981, type: 3}
   - {fileID: 21300000, guid: 8795870bb2d85734798c715e891a514d, type: 3}
