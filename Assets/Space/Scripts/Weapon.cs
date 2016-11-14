@@ -14,18 +14,19 @@ public class Weapon {
         this.projectilesLayer = projectilesLayer;
     }
 
-    public void Fire() {
-        if (cooldown > 0) return;
+    public GameObject Fire() {
+        if (cooldown > 0) return null;
 
         cooldown = info.cooldown;
-        SpawnProjectile();
+        return SpawnProjectile();
     }
 
-    void SpawnProjectile() {
+    GameObject SpawnProjectile() {
         var projectile = GameObject.Instantiate(
             info.projectile, 
             spawnPoint.position, 
             spawnPoint.rotation) as GameObject;
         projectile.layer = projectilesLayer;
+        return projectile;
     }
 }

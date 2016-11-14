@@ -41,7 +41,7 @@ GameObject:
   - 50: {fileID: 50000010376707844}
   - 114: {fileID: 114000012225122876}
   m_Layer: 0
-  m_Name: Bullet 1
+  m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -154,6 +154,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 8
   lifeTime: 5
+  explosionPrefab: {fileID: 198000014254002334, guid: 8e910a5dc60a4d648ab0e59bf29cc928,
+    type: 2}
 --- !u!136 &136000013894232676
 CapsuleCollider:
   m_ObjectHideFlags: 1
