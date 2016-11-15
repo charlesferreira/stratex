@@ -22,6 +22,9 @@ public class ShipWeapons: MonoBehaviour {
     }
 
     void Update () {
+        weapon1.Update();
+        weapon2.Update();
+
         if (input.Fire1) weapon1.Fire();
         if (input.Fire2) LaunchMissile();
     }
