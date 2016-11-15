@@ -2451,10 +2451,10 @@ ParticleSystem:
       maxGradient:
         key0:
           serializedVersion: 2
-          rgba: 65489
+          rgba: 65479
         key1:
           serializedVersion: 2
-          rgba: 2013310719
+          rgba: 2013331399
         key2:
           serializedVersion: 2
           rgba: 0

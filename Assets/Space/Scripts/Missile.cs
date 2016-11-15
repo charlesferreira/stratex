@@ -12,13 +12,14 @@ public class Missile : Bullet {
         var direction = target.position - transform.position;
         var steeringForce = direction.normalized * steeringStrength * Time.deltaTime;
         rb.AddForce(steeringForce);
+    }
 
+    void LateUpdate() {
         // Mantém a velocidade limite
         rb.velocity = rb.velocity.normalized * speed;
-        
+
         // Aponta na direção do movimento
-        var angle = Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        transform.right = rb.velocity;
     }
 
     void OnCollisionEnter2D(Collision2D other) {
