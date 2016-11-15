@@ -56,10 +56,22 @@ public class Grid : MonoBehaviour {
                 var color = GetRandomValidColor(column, row);
                 newBlock.GetComponent<Block>().SetColor(color);
                 newBlock.GetComponent<SpriteRenderer>().sprite = GetTexture(color);
-                newBlock.GetComponent<Block>().SetGridPosition(column, row);
+                newBlock.GetComponent<Block>().SetStartGridPosition(column, row);
                 grid[column, row] = newBlock;
             }
         }
+    }
+
+    public void Swap(int columnA, int rowA, int columnB, int rowB)
+    {
+        GameObject blockA = grid[columnA, rowA];
+        GameObject blockB = grid[columnB, rowB];
+
+        grid[columnA, rowA] = blockB;
+        grid[columnB, rowB] = blockA;
+
+        blockA.GetComponent<Block>().SetGridPosition(columnB, rowB);
+        blockB.GetComponent<Block>().SetGridPosition(columnA, rowA);
     }
 
     private BlockColor GetRandomValidColor(int column, int row)

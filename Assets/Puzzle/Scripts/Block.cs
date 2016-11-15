@@ -6,6 +6,7 @@ public class Block : MonoBehaviour {
     //int column, row;
     BlockColor color;
     BlockState state;
+    public float swapSpeed = 0.2f;
 
     public void Init(BlockInfo info)
     {
@@ -39,12 +40,27 @@ public class Block : MonoBehaviour {
         }
     }
 
+    public void SetStartGridPosition(int column, int row)
+    {
+        //this.column = column;
+        //this.row = row;
+
+        Vector3 target = Grid.Instance.GetGridCoord(new Vector3(column, row, 0));
+        float duration = (float)(0 + Grid.Instance.rows - row) / (float)Grid.Instance.rows;
+        float waitingTime = (float)row / 3f + (Random.Range(0, 60) / 1000f);
+
+        GetComponent<Movement>().MoveTo(target, duration, waitingTime);
+        state = BlockState.Moving;
+    }
+
     public void SetGridPosition(int column, int row)
     {
         //this.column = column;
         //this.row = row;
 
-        GetComponent<Movement>().MoveTo(Grid.Instance.GetGridCoord(new Vector3(column, row, 0)), (float)(0 + Grid.Instance.rows - row) / (float)Grid.Instance.rows, (float)row / 3f + (Random.Range(0, 20) / 300f));
+        Vector3 target = Grid.Instance.GetGridCoord(new Vector3(column, row, 0));
+
+        GetComponent<Movement>().MoveTo(target, swapSpeed);
         state = BlockState.Moving;
     }
 

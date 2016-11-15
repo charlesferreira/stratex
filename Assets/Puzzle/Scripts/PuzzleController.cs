@@ -6,20 +6,30 @@ public class PuzzleController : MonoBehaviour {
 
     PuzzleInput input;
 
+    Cursor scriptCursor;
+
 	void Start () {
         input = GetComponent<PuzzleInput>();
-	}
+        scriptCursor = cursor.GetComponent<Cursor>();
+
+    }
 	
 	void Update () {
 
-        if (input.Up) cursor.GetComponent<Cursor>().Move(CursorMovement.Up);
-        else if (input.Down) cursor.GetComponent<Cursor>().Move(CursorMovement.Down);
-        else if (input.Left) cursor.GetComponent<Cursor>().Move(CursorMovement.Left);
-        else if (input.Right) cursor.GetComponent<Cursor>().Move(CursorMovement.Right);
+        if (input.Up) scriptCursor.Move(CursorMovement.Up);
+        else if (input.Down) scriptCursor.Move(CursorMovement.Down);
+        else if (input.Left) scriptCursor.Move(CursorMovement.Left);
+        else if (input.Right) scriptCursor.Move(CursorMovement.Right);
 
-        if (input.SwapUp) print("Trocar com de Cima");
-        if (input.SwapDown) print("Trocar com de Baixo");
-        if (input.SwapLeft) print("Trocar com da Esquerda");
-        if (input.SwapRight) print("Trocar com da Direita");
+        // TODO: Substituir pelos inputs originais
+        if (Input.GetKeyDown(KeyCode.W)) scriptCursor.Swap(SwapDirection.Up);
+        if (Input.GetKeyDown(KeyCode.S)) scriptCursor.Swap(SwapDirection.Down);
+        if (Input.GetKeyDown(KeyCode.A)) scriptCursor.Swap(SwapDirection.Left);
+        if (Input.GetKeyDown(KeyCode.D)) scriptCursor.Swap(SwapDirection.Right);
+
+        //if (input.SwapUp) scriptCursor.Swap(SwapDirection.Up);
+        //if (input.SwapDown) scriptCursor.Swap(SwapDirection.Down);
+        //if (input.SwapLeft) scriptCursor.Swap(SwapDirection.Left);
+        //if (input.SwapRight) scriptCursor.Swap(SwapDirection.Right);
     }
 }

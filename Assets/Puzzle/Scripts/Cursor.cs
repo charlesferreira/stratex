@@ -54,9 +54,43 @@ public class Cursor : MonoBehaviour {
         GetComponent<Movement>().MoveTo(Grid.Instance.GetGridCoord(new Vector3(column, row, transform.position.z)), .2f);
     }
 
+    internal void Swap(SwapDirection direction)
+    {
+        switch (direction)
+        {
+            case SwapDirection.Up:
+                if (row < Grid.Instance.rows - 1)
+                {
+                    Grid.Instance.Swap(column, row, column, row + 1);
+                }
+                break;
+            case SwapDirection.Down:
+                if (row > 0)
+                {
+                    Grid.Instance.Swap(column, row, column, row - 1);
+                }
+                break;
+            case SwapDirection.Left:
+                if (column > 0)
+                {
+                    Grid.Instance.Swap(column, row, column - 1, row);
+                }
+                break;
+            case SwapDirection.Right:
+                if (column < Grid.Instance.columns - 1)
+                {
+                    Grid.Instance.Swap(column, row, column + 1, row);
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
     private void Inactive()
     {
-        if (!Grid.Instance.grid[Grid.Instance.columns - 1, Grid.Instance.rows - 1].GetComponent<Movement>().IsMoving())
+        var lastGridBlock = Grid.Instance.grid[Grid.Instance.columns - 1, Grid.Instance.rows - 1];
+        if (lastGridBlock.GetComponent<Block>().GetState() == BlockState.Active)
         {
             Show();
             state = CursorState.Active;
