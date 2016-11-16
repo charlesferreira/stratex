@@ -14,4 +14,4 @@ MonoBehaviour:
   projectile: {fileID: 1000014070131068, guid: 05174e2ac6ed4324f835fae5ae8b3825, type: 2}
   offset: {x: 0.53, y: 0, z: 0}
   cooldown: 0.1
-  startingAmmo: 5
+  startingAmmo: 20
