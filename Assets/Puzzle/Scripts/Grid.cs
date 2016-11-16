@@ -52,14 +52,19 @@ public class Grid : MonoBehaviour {
         {
             for (int row = 0; row < rows; row++)
             {
-                var newBlock = Instantiate(block, transform.position + GetGridCoord(new Vector3(column, rows, 0)), Quaternion.identity, blocksContainer) as GameObject;
-                var color = GetRandomValidColor(column, row);
-                newBlock.GetComponent<Block>().SetColor(color);
-                newBlock.GetComponent<SpriteRenderer>().sprite = GetTexture(color);
-                newBlock.GetComponent<Block>().SetStartGridPosition(column, row);
-                grid[column, row] = newBlock;
+                CreateNewBlock(column, row);
             }
         }
+    }
+
+    private void CreateNewBlock(int column, int row)
+    {
+        var newBlock = Instantiate(block, transform.position + GetGridCoord(new Vector3(column, rows, 0)), Quaternion.identity, blocksContainer) as GameObject;
+        var color = GetRandomValidColor(column, row);
+        newBlock.GetComponent<Block>().SetColor(color);
+        newBlock.GetComponent<SpriteRenderer>().sprite = GetTexture(color);
+        newBlock.GetComponent<Block>().SetStartGridPosition(column, row);
+        grid[column, row] = newBlock;
     }
 
     public void Swap(int columnA, int rowA, int columnB, int rowB)
@@ -67,11 +72,205 @@ public class Grid : MonoBehaviour {
         GameObject blockA = grid[columnA, rowA];
         GameObject blockB = grid[columnB, rowB];
 
+        var blockAScript = blockA.GetComponent<Block>();
+        var blockBScript = blockB.GetComponent<Block>();
+
+        // Só faz swap se os blocos estão ativos
+        if (blockAScript.GetState() != BlockState.Active || blockBScript.GetState() != BlockState.Active)
+        {
+            return;
+        }
+
         grid[columnA, rowA] = blockB;
         grid[columnB, rowB] = blockA;
 
-        blockA.GetComponent<Block>().SetGridPosition(columnB, rowB);
-        blockB.GetComponent<Block>().SetGridPosition(columnA, rowA);
+        blockAScript.SetGridPosition(columnB, rowB);
+        blockBScript.SetGridPosition(columnA, rowA);
+    }
+
+    internal void CheckMatch(int column, int row)
+    {
+        var color = GetBlockColor(column, row);
+
+        bool horizontal = CheckHorizontalMatch(color,column, row);
+        bool vertical = CheckVerticalMatch(color, column, row);
+
+        int comboCount = 0;
+        if (horizontal)
+        {
+            comboCount += DoHorizontalMatch(color, column, row);
+        }
+        if (vertical)
+        {
+            comboCount += DoVerticalMatch(color, column, row);
+        }
+    }
+
+    private bool CheckHorizontalMatch(BlockColor color, int column, int row)
+    {
+        if (column > 0)
+        {
+            if (GetBlockColor(column - 1, row) == color)
+            {
+                // Esquerda
+                if (column > 1)
+                    if (GetBlockColor(column - 2, row) == color)
+                        return true;
+
+                // Centro
+                if (column < columns - 1)
+                    if (GetBlockColor(column + 1, row) == color)
+                        return true;
+            }
+        }
+
+        // Direita
+        if (column < columns - 1)
+            if (GetBlockColor(column + 1, row) == color)
+                if (column < columns - 2)
+                    if (GetBlockColor(column + 2, row) == color)
+                        return true;
+        
+        return false;
+    }
+
+    private bool CheckVerticalMatch(BlockColor color, int column, int row)
+    {
+        if (row > 0)
+        {
+            if (GetBlockColor(column, row - 1) == color)
+            {
+                // Abaixo
+                if (row > 1)
+                    if (GetBlockColor(column, row - 2) == color)
+                        return true;
+
+                // Centro
+                if (row < rows - 1)
+                    if (GetBlockColor(column, row + 1) == color)
+                        return true;
+            }
+        }
+
+        // Acima
+        if (row < rows - 1)
+            if (GetBlockColor(column, row + 1) == color)
+                if (row < rows - 2)
+                    if (GetBlockColor(column, row + 2) == color)
+                        return true;
+
+        return false;
+    }
+
+    private int DoHorizontalMatch(BlockColor color, int column, int row)
+    {
+        grid[column, row].GetComponent<Block>().ToMatched();
+        int matchSize = 1;
+
+        // Match a esquerda
+        if (column > 0)
+        {
+            if (GetBlockColor(column - 1, row) == color)
+            {
+                grid[column - 1, row].GetComponent<Block>().ToMatched();
+                matchSize += 1;
+
+                if (column > 1)
+                {
+                    if (GetBlockColor(column - 2, row) == color)
+                    {
+                        grid[column - 2, row].GetComponent<Block>().ToMatched();
+                        matchSize += 1;
+                    }
+                }
+            }
+        }
+
+        // Match a direita
+        if (column < columns - 1)
+        {
+            if (GetBlockColor(column + 1, row) == color)
+            {
+                grid[column + 1, row].GetComponent<Block>().ToMatched();
+                matchSize += 1;
+
+                if (column < columns - 2)
+                {
+                    if (GetBlockColor(column + 2, row) == color)
+                    {
+                        grid[column + 2, row].GetComponent<Block>().ToMatched();
+                        matchSize += 1;
+                    }
+                }
+            }
+        }
+
+        return matchSize;
+    }
+
+    private int DoVerticalMatch(BlockColor color, int column, int row)
+    {
+        grid[column, row].GetComponent<Block>().ToMatched();
+        int matchSize = 1;
+
+        // Match abaixo
+        if (row > 0)
+        {
+            if (GetBlockColor(column, row - 1) == color)
+            {
+                grid[column, row - 1].GetComponent<Block>().ToMatched();
+                matchSize += 1;
+
+                if (row > 1)
+                {
+                    if (GetBlockColor(column, row - 2) == color)
+                    {
+                        grid[column, row - 2].GetComponent<Block>().ToMatched();
+                        matchSize += 1;
+                    }
+                }
+            }
+        }
+
+        // Match acima
+        if (row < rows - 1)
+        {
+            if (GetBlockColor(column, row + 1) == color)
+            {
+                grid[column, row + 1].GetComponent<Block>().ToMatched();
+                matchSize += 1;
+
+                if (row < rows - 2)
+                {
+                    if (GetBlockColor(column, row + 2) == color)
+                    {
+                        grid[column, row + 2].GetComponent<Block>().ToMatched();
+                        matchSize += 1;
+                    }
+                }
+            }
+        }
+
+        return matchSize;
+    }
+
+    private void DecraseColumnAboveRow(int column, int row)
+    {
+        for (; row <= rows - 2; row++)
+        {
+            grid[column, row] = grid[column, row + 1];
+            grid[column, row].GetComponent<Block>().SetGridPosition(column, row);
+        }
+
+        //Debug.Log("Criar novo bloco");
+        //CreateNewBlock(column, rows - 1);
+        //Debug.Log("Novo bloco criado");
+
+    }
+
+    private BlockColor GetBlockColor(int column, int row)
+    {
+        return grid[column, row].GetComponent<Block>().GetColor();
     }
 
     private BlockColor GetRandomValidColor(int column, int row)
@@ -85,7 +284,7 @@ public class Grid : MonoBehaviour {
 
         while (colors.Count > 0)
         {
-            var newColor = (BlockColor)colors[UnityEngine.Random.Range(0, colors.Count)];
+            var newColor = colors[UnityEngine.Random.Range(0, colors.Count)];
 
             if (CheckColorValidPosition(column, row, newColor))
             {

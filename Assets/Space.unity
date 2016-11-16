@@ -539,6 +539,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1000010354573912, guid: 7e3187a612c1b9b44b8746ac8ed29a07, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7e3187a612c1b9b44b8746ac8ed29a07, type: 2}
   m_IsPrefabParent: 0
@@ -657,7 +661,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ee4ce81a05f7d6840abe50592db470d3, type: 3}
   - {fileID: 21300000, guid: 0ace42c51b5936442915049f0e1b991a, type: 3}
   drawLimits: 1
-  drawPoints: 0
+  drawPoints: 1
 --- !u!1 &1419174332
 GameObject:
   m_ObjectHideFlags: 0
