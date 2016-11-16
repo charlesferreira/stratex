@@ -19,6 +19,8 @@ public class Grid : MonoBehaviour {
     public bool drawLimits;
     public bool drawPoints;
 
+    List<Block> MachingBlocks;
+
     public GameObject[,] grid;
 
     private static Grid instance;
@@ -95,15 +97,26 @@ public class Grid : MonoBehaviour {
         bool horizontal = CheckHorizontalMatch(color,column, row);
         bool vertical = CheckVerticalMatch(color, column, row);
 
-        int comboCount = 0;
-        if (horizontal)
+        if (vertical || horizontal)
         {
-            comboCount += DoHorizontalMatch(color, column, row);
+            int matchSize = 0;
+            if (horizontal)
+            {
+                matchSize += DoHorizontalMatch(color, column, row);
+            }
+            if (vertical)
+            {
+                matchSize += DoVerticalMatch(color, column, row);
+            }
+            Debug.Log("Match " + color + ", size: " + matchSize);
+
+            DestryMachingBlocks();
         }
-        if (vertical)
-        {
-            comboCount += DoVerticalMatch(color, column, row);
-        }
+    }
+
+    private void DestryMachingBlocks()
+    {
+        throw new NotImplementedException();
     }
 
     private bool CheckHorizontalMatch(BlockColor color, int column, int row)
