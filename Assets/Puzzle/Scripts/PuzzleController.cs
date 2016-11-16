@@ -21,15 +21,9 @@ public class PuzzleController : MonoBehaviour {
         else if (input.Left) scriptCursor.Move(CursorMovement.Left);
         else if (input.Right) scriptCursor.Move(CursorMovement.Right);
 
-        // TODO: Substituir pelos inputs originais
-        if (Input.GetKeyDown(KeyCode.W)) scriptCursor.Swap(SwapDirection.Up);
-        if (Input.GetKeyDown(KeyCode.S)) scriptCursor.Swap(SwapDirection.Down);
-        if (Input.GetKeyDown(KeyCode.A)) scriptCursor.Swap(SwapDirection.Left);
-        if (Input.GetKeyDown(KeyCode.D)) scriptCursor.Swap(SwapDirection.Right);
-
-        //if (input.SwapUp) scriptCursor.Swap(SwapDirection.Up);
-        //if (input.SwapDown) scriptCursor.Swap(SwapDirection.Down);
-        //if (input.SwapLeft) scriptCursor.Swap(SwapDirection.Left);
-        //if (input.SwapRight) scriptCursor.Swap(SwapDirection.Right);
+        if (input.SwapUp) scriptCursor.Swap(SwapDirection.Up);
+        if (input.SwapDown) scriptCursor.Swap(SwapDirection.Down);
+        if (input.SwapLeft) scriptCursor.Swap(SwapDirection.Left);
+        if (input.SwapRight) scriptCursor.Swap(SwapDirection.Right);
     }
 }

@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Block : MonoBehaviour {
 
     public BlockInfo info;
-    //int column, row;
+    int column, row;
     BlockColor color;
     BlockState state;
     public float swapSpeed = 0.2f;
@@ -20,6 +21,9 @@ public class Block : MonoBehaviour {
 	void Update () {
         switch (state)
         {
+            case BlockState.Entering:
+                Entering();
+                break;
             case BlockState.Active:
                 break;
             case BlockState.Inactive:
@@ -32,7 +36,7 @@ public class Block : MonoBehaviour {
         }
     }
 
-    private void Moving()
+    private void Entering()
     {
         if (!GetComponent<Movement>().IsMoving())
         {
@@ -40,23 +44,32 @@ public class Block : MonoBehaviour {
         }
     }
 
+    private void Moving()
+    {
+        if (!GetComponent<Movement>().IsMoving())
+        {
+            state = BlockState.Active;
+            Grid.Instance.CheckMatch(column, row);
+        }
+    }
+
     public void SetStartGridPosition(int column, int row)
     {
-        //this.column = column;
-        //this.row = row;
+        this.column = column;
+        this.row = row;
 
         Vector3 target = Grid.Instance.GetGridCoord(new Vector3(column, row, 0));
         float duration = (float)(0 + Grid.Instance.rows - row) / (float)Grid.Instance.rows;
-        float waitingTime = (float)row / 3f + (Random.Range(0, 60) / 1000f);
+        float waitingTime = (float)row / 3f + (UnityEngine.Random.Range(0, 60) / 1000f);
 
         GetComponent<Movement>().MoveTo(target, duration, waitingTime);
-        state = BlockState.Moving;
+        state = BlockState.Entering;
     }
 
     public void SetGridPosition(int column, int row)
     {
-        //this.column = column;
-        //this.row = row;
+        this.column = column;
+        this.row = row;
 
         Vector3 target = Grid.Instance.GetGridCoord(new Vector3(column, row, 0));
 
@@ -77,5 +90,10 @@ public class Block : MonoBehaviour {
     public BlockState GetState()
     {
         return state;
+    }
+
+    internal void ToMatched()
+    {
+        state = BlockState.Matched;
     }
 }
