@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Linq;
 using System.Collections.Generic;
-using System;
+using UnityEngine;
 
 public class Grid : MonoBehaviour {
 
@@ -9,7 +10,7 @@ public class Grid : MonoBehaviour {
     public int columns = 6;
 
     [Header("Block")]
-    public GameObject block;
+    public GameObject blockPrefab;
     public Transform blocksContainer;
 
     [Header("Textures")]
@@ -19,112 +20,89 @@ public class Grid : MonoBehaviour {
     public bool drawLimits;
     public bool drawPoints;
 
-    List<Block> MachingBlocks;
-
-    public GameObject[,] grid;
+    Block[,] grid;
+    List<Block> matchingBlocks;
 
     private static Grid instance;
-    public static Grid Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
+    public static Grid Instance {
+        get {
+            if (instance == null) {
                 instance = FindObjectOfType<Grid>();
             }
             return instance;
         }
     }
 
-    void Start ()
-    {
-        StartGrid();
-    }
+    public Block LastGridBlock { get { return grid[columns - 1, rows - 1]; } }
 
-    private void StartGrid()
-    {
+    void Start() {
         FillGrid();
     }
 
-    private void FillGrid()
-    {
-        grid = new GameObject[columns, rows];
+    private void FillGrid() {
+        grid = new Block[columns, rows];
 
-        for (int column = 0; column < columns; column++)
-        {
-            for (int row = 0; row < rows; row++)
-            {
+        for (int column = 0; column < columns; column++) {
+            for (int row = 0; row < rows; row++) {
                 CreateNewBlock(column, row);
             }
         }
     }
 
-    private void CreateNewBlock(int column, int row)
-    {
-        var newBlock = Instantiate(block, transform.position + GetGridCoord(new Vector3(column, rows, 0)), Quaternion.identity, blocksContainer) as GameObject;
+    private void CreateNewBlock(int column, int row) {
+        var position = transform.position + GetGridCoord(new Vector3(column, rows, 0));
+        var rotation = Quaternion.identity;
+        var blockGO = Instantiate(blockPrefab, position, rotation, blocksContainer) as GameObject;
+
+        var block = blockGO.GetComponent<Block>();
         var color = GetRandomValidColor(column, row);
-        newBlock.GetComponent<Block>().SetColor(color);
-        newBlock.GetComponent<SpriteRenderer>().sprite = GetTexture(color);
-        newBlock.GetComponent<Block>().SetStartGridPosition(column, row);
-        grid[column, row] = newBlock;
+        block.Init(column, row, color);
+        grid[column, row] = block;
     }
 
-    public void Swap(int columnA, int rowA, int columnB, int rowB)
-    {
-        GameObject blockA = grid[columnA, rowA];
-        GameObject blockB = grid[columnB, rowB];
-
-        var blockAScript = blockA.GetComponent<Block>();
-        var blockBScript = blockB.GetComponent<Block>();
+    public void Swap(int columnA, int rowA, int columnB, int rowB) {
+        Block blockA = grid[columnA, rowA];
+        Block blockB = grid[columnB, rowB];
 
         // Só faz swap se os blocos estão ativos
-        if (blockAScript.GetState() != BlockState.Active || blockBScript.GetState() != BlockState.Active)
-        {
+        if (blockA.State != BlockState.Active || blockB.State != BlockState.Active) {
             return;
         }
 
+        blockA.SetGridPosition(columnB, rowB);
+        blockB.SetGridPosition(columnA, rowA);
+
         grid[columnA, rowA] = blockB;
         grid[columnB, rowB] = blockA;
-
-        blockAScript.SetGridPosition(columnB, rowB);
-        blockBScript.SetGridPosition(columnA, rowA);
     }
 
-    internal void CheckMatch(int column, int row)
-    {
+    internal void CheckMatch(int column, int row) {
         var color = GetBlockColor(column, row);
 
-        bool horizontal = CheckHorizontalMatch(color,column, row);
+        bool horizontal = CheckHorizontalMatch(color, column, row);
         bool vertical = CheckVerticalMatch(color, column, row);
 
-        if (vertical || horizontal)
-        {
+        if (vertical || horizontal) {
             int matchSize = 0;
-            if (horizontal)
-            {
+            if (horizontal) {
                 matchSize += DoHorizontalMatch(color, column, row);
             }
-            if (vertical)
-            {
+            if (vertical) {
                 matchSize += DoVerticalMatch(color, column, row);
             }
             Debug.Log("Match " + color + ", size: " + matchSize);
 
-            DestryMachingBlocks();
+            DestroyMatchingBlocks();
         }
     }
 
-    private void DestryMachingBlocks()
-    {
+    private void DestroyMatchingBlocks() {
         throw new NotImplementedException();
     }
 
-    private bool CheckHorizontalMatch(BlockColor color, int column, int row)
-    {
-        if (column > 0)
-        {
-            if (GetBlockColor(column - 1, row) == color)
-            {
+    private bool CheckHorizontalMatch(BlockColor color, int column, int row) {
+        if (column > 0) {
+            if (GetBlockColor(column - 1, row) == color) {
                 // Esquerda
                 if (column > 1)
                     if (GetBlockColor(column - 2, row) == color)
@@ -143,16 +121,13 @@ public class Grid : MonoBehaviour {
                 if (column < columns - 2)
                     if (GetBlockColor(column + 2, row) == color)
                         return true;
-        
+
         return false;
     }
 
-    private bool CheckVerticalMatch(BlockColor color, int column, int row)
-    {
-        if (row > 0)
-        {
-            if (GetBlockColor(column, row - 1) == color)
-            {
+    private bool CheckVerticalMatch(BlockColor color, int column, int row) {
+        if (row > 0) {
+            if (GetBlockColor(column, row - 1) == color) {
                 // Abaixo
                 if (row > 1)
                     if (GetBlockColor(column, row - 2) == color)
@@ -175,43 +150,34 @@ public class Grid : MonoBehaviour {
         return false;
     }
 
-    private int DoHorizontalMatch(BlockColor color, int column, int row)
-    {
-        grid[column, row].GetComponent<Block>().ToMatched();
+    private int DoHorizontalMatch(BlockColor color, int column, int row) {
+        grid[column, row].SetMatching();
         int matchSize = 1;
 
-        // Match a esquerda
-        if (column > 0)
-        {
-            if (GetBlockColor(column - 1, row) == color)
-            {
-                grid[column - 1, row].GetComponent<Block>().ToMatched();
+        // Match à esquerda
+        if (column > 0) {
+            if (GetBlockColor(column - 1, row) == color) {
+                grid[column - 1, row].SetMatching();
                 matchSize += 1;
 
-                if (column > 1)
-                {
-                    if (GetBlockColor(column - 2, row) == color)
-                    {
-                        grid[column - 2, row].GetComponent<Block>().ToMatched();
+                if (column > 1) {
+                    if (GetBlockColor(column - 2, row) == color) {
+                        grid[column - 2, row].SetMatching();
                         matchSize += 1;
                     }
                 }
             }
         }
 
-        // Match a direita
-        if (column < columns - 1)
-        {
-            if (GetBlockColor(column + 1, row) == color)
-            {
-                grid[column + 1, row].GetComponent<Block>().ToMatched();
+        // Match à direita
+        if (column < columns - 1) {
+            if (GetBlockColor(column + 1, row) == color) {
+                grid[column + 1, row].SetMatching();
                 matchSize += 1;
 
-                if (column < columns - 2)
-                {
-                    if (GetBlockColor(column + 2, row) == color)
-                    {
-                        grid[column + 2, row].GetComponent<Block>().ToMatched();
+                if (column < columns - 2) {
+                    if (GetBlockColor(column + 2, row) == color) {
+                        grid[column + 2, row].SetMatching();
                         matchSize += 1;
                     }
                 }
@@ -221,24 +187,19 @@ public class Grid : MonoBehaviour {
         return matchSize;
     }
 
-    private int DoVerticalMatch(BlockColor color, int column, int row)
-    {
-        grid[column, row].GetComponent<Block>().ToMatched();
+    private int DoVerticalMatch(BlockColor color, int column, int row) {
+        grid[column, row].SetMatching();
         int matchSize = 1;
 
         // Match abaixo
-        if (row > 0)
-        {
-            if (GetBlockColor(column, row - 1) == color)
-            {
-                grid[column, row - 1].GetComponent<Block>().ToMatched();
+        if (row > 0) {
+            if (GetBlockColor(column, row - 1) == color) {
+                grid[column, row - 1].SetMatching();
                 matchSize += 1;
 
-                if (row > 1)
-                {
-                    if (GetBlockColor(column, row - 2) == color)
-                    {
-                        grid[column, row - 2].GetComponent<Block>().ToMatched();
+                if (row > 1) {
+                    if (GetBlockColor(column, row - 2) == color) {
+                        grid[column, row - 2].SetMatching();
                         matchSize += 1;
                     }
                 }
@@ -246,18 +207,14 @@ public class Grid : MonoBehaviour {
         }
 
         // Match acima
-        if (row < rows - 1)
-        {
-            if (GetBlockColor(column, row + 1) == color)
-            {
-                grid[column, row + 1].GetComponent<Block>().ToMatched();
+        if (row < rows - 1) {
+            if (GetBlockColor(column, row + 1) == color) {
+                grid[column, row + 1].SetMatching();
                 matchSize += 1;
 
-                if (row < rows - 2)
-                {
-                    if (GetBlockColor(column, row + 2) == color)
-                    {
-                        grid[column, row + 2].GetComponent<Block>().ToMatched();
+                if (row < rows - 2) {
+                    if (GetBlockColor(column, row + 2) == color) {
+                        grid[column, row + 2].SetMatching();
                         matchSize += 1;
                     }
                 }
@@ -267,12 +224,10 @@ public class Grid : MonoBehaviour {
         return matchSize;
     }
 
-    private void DecraseColumnAboveRow(int column, int row)
-    {
-        for (; row <= rows - 2; row++)
-        {
+    private void DecraseColumnAboveRow(int column, int row) {
+        for (; row <= rows - 2; row++) {
             grid[column, row] = grid[column, row + 1];
-            grid[column, row].GetComponent<Block>().SetGridPosition(column, row);
+            grid[column, row].SetGridPosition(column, row);
         }
 
         //Debug.Log("Criar novo bloco");
@@ -281,71 +236,54 @@ public class Grid : MonoBehaviour {
 
     }
 
-    private BlockColor GetBlockColor(int column, int row)
-    {
-        return grid[column, row].GetComponent<Block>().GetColor();
+    private BlockColor GetBlockColor(int column, int row) {
+        return grid[column, row].Color;
     }
 
-    private BlockColor GetRandomValidColor(int column, int row)
-    {
+    private BlockColor GetRandomValidColor(int column, int row) {
         Array colorsTemp = Enum.GetValues(typeof(BlockColor));
         List<BlockColor> colors = new List<BlockColor>();
-        foreach (var color in colorsTemp)
-        {
+        foreach (var color in colorsTemp) {
             colors.Add((BlockColor)color);
         }
 
-        while (colors.Count > 0)
-        {
+        while (colors.Count > 0) {
             var newColor = colors[UnityEngine.Random.Range(0, colors.Count)];
 
-            if (CheckColorValidPosition(column, row, newColor))
-            {
+            if (CheckColorValidPosition(column, row, newColor)) {
                 return newColor;
             }
-            else
-            {
-                colors.Remove(newColor);                
+            else {
+                colors.Remove(newColor);
             }
         }
         throw new Exception("Impossible to insert a new block");
     }
 
-    private bool CheckColorValidPosition(int column, int row, BlockColor newColor)
-    {
-        // Se pode acorrer combinação abaixo da peça
-        if (row > 1)
-        {
-            if (grid[column, row - 1].GetComponent<Block>().GetColor() == newColor)
-            {
-                if (grid[column, row - 2].GetComponent<Block>().GetColor() == newColor)
-                {
+    private bool CheckColorValidPosition(int column, int row, BlockColor newColor) {
+        // Se pode ocorrer combinação abaixo da peça
+        if (row > 1) {
+            if (grid[column, row - 1].Color == newColor) {
+                if (grid[column, row - 2].Color == newColor) {
                     return false;
                 }
             }
         }
 
-        // Se pode acorrer combinação a esquerda
-        if (column > 1)
-        {
-            if (grid[column - 1, row].GetComponent<Block>().GetColor() == newColor)
-            {
-                if (grid[column - 2, row].GetComponent<Block>().GetColor() == newColor)
-                {
+        // Se pode ocorrer combinação à esquerda
+        if (column > 1) {
+            if (grid[column - 1, row].Color == newColor) {
+                if (grid[column - 2, row].Color == newColor) {
                     return false;
                 }
             }
         }
 
-        // Se pode acorrer combinação a direita
-        if (column < columns - 2)
-        {
-            if (grid[column + 1, row] != null)
-            {
-                if (grid[column + 1, row].GetComponent<Block>().GetColor() == newColor)
-                {
-                    if (grid[column + 2, row].GetComponent<Block>().GetColor() == newColor)
-                    {
+        // Se pode ocorrer combinação à direita
+        if (column < columns - 2) {
+            if (grid[column + 1, row] != null) {
+                if (grid[column + 1, row].Color == newColor) {
+                    if (grid[column + 2, row].Color == newColor) {
                         return false;
                     }
                 }
@@ -354,11 +292,9 @@ public class Grid : MonoBehaviour {
         return true;
     }
 
-    private Sprite GetTexture(BlockColor color)
-    {
+    public Sprite GetTexture(BlockColor color) {
         //TODO: ver com o Charles como criar um dicionário para melhorar isso.
-        switch (color)
-        {
+        switch (color) {
             case BlockColor.Blue:
                 return blockSprites[0];
             case BlockColor.Green:
@@ -374,19 +310,15 @@ public class Grid : MonoBehaviour {
         }
     }
 
-    public Vector3 GetGridCoord(Vector3 gridPosition)
-    {
+    public Vector3 GetGridCoord(Vector3 gridPosition) {
         return new Vector3(
-            gridPosition.x * transform.localScale.x + transform.localPosition.x + 0.5f,
-            gridPosition.y * transform.localScale.y + transform.localPosition.y + 0.5f,
+            gridPosition.x * transform.localScale.x + 0.5f,
+            gridPosition.y * transform.localScale.y + 0.5f,
             gridPosition.z);
     }
 
-    void OnDrawGizmos()
-    {
-
-        if (drawLimits)
-        {
+    void OnDrawGizmos() {
+        if (drawLimits) {
             // Desenhar limites
             Gizmos.color = Color.white;
             Vector3 Point1 = transform.position + GetGridCoord(new Vector3(-.5f, -.5f, 0));
@@ -401,20 +333,14 @@ public class Grid : MonoBehaviour {
         }
 
         if (grid == null)
-        {
             return;
-        }
-        if (drawPoints)
-        {
 
+        if (drawPoints) {
             // Desenhar posições do grid
-            for (int column = 0; column < columns; column++)
-            {
-                for (int row = 0; row < rows; row++)
-                {
+            for (int column = 0; column < columns; column++) {
+                for (int row = 0; row < rows; row++) {
                     // Setando a cor
-                    switch (grid[column, row].GetComponent<Block>().GetColor())
-                    {
+                    switch (grid[column, row].Color) {
                         case BlockColor.Blue:
                             Gizmos.color = Color.blue;
                             break;
@@ -436,14 +362,8 @@ public class Grid : MonoBehaviour {
                     }
 
                     // Setando o tamanho conforme está ativo ou não
-                    if (grid[column, row].GetComponent<Block>().GetState() == BlockState.Active)
-                    {
-                        Gizmos.DrawSphere(transform.position + GetGridCoord(new Vector3(column, row, 0)), 0.2f);
-                    }
-                    else
-                    {
-                        Gizmos.DrawSphere(transform.position + GetGridCoord(new Vector3(column, row, 0)), 0.1f);
-                    }
+                    var tamanho = grid[column, row].State == BlockState.Active ? 0.2f : 0.1f;
+                    Gizmos.DrawSphere(transform.position + GetGridCoord(new Vector3(column, row, 0)), tamanho);
                 }
             }
         }

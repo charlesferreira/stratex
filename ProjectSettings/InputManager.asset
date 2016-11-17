@@ -393,8 +393,8 @@ InputManager:
     m_Name: P1 Horizontal Alt
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: a
-    positiveButton: d
+    negativeButton: f
+    positiveButton: h
     altNegativeButton: 
     altPositiveButton: 
     gravity: 3
@@ -426,7 +426,7 @@ InputManager:
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: w
+    positiveButton: t
     altNegativeButton: 
     altPositiveButton: 
     gravity: 0
@@ -458,7 +458,7 @@ InputManager:
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: e
+    positiveButton: y
     altNegativeButton: 
     altPositiveButton: 
     gravity: 0
@@ -474,7 +474,7 @@ InputManager:
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: r
+    positiveButton: b
     altNegativeButton: 
     altPositiveButton: 
     gravity: 0
@@ -585,8 +585,8 @@ InputManager:
     m_Name: P3 Horizontal Alt
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: left
-    positiveButton: right
+    negativeButton: j
+    positiveButton: l
     altNegativeButton: 
     altPositiveButton: 
     gravity: 3
@@ -618,7 +618,7 @@ InputManager:
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: up
+    positiveButton: i
     altNegativeButton: 
     altPositiveButton: 
     gravity: 0
@@ -634,7 +634,7 @@ InputManager:
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: page up
+    positiveButton: u
     altNegativeButton: 
     altPositiveButton: 
     gravity: 0
@@ -650,7 +650,7 @@ InputManager:
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: page down
+    positiveButton: o
     altNegativeButton: 
     altPositiveButton: 
     gravity: 0
@@ -666,7 +666,7 @@ InputManager:
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: 
+    positiveButton: m
     altNegativeButton: 
     altPositiveButton: 
     gravity: 0

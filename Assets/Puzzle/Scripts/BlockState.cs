@@ -1,4 +1,4 @@
 ﻿public enum BlockState
 {
-    Entering, Active, Inactive, Moving, Matched
+    Entering, Active, Inactive, Moving, Matching
 }

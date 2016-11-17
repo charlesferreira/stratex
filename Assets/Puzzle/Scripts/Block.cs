@@ -1,26 +1,27 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Block : MonoBehaviour {
 
-    public BlockInfo info;
+    public float swapSpeed = 0.2f;
+
     int column, row;
     BlockColor color;
     BlockState state;
-    public float swapSpeed = 0.2f;
 
-    public void Init(BlockInfo info)
-    {
-        this.info = info;
+    public BlockColor Color { get { return color; } }
+    public BlockState State { get { return state; } }
+
+    Movement movement;
+
+    public void Init(int column, int row, BlockColor color) {
+        this.color = color;
+        movement = GetComponent<Movement>();
+        SetStartGridPosition(column, row);
+        GetComponent<SpriteRenderer>().sprite = Grid.Instance.GetTexture(color);
     }
 
-	void Start () {
-        //Instantiate(info.sprite, transform);
-	}
-	
-	void Update () {
-        switch (state)
-        {
+    void Update() {
+        switch (state) {
             case BlockState.Entering:
                 Entering();
                 break;
@@ -36,25 +37,20 @@ public class Block : MonoBehaviour {
         }
     }
 
-    private void Entering()
-    {
-        if (!GetComponent<Movement>().IsMoving())
-        {
+    private void Entering() {
+        if (!movement.IsMoving()) {
             state = BlockState.Active;
         }
     }
 
-    private void Moving()
-    {
-        if (!GetComponent<Movement>().IsMoving())
-        {
+    private void Moving() {
+        if (!movement.IsMoving()) {
             state = BlockState.Active;
             Grid.Instance.CheckMatch(column, row);
         }
     }
 
-    public void SetStartGridPosition(int column, int row)
-    {
+    void SetStartGridPosition(int column, int row) {
         this.column = column;
         this.row = row;
 
@@ -62,38 +58,21 @@ public class Block : MonoBehaviour {
         float duration = (float)(0 + Grid.Instance.rows - row) / (float)Grid.Instance.rows;
         float waitingTime = (float)row / 3f + (UnityEngine.Random.Range(0, 60) / 1000f);
 
-        GetComponent<Movement>().MoveTo(target, duration, waitingTime);
+        movement.MoveTo(target, duration, waitingTime);
         state = BlockState.Entering;
     }
 
-    public void SetGridPosition(int column, int row)
-    {
+    public void SetGridPosition(int column, int row) {
         this.column = column;
         this.row = row;
 
         Vector3 target = Grid.Instance.GetGridCoord(new Vector3(column, row, 0));
 
-        GetComponent<Movement>().MoveTo(target, swapSpeed);
+        movement.MoveTo(target, swapSpeed);
         state = BlockState.Moving;
     }
 
-    public void SetColor(BlockColor color)
-    {
-        this.color = color;
-    }
-
-    public BlockColor GetColor()
-    {
-        return color;
-    }
-
-    public BlockState GetState()
-    {
-        return state;
-    }
-
-    internal void ToMatched()
-    {
-        state = BlockState.Matched;
+    public void SetMatching() {
+        state = BlockState.Matching;
     }
 }

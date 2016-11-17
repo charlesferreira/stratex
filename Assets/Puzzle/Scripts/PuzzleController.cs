@@ -5,7 +5,6 @@ public class PuzzleController : MonoBehaviour {
     public Transform cursor;
 
     PuzzleInput input;
-
     Cursor scriptCursor;
 
 	void Start () {
@@ -15,7 +14,6 @@ public class PuzzleController : MonoBehaviour {
     }
 	
 	void Update () {
-
         if (input.Up) scriptCursor.Move(CursorMovement.Up);
         else if (input.Down) scriptCursor.Move(CursorMovement.Down);
         else if (input.Left) scriptCursor.Move(CursorMovement.Left);

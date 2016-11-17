@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0ce6d783562a66f499211c281e6d1981
+guid: 0ace42c51b5936442915049f0e1b991a
 timeCreated: 1478819061
 licenseType: Free
 TextureImporter:
@@ -53,7 +53,7 @@ TextureImporter:
     serializedVersion: 2
     sprites: []
     outline: []
-  spritePackingTag: 
+  spritePackingTag: Puzzle
   userData: 
   assetBundleName: 
   assetBundleVariant: 

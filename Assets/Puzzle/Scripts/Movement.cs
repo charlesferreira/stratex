@@ -12,19 +12,16 @@ public class Movement : MonoBehaviour {
     float partial;
     float waitingTime;
 
-    void Update () {
+    void Update() {
 
-        if (isMoving)
-        {
-            if (waitingTime > 0)
-            {
+        if (isMoving) {
+            if (waitingTime > 0) {
                 waitingTime -= Time.deltaTime;
                 return;
             }
 
             elapsedTime += Time.deltaTime;
-            if (elapsedTime > duration)
-            {
+            if (elapsedTime > duration) {
                 transform.localPosition = target;
                 isMoving = false;
                 return;
@@ -32,8 +29,7 @@ public class Movement : MonoBehaviour {
 
             partial = elapsedTime / duration;
 
-            switch (movementType)
-            {
+            switch (movementType) {
                 case MovementType.Linear:
                     Linear();
                     break;
@@ -52,47 +48,40 @@ public class Movement : MonoBehaviour {
         }
     }
 
-    private void QuadraticInOut()
-    {
-        if (partial > 1)
-        {
+    private void QuadraticInOut() {
+        if (partial > 1) {
             QuadraticOut();
         }
-        else
-        {
+        else {
             QuadraticIn();
         }
     }
 
-    private void QuadraticOut()
-    {
+    private void QuadraticOut() {
         transform.localPosition = startLocalPosition - (target - startLocalPosition) * partial * (partial - 2);
     }
 
-    private void QuadraticIn()
-    {
+    private void QuadraticIn() {
         transform.localPosition = startLocalPosition + (target - startLocalPosition) * partial * partial;
     }
 
-    private void Linear()
-    {
+    private void Linear() {
         transform.localPosition = startLocalPosition + (target - startLocalPosition) * partial;
     }
 
-    public void MoveTo(Vector3 target, float duration)
-    {
+    public void MoveTo(Vector3 target, float duration) {
         MoveTo(movementType, target, duration);
     }
-    public void MoveTo(MovementType movementType, Vector3 target, float duration)
-    {
+
+    public void MoveTo(MovementType movementType, Vector3 target, float duration) {
         MoveTo(movementType, target, duration, 0);
     }
-    public void MoveTo(Vector3 target, float duration, float waitingTime)
-    {
+
+    public void MoveTo(Vector3 target, float duration, float waitingTime) {
         MoveTo(movementType, target, duration, waitingTime);
     }
-    public void MoveTo(MovementType movementType, Vector3 target, float duration, float waitingTime)
-    {
+
+    public void MoveTo(MovementType movementType, Vector3 target, float duration, float waitingTime) {
         this.movementType = movementType;
         this.target = target;
         this.duration = duration;
@@ -103,8 +92,7 @@ public class Movement : MonoBehaviour {
         isMoving = true;
     }
 
-    public bool IsMoving()
-    {
+    public bool IsMoving() {
         return isMoving;
     }
 }
