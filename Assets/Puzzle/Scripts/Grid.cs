@@ -83,7 +83,7 @@ public class Grid : MonoBehaviour {
         bool vertical = CheckVerticalMatch(color, column, row);
 
         if (vertical || horizontal) {
-            int matchSize = 0;
+            int matchSize = 1;
             if (horizontal) {
                 matchSize += DoHorizontalMatch(color, column, row);
             }
@@ -152,7 +152,7 @@ public class Grid : MonoBehaviour {
 
     private int DoHorizontalMatch(BlockColor color, int column, int row) {
         grid[column, row].SetMatching();
-        int matchSize = 1;
+        int matchSize = 0;
 
         // Match à esquerda
         if (column > 0) {
@@ -189,7 +189,7 @@ public class Grid : MonoBehaviour {
 
     private int DoVerticalMatch(BlockColor color, int column, int row) {
         grid[column, row].SetMatching();
-        int matchSize = 1;
+        int matchSize = 0;
 
         // Match abaixo
         if (row > 0) {
