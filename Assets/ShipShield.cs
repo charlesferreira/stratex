@@ -1,80 +1,52 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class ShipShield : MonoBehaviour {
 
-    [Header("Graphics")]
-    public Transform shieldSprite;
+    [Header("References")]
+    public GameObject shield;
 
-    [Header("Logic")]
+    [Header("Settings")]
     public float startingTime;
     [Range(0f, 1f)]
     public float minAlpha;
     [Range(0f, 1f)]
     public float maxAlpha;
-    [Range(0f, 10f)]
+    [Range(0f, 1f)]
     public float alphaSpeed = 1f;
 
-    float time;
-    public bool IsActive { get { return time > 0f; } }
-
     SpriteRenderer sprite;
-    CircleCollider2D shieldCollider;
-    float deltaAlphaSign;
-
-    ShipInput input;
+    float time;
 
     void Start() {
-        sprite = shieldSprite.GetComponent<SpriteRenderer>();
-        sprite.gameObject.layer = gameObject.layer;
-
-        shieldCollider = sprite.GetComponent<CircleCollider2D>();
-
-        input = GetComponent<ShipInput>();
-
+        sprite = shield.GetComponent<SpriteRenderer>();
+        shield.layer = gameObject.layer;
         time = startingTime;
-        ResetAlpha();
     }
 
     void Update() {
         time -= Time.deltaTime;
         time = Mathf.Max(0f, time);
-
-        if (IsActive) {
-            sprite.enabled = true;
-            shieldCollider.enabled = true;
-
-            var deltaAlpha = alphaSpeed * deltaAlphaSign * Time.deltaTime;
-            SetAlpha(sprite.color.a + deltaAlpha);
-        }
-        else {
-            sprite.enabled = false;
-            shieldCollider.enabled = false;
-        }
-
-        if (input.Shield) AddTime(2);
+        
+        shield.SetActive(time > 0);
+        UpdateAlpha();
     }
 
-    public void AddTime(int time) {
-        if (!IsActive)
-            SetAlpha(maxAlpha);
+    void UpdateAlpha() {
+        if (time <= 0) return;
 
-        this.time += time;
-    }
+        // calcula o novo alpha do escudo para fazer "piscar"
+        var theta = time * alphaSpeed * Mathf.Rad2Deg;
+        var delta = (Mathf.Sin(theta) + 1f) / 2;
+        var alpha = minAlpha + (maxAlpha - minAlpha) * delta;
 
-    void SetAlpha(float alpha) {
-        if (alpha <= minAlpha) {
-            deltaAlphaSign = 1;
-        } else if (alpha >= maxAlpha) {
-            deltaAlphaSign = -1;
-        }
-
+        // aplica o alpha no escudo
         var color = sprite.color;
         color.a = alpha;
         sprite.color = color;
     }
 
-    void ResetAlpha() {
-        SetAlpha(0);
-        deltaAlphaSign = 1;
+    public void AddTime(int time) {
+        this.time += time;
     }
 }

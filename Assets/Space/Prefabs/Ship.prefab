@@ -28,7 +28,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000010475032900
 GameObject:
   m_ObjectHideFlags: 1
@@ -53,13 +53,14 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010440121232}
   - 114: {fileID: 114000014030955356}
+  - 114: {fileID: 114000011720013556}
   m_Layer: 0
   m_Name: HUD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000010559837676
 GameObject:
   m_ObjectHideFlags: 1
@@ -576,8 +577,8 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010637486660}
-  m_UseAutoMass: 1
-  m_Mass: 0.86173886
+  m_UseAutoMass: 0
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 1
   m_GravityScale: 0
@@ -695,6 +696,17 @@ MonoBehaviour:
   turningSpeed: 180
   startingFuel: 15
   fuelBar: {fileID: 4000012677159860}
+--- !u!114 &114000011720013556
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010492198960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2b3e78192c394c47885f52485d1666e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000011731081780
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -728,11 +740,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 255229b1eed0b27438ff580f721731f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shieldSprite: {fileID: 4000010837918436}
+  shield: {fileID: 1000010437485464}
   startingTime: 3
-  minAlpha: 0.383
-  maxAlpha: 0.83
-  alphaSpeed: 1.5
+  minAlpha: 0.5
+  maxAlpha: 0.8
+  alphaSpeed: 0.4
 --- !u!114 &114000011831350810
 MonoBehaviour:
   m_ObjectHideFlags: 1
