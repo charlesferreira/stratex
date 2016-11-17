@@ -3,6 +3,10 @@ using UnityEngine;
 
 public class ShipEngine : MonoBehaviour {
 
+    [Header("References")]
+    public Transform fuelBar;
+    public ParticleSystem extraParticles;
+
     [Header("Control")]
     public float trusterPower;
     public float maxSpeed;
@@ -10,11 +14,12 @@ public class ShipEngine : MonoBehaviour {
 
     [Header("Fuel")]
     public float startingFuel;
-    public Transform fuelBar;
 
     Rigidbody2D rb;
     ShipInput input;
     float fuel;
+
+    public bool IsThrusting { get { return fuel > 0 && input.Thrusting; } }
 
     void Start() {
         rb = GetComponent<Rigidbody2D>();
@@ -24,7 +29,16 @@ public class ShipEngine : MonoBehaviour {
     }
 
     void Update() {
-        Thrust();
+        var emission = extraParticles.emission;
+        if (IsThrusting) {
+            Thrust();
+            emission.enabled = true;
+        }
+        else {
+            emission.enabled = false;
+        }
+
+        rb.velocity = rb.velocity * 0.999f;
         Steer();
     }
 
@@ -41,9 +55,6 @@ public class ShipEngine : MonoBehaviour {
     }
 
     void Thrust() {
-        if (fuel <= 0) return;
-        if (!input.Thrusting) return;
-
         var force = transform.right * trusterPower * Time.deltaTime;
         rb.AddForce(force);
 
