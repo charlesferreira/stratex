@@ -2,7 +2,9 @@
 
 public class Block : MonoBehaviour {
 
-    public float swapSpeed = 0.2f;
+    public float swapDuration = 0.2f;
+    public float fallDuration = 0.4f;
+
 
     public int Column { get; set; }
     public int Row { get; set; }
@@ -10,7 +12,14 @@ public class Block : MonoBehaviour {
     BlockColor color;
     BlockState state;
 
-    public BlockColor Color { get { return color; } }
+    public BlockColor Color {
+        get { return color; }
+        set {
+            color = value;
+            GetComponent<SpriteRenderer>().sprite = Grid.Instance.GetTexture(color);
+        }
+    }
+
     public BlockState State { get { return state; } }
 
     Movement movement;
@@ -47,8 +56,14 @@ public class Block : MonoBehaviour {
 
     private void Moving() {
         if (!movement.IsMoving()) {
+
+            if (state == BlockState.Moving)
+            {
+                state = BlockState.Active;
+                Grid.Instance.CheckMatch(Column, Row);
+                return;
+            }
             state = BlockState.Active;
-            Grid.Instance.CheckMatch(Column, Row);
         }
     }
 
@@ -66,18 +81,18 @@ public class Block : MonoBehaviour {
 
     public void MoveToGridPosition() {
         Vector3 target = Grid.Instance.GetGridCoord(new Vector3(Column, Row, 0));
-
-        movement.MoveTo(target, swapSpeed);
+        movement.MoveTo(target, fallDuration);
         state = BlockState.Moving;
     }
-    
-    public void MoveToGridPosition(int column, int row) {
+
+    public void SwapToGridPosition(int column, int row)
+    {
         Column = column;
         Row = row;
 
         Vector3 target = Grid.Instance.GetGridCoord(new Vector3(Column, Row, 0));
 
-        movement.MoveTo(target, swapSpeed);
+        movement.MoveTo(target, swapDuration);
         state = BlockState.Moving;
     }
 

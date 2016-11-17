@@ -20,6 +20,8 @@ public class Grid : MonoBehaviour {
     public bool drawLimits;
     public bool drawPoints;
 
+    PuzzleToShipInterface ship;
+
     Block[,] grid;
     List<Block> matchingBlocks;
 
@@ -36,6 +38,7 @@ public class Grid : MonoBehaviour {
     public Block LastGridBlock { get { return grid[columns - 1, rows - 1]; } }
 
     void Start() {
+        ship = GetComponent<PuzzleToShipInterface>();
         FillGrid();
     }
 
@@ -65,15 +68,13 @@ public class Grid : MonoBehaviour {
         Block blockB = grid[columnB, rowB];
 
         // Só faz swap se os blocos estão ativos
-        if (blockA.State != BlockState.Active || blockB.State != BlockState.Active) {
-            return;
+        if (blockA.State == BlockState.Active || blockB.State == BlockState.Active) {
+            blockA.SwapToGridPosition(columnB, rowB);
+            blockB.SwapToGridPosition(columnA, rowA);
+
+            grid[columnA, rowA] = blockB;
+            grid[columnB, rowB] = blockA;
         }
-
-        blockA.MoveToGridPosition(columnB, rowB);
-        blockB.MoveToGridPosition(columnA, rowA);
-
-        grid[columnA, rowA] = blockB;
-        grid[columnB, rowB] = blockA;
     }
 
     internal void CheckMatch(int column, int row) {
@@ -96,9 +97,11 @@ public class Grid : MonoBehaviour {
             if (vertical) {
                 matchSize += DoVerticalMatch(color, column, row);
             }
-            Debug.Log("Match " + color + ", size: " + matchSize);
 
-            //DestroyMatchingBlocks();
+            Debug.Log("Match " + color + ", size: " + matchSize);
+            ship.NotifyMatch(new Match(color, matchSize));
+
+            DestroyMatchingBlocks();
         }
     }
 
@@ -107,9 +110,10 @@ public class Grid : MonoBehaviour {
         foreach (var block in matchingBlocks.OrderByDescending(x => x.Row))
         {
             DecraseColumnAboveRow(block.Column, block.Row);
-            //block.MoveToTop(block.Column, rows);
-            //block.MoveToGridPosition();
-            return;
+        }
+        foreach (var block in matchingBlocks.OrderByDescending(x => x.Row))
+        {
+            block.Color = GetRandomValidColor(block.Column, block.Row);
         }
     }
 
@@ -244,10 +248,19 @@ public class Grid : MonoBehaviour {
     }
 
     private void DecraseColumnAboveRow(int column, int row) {
-        for (; row <= rows - 2; row++) {
-            grid[column, row] = grid[column, row + 1];
-            grid[column, row].MoveToGridPosition();
+        // Guarda a referência do bloco atual
+        Block tempBlock = grid[column, row];
+        for (int rowFor = row; rowFor <= rows - 2; rowFor++) {
+            // Desce todos os blocos acima
+            grid[column, rowFor] = grid[column, rowFor + 1];
+            grid[column, rowFor].Column = column;
+            grid[column, rowFor].Row = rowFor;
+            grid[column, rowFor].MoveToGridPosition();
         }
+        // Coloca o bloco atual no topo
+        grid[column, rows - 1] = tempBlock;
+        tempBlock.MoveToTop(column, rows);
+        tempBlock.MoveToGridPosition();
     }
 
     private BlockColor GetBlockColor(int column, int row) {
