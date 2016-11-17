@@ -4,13 +4,15 @@ public class Missile : Bullet {
 
     [Header("Missile specifics")]
     public float steeringStrength;
+    public ParticleSystem expiredExplosion;
 
     Transform target;
+    bool hit = false;
 
-    void Update() {
+    void FixedUpdate() {
         // Acelera em direção ao alvo
         var direction = target.position - transform.position;
-        var steeringForce = direction.normalized * steeringStrength * Time.deltaTime;
+        var steeringForce = direction.normalized * steeringStrength * Time.fixedDeltaTime;
         rb.AddForce(steeringForce);
     }
 
@@ -22,13 +24,18 @@ public class Missile : Bullet {
         transform.right = rb.velocity;
     }
 
-    void OnCollisionEnter2D(Collision2D other) {
-        var explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity) as ParticleSystem;
-        Destroy(explosion.gameObject, explosion.duration);
-        Destroy(gameObject);
+    protected override void OnCollisionEnter2D(Collision2D other) {
+        base.OnCollisionEnter2D(other);
+        hit = true;
     }
 
     public void SetTarget(Transform target) {
         this.target = target;
+    }
+
+    void OnDestroy() {
+        if (!hit) {
+            Explode(expiredExplosion);
+        }
     }
 }
