@@ -4,7 +4,9 @@ public class Block : MonoBehaviour {
 
     public float swapSpeed = 0.2f;
 
-    int column, row;
+    public int Column { get; set; }
+    public int Row { get; set; }
+
     BlockColor color;
     BlockState state;
 
@@ -46,13 +48,13 @@ public class Block : MonoBehaviour {
     private void Moving() {
         if (!movement.IsMoving()) {
             state = BlockState.Active;
-            Grid.Instance.CheckMatch(column, row);
+            Grid.Instance.CheckMatch(Column, Row);
         }
     }
 
     void SetStartGridPosition(int column, int row) {
-        this.column = column;
-        this.row = row;
+        Column = column;
+        Row = row;
 
         Vector3 target = Grid.Instance.GetGridCoord(new Vector3(column, row, 0));
         float duration = (float)(0 + Grid.Instance.rows - row) / (float)Grid.Instance.rows;
@@ -62,14 +64,29 @@ public class Block : MonoBehaviour {
         state = BlockState.Entering;
     }
 
-    public void SetGridPosition(int column, int row) {
-        this.column = column;
-        this.row = row;
-
-        Vector3 target = Grid.Instance.GetGridCoord(new Vector3(column, row, 0));
+    public void MoveToGridPosition() {
+        Vector3 target = Grid.Instance.GetGridCoord(new Vector3(Column, Row, 0));
 
         movement.MoveTo(target, swapSpeed);
         state = BlockState.Moving;
+    }
+    
+    public void MoveToGridPosition(int column, int row) {
+        Column = column;
+        Row = row;
+
+        Vector3 target = Grid.Instance.GetGridCoord(new Vector3(Column, Row, 0));
+
+        movement.MoveTo(target, swapSpeed);
+        state = BlockState.Moving;
+    }
+
+    public void MoveToTop(int column, int rows)
+    {
+        Column = column;
+        Row = rows - 1;
+
+        transform.localPosition = Grid.Instance.GetGridCoord(new Vector3(column, rows, 0));
     }
 
     public void SetMatching() {
