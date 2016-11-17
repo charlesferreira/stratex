@@ -147,9 +147,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   lifeTime: 6
-  explosionPrefab: {fileID: 198000014254002334, guid: db1412f1dcf540d48ac84a1354cbc601,
+  hitExplosion: {fileID: 198000014254002334, guid: db1412f1dcf540d48ac84a1354cbc601,
     type: 2}
   steeringStrength: 50
+  expiredExplosion: {fileID: 198000013610493602, guid: d671eff5fd5edff4f809bbba680a194d,
+    type: 2}
 --- !u!198 &198000010419793972
 ParticleSystem:
   m_ObjectHideFlags: 1

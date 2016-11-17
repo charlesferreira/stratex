@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Bullet : MonoBehaviour {
 
     public float speed;
     public float lifeTime;
-    public ParticleSystem explosionPrefab;
+    public ParticleSystem hitExplosion;
 
     protected Rigidbody2D rb;
 
@@ -15,9 +16,13 @@ public class Bullet : MonoBehaviour {
         Destroy(gameObject, lifeTime);
     }
 
-    void OnCollisionEnter2D(Collision2D other) {
-        var explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity) as ParticleSystem;
-        Destroy(explosion.gameObject, explosion.duration);
+    protected virtual void OnCollisionEnter2D(Collision2D other) {
+        Explode(hitExplosion);
         Destroy(gameObject);
+    }
+
+    protected void Explode(ParticleSystem hitExplosion) {
+        var explosion = Instantiate(hitExplosion, transform.position, Quaternion.identity) as ParticleSystem;
+        Destroy(explosion.gameObject, explosion.duration);
     }
 }

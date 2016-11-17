@@ -10,6 +10,9 @@ public class ShipEngine : MonoBehaviour {
     [Header("Control")]
     public float trusterPower;
     public float maxSpeed;
+    [Range(0, 1)]
+    public float speedDamping = 0.997f;
+    [Range(0, 1)]
     public float turningSpeed;
 
     [Header("Fuel")]
@@ -28,24 +31,25 @@ public class ShipEngine : MonoBehaviour {
         UpdateFuelBar();
     }
 
+    void FixedUpdate() {
+        if (IsThrusting) {
+            Thrust();
+        }
+    }
+
     void Update() {
         var emission = extraParticles.emission;
         if (IsThrusting) {
-            Thrust();
+            fuel = Mathf.Max(0f, fuel - Time.deltaTime);
+            UpdateFuelBar();
             emission.enabled = true;
         }
         else {
             emission.enabled = false;
         }
 
-        rb.velocity = rb.velocity * 0.999f;
+        rb.velocity = rb.velocity * speedDamping;
         Steer();
-    }
-
-    void UpdateFuelBar() {
-        var scale = fuelBar.localScale;
-        scale.x = fuel / startingFuel;
-        fuelBar.transform.localScale = scale;
     }
 
     void LateUpdate() {
@@ -55,16 +59,22 @@ public class ShipEngine : MonoBehaviour {
     }
 
     void Thrust() {
-        var force = transform.right * trusterPower * Time.deltaTime;
+        var force = transform.right * trusterPower * Time.fixedDeltaTime;
         rb.AddForce(force);
-
-        fuel = Mathf.Max(0f, fuel - Time.deltaTime);
-        UpdateFuelBar();
     }
 
     void Steer() {
-        var steering = input.Steering * turningSpeed * Time.deltaTime;
-        transform.RotateAround(transform.position, Vector3.back, steering);
+        var target = input.SteeringTarget;
+        if (target == Vector2.zero)
+            return;
+
+        transform.right = Vector2.Lerp(transform.right, target, turningSpeed);
+    }
+
+    void UpdateFuelBar() {
+        var scale = fuelBar.localScale;
+        scale.x = fuel / startingFuel;
+        fuelBar.transform.localScale = scale;
     }
 
     public void AddFuel(int fuel) {

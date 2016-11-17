@@ -153,5 +153,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 8
   lifeTime: 5
-  explosionPrefab: {fileID: 198000014254002334, guid: 8e910a5dc60a4d648ab0e59bf29cc928,
+  hitExplosion: {fileID: 198000014254002334, guid: 8e910a5dc60a4d648ab0e59bf29cc928,
     type: 2}
