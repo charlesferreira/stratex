@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 [ExecuteInEditMode]
 public class ArenaBoundaries : MonoBehaviour {
@@ -8,18 +7,14 @@ public class ArenaBoundaries : MonoBehaviour {
 
     void Start() {
         collider = GetComponent<PolygonCollider2D>();
-        collider.pathCount = transform.childCount;
         UpdatePaths();
     }
 
     private void UpdatePaths() {
+        collider.pathCount = transform.childCount;
         for (int i = 0; i < transform.childCount; i++) {
             SetColliderPath(i, transform.GetChild(i));
         }
-    }
-
-    void Update() {
-        UpdatePaths();
     }
 
     void SetColliderPath(int index, Transform t) {
@@ -32,6 +27,10 @@ public class ArenaBoundaries : MonoBehaviour {
     }
 
     void OnDrawGizmos() {
+        if (collider == null) return;
+
+        UpdatePaths();
+
         Gizmos.color = Color.red;
         Vector2 thisNode, nextNode;
 
