@@ -845,7 +845,7 @@ MonoBehaviour:
   fuelBar: {fileID: 4000012677159860}
   primaryParticles: {fileID: 198000011709903476}
   reserveParticles: {fileID: 198000010724207548}
-  startingFuel: 3
+  startingFuel: 20
   primaryThrusterPower: 120
   reserveThrusterPower: 30
   maxSpeed: 5
