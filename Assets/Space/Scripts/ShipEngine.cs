@@ -20,7 +20,6 @@ public class ShipEngine : MonoBehaviour {
     public float turningSpeed;
 
     [Header("Legacy Controls")]
-    public bool usingLegacyControls;
     public float legacyTurningSpeed = 180f;
 
     Rigidbody2D rb;
@@ -78,7 +77,7 @@ public class ShipEngine : MonoBehaviour {
     }
 
     void Steer() {
-        if (usingLegacyControls) {
+        if (input.usingLegacyControls) {
             SteerLegacy();
             return;
         }

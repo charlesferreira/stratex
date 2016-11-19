@@ -3,44 +3,35 @@
 [ExecuteInEditMode]
 public class ArenaBoundaries : MonoBehaviour {
 
-    new PolygonCollider2D collider;
+    PolygonCollider2D pc;
+    LineRenderer lr;
 
     void Start() {
-        collider = GetComponent<PolygonCollider2D>();
-        UpdatePaths();
+        pc = GetComponent<PolygonCollider2D>();
+        lr = GetComponent<LineRenderer>();
+
+        UpdateRenderer();
     }
 
-    private void UpdatePaths() {
-        collider.pathCount = transform.childCount;
-        for (int i = 0; i < transform.childCount; i++) {
-            SetColliderPath(i, transform.GetChild(i));
-        }
-    }
-
-    void SetColliderPath(int index, Transform t) {
-        Vector2[] points = new Vector2[t.childCount];
-        for (int i = 0; i < t.childCount; i++) {
-            points[i] = t.GetChild(i).position;
+    void UpdateRenderer() {
+        if (pc == null) {
+            print("No polygor collider");
+            return;
         }
 
-        collider.SetPath(index, points);
+        var path = pc.GetPath(0);
+        var positions = new Vector3[path.Length + 1];
+        for (int i = 0; i < path.Length; i++) {
+            positions[i] = path[i];
+        }
+        positions[positions.Length - 1] = path[0];
+
+        print(positions);
+        lr.SetVertexCount(positions.Length);
+        lr.SetPositions(positions);
     }
 
     void OnDrawGizmos() {
-        if (collider == null) return;
-
-        UpdatePaths();
-
-        Gizmos.color = Color.red;
-        Vector2 thisNode, nextNode;
-
-        for (int i = 0; i < collider.pathCount; i++) {
-            var path = collider.GetPath(i);
-            for (int j = 0; j < path.Length; j++) {
-                thisNode = path[j];
-                nextNode = path[(j + 1) % path.Length];
-                Gizmos.DrawLine(thisNode, nextNode);
-            }
-        }
+        UpdateRenderer();
     }
 }
