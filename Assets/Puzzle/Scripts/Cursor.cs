@@ -4,21 +4,12 @@ public class Cursor : MonoBehaviour {
 
     public int column, row;
 
-    CursorState state;
-    SpriteRenderer spriteRenderer;
-
     void Start() {
-        state = CursorState.Inactive;
-        spriteRenderer = GetComponent<SpriteRenderer>();
         StartPosition();
-        Hide();
     }
 
     void Update() {
-        if (state == CursorState.Active)
-            UpdateActive();
-        else
-            UpdateInactive();
+        
     }
 
     public void Move(CursorMovement direction) {
@@ -72,29 +63,9 @@ public class Cursor : MonoBehaviour {
         }
     }
 
-    private void UpdateInactive() {
-        var block = Grid.Instance.LastGridBlock;
-        if (block.State == BlockState.Active) {
-            Show();
-            state = CursorState.Active;
-        }
-    }
-
-    private void UpdateActive() {
-
-    }
-
-    private void Hide() {
-        spriteRenderer.enabled = false;
-    }
-
-    private void Show() {
-        spriteRenderer.enabled = true;
-    }
-
     void StartPosition() {
-        column = (int)Mathf.Ceil(Grid.Instance.rows / 2) - 1;
-        row = (int)Mathf.Ceil(Grid.Instance.rows / 2) - 1;
+        column = 0;
+        row = 0;
 
         transform.localPosition = Grid.Instance.GetGridCoord(new Vector3(column, row, -1));
     }

@@ -35,18 +35,16 @@ public class Grid : MonoBehaviour {
         }
     }
 
-    public Block LastGridBlock { get { return grid[columns - 1, rows - 1]; } }
-
     void Start() {
         ship = GetComponent<PuzzleToShipInterface>();
-        FillGrid();
+        StartGrid();
     }
 
-    private void FillGrid() {
+    private void StartGrid() {
         grid = new Block[columns, rows];
 
         for (int column = 0; column < columns; column++) {
-            for (int row = 0; row < rows; row++) {
+            for (int row = 0; row < Mathf.Ceil(rows / 2); row++) {
                 CreateNewBlock(column, row);
             }
         }
@@ -67,17 +65,35 @@ public class Grid : MonoBehaviour {
         Block blockA = grid[columnA, rowA];
         Block blockB = grid[columnB, rowB];
 
-        // Só faz swap se os blocos estão ativos
-        if (blockA.State == BlockState.Active || blockB.State == BlockState.Active) {
+        if (blockA != null) {
             blockA.SwapToGridPosition(columnB, rowB);
-            blockB.SwapToGridPosition(columnA, rowA);
-
-            grid[columnA, rowA] = blockB;
-            grid[columnB, rowB] = blockA;
         }
+        if (blockB != null)
+        {
+            blockB.SwapToGridPosition(columnA, rowA);
+        }
+
+        grid[columnA, rowA] = blockB;
+        grid[columnB, rowB] = blockA;
+    }
+
+    public void DecreaseBlock(int column, int row)
+    {
+        grid[column, row].Decrease();
+        grid[column, row - 1] = grid[column, row];
+        grid[column, row] = null;
+    }
+
+    internal bool IsEmptySpace(int column, int row)
+    {
+        if (column < 0 || column >= columns || row < 0 || row >= rows)
+            return false;
+
+        return grid[column, row] == null;
     }
 
     internal void CheckMatch(int column, int row) {
+
         var color = GetBlockColor(column, row);
 
         bool horizontal = CheckHorizontalMatch(color, column, row);
@@ -103,40 +119,47 @@ public class Grid : MonoBehaviour {
 
             DestroyMatchingBlocks();
         }
+        DecreaseBlocks();
     }
 
     private void DestroyMatchingBlocks() {
 
-        foreach (var block in matchingBlocks.OrderByDescending(x => x.Row))
+        foreach (var block in matchingBlocks)
         {
-            DecraseColumnAboveRow(block.Column, block.Row);
+            Destroy(grid[block.Column, block.Row].gameObject);
+            grid[block.Column, block.Row] = null;
         }
-        foreach (var block in matchingBlocks.OrderByDescending(x => x.Row))
-        {
-            block.Color = GetRandomValidColor(block.Column, block.Row);
-        }
+    }
+
+    private void DecreaseBlocks()
+    {
+        for (int column = 0; column < columns; column++)
+            for (int row = 0; row < rows; row++)
+                if (grid[column, row] != null)
+                    if (IsEmptySpace(column, row - 1))
+                        DecreaseBlock(column, row);
     }
 
     private bool CheckHorizontalMatch(BlockColor color, int column, int row) {
         if (column > 0) {
-            if (GetBlockColor(column - 1, row) == color) {
+            if (CheckIqualColors(column - 1, row, color)) {
                 // Esquerda
                 if (column > 1)
-                    if (GetBlockColor(column - 2, row) == color)
+                    if (CheckIqualColors(column - 2, row, color))
                         return true;
 
                 // Centro
                 if (column < columns - 1)
-                    if (GetBlockColor(column + 1, row) == color)
+                    if (CheckIqualColors(column + 1, row, color))
                         return true;
             }
         }
 
         // Direita
         if (column < columns - 1)
-            if (GetBlockColor(column + 1, row) == color)
+            if (CheckIqualColors(column + 1, row, color))
                 if (column < columns - 2)
-                    if (GetBlockColor(column + 2, row) == color)
+                    if (CheckIqualColors(column + 2, row, color))
                         return true;
 
         return false;
@@ -144,24 +167,24 @@ public class Grid : MonoBehaviour {
 
     private bool CheckVerticalMatch(BlockColor color, int column, int row) {
         if (row > 0) {
-            if (GetBlockColor(column, row - 1) == color) {
+            if (CheckIqualColors(column, row - 1, color)) {
                 // Abaixo
                 if (row > 1)
-                    if (GetBlockColor(column, row - 2) == color)
+                    if (CheckIqualColors(column, row - 2, color))
                         return true;
 
                 // Centro
                 if (row < rows - 1)
-                    if (GetBlockColor(column, row + 1) == color)
+                    if (CheckIqualColors(column, row + 1, color))
                         return true;
             }
         }
 
         // Acima
         if (row < rows - 1)
-            if (GetBlockColor(column, row + 1) == color)
+            if (CheckIqualColors(column, row + 1, color))
                 if (row < rows - 2)
-                    if (GetBlockColor(column, row + 2) == color)
+                    if (CheckIqualColors(column, row + 2, color))
                         return true;
 
         return false;
@@ -172,13 +195,13 @@ public class Grid : MonoBehaviour {
 
         // Match à esquerda
         if (column > 0) {
-            if (GetBlockColor(column - 1, row) == color) {
+            if (CheckIqualColors(column - 1, row, color)) {
                 grid[column - 1, row].SetMatching();
                 matchingBlocks.Add(grid[column - 1, row]);
                 matchSize += 1;
 
                 if (column > 1) {
-                    if (GetBlockColor(column - 2, row) == color) {
+                    if (CheckIqualColors(column - 2, row, color)) {
                         grid[column - 2, row].SetMatching();
                         matchingBlocks.Add(grid[column - 2, row]);
                         matchSize += 1;
@@ -189,13 +212,13 @@ public class Grid : MonoBehaviour {
 
         // Match à direita
         if (column < columns - 1) {
-            if (GetBlockColor(column + 1, row) == color) {
+            if (CheckIqualColors(column + 1, row, color)) {
                 grid[column + 1, row].SetMatching();
                 matchingBlocks.Add(grid[column + 1, row]);
                 matchSize += 1;
 
                 if (column < columns - 2) {
-                    if (GetBlockColor(column + 2, row) == color) {
+                    if (CheckIqualColors(column + 2, row, color)) {
                         grid[column + 2, row].SetMatching();
                         matchingBlocks.Add(grid[column + 2, row]);
                         matchSize += 1;
@@ -212,13 +235,13 @@ public class Grid : MonoBehaviour {
 
         // Match abaixo
         if (row > 0) {
-            if (GetBlockColor(column, row - 1) == color) {
+            if (CheckIqualColors(column, row - 1, color)) {
                 grid[column, row - 1].SetMatching();
                 matchingBlocks.Add(grid[column, row - 1]);
                 matchSize += 1;
 
                 if (row > 1) {
-                    if (GetBlockColor(column, row - 2) == color) {
+                    if (CheckIqualColors(column, row - 2, color)) {
                         grid[column, row - 2].SetMatching();
                         matchingBlocks.Add(grid[column, row - 2]);
                         matchSize += 1;
@@ -229,13 +252,13 @@ public class Grid : MonoBehaviour {
 
         // Match acima
         if (row < rows - 1) {
-            if (GetBlockColor(column, row + 1) == color) {
+            if (CheckIqualColors(column, row + 1, color)){
                 grid[column, row + 1].SetMatching();
                 matchingBlocks.Add(grid[column, row + 1]);
                 matchSize += 1;
 
                 if (row < rows - 2) {
-                    if (GetBlockColor(column, row + 2) == color) {
+                    if (CheckIqualColors(column, row + 2, color)) {
                         grid[column, row + 2].SetMatching();
                         matchingBlocks.Add(grid[column, row + 2]);
                         matchSize += 1;
@@ -247,24 +270,17 @@ public class Grid : MonoBehaviour {
         return matchSize;
     }
 
-    private void DecraseColumnAboveRow(int column, int row) {
-        // Guarda a referência do bloco atual
-        Block tempBlock = grid[column, row];
-        for (int rowFor = row; rowFor <= rows - 2; rowFor++) {
-            // Desce todos os blocos acima
-            grid[column, rowFor] = grid[column, rowFor + 1];
-            grid[column, rowFor].Column = column;
-            grid[column, rowFor].Row = rowFor;
-            grid[column, rowFor].MoveToGridPosition();
-        }
-        // Coloca o bloco atual no topo
-        grid[column, rows - 1] = tempBlock;
-        tempBlock.MoveToTop(column, rows);
-        tempBlock.MoveToGridPosition();
-    }
-
     private BlockColor GetBlockColor(int column, int row) {
         return grid[column, row].Color;
+    }
+
+    private bool CheckIqualColors(int column, int row, BlockColor color)
+    {
+        if (grid[column, row] == null)
+        {
+            return false;
+        }
+        return grid[column, row].Color == color;
     }
 
     private BlockColor GetRandomValidColor(int column, int row) {

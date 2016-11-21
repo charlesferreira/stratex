@@ -2,7 +2,7 @@
 
 public class Movement : MonoBehaviour {
 
-    public MovementType movementType;
+    public MovementType MovementType;
 
     Vector3 target;
     Vector3 startLocalPosition;
@@ -29,7 +29,7 @@ public class Movement : MonoBehaviour {
 
             partial = elapsedTime / duration;
 
-            switch (movementType) {
+            switch (MovementType) {
                 case MovementType.Linear:
                     Linear();
                     break;
@@ -70,7 +70,7 @@ public class Movement : MonoBehaviour {
     }
 
     public void MoveTo(Vector3 target, float duration) {
-        MoveTo(movementType, target, duration);
+        MoveTo(MovementType, target, duration);
     }
 
     public void MoveTo(MovementType movementType, Vector3 target, float duration) {
@@ -78,11 +78,11 @@ public class Movement : MonoBehaviour {
     }
 
     public void MoveTo(Vector3 target, float duration, float waitingTime) {
-        MoveTo(movementType, target, duration, waitingTime);
+        MoveTo(MovementType, target, duration, waitingTime);
     }
 
     public void MoveTo(MovementType movementType, Vector3 target, float duration, float waitingTime) {
-        this.movementType = movementType;
+        this.MovementType = movementType;
         this.target = target;
         this.duration = duration;
         this.waitingTime = waitingTime;

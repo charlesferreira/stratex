@@ -20,8 +20,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012972617848}
   - 114: {fileID: 114000012285017480}
-  - 114: {fileID: 114000011463264282}
   - 212: {fileID: 212000012200309396}
+  - 114: {fileID: 114000011463264282}
+  - 114: {fileID: 114000013912549944}
   m_Layer: 0
   m_Name: Block
   m_TagString: Untagged
@@ -53,7 +54,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 173757b0010716e4aab682686434df00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementType: 3
+  MovementType: 3
 --- !u!114 &114000012285017480
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -65,7 +66,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a139b32f41abdf41a8383ff388cce8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  info: {fileID: 0}
+  swapDuration: 0.2
+--- !u!114 &114000013912549944
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012290589004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd51b31e41c452f42a1ec1acfed74ceb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Gravity: 10
 --- !u!212 &212000012200309396
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -1291,7 +1291,7 @@ Prefab:
     - target: {fileID: 114000010621999264, guid: 07e73ab8840343f49aaea5d7a06e8eda,
         type: 2}
       propertyPath: drawPoints
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4000012906981008, guid: 07e73ab8840343f49aaea5d7a06e8eda, type: 2}
       propertyPath: m_LocalPosition.x
@@ -1304,7 +1304,7 @@ Prefab:
     - target: {fileID: 114000010621999264, guid: 07e73ab8840343f49aaea5d7a06e8eda,
         type: 2}
       propertyPath: rows
-      value: 6
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1000012233780754, guid: 07e73ab8840343f49aaea5d7a06e8eda, type: 2}
       propertyPath: m_IsActive
@@ -1313,13 +1313,13 @@ Prefab:
     - target: {fileID: 114000010621999264, guid: 07e73ab8840343f49aaea5d7a06e8eda,
         type: 2}
       propertyPath: columns
-      value: 6
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 114000010037006946, guid: 07e73ab8840343f49aaea5d7a06e8eda,
         type: 2}
       propertyPath: joystick
       value: 
-      objectReference: {fileID: 11400000, guid: 68b8e946a974eed42a1dddb4ab96fc33,
+      objectReference: {fileID: 11400000, guid: 09c870b6a36a44348bc83db28916b6c3,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 07e73ab8840343f49aaea5d7a06e8eda, type: 2}
