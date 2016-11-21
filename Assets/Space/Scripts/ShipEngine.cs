@@ -1,28 +1,32 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ShipEngine : MonoBehaviour {
 
     [Header("References")]
     public Transform fuelBar;
-    public ParticleSystem extraParticles;
-
-    [Header("Control")]
-    public float trusterPower;
-    public float maxSpeed;
-    [Range(0, 1)]
-    public float speedDamping = 0.997f;
-    [Range(0, 1)]
-    public float turningSpeed;
+    public ParticleSystem primaryParticles;
+    public ParticleSystem reserveParticles;
 
     [Header("Fuel")]
     public float startingFuel;
+
+    [Header("Control")]
+    public float primaryThrusterPower;
+    public float reserveThrusterPower;
+    public float maxSpeed;
+    [Range(0, 1)]
+    public float speedDamping;
+    [Range(0, 1)]
+    public float turningSpeed;
+
+    [Header("Legacy Controls")]
+    public float legacyTurningSpeed = 180f;
 
     Rigidbody2D rb;
     ShipInput input;
     float fuel;
 
-    public bool IsThrusting { get { return fuel > 0 && input.Thrusting; } }
+    public bool IsThrusting { get { return input.Thrusting; } }
 
     void Start() {
         rb = GetComponent<Rigidbody2D>();
@@ -32,23 +36,27 @@ public class ShipEngine : MonoBehaviour {
     }
 
     void FixedUpdate() {
-        if (IsThrusting) {
-            Thrust();
-        }
+        if (IsThrusting)
+            Accelerate();
+
+        DampenSpeed();
     }
 
     void Update() {
-        var emission = extraParticles.emission;
+        var primaryEmission = primaryParticles.emission;
+        var reserveEmission = reserveParticles.emission;
+
+        primaryEmission.enabled = false;
+        reserveEmission.enabled = false;
+
         if (IsThrusting) {
             fuel = Mathf.Max(0f, fuel - Time.deltaTime);
             UpdateFuelBar();
+
+            var emission = fuel > 0 ? primaryEmission : reserveEmission;
             emission.enabled = true;
         }
-        else {
-            emission.enabled = false;
-        }
 
-        rb.velocity = rb.velocity * speedDamping;
         Steer();
     }
 
@@ -58,18 +66,35 @@ public class ShipEngine : MonoBehaviour {
         }
     }
 
-    void Thrust() {
-        var force = transform.right * trusterPower * Time.fixedDeltaTime;
+    void Accelerate() {
+        var power = fuel > 0 ? primaryThrusterPower : reserveThrusterPower;
+        var force = transform.right * power * Time.fixedDeltaTime;
         rb.AddForce(force);
     }
 
+    void DampenSpeed() {
+        rb.velocity *= (1f - speedDamping);
+    }
+
     void Steer() {
+        if (input.usingLegacyControls) {
+            SteerLegacy();
+            return;
+        }
+
         var target = input.SteeringTarget;
         if (target == Vector2.zero)
             return;
 
         transform.right = Vector2.Lerp(transform.right, target, turningSpeed);
     }
+
+    void SteerLegacy() {
+        var steering = input.LegacySteering * legacyTurningSpeed * Time.deltaTime;
+        transform.RotateAround(transform.position, Vector3.back, steering);
+        return;
+    }
+
 
     void UpdateFuelBar() {
         var scale = fuelBar.localScale;
