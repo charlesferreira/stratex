@@ -15,8 +15,6 @@ public class ShipEngine : MonoBehaviour {
     public float reserveThrusterPower;
     public float maxSpeed;
     [Range(0, 1)]
-    public float speedDamping;
-    [Range(0, 1)]
     public float turningSpeed;
 
     [Header("Legacy Controls")]
@@ -38,8 +36,6 @@ public class ShipEngine : MonoBehaviour {
     void FixedUpdate() {
         if (IsThrusting)
             Accelerate();
-
-        DampenSpeed();
     }
 
     void Update() {
@@ -70,10 +66,6 @@ public class ShipEngine : MonoBehaviour {
         var power = fuel > 0 ? primaryThrusterPower : reserveThrusterPower;
         var force = transform.right * power * Time.fixedDeltaTime;
         rb.AddForce(force);
-    }
-
-    void DampenSpeed() {
-        rb.velocity *= (1f - speedDamping);
     }
 
     void Steer() {

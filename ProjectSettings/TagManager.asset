@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Team1
+  - Team2
   layers:
   - Default
   - TransparentFX
@@ -18,7 +20,7 @@ TagManager:
   - Ship 2
   - Ship 2 Projectiles
   - Arena
-  - 
+  - Domination Area
   - 
   - 
   - 
