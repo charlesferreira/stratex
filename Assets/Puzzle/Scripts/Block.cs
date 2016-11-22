@@ -25,12 +25,27 @@ public class Block : MonoBehaviour {
     FreeFall freeFall;
 
 
-    public void Init(int column, int row, BlockColor color) {
+    public void Init(int column, int row, BlockColor color, BlockState blockState) {
+
+        Column = column;
+        Row = row;
+
         this.color = color;
         movement = GetComponent<Movement>();
         freeFall = GetComponent<FreeFall>();
-        SetStartGridPosition(column, row);
         GetComponent<SpriteRenderer>().sprite = Grid.Instance.GetTexture(color);
+        if (blockState == BlockState.Entering) {
+
+            Vector3 target = Grid.Instance.GetGridCoord(new Vector3(column, row, 0));
+            float duration = (0 + Grid.Instance.rows - row) / (float)Grid.Instance.rows;
+            float waitingTime = row / 3f + (UnityEngine.Random.Range(0, 60) / 1000f);
+            movement.MoveTo(target, duration, waitingTime);
+            state = BlockState.Entering;
+        }
+        else {
+            ToFall();
+        }
+            
     }
 
     void Update() {
@@ -100,24 +115,6 @@ public class Block : MonoBehaviour {
     {
         Row--;
         ToFall();
-    }
-
-    void SetStartGridPosition(int column, int row) {
-        Column = column;
-        Row = row;
-
-        Vector3 target = Grid.Instance.GetGridCoord(new Vector3(column, row, 0));
-        float duration = (0 + Grid.Instance.rows - row) / (float)Grid.Instance.rows;
-        float waitingTime = row / 3f + (UnityEngine.Random.Range(0, 60) / 1000f);
-
-        movement.MoveTo(target, duration, waitingTime);
-        state = BlockState.Entering;
-    }
-
-    public void MoveToGridPosition() {
-        Vector3 target = Grid.Instance.GetGridCoord(new Vector3(Column, Row, 0));
-        //movement.MoveTo(target, fallDuration);
-        state = BlockState.Moving;
     }
 
     public void SwapToGridPosition(int column, int row)
