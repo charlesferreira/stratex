@@ -136,6 +136,7 @@ GameObject:
   - 4: {fileID: 4000013840849326}
   - 60: {fileID: 60000013099194406}
   - 50: {fileID: 50000013754979114}
+  - 114: {fileID: 114000013763690318}
   - 114: {fileID: 114000010873467626}
   - 114: {fileID: 114000012421871510}
   - 114: {fileID: 114000011187390242}
@@ -735,7 +736,7 @@ Rigidbody2D:
   m_GravityScale: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!58 &58000014164907988
@@ -854,9 +855,7 @@ MonoBehaviour:
   primaryThrusterPower: 120
   reserveThrusterPower: 30
   maxSpeed: 5
-  speedDamping: 0.005
   turningSpeed: 0.25
-  usingLegacyControls: 0
   legacyTurningSpeed: 180
 --- !u!114 &114000011731081780
 MonoBehaviour:
@@ -919,6 +918,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   joystick: {fileID: 0}
+  usingLegacyControls: 0
+--- !u!114 &114000013763690318
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010637486660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 604a83b1c67dd7b47abb8b899aa8105a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flag: 0
 --- !u!114 &114000014030955356
 MonoBehaviour:
   m_ObjectHideFlags: 1

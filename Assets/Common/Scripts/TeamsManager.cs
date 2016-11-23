@@ -2,8 +2,8 @@
 
 public class TeamsManager : MonoBehaviour {
 
-    public Team team1;
-    public Team team2;
+    [SerializeField] Team team1;
+    [SerializeField] Team team2;
 
     static TeamsManager instance;
     static public TeamsManager Instance {
@@ -14,11 +14,11 @@ public class TeamsManager : MonoBehaviour {
         }
     }
 
-    public Team GetTeam(string tag) {
-        return (tag == team1.tag) ? team1 : team2;
+    public Team GetTeam(TeamFlags flag) {
+        return (flag == team1.flag) ? team1 : team2;
     }
 
-    public Team GetEnemyTeam(string tag) {
-        return (tag != team1.tag) ? team1 : team2;
+    public Team GetEnemyTeam(TeamFlags flag) {
+        return (flag != team1.flag) ? team1 : team2;
     }
 }

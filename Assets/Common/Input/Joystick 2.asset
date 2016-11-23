@@ -9,12 +9,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 43ea0ffbab644ae49920aada434863c6, type: 3}
-  m_Name: Player 4
+  m_Name: Joystick 2
   m_EditorClassIdentifier: 
-  horizontal: P4 Horizontal
-  vertical: P4 Vertical
-  aButton: P4 AButton
-  bButton: P4 BButton
-  xButton: P4 XButton
-  yButton: P4 YButton
-  useAlternativeControls: 0
+  horizontal: P2 Horizontal
+  vertical: P2 Vertical
+  aButton: P2 AButton
+  bButton: P2 BButton
+  xButton: P2 XButton
+  yButton: P2 YButton

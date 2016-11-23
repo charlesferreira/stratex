@@ -235,7 +235,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 245436067}
   m_Layer: 0
-  m_Name: Space Arena
+  m_Name: Space
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -398,11 +398,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000013840849326, guid: 1acadfdc533b1f24593a9ad92bae0388, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4000013840849326, guid: 1acadfdc533b1f24593a9ad92bae0388, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4000013840849326, guid: 1acadfdc533b1f24593a9ad92bae0388, type: 2}
       propertyPath: m_LocalPosition.z
@@ -717,7 +717,17 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000010637486660, guid: 1acadfdc533b1f24593a9ad92bae0388, type: 2}
       propertyPath: m_TagString
-      value: Team2
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 50000013754979114, guid: 1acadfdc533b1f24593a9ad92bae0388,
+        type: 2}
+      propertyPath: m_LinearDrag
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013763690318, guid: 1acadfdc533b1f24593a9ad92bae0388,
+        type: 2}
+      propertyPath: flag
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1acadfdc533b1f24593a9ad92bae0388, type: 2}
@@ -932,15 +942,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   team1:
-    tag: Team1
-    ship: {fileID: 0}
-    puzzle: {fileID: 0}
-    color: {r: 1, g: 0, b: 0, a: 0.5019608}
+    flag: 1
+    color: {r: 0.8206897, g: 0, b: 1, a: 0.5019608}
   team2:
-    tag: Team2
-    ship: {fileID: 0}
-    puzzle: {fileID: 0}
-    color: {r: 0, g: 1, b: 0.21379304, a: 0.5019608}
+    flag: 2
+    color: {r: 0.19999993, g: 1, b: 0, a: 0.5019608}
 --- !u!4 &1547478509
 Transform:
   m_ObjectHideFlags: 0
@@ -968,11 +974,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000013840849326, guid: 1acadfdc533b1f24593a9ad92bae0388, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -5
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 4000013840849326, guid: 1acadfdc533b1f24593a9ad92bae0388, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4000013840849326, guid: 1acadfdc533b1f24593a9ad92bae0388, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1050,7 +1056,7 @@ Prefab:
         type: 2}
       propertyPath: joystick
       value: 
-      objectReference: {fileID: 11400000, guid: 68b8e946a974eed42a1dddb4ab96fc33,
+      objectReference: {fileID: 11400000, guid: bbcc6c74e425d574eace3f15d5e5c27d,
         type: 2}
     - target: {fileID: 114000011731081780, guid: 1acadfdc533b1f24593a9ad92bae0388,
         type: 2}
@@ -1327,7 +1333,7 @@ Prefab:
     - target: {fileID: 114000012421871510, guid: 1acadfdc533b1f24593a9ad92bae0388,
         type: 2}
       propertyPath: usingLegacyControls
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 50000013754979114, guid: 1acadfdc533b1f24593a9ad92bae0388,
         type: 2}
@@ -1366,7 +1372,17 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000010637486660, guid: 1acadfdc533b1f24593a9ad92bae0388, type: 2}
       propertyPath: m_TagString
-      value: Team1
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 50000013754979114, guid: 1acadfdc533b1f24593a9ad92bae0388,
+        type: 2}
+      propertyPath: m_LinearDrag
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013763690318, guid: 1acadfdc533b1f24593a9ad92bae0388,
+        type: 2}
+      propertyPath: flag
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1acadfdc533b1f24593a9ad92bae0388, type: 2}
@@ -1703,8 +1719,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 2058251064}
-  - 114: {fileID: 2058251065}
   - 58: {fileID: 2058251066}
+  - 114: {fileID: 2058251065}
   m_Layer: 13
   m_Name: Domination Area
   m_TagString: Untagged
@@ -1737,7 +1753,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ccbe91ab702f8a4282682b36cc1c816, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  areaFlag: {fileID: 798929203}
+  mesh: {fileID: 798929203}
+  pointDuration: 1
+  coldColor: {r: 0.7352941, g: 0.94523335, b: 1, a: 0.559}
+  pointsTillWarmUp: 1
+  pointsTillCoolDown: 1
+  overheatedBlinkingTime: 0.25
+  overheatedColorRange:
+    start: {r: 1, g: 0, b: 0, a: 0.5019608}
+    end: {r: 1, g: 0.8482758, b: 0, a: 0.5019608}
 --- !u!58 &2058251066
 CircleCollider2D:
   m_ObjectHideFlags: 0
