@@ -30,6 +30,9 @@ public class TeamsManager : MonoBehaviour {
         teams = new Dictionary<TeamFlags, Team>(2);
         teams.Add(team1Info.flag, new Team(team1Info, startingPoints));
         teams.Add(team2Info.flag, new Team(team2Info, startingPoints));
+
+        team1ScoreText.color = team1Info.color;
+        team2ScoreText.color = team2Info.color;
         UpdateScoreText();
     }
 
