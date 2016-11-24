@@ -2,6 +2,6 @@
 
 public class TeamIdentity : MonoBehaviour {
 
-    public TeamFlags flag = TeamFlags.None;
+    public TeamInfo info;
 
 }

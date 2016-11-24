@@ -1,12 +1,28 @@
 ﻿public interface IDominationAreaState {
 
+    // State Transitions
+
+    void ToColdState();
+
+    void ToWarmingUpState(TeamInfo team);
+
+    void ToHotState(TeamInfo team);
+
+    void ToOverheatedState();
+
+    void ToCoolingDownState();
+
+    // Callbacks
+
     void OnStateEnter();
 
     void OnStateExit();
 
-    void ShipHasEntered(TeamFlags team);
+    // Messages
 
-    void ShipHasLeft(TeamFlags team);
+    void ShipHasEntered(TeamInfo team);
+
+    void ShipHasLeft(TeamInfo team);
 
     void Update();
 }

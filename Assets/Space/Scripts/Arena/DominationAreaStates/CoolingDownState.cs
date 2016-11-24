@@ -4,40 +4,41 @@ namespace DominationAreaStates {
 
     public class CoolingDownState : AbstractState {
 
-        float elapsedTime;
         Color startingColor;
 
-        public CoolingDownState(DominationArea dominationArea) : base(dominationArea) {
-        }
+        public CoolingDownState(DominationArea dominationArea) : base(dominationArea) { }
 
         public override void OnStateEnter() {
-            Debug.Log("Entering CoolingDownState");
-            elapsedTime = 0f;
+            base.OnStateEnter();
+
             startingColor = dominationArea.Color;
         }
 
-        public override void OnStateExit() {
-            Debug.Log("Exiting CoolingDownState");
-        }
-
-        public override void ShipHasEntered(TeamFlags team) {
+        public override void ShipHasEntered(TeamInfo team) {
             if (dominationArea.CurrentTeam == TeamFlags.Both)
                 ToOverheatedState();
         }
 
-        public override void ShipHasLeft(TeamFlags team) {
-        }
+        public override void ShipHasLeft(TeamInfo team) { }
 
         public override void Update() {
-            elapsedTime += Time.deltaTime;
+            base.Update();
 
             var rate = elapsedTime / dominationArea.TimeToCoolDown;
             var color = Color.Lerp(startingColor, dominationArea.coldColor, rate);
             dominationArea.Color = color;
 
             if (rate >= 1f) {
-                ToColdState();
+                ToNextState();
             }
+        }
+
+        private void ToNextState() {
+            var flag = dominationArea.CurrentTeam;
+            if (flag == TeamFlags.Team1 || flag == TeamFlags.Team2)
+                ToWarmingUpState(TeamsManager.Instance.GetTeamInfo(flag));
+            else
+                ToColdState();
         }
     }
 }

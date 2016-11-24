@@ -1,37 +1,55 @@
-﻿namespace DominationAreaStates {
+﻿using UnityEngine;
+
+namespace DominationAreaStates {
 
     abstract public class AbstractState : IDominationAreaState {
 
+        protected TeamInfo DominatingTeam { get; private set; }
+
         protected DominationArea dominationArea;
+        protected float elapsedTime;
 
         public AbstractState(DominationArea dominationArea) {
             this.dominationArea = dominationArea;
         }
 
-        public virtual void ToColdState() {
+        public void ToColdState() {
             dominationArea.SetState(dominationArea.coldState);
         }
 
-        public virtual void ToWarmingUpState() {
-            dominationArea.SetState(dominationArea.warmingUpState);
+        public void ToWarmingUpState(TeamInfo team) {
+            var state = (WarmingUpState)dominationArea.warmingUpState;
+            state.DominatingTeam = team;
+            dominationArea.SetState(state);
         }
 
-        public virtual void ToHotState() {
-            dominationArea.SetState(dominationArea.hotState);
+        public void ToHotState(TeamInfo team) {
+            var state = (HotState)dominationArea.hotState;
+            state.DominatingTeam = team;
+            dominationArea.SetState(state);
         }
 
-        public virtual void ToOverheatedState() {
+        public void ToOverheatedState() {
             dominationArea.SetState(dominationArea.overheatedState);
         }
 
-        public virtual void ToCoolingDownState() {
+        public void ToCoolingDownState() {
             dominationArea.SetState(dominationArea.coolingDownState);
         }
 
-        public abstract void OnStateEnter();
-        public abstract void OnStateExit();
-        public abstract void ShipHasEntered(TeamFlags team);
-        public abstract void ShipHasLeft(TeamFlags team);
-        public abstract void Update();
+        public virtual void Update() {
+            elapsedTime += Time.deltaTime;
+        }
+
+        public virtual void OnStateEnter() {
+            elapsedTime = 0f;
+        }
+
+        public virtual void OnStateExit() {
+        }
+
+        public abstract void ShipHasEntered(TeamInfo team);
+        public abstract void ShipHasLeft(TeamInfo team);
+
     }
 }

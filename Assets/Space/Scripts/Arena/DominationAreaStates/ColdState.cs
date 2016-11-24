@@ -4,38 +4,33 @@ namespace DominationAreaStates {
 
     public class ColdState : AbstractState {
 
-        public ColdState(DominationArea dominationArea) : base(dominationArea) {
-        }
+        public ColdState(DominationArea dominationArea) : base(dominationArea) { }
 
         public override void OnStateEnter() {
-            Debug.Log("Entering ColdState");
+            base.OnStateEnter();
 
-            var team = dominationArea.CurrentTeam;
-            if (team == TeamFlags.Both) {
+            var flag = dominationArea.CurrentTeam;
+            if (flag == TeamFlags.Both) {
                 ToOverheatedState();
                 return;
             }
 
-            if (team != TeamFlags.None) {
-                ToWarmingUpState();
+            if (flag == (TeamFlags.Team1 ^ TeamFlags.Team2)) {
+                var team = TeamsManager.Instance.GetTeamInfo(flag);
+                ToWarmingUpState(team);
                 return;
             }
 
             dominationArea.Color = dominationArea.coldColor;
         }
-
-        public override void OnStateExit() {
-            Debug.Log("Exiting ColdState");
+        
+        public override void ShipHasEntered(TeamInfo team) {
+            ToWarmingUpState(team);
         }
 
-        public override void ShipHasEntered(TeamFlags team) {
-            ToWarmingUpState();
-        }
-
-        public override void ShipHasLeft(TeamFlags team) {
+        public override void ShipHasLeft(TeamInfo team) {
             Debug.LogError("cold && ship left");
         }
 
-        public override void Update() { }
     }
 }

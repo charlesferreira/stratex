@@ -14,10 +14,7 @@ public class ArenaBoundaries : MonoBehaviour {
     }
 
     void UpdateRenderer() {
-        if (pc == null) {
-            print("No polygor collider");
-            return;
-        }
+        if (pc == null) return;
 
         var path = pc.GetPath(0);
         var positions = new Vector3[path.Length + 1];

@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using DominationAreaStates;
-using System;
 
 public class DominationArea : MonoBehaviour {
 
@@ -16,11 +15,15 @@ public class DominationArea : MonoBehaviour {
     [Header("Warming Up State")]
     public float pointsTillWarmUp;
 
+    [Header("Hot State")]
+    public float hotGlowSpeed;
+    public Color hotGlowColor;
+
     [Header("Cooling Down State")]
     public float pointsTillCoolDown;
 
     [Header("Overheated State")]
-    public float overheatedBlinkingTime;
+    public float OverheatedBlinkSpeed;
     public ColorRange overheatedColorRange;
 
 
@@ -32,6 +35,10 @@ public class DominationArea : MonoBehaviour {
         get { return mesh.material.color; }
         set { mesh.material.color = value; }
     }
+
+    public float HotGlowTime { get { return pointDuration / (hotGlowSpeed * 2f); } }
+
+    public float OverheatedBlinkTime { get { return pointDuration / (OverheatedBlinkSpeed * 2f); } }
 
     public float TimeToWarmUp { get { return pointsTillWarmUp * pointDuration; } }
 
@@ -66,22 +73,22 @@ public class DominationArea : MonoBehaviour {
     }
 
     void OnTriggerEnter2D(Collider2D other) {
-        var team = other.GetComponent<TeamIdentity>().flag;
+        var team = other.GetComponent<TeamIdentity>().info;
 
-        // Se já somou a nave, não informa o estado
-        if ((CurrentTeam & team) != 0) return;
+        // Se já contou a entrada da nave, não informa o estado
+        if ((CurrentTeam & team.flag) != 0) return;
 
-        CurrentTeam |= team;
+        CurrentTeam |= team.flag;
         currentState.ShipHasEntered(team);
     }
 
     void OnTriggerExit2D(Collider2D other) {
-        var team = other.GetComponent<TeamIdentity>().flag;
+        var team = other.GetComponent<TeamIdentity>().info;
         
-        // Se já subtraiu a nave, não informa o estado
-        if ((CurrentTeam & ~team) == CurrentTeam) return;
+        // Se já contou a saída da nave, não informa o estado
+        if ((CurrentTeam & ~team.flag) == CurrentTeam) return;
 
-        CurrentTeam &= ~team;
+        CurrentTeam &= ~team.flag;
         currentState.ShipHasLeft(team);
     }
 
