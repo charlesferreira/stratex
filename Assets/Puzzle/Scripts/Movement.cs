@@ -9,7 +9,6 @@ public class Movement : MonoBehaviour {
     float elapsedTime;
     bool isMoving = false;
     float duration;
-    float partial;
     float waitingTime;
 
     void Update() {
@@ -26,8 +25,6 @@ public class Movement : MonoBehaviour {
                 isMoving = false;
                 return;
             }
-
-            partial = elapsedTime / duration;
 
             switch (MovementType) {
                 case MovementType.Linear:
@@ -49,23 +46,28 @@ public class Movement : MonoBehaviour {
     }
 
     private void QuadraticInOut() {
-        if (partial > 1) {
-            QuadraticOut();
+        var partial = elapsedTime / (duration / 2);
+        if (partial < 1) {
+            transform.localPosition = (target - startLocalPosition) / 2 * partial * partial + startLocalPosition;
         }
         else {
-            QuadraticIn();
+            transform.localPosition = startLocalPosition - (target - startLocalPosition) / 2 * partial * ((partial - 2) - 1);
         }
     }
 
-    private void QuadraticOut() {
-        transform.localPosition = startLocalPosition - (target - startLocalPosition) * partial * (partial - 2);
-    }
-
-    private void QuadraticIn() {
+    private void QuadraticIn()
+    {
+        var partial = elapsedTime / duration;
         transform.localPosition = startLocalPosition + (target - startLocalPosition) * partial * partial;
     }
 
+    private void QuadraticOut() {
+        var partial = elapsedTime / duration;
+        transform.localPosition = startLocalPosition - (target - startLocalPosition) * partial * (partial - 2);
+    }
+
     private void Linear() {
+        var partial = elapsedTime / duration;
         transform.localPosition = startLocalPosition + (target - startLocalPosition) * partial;
     }
 
@@ -82,7 +84,7 @@ public class Movement : MonoBehaviour {
     }
 
     public void MoveTo(MovementType movementType, Vector3 target, float duration, float waitingTime) {
-        this.MovementType = movementType;
+        MovementType = movementType;
         this.target = target;
         this.duration = duration;
         this.waitingTime = waitingTime;

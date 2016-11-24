@@ -45,21 +45,23 @@ public class Block : MonoBehaviour {
         else {
             ToFall();
         }
-            
     }
 
     void Update() {
-        switch (state) {
+        switch (state)
+        {
             case BlockState.Entering:
                 Entering();
+                break;
+            case BlockState.Falling:
+                Falling();
                 break;
             case BlockState.Active:
                 break;
             case BlockState.Moving:
                 Moving();
                 break;
-            case BlockState.Falling:
-                Falling();
+            case BlockState.Matching:
                 break;
             default:
                 break;
@@ -87,11 +89,6 @@ public class Block : MonoBehaviour {
     }
 
     private void Falling()
-    {
-        CheckArrive();
-    }
-
-    private void CheckArrive()
     {
         var finalCoord = Grid.Instance.GetGridCoord(new Vector3(Column, Row, 0));
         
