@@ -12,7 +12,7 @@ public class BlocksDistributionMapGenerator : MonoBehaviour {
 
     [Header("Output")]
     [SerializeField] string outputPath;
-    [Range(1, 8)]
+    [Range(0, 8)]
     public byte compression = 2;
 
 
@@ -33,6 +33,7 @@ public class BlocksDistributionMapGenerator : MonoBehaviour {
         Texture2D tex = new Texture2D(1, 1);
         try {
             tex.LoadImage(File.ReadAllBytes(OutputPath));
+            tex.filterMode = FilterMode.Point;
         } catch (Exception) {
             return null;
         }
@@ -85,7 +86,6 @@ public class BlocksDistributionMapGenerator : MonoBehaviour {
             }
         }
 
-        Debug.Log("Histograma - Contagem:" + size);
-        Debug.Log("Histograma - Acumulado: " + sum);
+        Debug.Log("[Histograma] Contagem: " + size + "; Acumulado: " + sum);
     }
 }

@@ -5,9 +5,10 @@ using System;
 [CustomEditor(typeof(BlocksDistributionMapGenerator))]
 public class BlocksDistributionMapGeneratorEditor : Editor {
 
+    const float EditorWidthScale = 0.9f;
+
     BlocksDistributionMapGenerator generator;
     Texture2D previewImage;
-    bool scaleToFit;
 
     void OnEnable() {
         generator = (BlocksDistributionMapGenerator) target;
@@ -46,7 +47,7 @@ public class BlocksDistributionMapGeneratorEditor : Editor {
         EditorGUILayout.LabelField("Image Preview", EditorStyles.boldLabel);
 
         // redimensiona a imagem para ocupar a largura total do inspector
-        var width = EditorGUIUtility.currentViewWidth;
+        var width = EditorGUIUtility.currentViewWidth * EditorWidthScale;
         var height = previewImage.height * width / previewImage.width;
         var rect = GUILayoutUtility.GetRect(width, height);
         
@@ -59,26 +60,25 @@ public class BlocksDistributionMapGeneratorEditor : Editor {
 
         // label
         GUILayout.Space(20);
-        EditorGUILayout.LabelField("Image Preview", EditorStyles.boldLabel);
+        EditorGUILayout.LabelField("Histogram Preview", EditorStyles.boldLabel);
 
         // calcula a largura das barras e reserva espaço para o desenho
-        var cols = 30;
-        var maxWidth = EditorGUIUtility.currentViewWidth;
+        var maxWidth = EditorGUIUtility.currentViewWidth * EditorWidthScale;
         var maxHeight = 100f;
         var baseRect = GUILayoutUtility.GetRect(maxWidth, maxHeight);
 
-        EditorGUI.DrawRect(baseRect, Color.white);
-
         // desenha as barras
+        var cols = Mathf.Min(256, generator.HistogramCount - 1) + 1;
         var colWidth = maxWidth / cols;
         var maxHeightRate = maxHeight / generator.HistogramMaxValue;
         for (int i = 0; i < cols; i++) {
             var index = (int)(i * (generator.HistogramCount / cols));
             var height = generator.Histogram[index] * maxHeightRate;
-            var position = baseRect.position + i * colWidth * Vector2.right;
+            var deltaPos = new Vector2(i * colWidth, maxHeight - height);
+            var position = baseRect.position + deltaPos;
             var size = new Vector2(colWidth, height);
             var rect = new Rect(position, size);
-            EditorGUI.DrawRect(rect, Color.blue);
+            EditorGUI.DrawRect(rect, Color.cyan);
         }
     }
 }
