@@ -117,7 +117,7 @@ Rigidbody2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014070131068}
   m_UseAutoMass: 0
-  m_Mass: 0.025
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04c31ebe839514c43bc2a1bd22ef89c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
+  speed: 12
   lifeTime: 5
   hitExplosion: {fileID: 198000014254002334, guid: 8e910a5dc60a4d648ab0e59bf29cc928,
     type: 2}

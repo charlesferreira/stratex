@@ -472,7 +472,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000013840849326, guid: 1acadfdc533b1f24593a9ad92bae0388, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4000013840849326, guid: 1acadfdc533b1f24593a9ad92bae0388, type: 2}
       propertyPath: m_LocalPosition.y
@@ -538,7 +538,7 @@ Prefab:
         type: 2}
       propertyPath: joystick
       value: 
-      objectReference: {fileID: 11400000, guid: c80977e133260364488be73bb7e89300,
+      objectReference: {fileID: 11400000, guid: ad412fc93e6c35045ab456385d9f018e,
         type: 2}
     - target: {fileID: 1000013368098360, guid: 1acadfdc533b1f24593a9ad92bae0388, type: 2}
       propertyPath: m_Layer
@@ -787,7 +787,7 @@ Prefab:
     - target: {fileID: 114000012421871510, guid: 1acadfdc533b1f24593a9ad92bae0388,
         type: 2}
       propertyPath: usingLegacyControls
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1000010637486660, guid: 1acadfdc533b1f24593a9ad92bae0388, type: 2}
       propertyPath: m_TagString
@@ -1161,8 +1161,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputTexture: {fileID: 2800000, guid: 29e40cb632b406641aaf1c5c88bc9654, type: 3}
-  outputPath: \Common\Textures\Generated\DistributionMap.png
-  compression: 2
+  outputPath: /Common/Textures/Generated/DistributionMap.png
+  compression: 1
 --- !u!4 &1772988470
 Transform:
   m_ObjectHideFlags: 0
@@ -1190,7 +1190,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000013840849326, guid: 1acadfdc533b1f24593a9ad92bae0388, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -2
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 4000013840849326, guid: 1acadfdc533b1f24593a9ad92bae0388, type: 2}
       propertyPath: m_LocalPosition.y
