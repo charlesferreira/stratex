@@ -1,17 +1,18 @@
 ﻿using UnityEngine;
 using UnityEditor;
+using BlocksDistribution;
 using System;
 
-[CustomEditor(typeof(BlocksDistributionMapGenerator))]
+[CustomEditor(typeof(MapGenerator))]
 public class BlocksDistributionMapGeneratorEditor : Editor {
 
     const float EditorWidthScale = 0.9f;
 
-    BlocksDistributionMapGenerator generator;
+    MapGenerator generator;
     Texture2D previewImage;
 
     void OnEnable() {
-        generator = (BlocksDistributionMapGenerator) target;
+        generator = (MapGenerator) target;
 
         UpdatePreviewImage();
     }
@@ -56,7 +57,7 @@ public class BlocksDistributionMapGeneratorEditor : Editor {
     }
 
     private void DrawHistogramPreview() {
-        if (previewImage == null) return;
+        if (generator.Histogram == null) return;
 
         // label
         GUILayout.Space(20);
@@ -72,7 +73,7 @@ public class BlocksDistributionMapGeneratorEditor : Editor {
         var colWidth = maxWidth / cols;
         var maxHeightRate = maxHeight / generator.HistogramMaxValue;
         for (int i = 0; i < cols; i++) {
-            var index = (int)(i * (generator.HistogramCount / cols));
+            var index = i * (generator.HistogramCount / cols);
             var height = generator.Histogram[index] * maxHeightRate;
             var deltaPos = new Vector2(i * colWidth, maxHeight - height);
             var position = baseRect.position + deltaPos;
