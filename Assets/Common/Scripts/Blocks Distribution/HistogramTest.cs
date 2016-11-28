@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Game.Math;
 
 namespace BlocksDistribution {
 
@@ -31,36 +32,32 @@ namespace BlocksDistribution {
         [Header("Histogram")]
         [Range(10, 500)]
         public int numberOfColumns = 200;
-        public int NumberOfColumns {
-            get {
-                return Mathf.Min(numberOfColumns, generator.HistogramCount);
-            }
-        }
-
+        [Range(100, 5000)]
+        public int numberOfSamples = 2000;
 
         float maxHeight;
         float heightRate;
         float colWidth;
         Vector2 histogramPosition;
-        uint[] histogram;
+        Histogram histogram;
 
 
         Column[] columns;
 
-        void Start () {
-            histogram = generator.GetReducedHistogram(NumberOfColumns);
+        void Start() {
+            histogram = Histogram.Reduce(generator.Histogram, numberOfColumns);
 
             maxHeight = columnBase.localScale.y;
-            colWidth =  columnBase.localScale.x / NumberOfColumns;
+            colWidth = columnBase.localScale.x / histogram.Count;
             histogramPosition = transform.position + Vector3.left * columnBase.localScale.x / 2f;
 
-            columns = new Column[NumberOfColumns];
-            heightRate = maxHeight / generator.HistogramMaxValue;
+            columns = new Column[histogram.Count];
+            heightRate = maxHeight / histogram.MaxValue;
 
             for (int j = 0; j < 2; j++) {
-                for (int i = 0; i < histogram.Length; i++) {
+                for (int i = 0; i < histogram.Count; i++) {
                     // desenha a base do histograma
-                    var colPosition =  i * colWidth * Vector2.right;
+                    var colPosition = i * colWidth * Vector2.right;
                     var colHeight = histogram[i] * heightRate;
                     CreateColumn(columnBase.gameObject, colPosition, colHeight);
 
@@ -71,59 +68,20 @@ namespace BlocksDistribution {
                     }
                 }
             }
-
-            for (int i = 0; i < 200; i++) {
+            
+            for (int i = 0; i < numberOfSamples; i++) {
                 RaffleColumn();
             }
         }
 
-        void Update () {
-            //SortColumn();
+        void Update() {
         }
 
         private void RaffleColumn() {
-            var value = (uint)Random.Range(1, generator.HistogramMaxValue);
-            var i = FindHistogramIndex(value);
+            var value = (uint)Random.Range(1, histogram.MaxValue);
+            var i = histogram.Search(value);
 
-            columns[i].Increment(heightRate, (uint)generator.HistogramCount * 2);
-        }
-
-        private int FindHistogramIndex(uint value) {
-            var min = 0;
-            var max = histogram.Length;
-            var interval = max - min;
-            var index = min + interval / 2;
-            print(index);
-
-            var count = 0;
-            while (interval > 2) {
-                var currentValue = histogram[index];
-
-                if (currentValue >= value) {
-                    max = index;
-                } else if (value > currentValue) {
-                    min = index;
-                }
-
-                interval = max - min;
-                index = min + interval / 2;
-
-                if (++count > 300) {
-                    print("Index: " + index +
-                          ", value: " + value + 
-                          ", current: " + currentValue + 
-                          ", min: " + min + 
-                          ", max: " + max +
-                          ", interval: " + interval +
-                          ", left: " + histogram[index - 1] +
-                          ", right: " + histogram[index + 1]);
-                    break;
-                }
-            }
-
-            //print("Value: " + value + ", Index: " + index);
-
-            return index;
+            columns[i].Increment(heightRate, (uint)generator.Histogram.Count * 2);
         }
 
         private Transform CreateColumn(GameObject prefab, Vector2 position, float height) {

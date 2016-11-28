@@ -1,24 +1,31 @@
-﻿using UnityEngine;
+﻿using Game.Math;
+using UnityEngine;
 using UnityEditor;
 using BlocksDistribution;
-using System;
 
 [CustomEditor(typeof(MapGenerator))]
 public class BlocksDistributionMapGeneratorEditor : Editor {
 
     const float EditorWidthScale = 0.9f;
+    const int HistogramPreviewColumns = 256;
 
     MapGenerator generator;
     Texture2D previewImage;
+    Histogram histogram;
 
     void OnEnable() {
         generator = (MapGenerator) target;
 
         UpdatePreviewImage();
+        UpdatePreviewHistogram();
     }
 
-    private void UpdatePreviewImage() {
+    void UpdatePreviewImage() {
         previewImage = generator.GetOutputImage();
+    }
+
+    void UpdatePreviewHistogram() {
+        histogram = Histogram.Reduce(generator.Histogram, HistogramPreviewColumns);
     }
 
     override public void OnInspectorGUI() {
@@ -32,6 +39,7 @@ public class BlocksDistributionMapGeneratorEditor : Editor {
             generator.GenerateMap();
             UpdatePreviewImage();
             generator.GenerateHistogram(previewImage);
+            UpdatePreviewHistogram();
         }
         GUILayout.FlexibleSpace();
         GUILayout.EndHorizontal();
@@ -57,7 +65,7 @@ public class BlocksDistributionMapGeneratorEditor : Editor {
     }
 
     private void DrawHistogramPreview() {
-        if (generator.Histogram == null) return;
+        if (histogram == null) return;
 
         // label
         GUILayout.Space(20);
@@ -69,12 +77,10 @@ public class BlocksDistributionMapGeneratorEditor : Editor {
         var baseRect = GUILayoutUtility.GetRect(maxWidth, maxHeight);
 
         // desenha as barras
-        var cols = Mathf.Min(256, generator.HistogramCount - 1) + 1;
-        var colWidth = maxWidth / cols;
-        var maxHeightRate = maxHeight / generator.HistogramMaxValue;
-        for (int i = 0; i < cols; i++) {
-            var index = i * (generator.HistogramCount / cols);
-            var height = generator.Histogram[index] * maxHeightRate;
+        var colWidth = maxWidth / histogram.Count;
+        var maxHeightRate = maxHeight / histogram.MaxValue;
+        for (int i = 0; i < histogram.Count; i++) {
+            var height = histogram[i] * maxHeightRate;
             var deltaPos = new Vector2(i * colWidth, maxHeight - height);
             var position = baseRect.position + deltaPos;
             var size = new Vector2(colWidth, height);
