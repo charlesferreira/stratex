@@ -1,7 +1,7 @@
-﻿using Game.Math;
+﻿using Common.Math;
 using UnityEngine;
 using UnityEditor;
-using BlocksDistribution;
+using Space.Arena.BlocksDistribution;
 
 [CustomEditor(typeof(MapGenerator))]
 public class BlocksDistributionMapGeneratorEditor : Editor {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Game {
+namespace Common {
     namespace Math {
         [Serializable]
         public class Histogram {
