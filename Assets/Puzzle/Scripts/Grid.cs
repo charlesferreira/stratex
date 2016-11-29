@@ -526,32 +526,41 @@ public class Grid : MonoBehaviour
             {
                 for (int row = 0; row < rows; row++)
                 {
-                    // Setando a cor
-                    switch (grid[column, row].Color)
+                    var size = 0f;
+                    // Setando a cor e o tamanho
+                    if (grid[column, row] == null)
                     {
-                        case BlockColor.Blue:
-                            Gizmos.color = Color.blue;
-                            break;
-                        case BlockColor.Green:
-                            Gizmos.color = Color.green;
-                            break;
-                        case BlockColor.Purple:
-                            Gizmos.color = Color.magenta;
-                            break;
-                        case BlockColor.Red:
-                            Gizmos.color = Color.red;
-                            break;
-                        case BlockColor.Yellow:
-                            Gizmos.color = Color.yellow;
-                            break;
-                        default:
-                            Gizmos.color = Color.white;
-                            break;
+                        size = 0.1f;
+                        Gizmos.color = Color.gray;
                     }
+                    else
+                    {
+                        size = grid[column, row].State == BlockState.Active ? 0.2f : 0.1f;
 
+                        switch (grid[column, row].Color)
+                        {
+                            case BlockColor.Blue:
+                                Gizmos.color = Color.blue;
+                                break;
+                            case BlockColor.Green:
+                                Gizmos.color = Color.green;
+                                break;
+                            case BlockColor.Purple:
+                                Gizmos.color = Color.magenta;
+                                break;
+                            case BlockColor.Red:
+                                Gizmos.color = Color.red;
+                                break;
+                            case BlockColor.Yellow:
+                                Gizmos.color = Color.yellow;
+                                break;
+                            default:
+                                Gizmos.color = Color.white;
+                                break;
+                        }
+                    }
                     // Setando o tamanho conforme está ativo ou não
-                    var tamanho = grid[column, row].State == BlockState.Active ? 0.2f : 0.1f;
-                    Gizmos.DrawSphere(transform.position + GetGridCoord(new Vector3(column, row, 0)), tamanho);
+                    Gizmos.DrawSphere(transform.position + GetGridCoord(new Vector3(column, row, 0)), size);
                 }
             }
         }
