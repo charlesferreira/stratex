@@ -19,10 +19,10 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000012972617848}
-  - 114: {fileID: 114000012285017480}
   - 212: {fileID: 212000012200309396}
   - 114: {fileID: 114000011463264282}
   - 114: {fileID: 114000013912549944}
+  - 114: {fileID: 114000011460885396}
   m_Layer: 0
   m_Name: Block
   m_TagString: Untagged
@@ -43,6 +43,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &114000011460885396
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012290589004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7932faba39e33f4d8e388048fde570c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swapDuration: 0.2
+  freeFall: {fileID: 0}
+  movement: {fileID: 0}
+  Col: 0
+  Row: 0
 --- !u!114 &114000011463264282
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -55,18 +71,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementType: 1
---- !u!114 &114000012285017480
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012290589004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a139b32f41abdf41a8383ff388cce8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  swapDuration: 0.2
 --- !u!114 &114000013912549944
 MonoBehaviour:
   m_ObjectHideFlags: 1

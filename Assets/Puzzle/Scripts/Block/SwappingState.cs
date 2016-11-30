@@ -1,18 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ActivegState : IBlockState
+public class SwappingState : IBlockState
 {
     private readonly StatePatternBlock block;
 
-    public ActivegState(StatePatternBlock statePatternBlock)
+    public SwappingState(StatePatternBlock statePatternBlock)
     {
         block = statePatternBlock;
     }
 
     public void Update()
     {
-
+        if (!block.movement.IsMoving())
+        {
+            ToActiveState();
+        }
     }
 
     public void ToFallingState()
@@ -23,12 +26,13 @@ public class ActivegState : IBlockState
 
     public void ToSwappingState()
     {
-        block.currentState = block.swappingState;
+
     }
 
     public void ToActiveState()
     {
-
+        block.currentState = block.activegState;
+        Grid.Instance.CheckMatch(block.Col, block.Row);
     }
 
     public void ToMatchingState()

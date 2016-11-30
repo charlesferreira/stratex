@@ -7,12 +7,14 @@ public class Grid : MonoBehaviour
 {
 
     [Header("Grid dimensions")]
-    public int rows = 6;
-    public int columns = 6;
+    [Range(1, 12)] public int rows = 6;
+    [Range(1, 12)] public int columns = 6;
+    [Range(0, 12)] public int startFullRows = 4;
 
     [Header("Block")]
     public GameObject blockPrefab;
     public Transform blocksContainer;
+    public float randomStartSpacing = .2f;
 
     [Header("Textures")]
     public List<Sprite> blockSprites;
@@ -23,8 +25,8 @@ public class Grid : MonoBehaviour
 
     PuzzleToShipInterface ship;
 
-    Block[,] grid;
-    List<Block> matchingBlocks;
+    StatePatternBlock[,] grid;
+    List<StatePatternBlock> matchingBlocks;
 
     private static Grid instance;
     public static Grid Instance
@@ -47,6 +49,8 @@ public class Grid : MonoBehaviour
 
     public void Update()
     {
+        // TODO: Implementar lógica para verificar e descer os blocos somente quando necessário
+
         DecreaseBlocks();
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -88,7 +92,7 @@ public class Grid : MonoBehaviour
 
         var index = UnityEngine.Random.Range(0, columnsNotFull.Count - 1);
         var column = columnsNotFull.ElementAt(index);
-        CreateNewBlock(column, rows - 1, blockColor, BlockState.Falling);
+        CreateNewBlock(column, rows - 1, blockColor, 0);
         return true;
     }
 
@@ -115,23 +119,23 @@ public class Grid : MonoBehaviour
 
     private void StartGrid()
     {
-        grid = new Block[columns, rows];
+        grid = new StatePatternBlock[columns, rows];
 
         for (int column = 0; column < columns; column++)
-            for (int row = 0; row < Mathf.Ceil(rows / 2); row++)
-                CreateNewBlock(column, row, GetRandomValidColor(column, row), BlockState.Entering);
+            for (int row = 0; row < Mathf.Min(startFullRows, rows); row++)
+                CreateNewBlock(column, row, GetRandomValidColor(column, row), randomStartSpacing * (row + 1) + UnityEngine.Random.Range(0, Mathf.Ceil(randomStartSpacing * 1000)) / 1000);
     }
 
-    private void CreateNewBlock(int column, int row, BlockColor color, BlockState blockState)
+    private void CreateNewBlock(int column, int row, BlockColor color, float waitingTime)
     {
         var position = transform.position + GetGridCoord(new Vector3(column, rows, 0));
         var rotation = Quaternion.identity;
         var blockGO = Instantiate(blockPrefab, position, rotation, blocksContainer) as GameObject;
 
-        var block = blockGO.GetComponent<Block>();
+        var block = blockGO.GetComponent<StatePatternBlock>();
 
         if (grid[column, row] == null) {
-            block.Init(column, row, color, blockState);
+            block.Init(column, row, color, waitingTime);
             grid[column, row] = block;
             return;
         }
@@ -142,7 +146,7 @@ public class Grid : MonoBehaviour
         for (int newRow = rows - 2; newRow >= 0; newRow--) {
             if (grid[column, newRow] == null)
             {
-                block.Init(column, newRow, color, blockState);
+                block.Init(column, newRow, color, waitingTime);
                 block.transform.position += Vector3.down * 0.2f * (rows - newRow) + Vector3.back * (rows - newRow);
                 grid[column, newRow] = block;
                 return;
@@ -152,8 +156,8 @@ public class Grid : MonoBehaviour
 
     public void Swap(int columnA, int rowA, int columnB, int rowB)
     {
-        Block blockA = grid[columnA, rowA];
-        Block blockB = grid[columnB, rowB];
+        StatePatternBlock blockA = grid[columnA, rowA];
+        StatePatternBlock blockB = grid[columnB, rowB];
 
         if (blockA != null)
         {
@@ -185,7 +189,6 @@ public class Grid : MonoBehaviour
 
     internal void CheckMatch(int column, int row)
     {
-
         var color = GetBlockColor(column, row);
 
         bool horizontal = CheckHorizontalMatch(color, column, row);
@@ -194,9 +197,9 @@ public class Grid : MonoBehaviour
         if (vertical || horizontal)
         {
 
-            matchingBlocks = new List<Block>();
+            matchingBlocks = new List<StatePatternBlock>();
 
-            grid[column, row].SetMatching();
+            grid[column, row].ToMatchingState();
             matchingBlocks.Add(grid[column, row]);
 
             int matchSize = 1;
@@ -221,8 +224,8 @@ public class Grid : MonoBehaviour
 
         foreach (var block in matchingBlocks)
         {
-            Destroy(grid[block.Column, block.Row].gameObject);
-            grid[block.Column, block.Row] = null;
+            Destroy(grid[block.Col, block.Row].gameObject);
+            grid[block.Col, block.Row] = null;
         }
     }
 
@@ -300,7 +303,7 @@ public class Grid : MonoBehaviour
         {
             if (CheckIqualColors(column - 1, row, color))
             {
-                grid[column - 1, row].SetMatching();
+                grid[column - 1, row].ToMatchingState();
                 matchingBlocks.Add(grid[column - 1, row]);
                 matchSize += 1;
 
@@ -308,7 +311,7 @@ public class Grid : MonoBehaviour
                 {
                     if (CheckIqualColors(column - 2, row, color))
                     {
-                        grid[column - 2, row].SetMatching();
+                        grid[column - 2, row].ToMatchingState();
                         matchingBlocks.Add(grid[column - 2, row]);
                         matchSize += 1;
                     }
@@ -321,7 +324,7 @@ public class Grid : MonoBehaviour
         {
             if (CheckIqualColors(column + 1, row, color))
             {
-                grid[column + 1, row].SetMatching();
+                grid[column + 1, row].ToMatchingState();
                 matchingBlocks.Add(grid[column + 1, row]);
                 matchSize += 1;
 
@@ -329,7 +332,7 @@ public class Grid : MonoBehaviour
                 {
                     if (CheckIqualColors(column + 2, row, color))
                     {
-                        grid[column + 2, row].SetMatching();
+                        grid[column + 2, row].ToMatchingState();
                         matchingBlocks.Add(grid[column + 2, row]);
                         matchSize += 1;
                     }
@@ -349,7 +352,7 @@ public class Grid : MonoBehaviour
         {
             if (CheckIqualColors(column, row - 1, color))
             {
-                grid[column, row - 1].SetMatching();
+                grid[column, row - 1].ToMatchingState();
                 matchingBlocks.Add(grid[column, row - 1]);
                 matchSize += 1;
 
@@ -357,7 +360,7 @@ public class Grid : MonoBehaviour
                 {
                     if (CheckIqualColors(column, row - 2, color))
                     {
-                        grid[column, row - 2].SetMatching();
+                        grid[column, row - 2].ToMatchingState();
                         matchingBlocks.Add(grid[column, row - 2]);
                         matchSize += 1;
                     }
@@ -370,7 +373,7 @@ public class Grid : MonoBehaviour
         {
             if (CheckIqualColors(column, row + 1, color))
             {
-                grid[column, row + 1].SetMatching();
+                grid[column, row + 1].ToMatchingState();
                 matchingBlocks.Add(grid[column, row + 1]);
                 matchSize += 1;
 
@@ -378,7 +381,7 @@ public class Grid : MonoBehaviour
                 {
                     if (CheckIqualColors(column, row + 2, color))
                     {
-                        grid[column, row + 2].SetMatching();
+                        grid[column, row + 2].ToMatchingState();
                         matchingBlocks.Add(grid[column, row + 2]);
                         matchSize += 1;
                     }
@@ -535,7 +538,7 @@ public class Grid : MonoBehaviour
                     }
                     else
                     {
-                        size = grid[column, row].State == BlockState.Active ? 0.2f : 0.1f;
+                        size = grid[column, row].currentState == typeof(ActivegState) ? 0.2f : 0.1f;
 
                         switch (grid[column, row].Color)
                         {

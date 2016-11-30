@@ -5,13 +5,13 @@ public interface IBlockState{
 
     void Update();
 
-    void ToEnteringState();
-
     void ToFallingState();
 
-    void ToMovingState();
+    void ToSwappingState();
 
     void ToActiveState();
 
     void ToMatchingState();
+
+    void Decrease();
 }

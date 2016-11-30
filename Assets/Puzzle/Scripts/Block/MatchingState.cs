@@ -3,21 +3,14 @@ using System.Collections;
 
 public class MatchingState : IBlockState
 {
-    private readonly StatePatternBlock block;
-
-    public MatchingState(StatePatternBlock statePatternBlock)
+    public MatchingState()
     {
-        block = statePatternBlock;
+
     }
 
     public void Update()
     {
-
-    }
-
-    public void ToEnteringState()
-    {
-
+        
     }
 
     public void ToFallingState()
@@ -25,7 +18,7 @@ public class MatchingState : IBlockState
 
     }
 
-    public void ToMovingState()
+    public void ToSwappingState()
     {
 
     }
@@ -36,6 +29,11 @@ public class MatchingState : IBlockState
     }
 
     public void ToMatchingState()
+    {
+
+    }
+
+    public void Decrease()
     {
 
     }
