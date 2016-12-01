@@ -42,6 +42,7 @@ public class SwappingState : IBlockState
 
     public void Decrease()
     {
+        block.Row--;
         ToFallingState();
     }
 }

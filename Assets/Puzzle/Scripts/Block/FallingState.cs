@@ -53,6 +53,6 @@ public class FallingState : IBlockState
 
     public void Decrease()
     {
-
+        block.Row--;
     }
 }

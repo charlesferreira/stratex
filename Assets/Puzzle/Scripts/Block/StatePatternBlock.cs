@@ -40,10 +40,10 @@ public class StatePatternBlock : MonoBehaviour {
 
         freeFall = GetComponent<FreeFall>();
         movement = GetComponent<Movement>();
+        currentState = fallingState;
     }
 
     void Start () {
-        currentState = fallingState;
 	}
 
     public void Init(int column, int row, BlockColor color, float waitingTime)
@@ -62,7 +62,6 @@ public class StatePatternBlock : MonoBehaviour {
 
     internal void Decrease()
     {
-        Row--;
         currentState.Decrease();
     }
 

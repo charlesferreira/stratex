@@ -141,13 +141,13 @@ public class Grid : MonoBehaviour
         }
 
         // Pode ocorrer que mais de um bloco tente entrar na mesma coluna, na mesma linha e no mesmo frame
-        // Se isso ocorrer sera procurado por uma linha vazia.
-        // Sempre vai existir uma linha vazia, pois essa validacao eh feita na hora de escolher a coluna
+        // Se isso ocorrer será procurado por uma linha vazia.
+        // Sempre vai existir uma linha vazia, pois essa validação á feita na hora de escolher a coluna
         for (int newRow = rows - 2; newRow >= 0; newRow--) {
             if (grid[column, newRow] == null)
             {
                 block.Init(column, newRow, color, waitingTime);
-                block.transform.position += Vector3.down * 0.2f * (rows - newRow) + Vector3.back * (rows - newRow);
+                block.transform.position += Vector3.down * 1f * (rows - newRow) + Vector3.back * (rows - newRow);
                 grid[column, newRow] = block;
                 return;
             }
@@ -233,9 +233,12 @@ public class Grid : MonoBehaviour
     {
         for (int column = 0; column < columns; column++)
             for (int row = 0; row < rows; row++)
-                if (grid[column, row] != null)
-                    if (IsEmptySpace(column, row - 1))
-                        DecreaseBlock(column, row);
+                if (grid[column, row] != null) {
+                    if (grid[column, row].currentState.GetType() != typeof(FallingState)) {
+                        if (IsEmptySpace(column, row - 1))
+                            DecreaseBlock(column, row);
+                    }
+                }
     }
 
     private bool CheckHorizontalMatch(BlockColor color, int column, int row)

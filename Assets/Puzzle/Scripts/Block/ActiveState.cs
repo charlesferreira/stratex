@@ -38,6 +38,7 @@ public class ActivegState : IBlockState
 
     public void Decrease()
     {
+        block.Row--;
         ToFallingState();
     }
 }
