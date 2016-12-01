@@ -13,6 +13,7 @@ namespace Space {
                 // Private
                 Histogram histogram;
                 int mapWidth;
+                int mapHeight;
 
 
                 // Static
@@ -31,17 +32,23 @@ namespace Space {
                     var mg = GetComponent<MapGenerator>();
                     histogram = mg.Histogram;
                     mapWidth = mg.GetOutputImage().width;
+                    mapHeight = mg.GetOutputImage().height;
 
-                    for (int i = 0; i < 100; i++) {
-                        CreateBlock();
-                    }
+                    //for (int i = 0; i < 5000; i++) {
+                    //    CreateBlock();
+                    //}
+                }
+
+                void Update() {
+                    CreateBlock();
                 }
 
 
                 // Public methods
                 void CreateBlock() {
+                    var go = (Transform)Instantiate(blockPrefab, Vector2.zero, Quaternion.identity, transform);
                     var position = RandomPosition();
-                    Instantiate(blockPrefab, position, Quaternion.identity);
+                    go.localPosition = position;
                 }
 
 
@@ -49,13 +56,13 @@ namespace Space {
                 private Vector2 RandomPosition() {
                     var value = (uint)Random.Range(1, histogram.MaxValue);
                     var index = histogram.Search(value);
-                    var randomAngle = Random.Range(0f, 360f);
-                    var randomSize = Random.Range(0f, 1f);
-                    var offset = Quaternion.AngleAxis(randomAngle, Vector3.back) * Vector2.right * randomSize;
 
-                    return new Vector3(
-                        index % mapWidth,
-                        index / mapWidth) + offset;
+                    var coords = new Vector2(
+                        (index % mapWidth) + Random.Range(0f, 1f),
+                        (index / mapWidth) + Random.Range(0f, 1f));
+
+                    var halfMapSize = new Vector2(mapWidth, mapHeight) / 2f;
+                    return coords - halfMapSize;
                 }
             }
 

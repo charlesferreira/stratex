@@ -68,8 +68,9 @@ namespace Space {
                                     sum += inputTexture.GetPixel(col, row);
                                 }
                             }
-                            var average = sum / (outPixelSize * outPixelSize);
-                            outTexture.SetPixel(x, y, average);
+                            var avg = sum / (outPixelSize * outPixelSize);
+                            avg.a = (avg.r + avg.g + avg.b) / 3f;
+                            outTexture.SetPixel(x, y, avg);
                         }
                     }
 
