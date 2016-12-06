@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 3e6f80d4fdf2405448b80c4ed05ee688
-timeCreated: 1479055805
+guid: b2a6142d6ec6648469e7d505101c0707
+timeCreated: 1481063419
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
@@ -53,7 +53,7 @@ TextureImporter:
     serializedVersion: 2
     sprites: []
     outline: []
-  spritePackingTag: Puzzle
+  spritePackingTag: 
   userData: 
   assetBundleName: 
   assetBundleVariant: 
