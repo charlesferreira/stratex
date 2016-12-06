@@ -30,7 +30,7 @@ public class Cursor : MonoBehaviour {
                 break;
         }
 
-        column = Mathf.Clamp(column, 0, Grid.Instance.columns - 1);
+        column = Mathf.Clamp(column, 0, Grid.Instance.columns - 2);
         row = Mathf.Clamp(row, 0, Grid.Instance.rows - 1);
 
         GetComponent<Movement>().MoveTo(Grid.Instance.GetGridCoord(new Vector3(column, row, transform.position.z)), .2f);

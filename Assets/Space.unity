@@ -2015,6 +2015,18 @@ Prefab:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4000012906981008, guid: 07e73ab8840343f49aaea5d7a06e8eda, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012906981008, guid: 07e73ab8840343f49aaea5d7a06e8eda, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012906981008, guid: 07e73ab8840343f49aaea5d7a06e8eda, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012906981008, guid: 07e73ab8840343f49aaea5d7a06e8eda, type: 2}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -2043,53 +2055,30 @@ Prefab:
       propertyPath: m_Name
       value: Puzzle 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114000010621999264, guid: 07e73ab8840343f49aaea5d7a06e8eda,
+    - target: {fileID: 114000010037006946, guid: 07e73ab8840343f49aaea5d7a06e8eda,
         type: 2}
-      propertyPath: drawLimits
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010621999264, guid: 07e73ab8840343f49aaea5d7a06e8eda,
-        type: 2}
-      propertyPath: drawPoints
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012906981008, guid: 07e73ab8840343f49aaea5d7a06e8eda, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012906981008, guid: 07e73ab8840343f49aaea5d7a06e8eda, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010621999264, guid: 07e73ab8840343f49aaea5d7a06e8eda,
-        type: 2}
-      propertyPath: rows
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000012233780754, guid: 07e73ab8840343f49aaea5d7a06e8eda, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010621999264, guid: 07e73ab8840343f49aaea5d7a06e8eda,
-        type: 2}
-      propertyPath: columns
-      value: 12
+      propertyPath: cursorMovementsPerSecond
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 114000010037006946, guid: 07e73ab8840343f49aaea5d7a06e8eda,
         type: 2}
       propertyPath: joystick
       value: 
+<<<<<<< HEAD
       objectReference: {fileID: 11400000, guid: 68b8e946a974eed42a1dddb4ab96fc33,
+=======
+      objectReference: {fileID: 11400000, guid: 0ff2643e72d66394fb5d4112fc996cf2,
+>>>>>>> e1b979a4d207eeda6617a2e070ef8c09764b743b
         type: 2}
-    - target: {fileID: 114000010621999264, guid: 07e73ab8840343f49aaea5d7a06e8eda,
+    - target: {fileID: 114000012917654542, guid: 07e73ab8840343f49aaea5d7a06e8eda,
         type: 2}
-      propertyPath: startFullRows
-      value: 6
+      propertyPath: MovementType
+      value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114000010621999264, guid: 07e73ab8840343f49aaea5d7a06e8eda,
+    - target: {fileID: 114000010037006946, guid: 07e73ab8840343f49aaea5d7a06e8eda,
         type: 2}
-      propertyPath: randomStartSpacing
-      value: 0.2
+      propertyPath: cursorThreshold
+      value: 0.451
       objectReference: {fileID: 0}
     - target: {fileID: 114000010621999264, guid: 07e73ab8840343f49aaea5d7a06e8eda,
         type: 2}
