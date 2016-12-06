@@ -3,7 +3,6 @@
 public class Missile : Bullet {
 
     [Header("Missile specifics")]
-    public float steeringStrength;
     public ParticleSystem expiredExplosion;
 
     Transform target;
@@ -12,13 +11,13 @@ public class Missile : Bullet {
     void FixedUpdate() {
         // Acelera em direção ao alvo
         var direction = target.position - transform.position;
-        var steeringForce = direction.normalized * steeringStrength * Time.fixedDeltaTime;
+        var steeringForce = direction.normalized * info.steeringStrength * Time.fixedDeltaTime;
         rb.AddForce(steeringForce);
     }
 
     void LateUpdate() {
         // Mantém a velocidade limite
-        rb.velocity = rb.velocity.normalized * speed;
+        rb.velocity = rb.velocity.normalized * info.speed;
 
         // Aponta na direção do movimento
         transform.right = rb.velocity;

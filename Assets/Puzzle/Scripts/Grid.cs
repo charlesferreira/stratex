@@ -16,9 +16,6 @@ public class Grid : MonoBehaviour
     public Transform blocksContainer;
     public float randomStartSpacing = .2f;
 
-    [Header("Textures")]
-    public List<Sprite> blockSprites;
-
     [Header("Gizmos")]
     public bool drawLimits;
     public bool drawPoints;
@@ -44,6 +41,7 @@ public class Grid : MonoBehaviour
     void Start()
     {
         ship = GetComponent<PuzzleToShipInterface>();
+
         StartGrid();
     }
 
@@ -475,26 +473,6 @@ public class Grid : MonoBehaviour
             }
         }
         return true;
-    }
-
-    public Sprite GetTexture(BlockColor color)
-    {
-        //TODO: ver com o Charles como criar um dicionário para melhorar isso.
-        switch (color)
-        {
-            case BlockColor.Blue:
-                return blockSprites[0];
-            case BlockColor.Green:
-                return blockSprites[1];
-            case BlockColor.Purple:
-                return blockSprites[2];
-            case BlockColor.Red:
-                return blockSprites[3];
-            case BlockColor.Yellow:
-                return blockSprites[4];
-            default:
-                throw new Exception("Invalid block color");
-        }
     }
 
     public Vector3 GetGridCoord(Vector3 gridPosition)

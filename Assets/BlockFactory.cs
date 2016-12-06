@@ -9,12 +9,10 @@ namespace Space {
                 // Inspector
                 public Transform blockPrefab;
 
-
                 // Private
                 Histogram histogram;
                 int mapWidth;
                 int mapHeight;
-
 
                 // Static
                 static BlockFactory instance;
@@ -26,31 +24,24 @@ namespace Space {
                     }
                 }
 
-
                 // Lyfe cycle methods
                 void Start() {
                     var mg = GetComponent<MapGenerator>();
                     histogram = mg.Histogram;
                     mapWidth = mg.GetOutputImage().width;
                     mapHeight = mg.GetOutputImage().height;
-
-                    //for (int i = 0; i < 5000; i++) {
-                    //    CreateBlock();
-                    //}
                 }
 
                 void Update() {
                     CreateBlock();
                 }
 
-
                 // Public methods
                 void CreateBlock() {
-                    var go = (Transform)Instantiate(blockPrefab, Vector2.zero, Quaternion.identity, transform);
+                    var go = (Transform)Instantiate(blockPrefab, transform);
                     var position = RandomPosition();
                     go.localPosition = position;
                 }
-
 
                 // Private methods
                 private Vector2 RandomPosition() {

@@ -10,7 +10,6 @@ namespace Space {
             public class MapGenerator : MonoBehaviour {
 
                 // Inspector
-
                 [Header("Input")]
                 public Texture2D inputTexture;
 
@@ -20,18 +19,14 @@ namespace Space {
                 [Range(0, 8)]
                 public byte compression = 2;
 
-
                 // Properties
-
                 public string OutputPath { get { return Application.dataPath + outputPath; } }
                 [SerializeField]
                 [HideInInspector]
                 Histogram histogram;
                 public Histogram Histogram { get { return histogram; } }
 
-
                 // Methods
-
                 void Awake() {
                     GenerateHistogram(GetOutputImage());
                 }

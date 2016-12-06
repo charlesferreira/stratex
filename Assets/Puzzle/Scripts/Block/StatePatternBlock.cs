@@ -27,7 +27,7 @@ public class StatePatternBlock : MonoBehaviour {
         set
         {
             color = value;
-            GetComponent<SpriteRenderer>().sprite = Grid.Instance.GetTexture(color);
+            GetComponent<SpriteRenderer>().sprite = PuzzlesManager.Instance.GetBlockInfo(color).puzzleSprite;
         }
     }
 
@@ -53,7 +53,7 @@ public class StatePatternBlock : MonoBehaviour {
         this.color = color;
 
         freeFall.ToFall(waitingTime);
-        GetComponent<SpriteRenderer>().sprite = Grid.Instance.GetTexture(color);
+        GetComponent<SpriteRenderer>().sprite = PuzzlesManager.Instance.GetBlockInfo(color).puzzleSprite;
     }
 
     void Update () {

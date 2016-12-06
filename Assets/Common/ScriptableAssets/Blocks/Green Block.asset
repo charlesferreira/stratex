@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82fe866211d73bd4987e86dc0f628d4c, type: 3}
+  m_Name: Green Block
+  m_EditorClassIdentifier: 
+  color: 1
+  puzzleSprite: {fileID: 21300000, guid: 0ce6d783562a66f499211c281e6d1981, type: 3}
+  spaceSprite: {fileID: 21300000, guid: 0ce6d783562a66f499211c281e6d1981, type: 3}
