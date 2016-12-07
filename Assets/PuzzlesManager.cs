@@ -16,7 +16,7 @@ public class PuzzlesManager : MonoBehaviour {
         }
     }
 
-    void Start () {
+    void Awake () {
         blocksInfoDictionary = new Dictionary<BlockColor, BlockInfo>();
         foreach (var info in blocksInfo) {
             blocksInfoDictionary.Add(info.color, info);
