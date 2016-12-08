@@ -25,19 +25,6 @@ public class Grid : MonoBehaviour
     StatePatternBlock[,] grid;
     List<StatePatternBlock> matchingBlocks;
 
-    private static Grid instance;
-    public static Grid Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                instance = FindObjectOfType<Grid>();
-            }
-            return instance;
-        }
-    }
-
     void Start()
     {
         ship = GetComponent<PuzzleToShipInterface>();
@@ -129,6 +116,7 @@ public class Grid : MonoBehaviour
         var position = transform.position + GetGridCoord(new Vector3(column, rows, 0));
         var rotation = Quaternion.identity;
         var blockGO = Instantiate(blockPrefab, position, rotation, blocksContainer) as GameObject;
+        blockGO.GetComponent<StatePatternBlock>().Grid = this;
 
         var block = blockGO.GetComponent<StatePatternBlock>();
 

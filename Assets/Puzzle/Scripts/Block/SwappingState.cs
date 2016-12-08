@@ -32,7 +32,7 @@ public class SwappingState : IBlockState
     public void ToActiveState()
     {
         block.currentState = block.activegState;
-        Grid.Instance.CheckMatch(block.Col, block.Row);
+        block.Grid.CheckMatch(block.Col, block.Row);
     }
 
     public void ToMatchingState()

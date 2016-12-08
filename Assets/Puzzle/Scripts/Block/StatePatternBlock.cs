@@ -3,6 +3,8 @@ using System.Collections;
 
 public class StatePatternBlock : MonoBehaviour {
 
+    Grid grid;
+
     public float swapDuration = 0.2f;
 
     [HideInInspector] public IBlockState currentState;
@@ -28,6 +30,19 @@ public class StatePatternBlock : MonoBehaviour {
         {
             color = value;
             GetComponent<SpriteRenderer>().sprite = PuzzlesManager.Instance.GetBlockInfo(color).puzzleSprite;
+        }
+    }
+
+    public Grid Grid
+    {
+        get
+        {
+            return grid;
+        }
+
+        set
+        {
+            grid = value;
         }
     }
 
@@ -70,7 +85,7 @@ public class StatePatternBlock : MonoBehaviour {
         Col = column;
         Row = row;
 
-        Vector3 target = Grid.Instance.GetGridCoord(new Vector3(Col, Row, 0));
+        Vector3 target = Grid.GetGridCoord(new Vector3(Col, Row, 0));
         movement.MoveTo(target, swapDuration);
 
         currentState.ToSwappingState();

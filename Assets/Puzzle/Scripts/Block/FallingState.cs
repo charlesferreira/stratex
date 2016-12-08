@@ -13,12 +13,12 @@ public class FallingState : IBlockState
 
     public void Update()
     {
-        var finalCoord = Grid.Instance.GetGridCoord(new Vector3(block.Col, block.Row, 0));
+        var finalCoord = block.Grid.GetGridCoord(new Vector3(block.Col, block.Row, 0));
         if (finalCoord.y >= block.transform.localPosition.y)
         {
-            if (Grid.Instance.IsEmptySpace(block.Col, block.Row - 1))
+            if (block.Grid.IsEmptySpace(block.Col, block.Row - 1))
             {
-                Grid.Instance.DecreaseBlock(block.Col, block.Row);
+                block.Grid.DecreaseBlock(block.Col, block.Row);
             }
             else
             {
@@ -43,7 +43,7 @@ public class FallingState : IBlockState
     public void ToActiveState()
     {
         block.currentState = block.activegState;
-        Grid.Instance.CheckMatch(block.Col, block.Row);
+        block.Grid.CheckMatch(block.Col, block.Row);
     }
 
     public void ToMatchingState()
