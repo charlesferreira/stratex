@@ -6,8 +6,10 @@ public class PuzzleInput : MonoBehaviour {
     public Joystick joystick;
 
     [Header("Tunning")]
-    [Range(1f, 30f)]
+    [Range(1f, 60f)]
     public float cursorMovementsPerSecond;
+    [Range(0.1f, 1f)]
+    public float firstCooldown = 0.1f;
     [Range(0f, 1f)]
     public float cursorThreshold = 0.5f;
 
@@ -24,6 +26,23 @@ public class PuzzleInput : MonoBehaviour {
         if (Input.GetAxisRaw(joystick.Horizontal) > cursorThreshold) Right = true;
         if (Input.GetAxisRaw(joystick.Horizontal) < -cursorThreshold) Left = true;
 
+        if (Up || Down || Right || Left)
+        {
+            if (currentCooldown == firstCooldown)
+            {
+                currentCooldown -= Time.deltaTime;
+                return;
+            }
+            if (currentCooldown > 0)
+            {
+                Up = Down = Left = Right = false;
+                currentCooldown -= Time.deltaTime;
+                return;
+            }
+            currentCooldown += DefaultCooldown;
+            return;
+        }
+        currentCooldown = firstCooldown;
     }
 
     public bool Up { get; set; }
@@ -31,9 +50,8 @@ public class PuzzleInput : MonoBehaviour {
     public bool Left { get; set; }
     public bool Right { get; set; }
 
-    public bool SwapUp { get { return Input.GetButtonDown(joystick.YButton); } }
-    public bool SwapDown { get { return Input.GetButtonDown(joystick.AButton); } }
-    public bool SwapLeft { get { return Input.GetButtonDown(joystick.XButton); } }
-    public bool SwapRight { get { return Input.GetButtonDown(joystick.BButton); } }
-
+    public bool SwapRight { get { return Input.GetButtonDown(joystick.BButton)
+                                      || Input.GetButtonDown(joystick.XButton)
+                                      || Input.GetButtonDown(joystick.AButton)
+                                      || Input.GetButtonDown(joystick.YButton); } }
 }

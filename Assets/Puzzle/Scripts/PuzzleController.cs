@@ -19,9 +19,6 @@ public class PuzzleController : MonoBehaviour {
         if (input.Left) scriptCursor.Move(CursorMovement.Left);
         if (input.Right) scriptCursor.Move(CursorMovement.Right);
 
-        if (input.SwapUp) scriptCursor.Swap(SwapDirection.Up);
-        if (input.SwapDown) scriptCursor.Swap(SwapDirection.Down);
-        if (input.SwapLeft) scriptCursor.Swap(SwapDirection.Left);
         if (input.SwapRight) scriptCursor.Swap(SwapDirection.Right);
     }
 }
