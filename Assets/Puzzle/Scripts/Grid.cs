@@ -53,35 +53,35 @@ public class Grid : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            InsertBlock(BlockColor.Blue);
+            InsertBlock(PuzzlesManager.Instance.GetBlockInfo(BlockColor.Blue));
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            InsertBlock(BlockColor.Green);
+            InsertBlock(PuzzlesManager.Instance.GetBlockInfo(BlockColor.Green));
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            InsertBlock(BlockColor.Purple);
+            InsertBlock(PuzzlesManager.Instance.GetBlockInfo(BlockColor.Purple));
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            InsertBlock(BlockColor.Red);
+            InsertBlock(PuzzlesManager.Instance.GetBlockInfo(BlockColor.Red));
         }
         if (Input.GetKeyDown(KeyCode.Alpha5))
         {
-            InsertBlock(BlockColor.Yellow);
+            InsertBlock(PuzzlesManager.Instance.GetBlockInfo(BlockColor.Yellow));
         }
         if (Input.GetKeyDown(KeyCode.Alpha6))
         {
-            InsertBlock(BlockColor.Blue);
-            InsertBlock(BlockColor.Green);
-            InsertBlock(BlockColor.Purple);
-            InsertBlock(BlockColor.Red);
-            InsertBlock(BlockColor.Yellow);
+            InsertBlock(PuzzlesManager.Instance.GetBlockInfo(BlockColor.Blue));
+            InsertBlock(PuzzlesManager.Instance.GetBlockInfo(BlockColor.Green));
+            InsertBlock(PuzzlesManager.Instance.GetBlockInfo(BlockColor.Purple));
+            InsertBlock(PuzzlesManager.Instance.GetBlockInfo(BlockColor.Red));
+            InsertBlock(PuzzlesManager.Instance.GetBlockInfo(BlockColor.Yellow));
         }
     }
 
-    public bool InsertBlock(BlockColor blockColor)
+    public bool InsertBlock(BlockInfo blockInfo)
     {
         var columnsNotFull = GetNotFullColumns();
 
@@ -90,7 +90,7 @@ public class Grid : MonoBehaviour
 
         var index = UnityEngine.Random.Range(0, columnsNotFull.Count - 1);
         var column = columnsNotFull.ElementAt(index);
-        CreateNewBlock(column, rows - 1, blockColor, 0);
+        CreateNewBlock(column, rows - 1, blockInfo, 0);
         return true;
     }
 
@@ -124,7 +124,7 @@ public class Grid : MonoBehaviour
                 CreateNewBlock(column, row, GetRandomValidColor(column, row), randomStartSpacing * (row + 1) + UnityEngine.Random.Range(0, Mathf.Ceil(randomStartSpacing * 1000)) / 1000);
     }
 
-    private void CreateNewBlock(int column, int row, BlockColor color, float waitingTime)
+    private void CreateNewBlock(int column, int row, BlockInfo info, float waitingTime)
     {
         var position = transform.position + GetGridCoord(new Vector3(column, rows, 0));
         var rotation = Quaternion.identity;
@@ -133,7 +133,7 @@ public class Grid : MonoBehaviour
         var block = blockGO.GetComponent<StatePatternBlock>();
 
         if (grid[column, row] == null) {
-            block.Init(column, row, color, waitingTime);
+            block.Init(column, row, info, waitingTime);
             grid[column, row] = block;
             return;
         }
@@ -144,7 +144,7 @@ public class Grid : MonoBehaviour
         for (int newRow = rows - 2; newRow >= 0; newRow--) {
             if (grid[column, newRow] == null)
             {
-                block.Init(column, newRow, color, waitingTime);
+                block.Init(column, newRow, info, waitingTime);
                 block.transform.position += Vector3.down * 1f * (rows - newRow) + Vector3.back * (rows - newRow);
                 grid[column, newRow] = block;
                 return;
@@ -187,10 +187,10 @@ public class Grid : MonoBehaviour
 
     internal void CheckMatch(int column, int row)
     {
-        var color = GetBlockColor(column, row);
+        var info = GetBlockInfo(column, row);
 
-        bool horizontal = CheckHorizontalMatch(color, column, row);
-        bool vertical = CheckVerticalMatch(color, column, row);
+        bool horizontal = CheckHorizontalMatch(info, column, row);
+        bool vertical = CheckVerticalMatch(info, column, row);
 
         if (vertical || horizontal)
         {
@@ -203,15 +203,15 @@ public class Grid : MonoBehaviour
             int matchSize = 1;
             if (horizontal)
             {
-                matchSize += DoHorizontalMatch(color, column, row);
+                matchSize += DoHorizontalMatch(info, column, row);
             }
             if (vertical)
             {
-                matchSize += DoVerticalMatch(color, column, row);
+                matchSize += DoVerticalMatch(info, column, row);
             }
 
-            Debug.Log("Match " + color + ", size: " + matchSize);
-            ship.NotifyMatch(new Match(color, matchSize));
+            Debug.Log("Match " + info + ", size: " + matchSize);
+            ship.NotifyMatch(new Match(info, matchSize));
 
             DestroyMatchingBlocks();
         }
@@ -239,70 +239,70 @@ public class Grid : MonoBehaviour
                 }
     }
 
-    private bool CheckHorizontalMatch(BlockColor color, int column, int row)
+    private bool CheckHorizontalMatch(BlockInfo info, int column, int row)
     {
         if (column > 0)
         {
-            if (CheckIqualColors(column - 1, row, color))
+            if (CheckIqualColors(column - 1, row, info))
             {
                 // Esquerda
                 if (column > 1)
-                    if (CheckIqualColors(column - 2, row, color))
+                    if (CheckIqualColors(column - 2, row, info))
                         return true;
 
                 // Centro
                 if (column < columns - 1)
-                    if (CheckIqualColors(column + 1, row, color))
+                    if (CheckIqualColors(column + 1, row, info))
                         return true;
             }
         }
 
         // Direita
         if (column < columns - 1)
-            if (CheckIqualColors(column + 1, row, color))
+            if (CheckIqualColors(column + 1, row, info))
                 if (column < columns - 2)
-                    if (CheckIqualColors(column + 2, row, color))
+                    if (CheckIqualColors(column + 2, row, info))
                         return true;
 
         return false;
     }
 
-    private bool CheckVerticalMatch(BlockColor color, int column, int row)
+    private bool CheckVerticalMatch(BlockInfo info, int column, int row)
     {
         if (row > 0)
         {
-            if (CheckIqualColors(column, row - 1, color))
+            if (CheckIqualColors(column, row - 1, info))
             {
                 // Abaixo
                 if (row > 1)
-                    if (CheckIqualColors(column, row - 2, color))
+                    if (CheckIqualColors(column, row - 2, info))
                         return true;
 
                 // Centro
                 if (row < rows - 1)
-                    if (CheckIqualColors(column, row + 1, color))
+                    if (CheckIqualColors(column, row + 1, info))
                         return true;
             }
         }
 
         // Acima
         if (row < rows - 1)
-            if (CheckIqualColors(column, row + 1, color))
+            if (CheckIqualColors(column, row + 1, info))
                 if (row < rows - 2)
-                    if (CheckIqualColors(column, row + 2, color))
+                    if (CheckIqualColors(column, row + 2, info))
                         return true;
 
         return false;
     }
 
-    private int DoHorizontalMatch(BlockColor color, int column, int row)
+    private int DoHorizontalMatch(BlockInfo info, int column, int row)
     {
         int matchSize = 0;
 
         // Match à esquerda
         if (column > 0)
         {
-            if (CheckIqualColors(column - 1, row, color))
+            if (CheckIqualColors(column - 1, row, info))
             {
                 grid[column - 1, row].ToMatchingState();
                 matchingBlocks.Add(grid[column - 1, row]);
@@ -310,7 +310,7 @@ public class Grid : MonoBehaviour
 
                 if (column > 1)
                 {
-                    if (CheckIqualColors(column - 2, row, color))
+                    if (CheckIqualColors(column - 2, row, info))
                     {
                         grid[column - 2, row].ToMatchingState();
                         matchingBlocks.Add(grid[column - 2, row]);
@@ -323,7 +323,7 @@ public class Grid : MonoBehaviour
         // Match à direita
         if (column < columns - 1)
         {
-            if (CheckIqualColors(column + 1, row, color))
+            if (CheckIqualColors(column + 1, row, info))
             {
                 grid[column + 1, row].ToMatchingState();
                 matchingBlocks.Add(grid[column + 1, row]);
@@ -331,7 +331,7 @@ public class Grid : MonoBehaviour
 
                 if (column < columns - 2)
                 {
-                    if (CheckIqualColors(column + 2, row, color))
+                    if (CheckIqualColors(column + 2, row, info))
                     {
                         grid[column + 2, row].ToMatchingState();
                         matchingBlocks.Add(grid[column + 2, row]);
@@ -344,14 +344,14 @@ public class Grid : MonoBehaviour
         return matchSize;
     }
 
-    private int DoVerticalMatch(BlockColor color, int column, int row)
+    private int DoVerticalMatch(BlockInfo info, int column, int row)
     {
         int matchSize = 0;
 
         // Match abaixo
         if (row > 0)
         {
-            if (CheckIqualColors(column, row - 1, color))
+            if (CheckIqualColors(column, row - 1, info))
             {
                 grid[column, row - 1].ToMatchingState();
                 matchingBlocks.Add(grid[column, row - 1]);
@@ -359,7 +359,7 @@ public class Grid : MonoBehaviour
 
                 if (row > 1)
                 {
-                    if (CheckIqualColors(column, row - 2, color))
+                    if (CheckIqualColors(column, row - 2, info))
                     {
                         grid[column, row - 2].ToMatchingState();
                         matchingBlocks.Add(grid[column, row - 2]);
@@ -372,7 +372,7 @@ public class Grid : MonoBehaviour
         // Match acima
         if (row < rows - 1)
         {
-            if (CheckIqualColors(column, row + 1, color))
+            if (CheckIqualColors(column, row + 1, info))
             {
                 grid[column, row + 1].ToMatchingState();
                 matchingBlocks.Add(grid[column, row + 1]);
@@ -380,7 +380,7 @@ public class Grid : MonoBehaviour
 
                 if (row < rows - 2)
                 {
-                    if (CheckIqualColors(column, row + 2, color))
+                    if (CheckIqualColors(column, row + 2, info))
                     {
                         grid[column, row + 2].ToMatchingState();
                         matchingBlocks.Add(grid[column, row + 2]);
@@ -393,53 +393,52 @@ public class Grid : MonoBehaviour
         return matchSize;
     }
 
-    private BlockColor GetBlockColor(int column, int row)
+    private BlockInfo GetBlockInfo(int column, int row)
     {
-        return grid[column, row].Color;
+        return grid[column, row].Info;
     }
 
-    private bool CheckIqualColors(int column, int row, BlockColor color)
+    private bool CheckIqualColors(int column, int row, BlockInfo info)
     {
         if (grid[column, row] == null)
         {
             return false;
         }
-        return grid[column, row].Color == color;
+        return grid[column, row].Info.color == info.color;
     }
 
-    private BlockColor GetRandomValidColor(int column, int row)
+    private BlockInfo GetRandomValidColor(int column, int row)
     {
-        Array colorsTemp = Enum.GetValues(typeof(BlockColor));
-        List<BlockColor> colors = new List<BlockColor>();
-        foreach (var color in colorsTemp)
+        List<BlockInfo> infos = new List<BlockInfo>();
+        foreach (var info in PuzzlesManager.Instance.blocksInfo)
         {
-            colors.Add((BlockColor)color);
+            infos.Add(info);
         }
 
-        while (colors.Count > 0)
+        while (infos.Count > 0)
         {
-            var newColor = colors[UnityEngine.Random.Range(0, colors.Count)];
+            var randomInfo = infos[UnityEngine.Random.Range(0, infos.Count)];
 
-            if (CheckColorValidPosition(column, row, newColor))
+            if (CheckColorValidPosition(column, row, randomInfo))
             {
-                return newColor;
+                return randomInfo;
             }
             else
             {
-                colors.Remove(newColor);
+                infos.Remove(randomInfo);
             }
         }
         throw new Exception("Impossible to insert a new block");
     }
 
-    private bool CheckColorValidPosition(int column, int row, BlockColor newColor)
+    private bool CheckColorValidPosition(int column, int row, BlockInfo info)
     {
         // Se pode ocorrer combinação abaixo da peça
         if (row > 1)
         {
-            if (grid[column, row - 1].Color == newColor)
+            if (grid[column, row - 1].Info == info)
             {
-                if (grid[column, row - 2].Color == newColor)
+                if (grid[column, row - 2].Info == info)
                 {
                     return false;
                 }
@@ -449,9 +448,9 @@ public class Grid : MonoBehaviour
         // Se pode ocorrer combinação à esquerda
         if (column > 1)
         {
-            if (grid[column - 1, row].Color == newColor)
+            if (grid[column - 1, row].Info == info)
             {
-                if (grid[column - 2, row].Color == newColor)
+                if (grid[column - 2, row].Info == info)
                 {
                     return false;
                 }
@@ -463,9 +462,9 @@ public class Grid : MonoBehaviour
         {
             if (grid[column + 1, row] != null)
             {
-                if (grid[column + 1, row].Color == newColor)
+                if (grid[column + 1, row].Info == info)
                 {
-                    if (grid[column + 2, row].Color == newColor)
+                    if (grid[column + 2, row].Info == info)
                     {
                         return false;
                     }
@@ -521,7 +520,7 @@ public class Grid : MonoBehaviour
                     {
                         size = grid[column, row].currentState == typeof(ActivegState) ? 0.2f : 0.1f;
 
-                        switch (grid[column, row].Color)
+                        switch (grid[column, row].Info.color)
                         {
                             case BlockColor.Blue:
                                 Gizmos.color = Color.blue;

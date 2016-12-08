@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Space.Arena.BlocksDistribution;
 
 public class PuzzleToShipInterface : MonoBehaviour {
 
@@ -20,7 +21,8 @@ public class PuzzleToShipInterface : MonoBehaviour {
 
     public void NotifyMatch(Match match)
     {
-        switch (match.color) {
+        BlockFactory.Instance.CreateBlock(match.info);
+        switch (match.info.color) {
             case BlockColor.Blue:
                 engine.AddFuel(match.size);
                 break;

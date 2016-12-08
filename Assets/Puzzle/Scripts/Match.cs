@@ -3,13 +3,13 @@ using UnityEngine;
 
 [Serializable]
 public struct Match {
-    public BlockColor color;
+    public BlockInfo info;
 
     [Range(1, 7)]
     public int size;
 
-    public Match (BlockColor color, int size) {
-        this.color = color;
+    public Match (BlockInfo info, int size) {
+        this.info = info;
         this.size = size;
     }
 }

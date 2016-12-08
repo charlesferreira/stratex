@@ -32,12 +32,8 @@ namespace Space {
                     mapHeight = mg.GetOutputImage().height;
                 }
 
-                void Update() {
-                    CreateBlock();
-                }
-
                 // Public methods
-                void CreateBlock() {
+                public void CreateBlock(BlockInfo info) {
                     var go = (Transform)Instantiate(blockPrefab, transform);
                     var position = RandomPosition();
                     go.localPosition = position;
