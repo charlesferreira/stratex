@@ -21,15 +21,15 @@ public class StatePatternBlock : MonoBehaviour {
     [HideInInspector] public int Col;
     [HideInInspector] public int Row;
 
-    BlockColor color;
+    BlockInfo info;
 
-    public BlockColor Color
+    public BlockInfo Info
     {
-        get { return color; }
+        get { return info; }
         set
         {
-            color = value;
-            GetComponent<SpriteRenderer>().sprite = PuzzlesManager.Instance.GetBlockInfo(color).puzzleSprite;
+            info = value;
+            GetComponent<SpriteRenderer>().sprite = info.puzzleSprite;
         }
     }
 
@@ -61,14 +61,14 @@ public class StatePatternBlock : MonoBehaviour {
     void Start () {
 	}
 
-    public void Init(int column, int row, BlockColor color, float waitingTime)
+    public void Init(int column, int row, BlockInfo info, float waitingTime)
     {
         Col = column;
         Row = row;
-        this.color = color;
+        this.info = info;
 
         freeFall.ToFall(waitingTime);
-        GetComponent<SpriteRenderer>().sprite = PuzzlesManager.Instance.GetBlockInfo(color).puzzleSprite;
+        GetComponent<SpriteRenderer>().sprite = info.puzzleSprite;
     }
 
     void Update () {
