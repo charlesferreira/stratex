@@ -190,6 +190,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!1 &1000011538811422
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 224000012240088122}
+  - 222: {fileID: 222000010306254168}
+  - 114: {fileID: 114000013805683334}
+  m_Layer: 5
+  m_Name: RawImage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1000011920643630
 GameObject:
   m_ObjectHideFlags: 0
@@ -607,7 +624,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011920643630}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -1070,7 +1087,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilesLayer:
-    m_LayerIndex: 0
+    m_LayerIndex: 9
   enemyShip: {fileID: 0}
   weapon1:
     info: {fileID: 11400000, guid: 32107d3524bd702498881648c76f9310, type: 2}
@@ -1091,7 +1108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 604a83b1c67dd7b47abb8b899aa8105a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  info: {fileID: 0}
+  info: {fileID: 11400000, guid: baf43abac98b4e34b9f7171ae732ac2f, type: 2}
 --- !u!114 &114000012068055610
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1202,7 +1219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 604a83b1c67dd7b47abb8b899aa8105a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  info: {fileID: 0}
+  info: {fileID: 11400000, guid: baf43abac98b4e34b9f7171ae732ac2f, type: 2}
 --- !u!114 &114000012620545068
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1296,8 +1313,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dad7a09d2726aa429ee6c5555696e3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  joystick: {fileID: 0}
+  joystick: {fileID: 11400000, guid: 68b8e946a974eed42a1dddb4ab96fc33, type: 2}
   usingLegacyControls: 0
+--- !u!114 &114000013805683334
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011538811422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -98529514, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Texture: {fileID: 8400000, guid: 7d8c969652d91354da9a23723b3402f8, type: 2}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
 --- !u!124 &124000010852571206
 Behaviour:
   m_ObjectHideFlags: 1
@@ -6711,6 +6754,12 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!222 &222000010306254168
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011538811422}
 --- !u!222 &222000010352346560
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -6760,6 +6809,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 160, y: 120}
   m_Pivot: {x: 1, y: 1}
+--- !u!224 &224000012240088122
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011538811422}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 14.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 224000013795432550}
+  m_RootOrder: 2
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -10, y: 10}
+  m_SizeDelta: {x: 200, y: 250}
+  m_Pivot: {x: 1, y: 0}
 --- !u!224 &224000013715551438
 RectTransform:
   m_ObjectHideFlags: 1
@@ -6791,6 +6858,7 @@ RectTransform:
   m_Children:
   - {fileID: 224000013715551438}
   - {fileID: 224000010616107134}
+  - {fileID: 224000012240088122}
   m_Father: {fileID: 4000010588535642}
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
