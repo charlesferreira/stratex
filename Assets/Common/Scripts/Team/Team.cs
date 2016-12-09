@@ -12,9 +12,11 @@ public class Team {
         Points = startingPoints;
     }
 
-    public void Score() {
+    public int Score() {
         if (Points > 0)
             Points--;
+
+        return Points;
     }
 
 }

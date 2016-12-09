@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using System.Collections.Generic;
+using System;
 
 public class TeamsManager : MonoBehaviour {
 
@@ -11,11 +11,8 @@ public class TeamsManager : MonoBehaviour {
     [SerializeField] TeamInfo team1Info;
     [SerializeField] TeamInfo team2Info;
 
-    [Header("GUI")]
-    public Text team1ScoreText;
-    public Text team2ScoreText;
-
     Dictionary<TeamFlags, Team> teams;
+    List<IScoreObserver> scoreObservers = new List<IScoreObserver>();
 
     static TeamsManager instance;
     static public TeamsManager Instance {
@@ -26,14 +23,10 @@ public class TeamsManager : MonoBehaviour {
         }
     }
 
-    void Start() {
+    void Awake() {
         teams = new Dictionary<TeamFlags, Team>(2);
         teams.Add(team1Info.flag, new Team(team1Info, startingPoints));
         teams.Add(team2Info.flag, new Team(team2Info, startingPoints));
-
-        team1ScoreText.color = team1Info.color;
-        team2ScoreText.color = team2Info.color;
-        UpdateScoreText();
     }
 
     public TeamInfo GetTeamInfo(TeamFlags flag) {
@@ -46,12 +39,17 @@ public class TeamsManager : MonoBehaviour {
     }
 
     public void Score(TeamFlags flag) {
-        teams[flag].Score();
-        UpdateScoreText();
+        var score = teams[flag].Score();
+        NotifyScoreObservers(flag, score);
     }
 
-    private void UpdateScoreText() {
-        team1ScoreText.text = teams[TeamFlags.Team1].Points.ToString();
-        team2ScoreText.text = teams[TeamFlags.Team2].Points.ToString();
+    void NotifyScoreObservers(TeamFlags flag, int score) {
+        foreach (var observer in scoreObservers) {
+            observer.ScoreHasChanged(flag, score);
+        }
+    }
+
+    public void RegisterObserver(IScoreObserver observer) {
+        scoreObservers.Add(observer);
     }
 }
