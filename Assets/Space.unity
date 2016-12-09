@@ -134,23 +134,23 @@ MonoBehaviour:
   tests:
   - key: 1
     match:
-      info: {fileID: 0}
+      info: {fileID: 11400000, guid: 52b67b858e31dca4e97d2a50e23137bb, type: 2}
       size: 3
   - key: 2
     match:
-      info: {fileID: 0}
+      info: {fileID: 11400000, guid: f2c78a85d9a220c4a89e574e12c1c690, type: 2}
       size: 3
   - key: 3
     match:
-      info: {fileID: 0}
+      info: {fileID: 11400000, guid: 5b3f2beb5ec7a714dbb91c37acb27525, type: 2}
       size: 3
   - key: 4
     match:
-      info: {fileID: 0}
+      info: {fileID: 11400000, guid: d6f0fef10f1c80c43a3ec85ba807eef6, type: 2}
       size: 3
   - key: 5
     match:
-      info: {fileID: 0}
+      info: {fileID: 11400000, guid: 175417d7c64cd71469283c7b5ede654d, type: 2}
       size: 3
 --- !u!114 &67967649
 MonoBehaviour:
@@ -841,34 +841,6 @@ Prefab:
       propertyPath: enemyShip
       value: 
       objectReference: {fileID: 565884901}
-    - target: {fileID: 224000010616107134, guid: 2322e1e76bfe8294ab088f48b544bec4,
-        type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000013715551438, guid: 2322e1e76bfe8294ab088f48b544bec4,
-        type: 2}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000010304343110, guid: 2322e1e76bfe8294ab088f48b544bec4, type: 2}
-      propertyPath: m_Name
-      value: Enemy Score
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000012330258310, guid: 2322e1e76bfe8294ab088f48b544bec4, type: 2}
-      propertyPath: m_Name
-      value: Ally Score
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012477132726, guid: 2322e1e76bfe8294ab088f48b544bec4,
-        type: 2}
-      propertyPath: allyScore
-      value: 
-      objectReference: {fileID: 1926844255}
-    - target: {fileID: 114000012477132726, guid: 2322e1e76bfe8294ab088f48b544bec4,
-        type: 2}
-      propertyPath: enemyScore
-      value: 
-      objectReference: {fileID: 563372687}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2322e1e76bfe8294ab088f48b544bec4, type: 2}
   m_IsPrefabParent: 0
@@ -1021,12 +993,6 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
---- !u!114 &563372687 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114000013314752104, guid: 2322e1e76bfe8294ab088f48b544bec4,
-    type: 2}
-  m_PrefabInternal: {fileID: 427304792}
-  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!4 &565884901 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000012737707518, guid: 2322e1e76bfe8294ab088f48b544bec4,
@@ -1612,7 +1578,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1290543631
 Transform:
   m_ObjectHideFlags: 0
@@ -2358,12 +2324,6 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
---- !u!114 &1926844255 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114000012068055610, guid: 2322e1e76bfe8294ab088f48b544bec4,
-    type: 2}
-  m_PrefabInternal: {fileID: 427304792}
-  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &1928541470
 GameObject:
   m_ObjectHideFlags: 0
@@ -2408,23 +2368,23 @@ MonoBehaviour:
   tests:
   - key: 6
     match:
-      info: {fileID: 0}
+      info: {fileID: 11400000, guid: 52b67b858e31dca4e97d2a50e23137bb, type: 2}
       size: 3
   - key: 7
     match:
-      info: {fileID: 0}
+      info: {fileID: 11400000, guid: f2c78a85d9a220c4a89e574e12c1c690, type: 2}
       size: 3
   - key: 8
     match:
-      info: {fileID: 0}
+      info: {fileID: 11400000, guid: 5b3f2beb5ec7a714dbb91c37acb27525, type: 2}
       size: 3
   - key: 9
     match:
-      info: {fileID: 0}
+      info: {fileID: 11400000, guid: d6f0fef10f1c80c43a3ec85ba807eef6, type: 2}
       size: 3
   - key: 0
     match:
-      info: {fileID: 0}
+      info: {fileID: 11400000, guid: 175417d7c64cd71469283c7b5ede654d, type: 2}
       size: 3
 --- !u!114 &1928541473
 MonoBehaviour:

@@ -21,7 +21,10 @@ public class PuzzleToShipInterface : MonoBehaviour {
 
     public void NotifyMatch(Match match)
     {
-        BlockFactory.Instance.CreateBlock(match.info);
+        for (int i = 0; i < match.size; i++) {
+            BlockFactory.Instance.CreateBlock(match.info);
+        }
+
         switch (match.info.color) {
             case BlockColor.Blue:
                 engine.AddFuel(match.size);
