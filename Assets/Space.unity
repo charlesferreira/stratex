@@ -1048,15 +1048,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c1c08e9e755d1b49baf2a279333c68b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rows: 10
-  columns: 8
-  startFullRows: 6
-  blockPrefab: {fileID: 1000012290589004, guid: 406034a66b722dc4eaf63e28fd6f359d,
-    type: 2}
   blocksContainer: {fileID: 669459598}
-  randomStartSpacing: 0.2
-  drawLimits: 1
-  drawPoints: 0
 --- !u!114 &578816942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1179,15 +1171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c1c08e9e755d1b49baf2a279333c68b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rows: 10
-  columns: 8
-  startFullRows: 6
-  blockPrefab: {fileID: 1000012290589004, guid: 406034a66b722dc4eaf63e28fd6f359d,
-    type: 2}
   blocksContainer: {fileID: 1854091123}
-  randomStartSpacing: 0.2
-  drawLimits: 1
-  drawPoints: 0
 --- !u!114 &748784460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1686,6 +1670,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1305309530}
+  - 114: {fileID: 1305309531}
   m_Layer: 0
   m_Name: Puzzles
   m_TagString: Untagged
@@ -1708,6 +1693,25 @@ Transform:
   - {fileID: 748784458}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &1305309531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1305309529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8f1b22000198574fa924bf67d7a9dfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rows: 10
+  columns: 8
+  startFullRows: 6
+  blockPrefab: {fileID: 1000012290589004, guid: 406034a66b722dc4eaf63e28fd6f359d,
+    type: 2}
+  randomStartSpacing: 0.2
+  drawLimits: 0
+  drawPoints: 0
 --- !u!1 &1432286277
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,7 +3,6 @@
 public class Cursor : MonoBehaviour {
 
     public int column, row;
-
     Grid grid;
 
     void Start() {
@@ -33,8 +32,8 @@ public class Cursor : MonoBehaviour {
                 break;
         }
 
-        column = Mathf.Clamp(column, 0, grid.columns - 2);
-        row = Mathf.Clamp(row, 0, grid.rows - 1);
+        column = Mathf.Clamp(column, 0, GridManager.Instance.columns - 2);
+        row = Mathf.Clamp(row, 0, GridManager.Instance.rows - 1);
 
         GetComponent<Movement>().MoveTo(grid.GetGridCoord(new Vector3(column, row, transform.position.z)), .2f);
     }
@@ -42,7 +41,7 @@ public class Cursor : MonoBehaviour {
     public void Swap(SwapDirection direction) {
         switch (direction) {
             case SwapDirection.Up:
-                if (row < grid.rows - 1) {
+                if (row < GridManager.Instance.rows - 1) {
                     grid.Swap(column, row, column, row + 1);
                 }
                 break;
@@ -57,7 +56,7 @@ public class Cursor : MonoBehaviour {
                 }
                 break;
             case SwapDirection.Right:
-                if (column < grid.columns - 1) {
+                if (column < GridManager.Instance.columns - 1) {
                     grid.Swap(column, row, column + 1, row);
                 }
                 break;

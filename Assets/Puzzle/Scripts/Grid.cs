@@ -5,31 +5,21 @@ using UnityEngine;
 
 public class Grid : MonoBehaviour
 {
-
-    [Header("Grid dimensions")]
-    [Range(1, 12)] public int rows = 6;
-    [Range(1, 12)] public int columns = 6;
-    [Range(0, 12)] public int startFullRows = 4;
-
-    [Header("Block")]
-    public GameObject blockPrefab;
     public Transform blocksContainer;
-    public float randomStartSpacing = .2f;
-
-    [Header("Gizmos")]
-    public bool drawLimits;
-    public bool drawPoints;
 
     PuzzleToShipInterface ship;
 
     StatePatternBlock[,] grid;
     List<StatePatternBlock> matchingBlocks;
 
+    void Awake()
+    {
+        grid = new StatePatternBlock[GridManager.Instance.columns, GridManager.Instance.rows];
+    }
+
     void Start()
     {
         ship = GetComponent<PuzzleToShipInterface>();
-
-        StartGrid();
     }
 
     public void Update()
@@ -77,14 +67,14 @@ public class Grid : MonoBehaviour
 
         var index = UnityEngine.Random.Range(0, columnsNotFull.Count - 1);
         var column = columnsNotFull.ElementAt(index);
-        CreateNewBlock(column, rows - 1, blockInfo, 0);
+        CreateNewBlock(column, GridManager.Instance.rows - 1, blockInfo, 0);
         return true;
     }
 
     List<int> GetNotFullColumns()
     {
         var list = new List<int>();
-        for (int column = 0; column < columns; column++)
+        for (int column = 0; column < GridManager.Instance.columns; column++)
             if (!IsColumnFull(column))
                 list.Add(column);
         return list;
@@ -93,29 +83,20 @@ public class Grid : MonoBehaviour
     private bool IsColumnFull(int column)
     {
         int blocks = 0;
-        for (int row = 0; row < rows; row++)
+        for (int row = 0; row < GridManager.Instance.rows; row++)
             if (grid[column, row] != null)
                 blocks++;
 
-        if (blocks < rows)
+        if (blocks < GridManager.Instance.rows)
             return false;
         return true;
     }
 
-    private void StartGrid()
+    public void CreateNewBlock(int column, int row, BlockInfo info, float waitingTime)
     {
-        grid = new StatePatternBlock[columns, rows];
-
-        for (int column = 0; column < columns; column++)
-            for (int row = 0; row < Mathf.Min(startFullRows, rows); row++)
-                CreateNewBlock(column, row, GetRandomValidColor(column, row), randomStartSpacing * (row + 1) + UnityEngine.Random.Range(0, Mathf.Ceil(randomStartSpacing * 1000)) / 1000);
-    }
-
-    private void CreateNewBlock(int column, int row, BlockInfo info, float waitingTime)
-    {
-        var position = transform.position + GetGridCoord(new Vector3(column, rows, 0));
+        var position = transform.position + GetGridCoord(new Vector3(column, GridManager.Instance.rows, 0));
         var rotation = Quaternion.identity;
-        var blockGO = Instantiate(blockPrefab, position, rotation, blocksContainer) as GameObject;
+        var blockGO = Instantiate(GridManager.Instance.blockPrefab, position, rotation, blocksContainer) as GameObject;
         blockGO.GetComponent<StatePatternBlock>().Grid = this;
 
         var block = blockGO.GetComponent<StatePatternBlock>();
@@ -129,11 +110,11 @@ public class Grid : MonoBehaviour
         // Pode ocorrer que mais de um bloco tente entrar na mesma coluna, na mesma linha e no mesmo frame
         // Se isso ocorrer será procurado por uma linha vazia.
         // Sempre vai existir uma linha vazia, pois essa validação á feita na hora de escolher a coluna
-        for (int newRow = rows - 2; newRow >= 0; newRow--) {
+        for (int newRow = GridManager.Instance.rows - 2; newRow >= 0; newRow--) {
             if (grid[column, newRow] == null)
             {
                 block.Init(column, newRow, info, waitingTime);
-                block.transform.position += Vector3.down * 1f * (rows - newRow) + Vector3.back * (rows - newRow);
+                block.transform.position += Vector3.down * 1f * (GridManager.Instance.rows - newRow) + Vector3.back * (GridManager.Instance.rows - newRow);
                 grid[column, newRow] = block;
                 return;
             }
@@ -167,7 +148,7 @@ public class Grid : MonoBehaviour
 
     internal bool IsEmptySpace(int column, int row)
     {
-        if (column < 0 || column >= columns || row < 0 || row >= rows)
+        if (column < 0 || column >= GridManager.Instance.columns || row < 0 || row >= GridManager.Instance.rows)
             return false;
 
         return grid[column, row] == null;
@@ -217,8 +198,8 @@ public class Grid : MonoBehaviour
 
     private void DecreaseBlocks()
     {
-        for (int column = 0; column < columns; column++)
-            for (int row = 0; row < rows; row++)
+        for (int column = 0; column < GridManager.Instance.columns; column++)
+            for (int row = 0; row < GridManager.Instance.rows; row++)
                 if (grid[column, row] != null) {
                     if (grid[column, row].currentState.GetType() != typeof(FallingState)) {
                         if (IsEmptySpace(column, row - 1))
@@ -239,16 +220,16 @@ public class Grid : MonoBehaviour
                         return true;
 
                 // Centro
-                if (column < columns - 1)
+                if (column < GridManager.Instance.columns - 1)
                     if (CheckIqualColors(column + 1, row, info))
                         return true;
             }
         }
 
         // Direita
-        if (column < columns - 1)
+        if (column < GridManager.Instance.columns - 1)
             if (CheckIqualColors(column + 1, row, info))
-                if (column < columns - 2)
+                if (column < GridManager.Instance.columns - 2)
                     if (CheckIqualColors(column + 2, row, info))
                         return true;
 
@@ -267,16 +248,16 @@ public class Grid : MonoBehaviour
                         return true;
 
                 // Centro
-                if (row < rows - 1)
+                if (row < GridManager.Instance.rows - 1)
                     if (CheckIqualColors(column, row + 1, info))
                         return true;
             }
         }
 
         // Acima
-        if (row < rows - 1)
+        if (row < GridManager.Instance.rows - 1)
             if (CheckIqualColors(column, row + 1, info))
-                if (row < rows - 2)
+                if (row < GridManager.Instance.rows - 2)
                     if (CheckIqualColors(column, row + 2, info))
                         return true;
 
@@ -309,7 +290,7 @@ public class Grid : MonoBehaviour
         }
 
         // Match à direita
-        if (column < columns - 1)
+        if (column < GridManager.Instance.columns - 1)
         {
             if (CheckIqualColors(column + 1, row, info))
             {
@@ -317,7 +298,7 @@ public class Grid : MonoBehaviour
                 matchingBlocks.Add(grid[column + 1, row]);
                 matchSize += 1;
 
-                if (column < columns - 2)
+                if (column < GridManager.Instance.columns - 2)
                 {
                     if (CheckIqualColors(column + 2, row, info))
                     {
@@ -358,7 +339,7 @@ public class Grid : MonoBehaviour
         }
 
         // Match acima
-        if (row < rows - 1)
+        if (row < GridManager.Instance.rows - 1)
         {
             if (CheckIqualColors(column, row + 1, info))
             {
@@ -366,7 +347,7 @@ public class Grid : MonoBehaviour
                 matchingBlocks.Add(grid[column, row + 1]);
                 matchSize += 1;
 
-                if (row < rows - 2)
+                if (row < GridManager.Instance.rows - 2)
                 {
                     if (CheckIqualColors(column, row + 2, info))
                     {
@@ -395,7 +376,7 @@ public class Grid : MonoBehaviour
         return grid[column, row].Info.color == info.color;
     }
 
-    private BlockInfo GetRandomValidColor(int column, int row)
+    public BlockInfo GetRandomValidColor(int column, int row)
     {
         List<BlockInfo> infos = new List<BlockInfo>();
         foreach (var info in PuzzlesManager.Instance.blocksInfo)
@@ -446,7 +427,7 @@ public class Grid : MonoBehaviour
         }
 
         // Se pode ocorrer combinação à direita
-        if (column < columns - 2)
+        if (column < GridManager.Instance.columns - 2)
         {
             if (grid[column + 1, row] != null)
             {
@@ -472,14 +453,14 @@ public class Grid : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        if (drawLimits)
+        if (GridManager.Instance.drawLimits)
         {
             // Desenhar limites
             Gizmos.color = Color.white;
             Vector3 Point1 = transform.position + GetGridCoord(new Vector3(-.5f, -.5f, 0));
-            Vector3 Point2 = transform.position + GetGridCoord(new Vector3(columns - 1 + .5f, -.5f, 0));
-            Vector3 Point3 = transform.position + GetGridCoord(new Vector3(columns - 1 + .5f, rows - 1 + .5f, 0));
-            Vector3 Point4 = transform.position + GetGridCoord(new Vector3(-.5f, rows - 1 + .5f, 0));
+            Vector3 Point2 = transform.position + GetGridCoord(new Vector3(GridManager.Instance.columns - 1 + .5f, -.5f, 0));
+            Vector3 Point3 = transform.position + GetGridCoord(new Vector3(GridManager.Instance.columns - 1 + .5f, GridManager.Instance.rows - 1 + .5f, 0));
+            Vector3 Point4 = transform.position + GetGridCoord(new Vector3(-.5f, GridManager.Instance.rows - 1 + .5f, 0));
 
             Gizmos.DrawLine(Point1, Point2);
             Gizmos.DrawLine(Point2, Point3);
@@ -490,12 +471,12 @@ public class Grid : MonoBehaviour
         if (grid == null)
             return;
 
-        if (drawPoints)
+        if (GridManager.Instance.drawPoints)
         {
             // Desenhar posições do grid
-            for (int column = 0; column < columns; column++)
+            for (int column = 0; column < GridManager.Instance.columns; column++)
             {
-                for (int row = 0; row < rows; row++)
+                for (int row = 0; row < GridManager.Instance.rows; row++)
                 {
                     var size = 0f;
                     // Setando a cor e o tamanho
