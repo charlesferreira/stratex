@@ -21,6 +21,7 @@ public class SwappingState : IBlockState
     public void ToFallingState()
     {
         block.currentState = block.fallingState;
+        block.freeFall.Gravity = 10;
         block.freeFall.ToFall();
     }
 
@@ -32,7 +33,10 @@ public class SwappingState : IBlockState
     public void ToActiveState()
     {
         block.currentState = block.activegState;
-        block.Grid.CheckMatch(block.Col, block.Row);
+        if (block.Grid.IsEmptySpace(block.Col, block.Row - 1))
+            block.Grid.DecreaseBlock(block.Col, block.Row);
+        else
+            block.Grid.CheckMatch(block.Col, block.Row);
     }
 
     public void ToMatchingState()

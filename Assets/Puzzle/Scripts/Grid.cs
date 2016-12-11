@@ -12,6 +12,8 @@ public class Grid : MonoBehaviour
     StatePatternBlock[,] grid;
     List<StatePatternBlock> matchingBlocks;
 
+    float comboSequence;
+
     void Awake()
     {
         grid = new StatePatternBlock[GridManager.Instance.columns, GridManager.Instance.rows];
@@ -24,8 +26,6 @@ public class Grid : MonoBehaviour
 
     public void Update()
     {
-        // TODO: Implementar lógica para verificar e descer os blocos somente quando necessário
-
         DecreaseBlocks();
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -127,23 +127,12 @@ public class Grid : MonoBehaviour
         StatePatternBlock blockB = grid[columnB, rowB];
 
         if (blockA != null)
-        {
             blockA.SwapToGridPosition(columnB, rowB);
-        }
         if (blockB != null)
-        {
             blockB.SwapToGridPosition(columnA, rowA);
-        }
 
         grid[columnA, rowA] = blockB;
         grid[columnB, rowB] = blockA;
-    }
-
-    public void DecreaseBlock(int column, int row)
-    {
-        grid[column, row].Decrease();
-        grid[column, row - 1] = grid[column, row];
-        grid[column, row] = null;
     }
 
     internal bool IsEmptySpace(int column, int row)
@@ -169,6 +158,8 @@ public class Grid : MonoBehaviour
             grid[column, row].ToMatchingState();
             matchingBlocks.Add(grid[column, row]);
 
+            comboSequence = grid[column, row].comboSequence + 1;
+
             int matchSize = 1;
             if (horizontal)
             {
@@ -179,7 +170,7 @@ public class Grid : MonoBehaviour
                 matchSize += DoVerticalMatch(info, column, row);
             }
 
-            Debug.Log("Match " + info + ", size: " + matchSize);
+            Debug.Log("Match " + info + ", size: " + matchSize + ", combo: " + comboSequence);
             ship.NotifyMatch(new Match(info, matchSize));
 
             DestroyMatchingBlocks();
@@ -194,6 +185,12 @@ public class Grid : MonoBehaviour
             Destroy(grid[block.Col, block.Row].gameObject);
             grid[block.Col, block.Row] = null;
         }
+
+        foreach (var block in matchingBlocks)
+        {
+            InformMatchToColumnAboveRow(block.Col, block.Row);
+        }
+        comboSequence = 0;
     }
 
     private void DecreaseBlocks()
@@ -201,11 +198,33 @@ public class Grid : MonoBehaviour
         for (int column = 0; column < GridManager.Instance.columns; column++)
             for (int row = 0; row < GridManager.Instance.rows; row++)
                 if (grid[column, row] != null) {
-                    if (grid[column, row].currentState.GetType() != typeof(FallingState)) {
+                    if (grid[column, row].currentState.GetType() != typeof(FallingState) && grid[column, row].currentState.GetType() != typeof(SwappingState)) {
                         if (IsEmptySpace(column, row - 1))
                             DecreaseBlock(column, row);
                     }
                 }
+    }
+
+    public void DecreaseBlock(int col, int row)
+    {
+        grid[col, row].Decrease();
+        grid[col, row - 1] = grid[col, row];
+        grid[col, row] = null;
+    }
+
+    public void InformMatchToColumnAboveRow(int col, int row)
+    {
+        row++;
+        while (row < GridManager.Instance.rows)
+        {
+            if (grid[col, row] != null)
+            {
+                grid[col, row].comboSequence = comboSequence;
+            }
+            else
+                return;
+            row++;
+        }
     }
 
     private bool CheckHorizontalMatch(BlockInfo info, int column, int row)

@@ -38,12 +38,14 @@ public class FallingState : IBlockState
     {
         block.freeFall.Stop();
         block.currentState = block.swappingState;
+        block.comboSequence = 0;
     }
 
     public void ToActiveState()
     {
         block.currentState = block.activegState;
         block.Grid.CheckMatch(block.Col, block.Row);
+        block.comboSequence = 0;
     }
 
     public void ToMatchingState()

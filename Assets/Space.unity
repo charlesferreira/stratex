@@ -1706,12 +1706,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rows: 10
   columns: 8
-  startFullRows: 6
+  startFullRows: 10
   blockPrefab: {fileID: 1000012290589004, guid: 406034a66b722dc4eaf63e28fd6f359d,
     type: 2}
   randomStartSpacing: 0.2
   drawLimits: 0
-  drawPoints: 0
+  drawPoints: 1
 --- !u!1 &1432286277
 GameObject:
   m_ObjectHideFlags: 0

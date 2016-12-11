@@ -18,6 +18,7 @@ public class ActivegState : IBlockState
     public void ToFallingState()
     {
         block.currentState = block.fallingState;
+        block.freeFall.Gravity = 3 + (GridManager.Instance.rows - block.Row) * 2;
         block.freeFall.ToFall();
     }
 
