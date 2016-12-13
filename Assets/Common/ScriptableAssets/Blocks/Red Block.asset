@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Name: Red Block
   m_EditorClassIdentifier: 
   color: 3
-  puzzleSprite: {fileID: 21300000, guid: ee4ce81a05f7d6840abe50592db470d3, type: 3}
-  spaceSprite: {fileID: 21300000, guid: ee4ce81a05f7d6840abe50592db470d3, type: 3}
+  puzzleSprite: {fileID: 21300000, guid: 8d8c5178d60d8b3499827e331dfcd2c6, type: 3}
+  spaceSprite: {fileID: 21300000, guid: 8d8c5178d60d8b3499827e331dfcd2c6, type: 3}

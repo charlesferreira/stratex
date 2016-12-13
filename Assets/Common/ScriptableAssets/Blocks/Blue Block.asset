@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Name: Blue Block
   m_EditorClassIdentifier: 
   color: 0
-  puzzleSprite: {fileID: 21300000, guid: d1f621151bd6ec447b98c3c88689e003, type: 3}
-  spaceSprite: {fileID: 21300000, guid: d1f621151bd6ec447b98c3c88689e003, type: 3}
+  puzzleSprite: {fileID: 21300000, guid: 868ad8e3bc8376e4d907caa3083b848f, type: 3}
+  spaceSprite: {fileID: 21300000, guid: 868ad8e3bc8376e4d907caa3083b848f, type: 3}

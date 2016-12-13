@@ -21,7 +21,7 @@ GameObject:
   - 4: {fileID: 4000013146994890}
   - 198: {fileID: 198000013350517554}
   - 199: {fileID: 199000010431560282}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Primary Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -608,7 +608,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013047648300}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.269, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -623,8 +623,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011920643630}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5, y: 0, z: -1.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -965,19 +965,15 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Points:
     m_Paths:
-    - - {x: -0.24508981, y: 0.41253546}
-      - {x: -0.12297058, y: 0.29517648}
-      - {x: 0.2769422, y: 0.14813691}
-      - {x: 0.60361344, y: 0.00017863512}
-      - {x: 0.26907486, y: -0.14811537}
-      - {x: -0.12836826, y: -0.2837777}
-      - {x: -0.24973881, y: -0.4182315}
-      - {x: -0.4620193, y: -0.42235485}
-      - {x: -0.4615381, y: -0.3134332}
-      - {x: -0.28183225, y: -0.2116561}
-      - {x: -0.28156215, y: 0.19837515}
-      - {x: -0.48119313, y: 0.3226463}
-      - {x: -0.48273823, y: 0.40934694}
+    - - {x: -0.41191292, y: 0.6401348}
+      - {x: 0.03351736, y: 0.16762446}
+      - {x: 0.541451, y: 0.16286229}
+      - {x: 0.8018961, y: 0.007228027}
+      - {x: 0.5356879, y: -0.14520872}
+      - {x: 0.03939867, y: -0.1728526}
+      - {x: -0.4226203, y: -0.66546464}
+      - {x: -0.62585545, y: -0.3219407}
+      - {x: -0.6197281, y: 0.33185259}
 --- !u!64 &64000013675124174
 MeshCollider:
   m_ObjectHideFlags: 1
@@ -996,7 +992,7 @@ AudioListener:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011129354038}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!92 &92000011145068530
 Behaviour:
   m_ObjectHideFlags: 1
@@ -1334,7 +1330,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Texture: {fileID: 8400000, guid: 7d8c969652d91354da9a23723b3402f8, type: 2}
+  m_Texture: {fileID: 8400000, guid: 04e26cdba00ab7740b2743de1de52c6d, type: 2}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -1411,7 +1407,7 @@ ParticleSystem:
   moveWithTransform: 0
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: 675130469
+  randomSeed: -648409662
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -1553,8 +1549,8 @@ ParticleSystem:
         atime7: 0
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
-      minColor: {r: 1, g: 0, b: 0.8901961, a: 1}
-      maxColor: {r: 1, g: 0, b: 0.6, a: 1}
+      minColor: {r: 0.2509804, g: 0.87058824, b: 0.3529412, a: 1}
+      maxColor: {r: 0.29803923, g: 0.7921569, b: 0.6117647, a: 1}
       minMaxState: 2
     startSize:
       scalar: 0.15
@@ -3135,7 +3131,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: 685109011
+  randomSeed: -1242746500
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -4859,7 +4855,7 @@ ParticleSystem:
   moveWithTransform: 0
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: 30666987
+  randomSeed: -733437337
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -5001,8 +4997,8 @@ ParticleSystem:
         atime7: 0
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
-      minColor: {r: 0.99607843, g: 0.5921569, b: 1, a: 1}
-      maxColor: {r: 0.9019608, g: 0, b: 1, a: 1}
+      minColor: {r: 0.5921569, g: 1, b: 1, a: 1}
+      maxColor: {r: 0.2509804, g: 0.87058824, b: 0.3529412, a: 1}
       minMaxState: 2
     startSize:
       scalar: 0.3
@@ -6684,7 +6680,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f7b25c205f92be84cb8a4f40fa9de732, type: 3}
+  m_Sprite: {fileID: 21300000, guid: de2cd40d3f812ae43a59be16b0cebf1b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
