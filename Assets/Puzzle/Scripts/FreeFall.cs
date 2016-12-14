@@ -20,8 +20,8 @@ public class FreeFall : MonoBehaviour {
             return;
         }
 
-        var v = velocity + Gravity * Time.fixedDeltaTime;
-        var s = ((v + velocity) / 2f) * Time.fixedDeltaTime;
+        var v = velocity + Gravity * Time.deltaTime;
+        var s = ((v + velocity) / 2f) * Time.deltaTime;
         velocity = v;
         transform.position += Vector3.down * s;
     }

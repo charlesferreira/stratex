@@ -1,0 +1,49 @@
+﻿using UnityEngine;
+using System.Collections.Generic;
+using UnityEngine.UI;
+
+public class MainMenu : MonoBehaviour {
+
+    List<Button> buttons = new List<Button>();
+    MainMenuInput input;
+    int currentIndexButton = 0;
+
+    void Awake()
+    {
+        input = GetComponent<MainMenuInput>();
+
+        foreach (Transform child in transform)
+        {
+            buttons.Add(child.GetComponent<Button>());
+        }
+    }
+
+    private void OnEnable()
+    {
+        currentIndexButton = 0;
+        buttons[1].Select();
+        buttons[0].Select();
+    }
+    void Update()
+    {
+        if (input.Up)
+        {
+            currentIndexButton = (buttons.Count + currentIndexButton - 1) % buttons.Count;
+        }
+        else if (input.Down)
+        {
+            currentIndexButton = (currentIndexButton + 1) % buttons.Count;
+        }
+
+        buttons[currentIndexButton].Select();
+
+        if (input.ConfirmButton)
+        {
+            buttons[currentIndexButton].onClick.Invoke();
+        }
+        if (input.CancelButton || input.StartButton)
+        {
+            Pause.Instance.DoPause();
+        }
+    }
+}
