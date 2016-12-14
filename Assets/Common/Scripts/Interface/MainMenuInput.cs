@@ -3,7 +3,7 @@ using System.Collections;
 
 public class MainMenuInput : MonoBehaviour {
 
-    [Header("References")]
+    [HideInInspector]
     public Joystick joystick;
 
     [Header("Tunning")]
@@ -52,6 +52,7 @@ public class MainMenuInput : MonoBehaviour {
     public bool Left { get; set; }
     public bool Right { get; set; }
 
+    public bool StartButton { get { return Input.GetButtonDown(joystick.StartButton); } }
     public bool ConfirmButton { get { return Input.GetButtonDown(joystick.AButton); } }
     public bool CancelButton { get { return Input.GetButtonDown(joystick.BButton); } }
 }

@@ -2,7 +2,7 @@
 
 public class Pause : MonoBehaviour {
 
-    public Joystick joystick;
+    public Joystick[] joysticks;
 
     public bool pause = false;
 
@@ -22,9 +22,16 @@ public class Pause : MonoBehaviour {
     }
 
     void Update () {
-        if (Input.GetButtonDown(joystick.StartButton))
+
+        if (pause) return;
+
+        foreach (var joystick in joysticks)
         {
-            DoPause();
+            if (Input.GetButtonDown(joystick.StartButton))
+            {
+                transform.GetChild(0).GetComponent<MainMenuInput>().joystick = joystick;
+                DoPause();
+            }
         }
 	}
 

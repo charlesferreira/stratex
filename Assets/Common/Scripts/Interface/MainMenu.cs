@@ -8,7 +8,7 @@ public class MainMenu : MonoBehaviour {
     MainMenuInput input;
     int currentIndexButton = 0;
 
-    void Start()
+    void Awake()
     {
         input = GetComponent<MainMenuInput>();
 
@@ -18,14 +18,14 @@ public class MainMenu : MonoBehaviour {
         }
     }
 
+    private void OnEnable()
+    {
+        currentIndexButton = 0;
+        buttons[1].Select();
+        buttons[0].Select();
+    }
     void Update()
     {
-        if (!Pause.Instance.pause)
-        {
-            currentIndexButton = 0;
-            return;
-        }
-
         if (input.Up)
         {
             currentIndexButton = (buttons.Count + currentIndexButton - 1) % buttons.Count;
@@ -41,7 +41,7 @@ public class MainMenu : MonoBehaviour {
         {
             buttons[currentIndexButton].onClick.Invoke();
         }
-        if (input.CancelButton)
+        if (input.CancelButton || input.StartButton)
         {
             Pause.Instance.DoPause();
         }
