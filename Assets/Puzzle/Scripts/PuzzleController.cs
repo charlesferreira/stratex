@@ -14,6 +14,9 @@ public class PuzzleController : MonoBehaviour {
     }
 	
 	void Update () {
+
+        if (Pause.Instance.pause) return;
+
         if (input.Up) scriptCursor.Move(CursorMovement.Up);
         if (input.Down) scriptCursor.Move(CursorMovement.Down);
         if (input.Left) scriptCursor.Move(CursorMovement.Left);

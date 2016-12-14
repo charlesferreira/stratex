@@ -34,11 +34,16 @@ public class ShipEngine : MonoBehaviour {
     }
 
     void FixedUpdate() {
+        if (Pause.Instance.pause) return;
+
         if (IsThrusting)
             Accelerate();
     }
 
     void Update() {
+
+        if (Pause.Instance.pause) return;
+
         var primaryEmission = primaryParticles.emission;
         var reserveEmission = reserveParticles.emission;
 
@@ -57,6 +62,8 @@ public class ShipEngine : MonoBehaviour {
     }
 
     void LateUpdate() {
+        if (Pause.Instance.pause) return;
+
         if (rb.velocity.sqrMagnitude > maxSpeed * maxSpeed) {
             rb.velocity = rb.velocity.normalized * maxSpeed;
         }
