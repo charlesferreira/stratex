@@ -2,9 +2,15 @@
 
 public class ShipToPuzzleInterface : MonoBehaviour {
 
-    //public Transform alliedPuzzle;
+    public Transform alliedPuzzle;
 
-	public void NotifyDamageTaken() {
+    Grid grid;
 
+    void Start() {
+        grid = alliedPuzzle.GetComponent<Grid>();
+    }
+
+	public bool NotifyBlockCollected(BlockInfo info) {
+        return grid.InsertBlock(info);
     }
 }
