@@ -21,8 +21,6 @@ public class MainMenu : MonoBehaviour {
     private void OnEnable()
     {
         currentIndexButton = 0;
-        buttons[1].Select();
-        buttons[0].Select();
     }
     void Update()
     {
@@ -35,6 +33,7 @@ public class MainMenu : MonoBehaviour {
             currentIndexButton = (currentIndexButton + 1) % buttons.Count;
         }
 
+        buttons[1].Select();
         buttons[currentIndexButton].Select();
 
         if (input.ConfirmButton)
