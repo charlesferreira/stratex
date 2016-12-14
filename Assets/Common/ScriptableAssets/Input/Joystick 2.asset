@@ -8,7 +8,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43ea0ffbab644ae49920aada434863c6, type: 3}
+  m_Script: {fileID: 11500000, guid: 92423c7a6a377e2409b23911d5440183, type: 3}
   m_Name: Joystick 2
   m_EditorClassIdentifier: 
   horizontal: P2 Horizontal
@@ -17,3 +17,4 @@ MonoBehaviour:
   bButton: P2 BButton
   xButton: P2 XButton
   yButton: P2 YButton
+  startButton: P2 StartButton
