@@ -33,7 +33,7 @@ namespace Space.Arena.BlocksDistribution {
         // Public methods
         public void CreateBlock(BlockInfo info) {
             var block = (SpaceBlock)Instantiate(blockPrefab, transform);
-            block.Init(info.spaceSprite, RandomPosition());
+            block.Init(info, RandomPosition());
         }
 
         // Private methods

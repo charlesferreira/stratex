@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Name: Yellow Block
   m_EditorClassIdentifier: 
   color: 4
-  puzzleSprite: {fileID: 21300000, guid: 53844097255f0b74a91693fd9e9261ba, type: 3}
-  spaceSprite: {fileID: 21300000, guid: 53844097255f0b74a91693fd9e9261ba, type: 3}
+  puzzleSprite: {fileID: 21300000, guid: 487311ec5f46ab94eaae20af0e2e6321, type: 3}
+  spaceSprite: {fileID: 21300000, guid: 487311ec5f46ab94eaae20af0e2e6321, type: 3}

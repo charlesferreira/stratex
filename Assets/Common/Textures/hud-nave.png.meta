@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: d1f621151bd6ec447b98c3c88689e003
-timeCreated: 1478819061
+guid: 471e0eef04cddfc4494fe37d1b9a36a0
+timeCreated: 1481755305
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
@@ -30,7 +30,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
-    aniso: 16
+    aniso: -1
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -44,7 +44,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 100
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
   textureType: 8
@@ -53,7 +53,7 @@ TextureImporter:
     serializedVersion: 2
     sprites: []
     outline: []
-  spritePackingTag: Puzzle
+  spritePackingTag: 
   userData: 
   assetBundleName: 
   assetBundleVariant: 

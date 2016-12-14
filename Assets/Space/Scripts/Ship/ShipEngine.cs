@@ -64,7 +64,7 @@ public class ShipEngine : MonoBehaviour {
 
     void Accelerate() {
         var power = fuel > 0 ? primaryThrusterPower : reserveThrusterPower;
-        var force = transform.right * power * Time.fixedDeltaTime;
+        var force = transform.right * power * Time.fixedDeltaTime * Time.timeScale;
         rb.AddForce(force);
     }
 
