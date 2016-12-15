@@ -3,7 +3,6 @@ using System.Collections;
 
 public class MainMenuInput : MonoBehaviour {
 
-    [HideInInspector]
     public Joystick joystick;
 
     [Header("Tunning")]
