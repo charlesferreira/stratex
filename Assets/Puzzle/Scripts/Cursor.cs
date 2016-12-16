@@ -8,6 +8,8 @@ public class Cursor : MonoBehaviour {
     void Start() {
         grid = GetComponentInParent<Grid>();
         StartPosition();
+        GetComponent<SpriteRenderer>().enabled = false;
+        Invoke("ShowCursor", 1.8f);
     }
 
     void Update() {
@@ -35,7 +37,7 @@ public class Cursor : MonoBehaviour {
         column = Mathf.Clamp(column, 0, GridManager.Instance.columns - 2);
         row = Mathf.Clamp(row, 0, GridManager.Instance.rows - 1);
 
-        GetComponent<Movement>().MoveTo(grid.GetGridCoord(new Vector3(column, row, transform.position.z)), .2f);
+        GetComponent<Movement>().MoveTo(grid.GetGridCoord(new Vector3(column, row, transform.position.z)) + new Vector3(.5f, 0, 0), .2f);
     }
 
     public void Swap(SwapDirection direction) {
@@ -69,6 +71,11 @@ public class Cursor : MonoBehaviour {
         column = 0;
         row = 0;
 
-        transform.localPosition = grid.GetGridCoord(new Vector3(column, row, -1));
+        transform.localPosition = grid.GetGridCoord(new Vector3(column, row, -1)) + new Vector3(.5f, 0, 0);
+    }
+
+    private void ShowCursor()
+    {
+        GetComponent<SpriteRenderer>().enabled = true;
     }
 }

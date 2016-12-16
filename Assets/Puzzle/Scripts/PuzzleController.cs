@@ -7,15 +7,21 @@ public class PuzzleController : MonoBehaviour {
     PuzzleInput input;
     Cursor scriptCursor;
 
+    float startDelayTime = 1.8f;
+
 	void Start () {
         input = GetComponent<PuzzleInput>();
         scriptCursor = cursor.GetComponent<Cursor>();
-
     }
 	
 	void Update () {
 
         if (Pause.Instance.pause) return;
+        if (startDelayTime > 0)
+        {
+            startDelayTime -= Time.deltaTime;
+            return;
+        }
 
         if (input.Up) scriptCursor.Move(CursorMovement.Up);
         if (input.Down) scriptCursor.Move(CursorMovement.Down);
