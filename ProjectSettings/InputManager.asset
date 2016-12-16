@@ -452,7 +452,7 @@ InputManager:
     invert: 0
     type: 2
     axis: 0
-    joyNum: 1
+    joyNum: 4
   - serializedVersion: 3
     m_Name: P4 Horizontal
     descriptiveName: 
@@ -468,7 +468,7 @@ InputManager:
     invert: 0
     type: 2
     axis: 5
-    joyNum: 1
+    joyNum: 4
   - serializedVersion: 3
     m_Name: P4 Vertical
     descriptiveName: 
@@ -484,7 +484,7 @@ InputManager:
     invert: 1
     type: 2
     axis: 1
-    joyNum: 1
+    joyNum: 4
   - serializedVersion: 3
     m_Name: P4 Vertical
     descriptiveName: 
@@ -500,7 +500,7 @@ InputManager:
     invert: 0
     type: 2
     axis: 6
-    joyNum: 1
+    joyNum: 4
   - serializedVersion: 3
     m_Name: P4 AButton
     descriptiveName: 
