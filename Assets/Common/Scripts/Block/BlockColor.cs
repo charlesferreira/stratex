@@ -2,7 +2,7 @@
 
     Blue,
     Green,
-    Purple,
+    Orange,
     Red,
     Yellow
 }

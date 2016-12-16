@@ -27,19 +27,22 @@ public class PuzzleToShipInterface : MonoBehaviour {
 
         switch (match.info.color) {
             case BlockColor.Blue:
-                engine.AddFuel(match.size);
                 break;
 
-            case BlockColor.Purple:
-                shield.AddTime(match.size - 1);
+            case BlockColor.Orange:
+                weapon2.AddAmmo(match.size - 2);
                 break;
 
             case BlockColor.Green:
-                weapon1.AddAmmo(match.size);
+                engine.AddFuel(match.size);
                 break;
 
             case BlockColor.Yellow:
-                weapon2.AddAmmo(match.size - 2);
+                shield.AddTime(match.size - 1);
+                break;
+
+            case BlockColor.Red:
+                weapon1.AddAmmo(match.size);
                 break;
         }
     }

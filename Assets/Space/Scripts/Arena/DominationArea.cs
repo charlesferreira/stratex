@@ -6,8 +6,12 @@ public class DominationArea : MonoBehaviour {
     // Inspector
 
     [Header("General")]
-    public MeshRenderer mesh;
+    public SpriteRenderer sprite;
     public float pointDuration;
+
+    [Header("Rotator")]
+    public Transform rotator;
+    public float rotatorSpeed;
 
     [Header("Cold State")]
     public Color coldColor;
@@ -32,8 +36,8 @@ public class DominationArea : MonoBehaviour {
     public TeamFlags CurrentTeam { get; private set; }
 
     public Color Color {
-        get { return mesh.material.color; }
-        set { mesh.material.color = value; }
+        get { return sprite.material.color; }
+        set { sprite.material.color = value; }
     }
 
     public float HotGlowTime { get { return pointDuration / (hotGlowSpeed * 2f); } }
@@ -70,6 +74,7 @@ public class DominationArea : MonoBehaviour {
 
     void Update() {
         currentState.Update();
+        rotator.Rotate(Vector3.forward, rotatorSpeed * Time.deltaTime * Time.timeScale);
     }
 
     void OnTriggerEnter2D(Collider2D other) {

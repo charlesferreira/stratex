@@ -111,7 +111,7 @@ Rigidbody2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014070131068}
   m_UseAutoMass: 0
-  m_Mass: 0.075
+  m_Mass: 10
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -342,7 +342,7 @@ ParticleSystem:
         atime7: 0
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
-      minColor: {r: 0.654902, g: 1, b: 0, a: 1}
+      minColor: {r: 1, g: 0.6431373, b: 0, a: 1}
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       minMaxState: 2
     startSize:
@@ -1958,6 +1958,6 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3a19b37967393924cb5658a0b8a3e381, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.6, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0

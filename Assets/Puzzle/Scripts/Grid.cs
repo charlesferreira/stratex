@@ -38,7 +38,7 @@ public class Grid : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            InsertBlock(PuzzlesManager.Instance.GetBlockInfo(BlockColor.Purple));
+            InsertBlock(PuzzlesManager.Instance.GetBlockInfo(BlockColor.Orange));
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
@@ -52,7 +52,7 @@ public class Grid : MonoBehaviour
         {
             InsertBlock(PuzzlesManager.Instance.GetBlockInfo(BlockColor.Blue));
             InsertBlock(PuzzlesManager.Instance.GetBlockInfo(BlockColor.Green));
-            InsertBlock(PuzzlesManager.Instance.GetBlockInfo(BlockColor.Purple));
+            InsertBlock(PuzzlesManager.Instance.GetBlockInfo(BlockColor.Orange));
             InsertBlock(PuzzlesManager.Instance.GetBlockInfo(BlockColor.Red));
             InsertBlock(PuzzlesManager.Instance.GetBlockInfo(BlockColor.Yellow));
         }
@@ -516,7 +516,7 @@ public class Grid : MonoBehaviour
                             case BlockColor.Green:
                                 Gizmos.color = Color.green;
                                 break;
-                            case BlockColor.Purple:
+                            case BlockColor.Orange:
                                 Gizmos.color = Color.magenta;
                                 break;
                             case BlockColor.Red:
