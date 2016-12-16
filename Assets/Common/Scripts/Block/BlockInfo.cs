@@ -5,5 +5,4 @@ public class BlockInfo : ScriptableObject {
 
     public BlockColor color;
     public Sprite puzzleSprite;
-    public Sprite spaceSprite;
 }

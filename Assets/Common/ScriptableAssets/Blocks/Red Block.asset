@@ -14,3 +14,4 @@ MonoBehaviour:
   color: 3
   puzzleSprite: {fileID: 21300000, guid: 220492e38d3ba1342ac84b64ddeb58d6, type: 3}
   spaceSprite: {fileID: 21300000, guid: ba2e1ffeb79659346881bda2cb414bfd, type: 3}
+  spaceAnimatorTrigger: Red

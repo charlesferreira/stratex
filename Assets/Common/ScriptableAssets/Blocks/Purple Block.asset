@@ -13,4 +13,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: 2
   puzzleSprite: {fileID: 21300000, guid: f579bc6873085534f9d4e11027ed39d8, type: 3}
-  spaceSprite: {fileID: 21300000, guid: f579bc6873085534f9d4e11027ed39d8, type: 3}
+  spaceSprite: {fileID: 21300000, guid: 50f4f4c2e6417df419dd505318d9c872, type: 3}
+  spaceAnimatorTrigger: Purple

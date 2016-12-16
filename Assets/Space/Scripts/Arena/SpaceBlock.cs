@@ -4,14 +4,12 @@ namespace Space.Arena.BlocksDistribution {
     public class SpaceBlock : MonoBehaviour {
 
         BlockInfo info;
-
+        
         public void Init(BlockInfo info, Vector2 position) {
             this.info = info;
+            GetComponent<Animator>().Play(info.name);
 
-            var sr = GetComponent<SpriteRenderer>();
-            sr.sprite = info.spaceSprite;
-
-            transform.localScale *= sr.sprite.pixelsPerUnit / 100f;
+            //transform.localScale *= sr.sprite.pixelsPerUnit / 100f;
             transform.localPosition = position;
         }
 
