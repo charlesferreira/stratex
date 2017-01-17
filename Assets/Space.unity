@@ -164,6 +164,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alliedShip: {fileID: 1280237744}
+--- !u!1 &85665270 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000011814069320, guid: 3f957ffcb1d495143acce47de7756921,
+    type: 2}
+  m_PrefabInternal: {fileID: 1116352956}
+--- !u!114 &85665272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 85665270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ae65bcd75a0df1478688f31bbedbaa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &131601255
 GameObject:
   m_ObjectHideFlags: 0
@@ -1345,7 +1361,28 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1136619627}
-    m_RemovedComponents: []
+    - target: {fileID: 114000013074964234, guid: 3f957ffcb1d495143acce47de7756921,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 85665272}
+    - target: {fileID: 114000013074964234, guid: 3f957ffcb1d495143acce47de7756921,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadByIndex
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013074964234, guid: 3f957ffcb1d495143acce47de7756921,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010729614918, guid: 3f957ffcb1d495143acce47de7756921,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114000012386888296, guid: 3f957ffcb1d495143acce47de7756921, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 3f957ffcb1d495143acce47de7756921, type: 2}
   m_IsPrefabParent: 0
 --- !u!20 &1136619627 stripped
