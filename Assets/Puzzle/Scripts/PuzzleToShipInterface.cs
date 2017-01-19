@@ -8,6 +8,7 @@ public class PuzzleToShipInterface : MonoBehaviour {
     ShipEngine engine;
     Weapon weapon1;
     Weapon weapon2;
+    ShipPulse pulse;
     ShipShield shield;
 
     void Start() {
@@ -17,6 +18,7 @@ public class PuzzleToShipInterface : MonoBehaviour {
         var weapons = alliedShip.GetComponent<ShipWeapons>();
         weapon1 = weapons.weapon1;
         weapon2 = weapons.weapon2;
+        pulse = alliedShip.GetComponent<ShipPulse>();
     }
 
     public void NotifyMatch(Match match)
@@ -27,6 +29,7 @@ public class PuzzleToShipInterface : MonoBehaviour {
 
         switch (match.info.color) {
             case BlockColor.Blue:
+                pulse.Fire();
                 break;
 
             case BlockColor.Orange:

@@ -78,7 +78,10 @@ public class DominationArea : MonoBehaviour {
     }
 
     void OnTriggerEnter2D(Collider2D other) {
-        var team = other.GetComponent<TeamIdentity>().info;
+        var id = other.GetComponent<TeamIdentity>();
+        if (id == null) return;
+
+        var team = id.info;
 
         // Se já contou a entrada da nave, não informa o estado
         if ((CurrentTeam & team.flag) != 0) return;
