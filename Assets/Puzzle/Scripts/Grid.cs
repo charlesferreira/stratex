@@ -170,7 +170,7 @@ public class Grid : MonoBehaviour
                 matchSize += DoVerticalMatch(info, column, row);
             }
 
-            Debug.Log("Match " + info + ", size: " + matchSize + ", combo: " + comboSequence);
+            //Debug.Log("Match " + info + ", size: " + matchSize + ", combo: " + comboSequence);
             ship.NotifyMatch(new Match(info, matchSize));
 
             DestroyMatchingBlocks();
