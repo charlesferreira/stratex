@@ -5,6 +5,8 @@ using System;
 
 public class ResultManager : MonoBehaviour, IScoreObserver {
 
+    public float delayShowMenu = 1;
+
     public Sprite finalWinImage;
     public Sprite finalLoseImage;
 
@@ -12,6 +14,7 @@ public class ResultManager : MonoBehaviour, IScoreObserver {
     public Image finalImageTeam2;
 
     public GameObject resultPanel;
+    public GameObject resultMenu;
 
     // Use this for initialization
     void Start () {
@@ -44,7 +47,14 @@ public class ResultManager : MonoBehaviour, IScoreObserver {
     {
         if (score == 0)
         {
+            Time.timeScale = 0;
+            Invoke("ShowMenu", delayShowMenu);
             SetWinner(flag);
         }
+    }
+
+    void ShowMenu()
+    {
+        resultMenu.SetActive(true);
     }
 }
