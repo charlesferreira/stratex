@@ -6,6 +6,7 @@ using System;
 public class ResultManager : MonoBehaviour, IScoreObserver {
 
     public float delayShowMenu = 1;
+    bool showMenu = false;
 
     public Sprite finalWinImage;
     public Sprite finalLoseImage;
@@ -20,11 +21,23 @@ public class ResultManager : MonoBehaviour, IScoreObserver {
     void Start () {
         TeamsManager.Instance.RegisterObserver(this);
         resultPanel.SetActive(false);
+        resultMenu.SetActive(false);
     }
 	
 	// Update is called once per frame
 	void Update () {
-	
+        if (!showMenu)
+            return;
+
+        if (delayShowMenu > 0)
+        {
+            delayShowMenu -= Time.fixedDeltaTime;
+        }
+        else
+        {
+            showMenu = false;
+            ShowMenu();
+        }
 	}
 
     public void SetWinner(TeamFlags winner)
@@ -47,13 +60,13 @@ public class ResultManager : MonoBehaviour, IScoreObserver {
     {
         if (score == 0)
         {
+            showMenu = true;
             Time.timeScale = 0;
-            Invoke("ShowMenu", delayShowMenu);
             SetWinner(flag);
         }
     }
 
-    void ShowMenu()
+    public void ShowMenu()
     {
         resultMenu.SetActive(true);
     }
