@@ -29,7 +29,7 @@ public class PuzzleToShipInterface : MonoBehaviour {
 
         switch (match.info.color) {
             case BlockColor.Blue:
-                pulse.Fire();
+                pulse.Fire(match.size);
                 break;
 
             case BlockColor.Orange:

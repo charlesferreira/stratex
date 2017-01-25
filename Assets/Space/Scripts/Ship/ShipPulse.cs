@@ -16,7 +16,8 @@ public class ShipPulse : MonoBehaviour {
         pulse.Init(minForce, maxForce);
     }
 
-    public void Fire() {
+    public void Fire(float matchSize) {
+        pulse.setMatchSize(matchSize);
         anim.SetTrigger("Pulse");
     }
 }

@@ -1,25 +1,42 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Pulse : MonoBehaviour {
     SpriteRenderer sprite;
     CircleCollider2D circle;
     float minForce;
     float maxForce;
+    float matchSize;
+    Vector3 baseScale;
+    float baseRadius;
 
-    void Start () {
+    public float DeltaForce { get { return maxForce - minForce; } }
+    public float RelativeSize { get { return 1 + (matchSize - 3) / 4; } }
+    public float Radius { get { return baseRadius * RelativeSize; } }
+    public Vector3 Scale { get { return baseScale * RelativeSize; } }
+
+    void Start() {
         sprite = GetComponent<SpriteRenderer>();
         circle = GetComponent<CircleCollider2D>();
+
+        baseScale = sprite.transform.localScale;
+        baseRadius = circle.radius;
+    }
+
+    public void Init(float minForce, float maxForce) {
+        this.minForce = minForce;
+        this.maxForce = maxForce;
+    }
+
+    public void setMatchSize(float matchSize) {
+        this.matchSize = matchSize;
     }
 
     public void OnAnimationStart() {
         sprite.enabled = true;
         circle.enabled = true;
-    }
 
-    internal void Init(float minForce, float maxForce) {
-        this.minForce = minForce;
-        this.maxForce = maxForce;
+        sprite.transform.localScale = Scale;
+        circle.radius = Radius;
     }
 
     public void OnAnimationFinish() {
@@ -33,8 +50,10 @@ public class Pulse : MonoBehaviour {
 
         var distance = other.transform.position - transform.position;
         var direction = distance.normalized;
-        var intensity = (maxForce - minForce) * distance.magnitude / circle.radius;
-        var force = direction * intensity;
+        // todo: TÁ ERRADA SAPORRA!
+        var intensity = minForce + DeltaForce * ((Radius + baseRadius) - distance.magnitude) / (Radius + baseRadius);
+
+        var force = direction * intensity * RelativeSize;
         otherRB.AddForce(force, ForceMode2D.Impulse);
     }
 }

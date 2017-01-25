@@ -5,7 +5,7 @@ using UnityEngine;
 public struct Match {
     public BlockInfo info;
 
-    [Range(1, 7)]
+    [Range(3, 7)]
     public int size;
 
     public Match (BlockInfo info, int size) {
