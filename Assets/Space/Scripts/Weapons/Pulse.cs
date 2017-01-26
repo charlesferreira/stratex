@@ -36,7 +36,6 @@ public class Pulse : MonoBehaviour {
         circle.enabled = true;
 
         sprite.transform.localScale = Scale;
-        circle.radius = Radius;
     }
 
     public void OnAnimationFinish() {
@@ -50,7 +49,6 @@ public class Pulse : MonoBehaviour {
 
         var distance = other.transform.position - transform.position;
         var direction = distance.normalized;
-        // todo: TÁ ERRADA SAPORRA!
         var intensity = minForce + DeltaForce * ((Radius + baseRadius) - distance.magnitude) / (Radius + baseRadius);
 
         var force = direction * intensity * RelativeSize;
