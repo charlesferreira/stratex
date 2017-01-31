@@ -40,6 +40,24 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 3821001325
+    locked: 0
+  - name: Domination Area
+    uniqueID: 636869445
+    locked: 0
+  - name: Projectiles
+    uniqueID: 1995983487
+    locked: 0
+  - name: Player
+    uniqueID: 2605574273
+    locked: 0
+  - name: FX
+    uniqueID: 138525715
+    locked: 0
+  - name: HUD
+    uniqueID: 2240522747
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

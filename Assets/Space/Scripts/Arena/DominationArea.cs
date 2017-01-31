@@ -91,13 +91,16 @@ public class DominationArea : MonoBehaviour {
     }
 
     void OnTriggerExit2D(Collider2D other) {
-        var team = other.GetComponent<TeamIdentity>().info;
+        var team = other.GetComponent<TeamIdentity>();
+        if (team == null)
+            return;
+        var teamInfo = team.info;
         
         // Se já contou a saída da nave, não informa o estado
-        if ((CurrentTeam & ~team.flag) == CurrentTeam) return;
+        if ((CurrentTeam & ~teamInfo.flag) == CurrentTeam) return;
 
-        CurrentTeam &= ~team.flag;
-        currentState.ShipHasLeft(team);
+        CurrentTeam &= ~teamInfo.flag;
+        currentState.ShipHasLeft(teamInfo);
     }
 
     public void SetState(IDominationAreaState state) {
