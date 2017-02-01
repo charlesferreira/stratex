@@ -59,6 +59,15 @@ public class Weapon {
             spawnPoint.rotation) as GameObject;
         projectile.layer = projectilesLayer;
 
+        projectile.layer = projectilesLayer;
+
+        // sound effect: fire
+        var soundFireGO = GameObject.Instantiate(
+            info.fireSound) as GameObject;
+        var soundFire = soundFireGO.GetComponent<AudioSource>();
+        soundFire.pitch = info.centralPitch + UnityEngine.Random.Range(-info.pitchRange, info.pitchRange) / 2f;
+        soundFire.Play();
+
         // juice: less accuracy
         var angle = UnityEngine.Random.Range(-info.spreadAngle, info.spreadAngle) / 2f;
         projectile.transform.Rotate(0, 0, angle);

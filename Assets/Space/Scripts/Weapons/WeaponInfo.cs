@@ -10,4 +10,7 @@ public class WeaponInfo : ScriptableObject {
     public float spreadAngle;
     public float recoil;
     public Tremor screenShake;
+    public GameObject fireSound;
+    public float centralPitch;
+    public float pitchRange;
 }

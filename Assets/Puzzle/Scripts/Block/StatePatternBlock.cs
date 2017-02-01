@@ -23,7 +23,7 @@ public class StatePatternBlock : MonoBehaviour {
 
     BlockInfo info;
 
-    public float comboSequence = 0;
+    [HideInInspector] public float comboSequence = 0;
 
     public BlockInfo Info
     {
