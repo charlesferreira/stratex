@@ -4,24 +4,27 @@ public class ShipWeapons: MonoBehaviour {
 
     public SingleUnityLayer projectilesLayer;
     public Transform enemyShip;
+    public ScreenShaker screenShaker;
 
     [Header("Weapons")]
     public Weapon weapon1;
     public Weapon weapon2;
 
     ShipInput input;
+    Rigidbody2D rb;
 
     void Start() {
         input = GetComponent<ShipInput>();
+        rb = GetComponent<Rigidbody2D>();
         InitializeWeapons();
     }
 
     void InitializeWeapons() {
-        weapon1.Init(projectilesLayer);
-        weapon2.Init(projectilesLayer);
+        weapon1.Init(projectilesLayer, rb, screenShaker);
+        weapon2.Init(projectilesLayer, rb, screenShaker);
     }
 
-    void Update () {
+    void FixedUpdate () {
         weapon1.Update();
         weapon2.Update();
 

@@ -7,4 +7,7 @@ public class WeaponInfo : ScriptableObject {
     public Vector3 offset;
     public float cooldown;
     public int startingAmmo;
+    public float spreadAngle;
+    public float recoil;
+    public Tremor screenShake;
 }

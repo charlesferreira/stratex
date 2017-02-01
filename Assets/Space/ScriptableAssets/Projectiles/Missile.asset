@@ -11,6 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 250c4695fa71ec04b98926c7b2105ff2, type: 3}
   m_Name: Missile
   m_EditorClassIdentifier: 
-  speed: 5
-  lifeTime: 6
+  speed: 4
+  lifeTime: 8
   steeringStrength: 5000

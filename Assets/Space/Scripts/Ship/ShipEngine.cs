@@ -3,7 +3,7 @@
 public class ShipEngine : MonoBehaviour {
 
     [Header("References")]
-    public Transform fuelBar;
+    //public Transform fuelBar;
     public ParticleSystem primaryParticles;
     public ParticleSystem reserveParticles;
 
@@ -96,9 +96,9 @@ public class ShipEngine : MonoBehaviour {
 
 
     void UpdateFuelBar() {
-        var scale = fuelBar.localScale;
-        scale.x = fuel / startingFuel;
-        fuelBar.transform.localScale = scale;
+        //var scale = fuelBar.localScale;
+        //scale.x = fuel / startingFuel;
+        //fuelBar.transform.localScale = scale;
     }
 
     public void AddFuel(int fuel) {

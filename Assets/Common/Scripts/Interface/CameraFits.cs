@@ -3,7 +3,7 @@ using System.Collections;
 
 public class CameraFits : MonoBehaviour {
 
-    Camera camera;
+    new Camera camera;
     int displayHeight = 720;
     int displayWidth = 1280;
 
@@ -26,8 +26,8 @@ public class CameraFits : MonoBehaviour {
 
     private void SetCameraSize()
     {
-        if (Screen.height / Screen.width > displayHeight / 1280)
-            camera.orthographicSize = 1280 * Screen.height / Screen.width * 0.5f;
+        if (Screen.height / Screen.width > displayHeight / displayWidth)
+            camera.orthographicSize = displayWidth * Screen.height / Screen.width * 0.5f;
         else
             camera.orthographicSize = displayHeight * 0.5f;
 

@@ -9,6 +9,10 @@ public class ShipPulse : MonoBehaviour {
     public float minForce;
     public float maxForce;
 
+    [Header("Screen Shake")]
+    public ScreenShaker screenShaker;
+    public Tremor shakeConfig;
+
     Animator anim;
     
     void Start () {
@@ -19,5 +23,6 @@ public class ShipPulse : MonoBehaviour {
     public void Fire(float matchSize) {
         pulse.setMatchSize(matchSize);
         anim.SetTrigger("Pulse");
+        screenShaker.Shake(shakeConfig);
     }
 }
