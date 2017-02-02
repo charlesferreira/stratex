@@ -38,8 +38,9 @@ GameObject:
   - 4: {fileID: 4000011911758738}
   - 212: {fileID: 212000011013097698}
   - 58: {fileID: 58000012135259664}
-  - 114: {fileID: 114000012424472174}
   - 50: {fileID: 50000011894496916}
+  - 114: {fileID: 114000012424472174}
+  - 95: {fileID: 95000010070488964}
   m_Layer: 8
   m_Name: Shield
   m_TagString: Untagged
@@ -78,7 +79,7 @@ GameObject:
   m_Icon: {fileID: -1944569537103914328, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000010550338146
 GameObject:
   m_ObjectHideFlags: 1
@@ -156,7 +157,22 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013006509050}
   m_Layer: 8
-  m_Name: Weapon 1
+  m_Name: Weapon 1 R
+  m_TagString: Untagged
+  m_Icon: {fileID: -5430335037324417643, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1000011213943116
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000010416601036}
+  m_Layer: 8
+  m_Name: Weapon 1 L
   m_TagString: Untagged
   m_Icon: {fileID: -5430335037324417643, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -226,9 +242,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000014231351042}
+  - 58: {fileID: 58000012174990798}
   - 212: {fileID: 212000011107715892}
   - 95: {fileID: 95000010018327200}
-  - 58: {fileID: 58000012174990798}
   - 114: {fileID: 114000011924241978}
   - 114: {fileID: 114000011803510816}
   m_Layer: 9
@@ -301,7 +317,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000013330612546
 GameObject:
   m_ObjectHideFlags: 0
@@ -372,6 +388,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &4000010416601036
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011213943116}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.036, y: 0.15, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000012584271802}
+  m_RootOrder: 0
 --- !u!4 &4000010588535642
 Transform:
   m_ObjectHideFlags: 1
@@ -411,7 +440,7 @@ Transform:
   m_GameObject: {fileID: 1000010289471140}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1.8}
+  m_LocalScale: {x: 2.2, y: 2.2, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000012737707518}
@@ -453,6 +482,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
+  - {fileID: 4000010416601036}
   - {fileID: 4000013006509050}
   - {fileID: 4000013540236654}
   m_Father: {fileID: 4000012737707518}
@@ -512,12 +542,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011162162188}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1, y: 0, z: 0}
+  m_LocalPosition: {x: 1.036, y: -0.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000012584271802}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!4 &4000013146994890
 Transform:
   m_ObjectHideFlags: 1
@@ -538,12 +568,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010351472896}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.57, y: 0, z: 0}
+  m_LocalPosition: {x: 0.514, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000012584271802}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!4 &4000013578485590
 Transform:
   m_ObjectHideFlags: 1
@@ -696,8 +726,8 @@ PolygonCollider2D:
     - - {x: -0.41191292, y: 0.6401348}
       - {x: 0.03351736, y: 0.16762446}
       - {x: 0.541451, y: 0.16286229}
-      - {x: 0.8018961, y: 0.007228027}
-      - {x: 0.5356879, y: -0.14520872}
+      - {x: 0.7984593, y: 0.00035418104}
+      - {x: 0.54943514, y: -0.16926716}
       - {x: 0.03939867, y: -0.1728526}
       - {x: -0.4226203, y: -0.66546464}
       - {x: -0.62585545, y: -0.3219407}
@@ -733,6 +763,23 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!95 &95000010070488964
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010289471140}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 43a47036bd7771c45b79998ef7655470, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!95 &95000011563630054
 Animator:
   serializedVersion: 3
@@ -742,7 +789,7 @@ Animator:
   m_GameObject: {fileID: 1000010550338146}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: de7e6a6a4695564408b47e44fa4d9d4b, type: 2}
+  m_Controller: {fileID: 9100000, guid: 2816a5d46eb50544094ec01af737472a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -768,7 +815,6 @@ MonoBehaviour:
   shakeConfig:
     time: 0.5
     strength: 0.05
-    damping: 0
 --- !u!114 &114000010205639262
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -821,9 +867,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shield: {fileID: 1000010289471140}
   startingTime: 0
-  minAlpha: 0.571
+  minAlpha: 0.75
   maxAlpha: 0.85
-  alphaSpeed: 0.4
+  alphaSpeed: 0.5
 --- !u!114 &114000010656401352
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -841,10 +887,13 @@ MonoBehaviour:
   screenShaker: {fileID: 114000010205639262}
   weapon1:
     info: {fileID: 11400000, guid: 32107d3524bd702498881648c76f9310, type: 2}
-    spawnPoint: {fileID: 4000013006509050}
+    spawnPoints:
+    - {fileID: 4000010416601036}
+    - {fileID: 4000013006509050}
   weapon2:
     info: {fileID: 11400000, guid: cb2b4bf019adf4448a486f79c16bdfdb, type: 2}
-    spawnPoint: {fileID: 4000013540236654}
+    spawnPoints:
+    - {fileID: 4000013540236654}
 --- !u!114 &114000010668969558
 MonoBehaviour:
   m_ObjectHideFlags: 1

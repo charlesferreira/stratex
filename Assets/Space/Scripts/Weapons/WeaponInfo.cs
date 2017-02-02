@@ -3,14 +3,16 @@
 [CreateAssetMenu(menuName = "Space/Weapon")]
 public class WeaponInfo : ScriptableObject {
 
+    [Header("Spawn")]
     public GameObject projectile;
     public Vector3 offset;
+
+    [Header("Fire settings")]
     public float cooldown;
     public int startingAmmo;
     public float spreadAngle;
     public float recoil;
+
+    [Header("Effects")]
     public Tremor screenShake;
-    public GameObject fireSound;
-    public float centralPitch;
-    public float pitchRange;
 }

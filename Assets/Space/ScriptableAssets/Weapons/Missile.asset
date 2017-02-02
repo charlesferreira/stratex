@@ -13,13 +13,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 1000014070131068, guid: 28d73b06ca0a6964ab19bbddfeea1c34, type: 2}
   offset: {x: 0.28, y: 0, z: 0}
-  cooldown: 0.25
+  cooldown: 0.2
   startingAmmo: 50
   spreadAngle: 90
-  recoil: 5
+  recoil: 4
   screenShake:
     time: 1
     strength: 0.1
-  fireSound: {fileID: 1000014134373632, guid: 1f9375827b343284aa5eb31be82c002b, type: 2}
-  centralPitch: 0.4
-  pitchRange: 0.2

@@ -1,21 +1,24 @@
 ﻿using UnityEngine;
-using System;
+using System.Collections.Generic;
 
-[Serializable]
+[System.Serializable]
 public class Weapon {
 
     public WeaponInfo info;
-    public Transform spawnPoint;
+    public List<Transform> spawnPoints = new List<Transform>();
     //public Transform ammoText;
     
     int ammo;
     float cooldown;
     int projectilesLayer;
+    int spawnPointIndex = 0;
+    Color color;
     //TextMesh text;
     Rigidbody2D rb;
     ScreenShaker screenShaker;
 
-    public void Init(int projectilesLayer, Rigidbody2D rb, ScreenShaker screenShaker) {
+    public void Init(Color color, int projectilesLayer, Rigidbody2D rb, ScreenShaker screenShaker) {
+        this.color = color;
         this.projectilesLayer = projectilesLayer;
         this.rb = rb;
         this.screenShaker = screenShaker;
@@ -53,23 +56,18 @@ public class Weapon {
     }
 
     GameObject SpawnProjectile() {
-        var projectile = GameObject.Instantiate(
-            info.projectile, 
-            spawnPoint.position, 
+        var spawnPoint = GetNextSpawnPoint();
+        var projectile = Object.Instantiate(
+            info.projectile,
+            spawnPoint.position,
             spawnPoint.rotation) as GameObject;
         projectile.layer = projectilesLayer;
 
-        projectile.layer = projectilesLayer;
-
-        // sound effect: fire
-        var soundFireGO = GameObject.Instantiate(
-            info.fireSound) as GameObject;
-        var soundFire = soundFireGO.GetComponent<AudioSource>();
-        soundFire.pitch = info.centralPitch + UnityEngine.Random.Range(-info.pitchRange, info.pitchRange) / 2f;
-        soundFire.Play();
+        // pinta o projétil com a cor do time
+        projectile.GetComponentInChildren<SpriteRenderer>().material.SetColor("_EmissionColor", color);
 
         // juice: less accuracy
-        var angle = UnityEngine.Random.Range(-info.spreadAngle, info.spreadAngle) / 2f;
+        var angle = Random.Range(-info.spreadAngle, info.spreadAngle) / 2f;
         projectile.transform.Rotate(0, 0, angle);
 
         // juice: recoil
@@ -79,5 +77,11 @@ public class Weapon {
         screenShaker.Shake(info.screenShake);
 
         return projectile;
+    }
+
+    private Transform GetNextSpawnPoint() {
+        spawnPointIndex++;
+        spawnPointIndex %= spawnPoints.Count;
+        return spawnPoints[spawnPointIndex];
     }
 }

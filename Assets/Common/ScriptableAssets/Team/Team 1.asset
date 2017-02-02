@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Name: Team 1
   m_EditorClassIdentifier: 
   flag: 1
-  color: {r: 0.8235294, g: 0.15743946, b: 0.8051547, a: 0.7529412}
+  color: {r: 0.08235294, g: 0.8745098, b: 0.9254902, a: 1}
