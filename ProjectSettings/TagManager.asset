@@ -46,6 +46,9 @@ TagManager:
   - name: Domination Area
     uniqueID: 636869445
     locked: 0
+  - name: Collectables
+    uniqueID: 1756310841
+    locked: 0
   - name: Projectiles
     uniqueID: 1995983487
     locked: 0

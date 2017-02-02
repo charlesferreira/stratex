@@ -1006,7 +1006,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   primaryParticles: {fileID: 198000013350517554}
   reserveParticles: {fileID: 198000012763321616}
-  startingFuel: 20
+  startingFuel: 1000
   primaryThrusterPower: 500
   reserveThrusterPower: 100
   maxSpeed: 100000
