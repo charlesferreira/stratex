@@ -182,7 +182,7 @@ public class Grid : MonoBehaviour
 
         foreach (var block in matchingBlocks)
         {
-            Destroy(grid[block.Col, block.Row].gameObject);
+            //Destroy(grid[block.Col, block.Row].gameObject);
             grid[block.Col, block.Row] = null;
         }
 

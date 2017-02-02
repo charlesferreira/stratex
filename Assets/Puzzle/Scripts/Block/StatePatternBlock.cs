@@ -23,6 +23,8 @@ public class StatePatternBlock : MonoBehaviour {
 
     BlockInfo info;
 
+    public ParticleSystem blockParticle;
+
     [HideInInspector] public float comboSequence = 0;
 
     public BlockInfo Info
@@ -53,7 +55,7 @@ public class StatePatternBlock : MonoBehaviour {
         fallingState = new FallingState(this);
         activegState = new ActivegState(this);
         swappingState = new SwappingState(this);
-        matchingState = new MatchingState();
+        matchingState = new MatchingState(this);
 
         freeFall = GetComponent<FreeFall>();
         movement = GetComponent<Movement>();

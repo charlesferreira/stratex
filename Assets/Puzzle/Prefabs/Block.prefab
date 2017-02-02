@@ -59,6 +59,9 @@ MonoBehaviour:
   movement: {fileID: 0}
   Col: 0
   Row: 0
+  blockParticle: {fileID: 198000013046428136, guid: 4d8dd8416e0ab8c4ca324982088d342b,
+    type: 2}
+  comboSequence: 0
 --- !u!114 &114000011463264282
 MonoBehaviour:
   m_ObjectHideFlags: 1
