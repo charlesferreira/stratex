@@ -1,16 +1,17 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class MatchingState : IBlockState
 {
-    public MatchingState()
-    {
+    private readonly StatePatternBlock block;
 
+    public MatchingState(StatePatternBlock statePatternBlock)
+    {
+        block = statePatternBlock;
     }
 
     public void Update()
     {
-        
+        Object.Destroy(block.gameObject);
     }
 
     public void ToFallingState()

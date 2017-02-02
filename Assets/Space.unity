@@ -1815,7 +1815,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0d74a7757971ea4097e72399348f220, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  joystick: {fileID: 11400000, guid: 68b8e946a974eed42a1dddb4ab96fc33, type: 2}
+  joystick: {fileID: 11400000, guid: f69a6126bb88cba4da3504e269b24121, type: 2}
   cursorMovementsPerSecond: 30
   firstCooldown: 0.12
   cursorThreshold: 0.65
