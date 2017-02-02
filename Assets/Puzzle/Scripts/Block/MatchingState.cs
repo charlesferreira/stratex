@@ -3,7 +3,6 @@
 public class MatchingState : IBlockState
 {
     private readonly StatePatternBlock block;
-    bool start = false;
 
     public MatchingState(StatePatternBlock statePatternBlock)
     {
@@ -12,15 +11,12 @@ public class MatchingState : IBlockState
 
     public void Update()
     {
-        if (!start)
-        {
-            Object.Destroy(block.gameObject);
+        //Object.Destroy(block.gameObject);
 
-            //Object.Instantiate(block.blockParticle, block.transform.position + new Vector3(0, 0, -1), Quaternion.identity, block.transform);
-            //block.GetComponent<SpriteRenderer>().enabled = false;
-            //Object.Destroy(block.gameObject, 2f);
-            //start = true;
-        }
+        ParticleSystem particle = Object.Instantiate(block.blockParticle, block.transform.position + new Vector3(0, 0, -1), Quaternion.identity) as ParticleSystem;
+        particle.startColor = block.Info.realColor;
+        Object.Destroy(particle.gameObject, particle.duration + particle.startLifetime);
+        Object.Destroy(block.gameObject);
     }
 
     public void ToFallingState()
