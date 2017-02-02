@@ -9,4 +9,7 @@ public class ProjectileInfo : ScriptableObject {
 
     [Header("Steering")]
     public float steeringStrength;
+
+    [Header("Sound FX")]
+    public SoundFX soundEffect;
 }

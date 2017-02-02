@@ -1,17 +1,16 @@
 ﻿using UnityEngine;
 
-public class SoundFX {
+public class SoundFX : MonoBehaviour {
 
-    public static GameObject PlayClipAtPoint(AudioClip clip, Vector3 position, float volume, float pitch) {
-        var gameObject = new GameObject();
-        gameObject.transform.position = position;
+    [Range(0, 3)]
+    public float pitchRange;
 
-        var audio = gameObject.AddComponent<AudioSource>();
-        audio.pitch = pitch;
-        audio.PlayOneShot(clip, volume);
-        Object.Destroy(gameObject, clip.length / pitch + 0.2f);
+    void Start() {
+        var audio = GetComponent<AudioSource>();
+        audio.pitch += Random.Range(-pitchRange, pitchRange) / 2f;
 
-        return gameObject;
+        var duration = audio.clip.length / audio.pitch;
+        Destroy(gameObject, duration);
     }
 
 }

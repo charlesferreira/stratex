@@ -15,13 +15,4 @@ public class WeaponInfo : ScriptableObject {
 
     [Header("Effects")]
     public Tremor screenShake;
-    public AudioClip soundEffect;
-    public float volume;
-    public float pitch;
-    public float pitchRange;
-
-    public void PlaySound(Vector3 position) {
-        var randomPitch = pitch + Random.Range(-pitchRange, pitchRange) / 2f;
-        SoundFX.PlayClipAtPoint(soundEffect, position, volume, randomPitch);
-    }
 }

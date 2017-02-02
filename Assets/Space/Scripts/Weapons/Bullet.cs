@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Bullet : MonoBehaviour {
 
@@ -7,6 +6,10 @@ public class Bullet : MonoBehaviour {
     public ParticleSystem hitExplosion;
 
     protected Rigidbody2D rb;
+
+    void OnEnable() {
+        Instantiate(info.soundEffect);
+    }
 
     void Start() {
         rb = GetComponent<Rigidbody2D>();

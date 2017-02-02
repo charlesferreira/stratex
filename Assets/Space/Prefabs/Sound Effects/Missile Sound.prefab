@@ -20,9 +20,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010368043162}
   - 82: {fileID: 82000010849552378}
-  - 114: {fileID: 114000013490225930}
+  - 114: {fileID: 114000010270822984}
   m_Layer: 0
-  m_Name: BasicFireSound
+  m_Name: Missile Sound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50,10 +50,10 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
+  m_audioClip: {fileID: 8300000, guid: ee30e79aaeb90b04aa83f5165ea5bd67, type: 3}
+  m_PlayOnAwake: 1
   m_Volume: 1
-  m_Pitch: 0.64
+  m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -115,7 +115,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &114000013490225930
+--- !u!114 &114000010270822984
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -123,7 +123,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000014134373632}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ccf70c10bb4b824faa4988df54b8ee0, type: 3}
+  m_Script: {fileID: 11500000, guid: 2631d382dd7daf84ea951bbe797499a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  info: {fileID: 11400000, guid: 7bd2be0ee876e9647a9918beddb35994, type: 2}
+  pitchRange: 0.5
