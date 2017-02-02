@@ -436,6 +436,26 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4000012335649456, guid: 442ca56677005984da886db8037b5069, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012335649456, guid: 442ca56677005984da886db8037b5069, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000014164642482, guid: 442ca56677005984da886db8037b5069, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.3274803
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000014164642482, guid: 442ca56677005984da886db8037b5069, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.32748038
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000014164642482, guid: 442ca56677005984da886db8037b5069, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 0.32748038
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 442ca56677005984da886db8037b5069, type: 2}
   m_IsPrefabParent: 0
@@ -1807,18 +1827,6 @@ Prefab:
       propertyPath: m_Name
       value: Space 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1000013308384676, guid: 2322e1e76bfe8294ab088f48b544bec4, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000010416601036, guid: 2322e1e76bfe8294ab088f48b544bec4, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000013006509050, guid: 2322e1e76bfe8294ab088f48b544bec4, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -0.15
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2322e1e76bfe8294ab088f48b544bec4, type: 2}
   m_IsPrefabParent: 0
@@ -2152,7 +2160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0d74a7757971ea4097e72399348f220, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  joystick: {fileID: 11400000, guid: 0ff2643e72d66394fb5d4112fc996cf2, type: 2}
+  joystick: {fileID: 11400000, guid: c80977e133260364488be73bb7e89300, type: 2}
   cursorMovementsPerSecond: 30
   firstCooldown: 0.12
   cursorThreshold: 0.65

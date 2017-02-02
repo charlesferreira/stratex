@@ -15,8 +15,8 @@ MonoBehaviour:
   offset: {x: 0.53, y: 0, z: 0}
   cooldown: 0.1
   startingAmmo: 500
-  spreadAngle: 0
+  spreadAngle: 15
   recoil: 0.25
   screenShake:
     time: 0.1
-    strength: 0
+    strength: 0.1
