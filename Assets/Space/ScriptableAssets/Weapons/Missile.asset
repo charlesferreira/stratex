@@ -20,6 +20,7 @@ MonoBehaviour:
   screenShake:
     time: 1
     strength: 0.1
-  fireSound: {fileID: 1000014134373632, guid: 1f9375827b343284aa5eb31be82c002b, type: 2}
-  centralPitch: 0.4
-  pitchRange: 0.2
+  soundEffect: {fileID: 8300000, guid: ee30e79aaeb90b04aa83f5165ea5bd67, type: 3}
+  volume: 1
+  pitch: 1.5
+  pitchRange: 0.5

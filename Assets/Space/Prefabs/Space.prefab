@@ -38,15 +38,16 @@ GameObject:
   - 4: {fileID: 4000011911758738}
   - 212: {fileID: 212000011013097698}
   - 58: {fileID: 58000012135259664}
-  - 114: {fileID: 114000012424472174}
   - 50: {fileID: 50000011894496916}
+  - 114: {fileID: 114000012424472174}
+  - 95: {fileID: 95000010070488964}
   m_Layer: 8
   m_Name: Shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000010304343110
 GameObject:
   m_ObjectHideFlags: 1
@@ -161,7 +162,7 @@ GameObject:
   m_Icon: {fileID: -5430335037324417643, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000011538811422
 GameObject:
   m_ObjectHideFlags: 1
@@ -411,7 +412,7 @@ Transform:
   m_GameObject: {fileID: 1000010289471140}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1.8}
+  m_LocalScale: {x: 2.2, y: 2.2, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000012737707518}
@@ -733,6 +734,23 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!95 &95000010070488964
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010289471140}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 43a47036bd7771c45b79998ef7655470, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!95 &95000011563630054
 Animator:
   serializedVersion: 3
@@ -768,7 +786,6 @@ MonoBehaviour:
   shakeConfig:
     time: 0.5
     strength: 0.05
-    damping: 0
 --- !u!114 &114000010205639262
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -821,9 +838,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shield: {fileID: 1000010289471140}
   startingTime: 0
-  minAlpha: 0.571
+  minAlpha: 0.75
   maxAlpha: 0.85
-  alphaSpeed: 0.4
+  alphaSpeed: 0.5
 --- !u!114 &114000010656401352
 MonoBehaviour:
   m_ObjectHideFlags: 1
