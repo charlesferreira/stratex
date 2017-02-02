@@ -64,7 +64,8 @@ public class Weapon {
         projectile.layer = projectilesLayer;
 
         // pinta o projétil com a cor do time
-        projectile.GetComponentInChildren<SpriteRenderer>().material.SetColor("_EmissionColor", color);
+        //projectile.GetComponentInChildren<SpriteRenderer>().material.SetColor("_EmissionColor", color);
+        projectile.GetComponentInChildren<SpriteRenderer>().color = color;
 
         // juice: less accuracy
         var angle = Random.Range(-info.spreadAngle, info.spreadAngle) / 2f;

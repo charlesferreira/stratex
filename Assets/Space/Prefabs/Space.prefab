@@ -425,7 +425,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013062390658}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 4.16, y: -0.79, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -466,7 +466,7 @@ Transform:
   m_GameObject: {fileID: 1000010550338146}
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.8, y: 1.8, z: 1.8}
+  m_LocalScale: {x: 1.8, y: 1.8, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
   m_Children: []
   m_Father: {fileID: 4000012737707518}
@@ -510,7 +510,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011920643630}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.77, y: 0, z: -1.1}
+  m_LocalPosition: {x: -4.77, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -637,7 +637,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4294934527
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: dd909d9e49c6f9a40b4d82ea3d0b26a6, type: 2}
   m_TargetDisplay: 0
@@ -723,15 +723,19 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Points:
     m_Paths:
-    - - {x: -0.41191292, y: 0.6401348}
-      - {x: 0.03351736, y: 0.16762446}
-      - {x: 0.541451, y: 0.16286229}
-      - {x: 0.7984593, y: 0.00035418104}
-      - {x: 0.54943514, y: -0.16926716}
-      - {x: 0.03939867, y: -0.1728526}
-      - {x: -0.4226203, y: -0.66546464}
-      - {x: -0.62585545, y: -0.3219407}
-      - {x: -0.6197281, y: 0.33185259}
+    - - {x: -0.4863472, y: 0.81735903}
+      - {x: -0.016575336, y: 0.34791026}
+      - {x: 0.0264287, y: 0.24560305}
+      - {x: 0.6406965, y: 0.18412918}
+      - {x: 0.82327104, y: 0.078332774}
+      - {x: 0.8167939, y: -0.10247656}
+      - {x: 0.6522255, y: -0.1799006}
+      - {x: 0.021676064, y: -0.2508312}
+      - {x: -0.016479492, y: -0.34691632}
+      - {x: -0.47933245, y: -0.80724376}
+      - {x: -0.7144675, y: -0.36447448}
+      - {x: -0.8046107, y: 0.0019308217}
+      - {x: -0.6977072, y: 0.37793076}
 --- !u!81 &81000013783174620
 AudioListener:
   m_ObjectHideFlags: 1
