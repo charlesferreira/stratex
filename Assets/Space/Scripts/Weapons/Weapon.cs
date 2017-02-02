@@ -1,15 +1,17 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 [System.Serializable]
 public class Weapon {
 
     public WeaponInfo info;
-    public Transform spawnPoint;
+    public List<Transform> spawnPoints = new List<Transform>();
     //public Transform ammoText;
     
     int ammo;
     float cooldown;
     int projectilesLayer;
+    int spawnPointIndex = 0;
     Color color;
     //TextMesh text;
     Rigidbody2D rb;
@@ -54,6 +56,7 @@ public class Weapon {
     }
 
     GameObject SpawnProjectile() {
+        var spawnPoint = GetNextSpawnPoint();
         var projectile = Object.Instantiate(
             info.projectile,
             spawnPoint.position,
@@ -74,5 +77,11 @@ public class Weapon {
         screenShaker.Shake(info.screenShake);
 
         return projectile;
+    }
+
+    private Transform GetNextSpawnPoint() {
+        spawnPointIndex++;
+        spawnPointIndex %= spawnPoints.Count;
+        return spawnPoints[spawnPointIndex];
     }
 }

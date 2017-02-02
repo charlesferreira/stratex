@@ -15,12 +15,8 @@ MonoBehaviour:
   offset: {x: 0.53, y: 0, z: 0}
   cooldown: 0.1
   startingAmmo: 500
-  spreadAngle: 15
+  spreadAngle: 0
   recoil: 0.25
   screenShake:
     time: 0.1
-    strength: 0.1
-  soundEffect: {fileID: 8300000, guid: ee30e79aaeb90b04aa83f5165ea5bd67, type: 3}
-  volume: 1
-  pitch: 3
-  pitchRange: 1
+    strength: 0
