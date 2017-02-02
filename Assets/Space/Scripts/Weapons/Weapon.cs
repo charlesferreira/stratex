@@ -10,11 +10,13 @@ public class Weapon {
     int ammo;
     float cooldown;
     int projectilesLayer;
+    Color color;
     //TextMesh text;
     Rigidbody2D rb;
     ScreenShaker screenShaker;
 
-    public void Init(int projectilesLayer, Rigidbody2D rb, ScreenShaker screenShaker) {
+    public void Init(Color color, int projectilesLayer, Rigidbody2D rb, ScreenShaker screenShaker) {
+        this.color = color;
         this.projectilesLayer = projectilesLayer;
         this.rb = rb;
         this.screenShaker = screenShaker;
@@ -57,6 +59,9 @@ public class Weapon {
             spawnPoint.position,
             spawnPoint.rotation) as GameObject;
         projectile.layer = projectilesLayer;
+
+        // pinta o projétil com a cor do time
+        projectile.GetComponentInChildren<SpriteRenderer>().material.SetColor("_EmissionColor", color);
 
         // juice: less accuracy
         var angle = Random.Range(-info.spreadAngle, info.spreadAngle) / 2f;

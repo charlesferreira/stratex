@@ -17,6 +17,7 @@ namespace Space.Arena.BlocksDistribution {
             GetComponent<Animator>().Play(info.name);
 
             startingPosition = position;
+            transform.localPosition = position;
             phase = new Vector2(
                 Random.Range(0f, 360f),
                 Random.Range(0f, 360f));
