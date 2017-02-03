@@ -7,15 +7,20 @@ public class Bullet : MonoBehaviour {
 
     protected Rigidbody2D rb;
 
+    public Color Color { get; internal set; }
+
     void OnEnable() {
         Instantiate(info.soundEffect);
     }
 
-    void Start() {
+    protected void Start() {
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = transform.right * info.speed;
 
         Destroy(gameObject, info.lifeTime);
+
+        GetComponentInChildren<SpriteRenderer>().material.SetColor("_EmissionColor", Color);
+        //GetComponentInChildren<SpriteRenderer>().color = Color;
     }
 
     protected virtual void OnCollisionEnter2D(Collision2D other) {

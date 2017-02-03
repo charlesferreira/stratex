@@ -8,6 +8,11 @@ public class Missile : Bullet {
     Transform target;
     bool hit = false;
 
+    new void Start() {
+        base.Start();
+        var asd = GetComponentInChildren<ParticleSystem>().startColor = Color;
+    }
+
     void FixedUpdate() {
         // Acelera em direção ao alvo
         var direction = target.position - transform.position;
