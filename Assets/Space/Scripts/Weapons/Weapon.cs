@@ -1,19 +1,19 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections.Generic;
 
 [System.Serializable]
 public class Weapon {
 
     public WeaponInfo info;
+    public Text ammoHUD;
     public List<Transform> spawnPoints = new List<Transform>();
-    //public Transform ammoText;
     
     int ammo;
     float cooldown;
     int projectilesLayer;
     int spawnPointIndex = 0;
     Color color;
-    //TextMesh text;
     Rigidbody2D rb;
     ScreenShaker screenShaker;
 
@@ -23,7 +23,6 @@ public class Weapon {
         this.rb = rb;
         this.screenShaker = screenShaker;
         ammo = info.startingAmmo;
-        //text = ammoText.GetComponent<TextMesh>();
         UpdateAmmoText();
     }
 
@@ -47,7 +46,7 @@ public class Weapon {
     }
 
     void UpdateAmmoText() {
-        //text.text = ammo.ToString();
+        ammoHUD.text = ammo.ToString();
     }
 
     public void AddAmmo(int ammo) {
