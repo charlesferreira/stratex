@@ -1,8 +1,8 @@
 ﻿public enum BlockColor {
 
-    Blue,
-    Green,
-    Orange,
-    Red,
-    Yellow
+    Eletric,
+    Fuel,
+    Missile,
+    Laser,
+    Shield
 }

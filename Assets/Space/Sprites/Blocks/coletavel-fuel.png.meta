@@ -1,12 +1,12 @@
 fileFormatVersion: 2
-guid: ba2e1ffeb79659346881bda2cb414bfd
-timeCreated: 1481753567
+guid: eb48fa4b19c662d468abc06553f11b21
+timeCreated: 1486168654
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: coletavel-tiro-laser_0
-    21300002: coletavel-tiro-laser_1
-    21300004: coletavel-tiro-laser_2
+    21300000: coletavel-fuel_0
+    21300002: coletavel-fuel_1
+    21300004: coletavel-fuel_2
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -56,7 +56,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: coletavel-tiro-laser_0
+      name: coletavel-fuel_0
       rect:
         serializedVersion: 2
         x: 0
@@ -64,12 +64,12 @@ TextureImporter:
         width: 18
         height: 18
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: coletavel-tiro-laser_1
+      name: coletavel-fuel_1
       rect:
         serializedVersion: 2
         x: 18
@@ -77,12 +77,12 @@ TextureImporter:
         width: 18
         height: 18
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: coletavel-tiro-laser_2
+      name: coletavel-fuel_2
       rect:
         serializedVersion: 2
         x: 36
@@ -90,7 +90,7 @@ TextureImporter:
         width: 18
         height: 18
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0

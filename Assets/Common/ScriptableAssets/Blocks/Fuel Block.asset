@@ -9,8 +9,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 82fe866211d73bd4987e86dc0f628d4c, type: 3}
-  m_Name: Green Block
+  m_Name: Fuel Block
   m_EditorClassIdentifier: 
   color: 1
-  puzzleSprite: {fileID: 21300000, guid: 0f16f7983969f2a4c93a07ac0b07d7ca, type: 3}
-  realColor: {r: 0.20000005, g: 1, b: 0, a: 0.78431374}
+  puzzleSprite: {fileID: 21300000, guid: bb410923c24bfdb468c70079902f27f0, type: 3}
+  realColor: {r: 0.39607847, g: 0.8862746, b: 0.20392159, a: 0.78431374}

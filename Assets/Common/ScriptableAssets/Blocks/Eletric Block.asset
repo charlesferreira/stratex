@@ -9,8 +9,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 82fe866211d73bd4987e86dc0f628d4c, type: 3}
-  m_Name: Blue Block
+  m_Name: Eletric Block
   m_EditorClassIdentifier: 
   color: 0
-  puzzleSprite: {fileID: 21300000, guid: ad0f3928631776b47ad57af53e6f2637, type: 3}
-  realColor: {r: 0, g: 0.2965517, b: 1, a: 0.78431374}
+  puzzleSprite: {fileID: 21300000, guid: ab5a8d398786eb94489f3f01296ff665, type: 3}
+  realColor: {r: 0.21176472, g: 0.3529412, b: 1, a: 0.78431374}

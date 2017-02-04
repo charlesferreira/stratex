@@ -30,31 +30,31 @@ public class Grid : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            InsertBlock(PuzzlesManager.Instance.GetBlockInfo(BlockColor.Blue));
+            InsertBlock(PuzzlesManager.Instance.GetBlockInfo(BlockColor.Eletric));
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            InsertBlock(PuzzlesManager.Instance.GetBlockInfo(BlockColor.Green));
+            InsertBlock(PuzzlesManager.Instance.GetBlockInfo(BlockColor.Fuel));
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            InsertBlock(PuzzlesManager.Instance.GetBlockInfo(BlockColor.Orange));
+            InsertBlock(PuzzlesManager.Instance.GetBlockInfo(BlockColor.Missile));
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            InsertBlock(PuzzlesManager.Instance.GetBlockInfo(BlockColor.Red));
+            InsertBlock(PuzzlesManager.Instance.GetBlockInfo(BlockColor.Laser));
         }
         if (Input.GetKeyDown(KeyCode.Alpha5))
         {
-            InsertBlock(PuzzlesManager.Instance.GetBlockInfo(BlockColor.Yellow));
+            InsertBlock(PuzzlesManager.Instance.GetBlockInfo(BlockColor.Shield));
         }
         if (Input.GetKeyDown(KeyCode.Alpha6))
         {
-            InsertBlock(PuzzlesManager.Instance.GetBlockInfo(BlockColor.Blue));
-            InsertBlock(PuzzlesManager.Instance.GetBlockInfo(BlockColor.Green));
-            InsertBlock(PuzzlesManager.Instance.GetBlockInfo(BlockColor.Orange));
-            InsertBlock(PuzzlesManager.Instance.GetBlockInfo(BlockColor.Red));
-            InsertBlock(PuzzlesManager.Instance.GetBlockInfo(BlockColor.Yellow));
+            InsertBlock(PuzzlesManager.Instance.GetBlockInfo(BlockColor.Eletric));
+            InsertBlock(PuzzlesManager.Instance.GetBlockInfo(BlockColor.Fuel));
+            InsertBlock(PuzzlesManager.Instance.GetBlockInfo(BlockColor.Missile));
+            InsertBlock(PuzzlesManager.Instance.GetBlockInfo(BlockColor.Laser));
+            InsertBlock(PuzzlesManager.Instance.GetBlockInfo(BlockColor.Shield));
         }
     }
 
@@ -510,20 +510,20 @@ public class Grid : MonoBehaviour
 
                         switch (grid[column, row].Info.color)
                         {
-                            case BlockColor.Blue:
+                            case BlockColor.Eletric:
                                 Gizmos.color = Color.blue;
                                 break;
-                            case BlockColor.Green:
+                            case BlockColor.Fuel:
                                 Gizmos.color = Color.green;
                                 break;
-                            case BlockColor.Orange:
-                                Gizmos.color = Color.magenta;
+                            case BlockColor.Missile:
+                                Gizmos.color = Color.yellow;
                                 break;
-                            case BlockColor.Red:
+                            case BlockColor.Laser:
                                 Gizmos.color = Color.red;
                                 break;
-                            case BlockColor.Yellow:
-                                Gizmos.color = Color.yellow;
+                            case BlockColor.Shield:
+                                Gizmos.color = Color.cyan;
                                 break;
                             default:
                                 Gizmos.color = Color.white;
