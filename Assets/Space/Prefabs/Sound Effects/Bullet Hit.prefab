@@ -22,7 +22,7 @@ GameObject:
   - 82: {fileID: 82000010849552378}
   - 114: {fileID: 114000010270822984}
   m_Layer: 0
-  m_Name: Bullet Sound
+  m_Name: Bullet Hit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

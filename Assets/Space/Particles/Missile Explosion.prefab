@@ -39,7 +39,7 @@ GameObject:
   - 198: {fileID: 198000014254002334}
   - 199: {fileID: 199000012500046300}
   m_Layer: 0
-  m_Name: Explosion2 Missile
+  m_Name: Missile Explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

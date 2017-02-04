@@ -14,8 +14,12 @@ MonoBehaviour:
   speed: 4
   lifeTime: 10
   steeringStrength: 500
-  screenShakeOnHit:
-    time: 1.5
-    strength: 0.1
-  soundEffectOnHit: {fileID: 114000010270822984, guid: b7e82870a61c22c4a85cdf1ec856850e,
+  onHitScreenShake:
+    time: 0.5
+    strength: 0.2
+  onHitSoundEffect: {fileID: 114000010270822984, guid: b7e82870a61c22c4a85cdf1ec856850e,
+    type: 2}
+  onHitAnimation: {fileID: 114000014142418468, guid: 39918be7708a59848b263a83af1cfb92,
+    type: 2}
+  onHitParticles: {fileID: 198000014254002334, guid: db1412f1dcf540d48ac84a1354cbc601,
     type: 2}

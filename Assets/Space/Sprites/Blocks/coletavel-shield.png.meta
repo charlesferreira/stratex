@@ -1,16 +1,16 @@
 fileFormatVersion: 2
-guid: 2c55cb0dee6157a4aa5c0315ae996815
-timeCreated: 1481753567
+guid: f76f290a037df9f4e805ce25bf807393
+timeCreated: 1486168775
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: coletavel-tiro-laser_0
-    21300002: coletavel-tiro-laser_1
-    21300004: coletavel-tiro-laser_2
+    21300000: coletavel-shield_0
+    21300002: coletavel-shield_1
+    21300004: coletavel-shield_2
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 0
+    enableMipMap: 1
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0
@@ -29,10 +29,10 @@ TextureImporter:
   cubemapConvolutionSteps: 7
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
-  textureFormat: -3
+  textureFormat: -1
   maxTextureSize: 2048
   textureSettings:
-    filterMode: 0
+    filterMode: -1
     aniso: 16
     mipBias: -1
     wrapMode: 1
@@ -56,7 +56,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: coletavel-tiro-laser_0
+      name: coletavel-shield_0
       rect:
         serializedVersion: 2
         x: 0
@@ -64,12 +64,12 @@ TextureImporter:
         width: 18
         height: 18
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: coletavel-tiro-laser_1
+      name: coletavel-shield_1
       rect:
         serializedVersion: 2
         x: 18
@@ -77,12 +77,12 @@ TextureImporter:
         width: 18
         height: 18
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: coletavel-tiro-laser_2
+      name: coletavel-shield_2
       rect:
         serializedVersion: 2
         x: 36
@@ -90,7 +90,7 @@ TextureImporter:
         width: 18
         height: 18
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0

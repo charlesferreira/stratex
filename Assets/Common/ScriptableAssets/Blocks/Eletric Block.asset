@@ -9,8 +9,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 82fe866211d73bd4987e86dc0f628d4c, type: 3}
-  m_Name: Red Block
+  m_Name: Eletric Block
   m_EditorClassIdentifier: 
-  color: 3
-  puzzleSprite: {fileID: 21300000, guid: 220492e38d3ba1342ac84b64ddeb58d6, type: 3}
-  realColor: {r: 1, g: 0, b: 0, a: 0.78431374}
+  color: 0
+  puzzleSprite: {fileID: 21300000, guid: ab5a8d398786eb94489f3f01296ff665, type: 3}
+  realColor: {r: 0.28676468, g: 0.6816572, b: 1, a: 1}
