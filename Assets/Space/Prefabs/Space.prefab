@@ -552,7 +552,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000013062390658
 GameObject:
   m_ObjectHideFlags: 0
@@ -905,7 +905,7 @@ Transform:
   m_GameObject: {fileID: 1000013053364144}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000012737707518}
@@ -1223,8 +1223,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shield: {fileID: 1000010289471140}
   shieldHUD: {fileID: 224000010180397628}
-  maxTime: 5
-  startingTime: 0.5
+  maxTime: 7
+  startingTime: 0.25
 --- !u!114 &114000010656401352
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1474,7 +1474,7 @@ MonoBehaviour:
   fuelHUD: {fileID: 224000011497925600}
   primaryParticles: {fileID: 198000013350517554}
   reserveParticles: {fileID: 198000012763321616}
-  maxFuel: 30
+  maxFuel: 60
   startingFuel: 0.5
   primaryThrusterPower: 500
   reserveThrusterPower: 100
