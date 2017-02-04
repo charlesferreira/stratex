@@ -8,7 +8,7 @@ public class Missile : Bullet {
 
     Transform target;
 
-    new void Start() {
+    protected override void Start() {
         base.Start();
         boxCollider = GetComponent<BoxCollider2D>();
         sprite = GetComponentInChildren<SpriteRenderer>();
@@ -31,17 +31,18 @@ public class Missile : Bullet {
         transform.right = rb.velocity;
     }
 
-    protected override void PlayOnHitEffects() {
-        base.PlayOnHitEffects();
-
-        // aguarda o sistema de partículas do rastro terminar
-        boxCollider.enabled = false;
-        sprite.enabled = false;
-        trail.Stop();
-    }
-
     protected override void DestroyProjectile() {
+        // desabilita colisor e sprite
+        // todo: verificar por que o sprite às vezes é null
+        sprite.enabled = false;
+        boxCollider.enabled = false;
+
+        // aguarda o sistema de partículas do rastro terminar para então destruir o objeto
+        trail.Stop();
         Destroy(gameObject, trail.duration);
+
+        // cria explosão
+        info.PlayOnHitEffects(transform.position);
     }
 
     public void SetTarget(Transform target) {

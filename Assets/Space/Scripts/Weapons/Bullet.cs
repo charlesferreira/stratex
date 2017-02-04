@@ -8,7 +8,7 @@ public class Bullet : MonoBehaviour {
 
     public Color Color { get; internal set; }
 
-    protected void Start() {
+    protected virtual void Start() {
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = transform.right * info.speed;
 
@@ -19,23 +19,16 @@ public class Bullet : MonoBehaviour {
     }
 
     void OnCollisionEnter2D(Collision2D other) {
-        ShakeScreen(other.gameObject);
-        PlayOnHitEffects();
+        CancelInvoke("DestroyProjectile");
         DestroyProjectile();
-    }
 
-    private void ShakeScreen(GameObject other) {
-        var screenShaker = other.GetComponent<ScreenShaker>();
+        var screenShaker = other.gameObject.GetComponent<ScreenShaker>();
         if (screenShaker != null)
             screenShaker.Shake(info.onHitScreenShake);
     }
 
-    protected virtual void PlayOnHitEffects() {
-        CancelInvoke("DestroyProjectile");
-        info.PlayOnHitEffects(transform.position);
-    }
-
     protected virtual void DestroyProjectile() {
+        info.PlayOnHitEffects(transform.position);
         Destroy(gameObject);
     }
 }
