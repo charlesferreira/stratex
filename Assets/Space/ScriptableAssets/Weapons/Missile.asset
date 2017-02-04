@@ -17,6 +17,8 @@ MonoBehaviour:
   startingAmmo: 50
   spreadAngle: 90
   recoil: 2
-  screenShake:
+  screenShakeOnFire:
     time: 1
     strength: 0.1
+  soundEffectOnFire: {fileID: 114000010270822984, guid: b7e82870a61c22c4a85cdf1ec856850e,
+    type: 2}

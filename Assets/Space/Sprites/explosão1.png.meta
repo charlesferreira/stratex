@@ -1,15 +1,16 @@
 fileFormatVersion: 2
-guid: 6c28d739d4c42c749a63b017b9e13f34
-timeCreated: 1486008167
+guid: 79d76d8f0845f1e4e8618770d9b26d0a
+timeCreated: 1486179868
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: escudo_0
-    21300002: escudo_1
-    21300004: escudo_2
-    21300006: escudo_3
-    21300008: escudo_4
-    21300010: escudo_5
+    21300000: "explos\xE3o1_0"
+    21300002: "explos\xE3o1_1"
+    21300004: "explos\xE3o1_2"
+    21300006: "explos\xE3o1_3"
+    21300008: "explos\xE3o1_4"
+    21300010: "explos\xE3o1_5"
+    21300012: "explos\xE3o1_6"
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -59,78 +60,91 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: escudo_0
+      name: "explos\xE3o1_0"
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 106
-        height: 106
+        width: 120
+        height: 120
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: escudo_1
+      name: "explos\xE3o1_1"
       rect:
         serializedVersion: 2
-        x: 106
+        x: 120
         y: 0
-        width: 106
-        height: 106
+        width: 120
+        height: 120
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: escudo_2
+      name: "explos\xE3o1_2"
       rect:
         serializedVersion: 2
-        x: 212
+        x: 240
         y: 0
-        width: 106
-        height: 106
+        width: 120
+        height: 120
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: escudo_3
+      name: "explos\xE3o1_3"
       rect:
         serializedVersion: 2
-        x: 318
+        x: 360
         y: 0
-        width: 106
-        height: 106
+        width: 120
+        height: 120
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: escudo_4
+      name: "explos\xE3o1_4"
       rect:
         serializedVersion: 2
-        x: 424
+        x: 480
         y: 0
-        width: 106
-        height: 106
+        width: 120
+        height: 120
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: escudo_5
+      name: "explos\xE3o1_5"
       rect:
         serializedVersion: 2
-        x: 530
+        x: 600
         y: 0
-        width: 106
-        height: 106
+        width: 120
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "explos\xE3o1_6"
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 0
+        width: 120
+        height: 120
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

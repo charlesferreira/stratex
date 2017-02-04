@@ -115,6 +115,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   info: {fileID: 11400000, guid: 7bd2be0ee876e9647a9918beddb35994, type: 2}
+  hitAnimation: {fileID: 114000013942179404, guid: fe48ee90fa1e6704291dc3fc18953607,
+    type: 2}
   hitExplosion: {fileID: 198000014254002334, guid: 8e910a5dc60a4d648ab0e59bf29cc928,
     type: 2}
 --- !u!212 &212000012692444710

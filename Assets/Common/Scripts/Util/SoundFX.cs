@@ -13,4 +13,7 @@ public class SoundFX : MonoBehaviour {
         Destroy(gameObject, duration);
     }
 
+    public void Play(Vector3 position) {
+        Instantiate(this, position, Quaternion.identity);
+    }
 }

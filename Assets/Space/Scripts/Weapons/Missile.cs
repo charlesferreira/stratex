@@ -2,15 +2,18 @@
 
 public class Missile : Bullet {
 
-    [Header("Missile specifics")]
-    public ParticleSystem expiredExplosion;
+    SpriteRenderer sprite;
+    ParticleSystem trail;
+    BoxCollider2D boxCollider;
 
     Transform target;
-    bool hit = false;
 
     new void Start() {
         base.Start();
-        var asd = GetComponentInChildren<ParticleSystem>().startColor = Color;
+        boxCollider = GetComponent<BoxCollider2D>();
+        sprite = GetComponentInChildren<SpriteRenderer>();
+        trail = GetComponentInChildren<ParticleSystem>();
+        trail.startColor = Color;
     }
 
     void FixedUpdate() {
@@ -28,18 +31,20 @@ public class Missile : Bullet {
         transform.right = rb.velocity;
     }
 
-    protected override void OnCollisionEnter2D(Collision2D other) {
-        base.OnCollisionEnter2D(other);
-        hit = true;
+    protected override void PlayOnHitEffects() {
+        base.PlayOnHitEffects();
+
+        // aguarda o sistema de partículas do rastro terminar
+        boxCollider.enabled = false;
+        sprite.enabled = false;
+        trail.Stop();
+    }
+
+    protected override void DestroyProjectile() {
+        Destroy(gameObject, trail.duration);
     }
 
     public void SetTarget(Transform target) {
         this.target = target;
-    }
-
-    void OnDestroy() {
-        if (!hit) {
-            Explode(expiredExplosion);
-        }
     }
 }

@@ -227,6 +227,7 @@ GameObject:
   - 114: {fileID: 114000010656401352}
   - 114: {fileID: 114000010119349532}
   - 114: {fileID: 114000010551374700}
+  - 114: {fileID: 114000010113662322}
   m_Layer: 8
   m_Name: Ship 1
   m_TagString: Untagged
@@ -295,7 +296,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011549859214}
   - 114: {fileID: 114000010340210640}
-  - 114: {fileID: 114000010205639262}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -801,6 +801,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114000010113662322
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011920643630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36280679acc770e499b78d4162be5be7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shaker: {fileID: 4000012977212440}
 --- !u!114 &114000010119349532
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -815,22 +827,10 @@ MonoBehaviour:
   pulse: {fileID: 114000011803510816}
   minForce: 0
   maxForce: 15
-  screenShaker: {fileID: 114000010205639262}
+  screenShaker: {fileID: 0}
   shakeConfig:
     time: 0.5
     strength: 0.05
---- !u!114 &114000010205639262
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013062390658}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36280679acc770e499b78d4162be5be7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shaker: {fileID: 4000012977212440}
 --- !u!114 &114000010340210640
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -888,7 +888,6 @@ MonoBehaviour:
   projectilesLayer:
     m_LayerIndex: 9
   enemyShip: {fileID: 0}
-  screenShaker: {fileID: 114000010205639262}
   weapon1:
     info: {fileID: 11400000, guid: 32107d3524bd702498881648c76f9310, type: 2}
     spawnPoints:
@@ -962,7 +961,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 5810d829be8d127499dd61dc9cf06d28, type: 3}
-    m_FontSize: 60
+    m_FontSize: 54
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -973,7 +972,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 99
+  m_Text: 100
 --- !u!114 &114000012213749594
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1096,7 +1095,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 5810d829be8d127499dd61dc9cf06d28, type: 3}
-    m_FontSize: 60
+    m_FontSize: 54
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -1107,7 +1106,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 99
+  m_Text: 100
 --- !u!114 &114000013579371934
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6657,7 +6656,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -664.6, y: -625.8}
+  m_AnchoredPosition: {x: -665, y: -625.8}
   m_SizeDelta: {x: 160, y: 120}
   m_Pivot: {x: 1, y: 1}
 --- !u!224 &224000011699487560
@@ -6711,7 +6710,7 @@ RectTransform:
   m_RootOrder: 2
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 289.6, y: -625.7}
+  m_AnchoredPosition: {x: 289.6, y: -625.8}
   m_SizeDelta: {x: 160, y: 120}
   m_Pivot: {x: 0, y: 1}
 --- !u!224 &224000013795432550

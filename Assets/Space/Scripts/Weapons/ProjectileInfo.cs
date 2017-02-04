@@ -9,7 +9,19 @@ public class ProjectileInfo : ScriptableObject {
 
     [Header("Steering")]
     public float steeringStrength;
+    
+    [Header("Hit Effects")]
+    public Tremor onHitScreenShake;
+    public SoundFX onHitSoundEffect;
+    public HitAnimation onHitAnimation;
+    public ParticleSystem onHitParticles;
 
-    [Header("Sound FX")]
-    public SoundFX soundEffect;
+    public void PlayOnHitEffects(Vector3 position) {
+        if (onHitSoundEffect != null) onHitSoundEffect.Play(position);
+        if (onHitAnimation != null) onHitAnimation.Play(position);
+        if (onHitParticles != null) {
+            var explosion = Instantiate(onHitParticles, position, Quaternion.identity) as ParticleSystem;
+            Destroy(explosion.gameObject, explosion.duration);
+        }
+    }
 }

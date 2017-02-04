@@ -4,7 +4,6 @@ public class ShipWeapons: MonoBehaviour {
 
     public SingleUnityLayer projectilesLayer;
     public Transform enemyShip;
-    public ScreenShaker screenShaker;
 
     [Header("Weapons")]
     public Weapon weapon1;
@@ -21,6 +20,7 @@ public class ShipWeapons: MonoBehaviour {
 
     void InitializeWeapons() {
         var color = GetComponent<TeamIdentity>().info.color;
+        var screenShaker = GetComponent<ScreenShaker>();
         weapon1.Init(color, projectilesLayer, rb, screenShaker);
         weapon2.Init(color, projectilesLayer, rb, screenShaker);
     }

@@ -14,5 +14,6 @@ public class WeaponInfo : ScriptableObject {
     public float recoil;
 
     [Header("Effects")]
-    public Tremor screenShake;
+    public Tremor screenShakeOnFire;
+    public SoundFX soundEffectOnFire;
 }

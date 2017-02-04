@@ -27,7 +27,7 @@ public class Pulse : MonoBehaviour {
         this.maxForce = maxForce;
     }
 
-    public void setMatchSize(float matchSize) {
+    public void SetMatchSize(float matchSize) {
         this.matchSize = matchSize;
     }
 

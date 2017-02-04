@@ -74,7 +74,10 @@ public class Weapon {
         ApplyRecoil(projectile.transform.right);
 
         // juice: screen shake
-        screenShaker.Shake(info.screenShake);
+        screenShaker.Shake(info.screenShakeOnFire);
+
+        // sound effect
+        info.soundEffectOnFire.Play(spawnPoint.position);
 
         return projectile;
     }

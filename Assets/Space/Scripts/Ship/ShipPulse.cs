@@ -10,18 +10,19 @@ public class ShipPulse : MonoBehaviour {
     public float maxForce;
 
     [Header("Screen Shake")]
-    public ScreenShaker screenShaker;
     public Tremor shakeConfig;
 
     Animator anim;
-    
+    ScreenShaker screenShaker;
+
     void Start () {
         anim = pulse.GetComponent<Animator>();
+        screenShaker = GetComponent<ScreenShaker>();
         pulse.Init(minForce, maxForce);
     }
 
     public void Fire(float matchSize) {
-        pulse.setMatchSize(matchSize);
+        pulse.SetMatchSize(matchSize);
         anim.SetTrigger("Pulse");
         screenShaker.Shake(shakeConfig);
     }
