@@ -13,4 +13,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: 1
   puzzleSprite: {fileID: 21300000, guid: bb410923c24bfdb468c70079902f27f0, type: 3}
-  realColor: {r: 0.39607847, g: 0.8862746, b: 0.20392159, a: 0.78431374}
+  realColor: {r: 0.39607847, g: 0.8862746, b: 0.20392159, a: 1}

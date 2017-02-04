@@ -65,7 +65,7 @@ public class Grid : MonoBehaviour
         if (!columnsNotFull.Any())
             return false;
 
-        var index = UnityEngine.Random.Range(0, columnsNotFull.Count - 1);
+        var index = UnityEngine.Random.Range(0, columnsNotFull.Count);
         var column = columnsNotFull.ElementAt(index);
         CreateNewBlock(column, GridManager.Instance.rows - 1, blockInfo, 0);
         return true;
