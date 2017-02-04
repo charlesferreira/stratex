@@ -4,48 +4,38 @@ public class ShipShield : MonoBehaviour {
 
     [Header("References")]
     public GameObject shield;
+    public Transform shieldHUD;
 
-    [Header("Settings")]
+    [Header("Duration")]
+    public float maxTime;
+    [Range(0, 1)]
     public float startingTime;
-    [Range(0f, 1f)]
-    public float minAlpha;
-    [Range(0f, 1f)]
-    public float maxAlpha;
-    [Range(0f, 1f)]
-    public float alphaSpeed = 1f;
-
-    SpriteRenderer sprite;
+    
     float time;
+    Vector3 hudScale = Vector3.one;
 
     void Start() {
-        sprite = shield.GetComponent<SpriteRenderer>();
+        time = maxTime * startingTime;
+        // Define o escudo na mesma layer que a nave.
+        // É isso que permite bloquear os tiros inimigos.
         shield.layer = gameObject.layer;
-        time = startingTime;
     }
 
     void Update() {
         time -= Time.deltaTime;
         time = Mathf.Max(0f, time);
-        
-        shield.SetActive(time > 0);
-        UpdateAlpha();
+        UpdateHUD();
+        // ativa ou desativa o escudo, conforme tenha ou não tempo
+        if (shield.activeSelf != time > 0)
+            shield.SetActive(!shield.activeSelf);
     }
 
-    void UpdateAlpha() {
-        if (time <= 0) return;
-
-        // calcula o novo alpha do escudo para fazer "piscar"
-        var theta = time * alphaSpeed * Mathf.Rad2Deg;
-        var delta = (Mathf.Sin(theta) + 1f) / 2;
-        var alpha = minAlpha + (maxAlpha - minAlpha) * delta;
-
-        // aplica o alpha no escudo
-        var color = sprite.color;
-        color.a = alpha;
-        sprite.color = color;
+    void UpdateHUD() {
+        hudScale.x = time / maxTime;
+        shieldHUD.localScale = hudScale;
     }
 
     public void AddTime(int time) {
-        this.time += time;
+        this.time = Mathf.Min(maxTime, this.time + time);
     }
 }

@@ -3,11 +3,13 @@
 public class ShipEngine : MonoBehaviour {
 
     [Header("References")]
-    //public Transform fuelBar;
+    public Transform fuelHUD;
     public ParticleSystem primaryParticles;
     public ParticleSystem reserveParticles;
 
-    [Header("Fuel")]
+    [Header("Capacity")]
+    public float maxFuel;
+    [Range(0, 1)]
     public float startingFuel;
 
     [Header("Control")]
@@ -23,14 +25,15 @@ public class ShipEngine : MonoBehaviour {
     Rigidbody2D rb;
     ShipInput input;
     float fuel;
+    Vector3 hudScale = Vector3.one;
 
     public bool IsThrusting { get { return input.Thrusting; } }
 
     void Start() {
         rb = GetComponent<Rigidbody2D>();
         input = GetComponent<ShipInput>();
-        fuel = startingFuel;
-        UpdateFuelBar();
+        fuel = maxFuel * startingFuel;
+        UpdateHuD();
     }
 
     void FixedUpdate() {
@@ -52,7 +55,7 @@ public class ShipEngine : MonoBehaviour {
 
         if (IsThrusting) {
             fuel = Mathf.Max(0f, fuel - Time.deltaTime);
-            UpdateFuelBar();
+            UpdateHuD();
 
             var emission = fuel > 0 ? primaryEmission : reserveEmission;
             emission.enabled = true;
@@ -95,14 +98,13 @@ public class ShipEngine : MonoBehaviour {
     }
 
 
-    void UpdateFuelBar() {
-        //var scale = fuelBar.localScale;
-        //scale.x = fuel / startingFuel;
-        //fuelBar.transform.localScale = scale;
+    void UpdateHuD() {
+        hudScale.x = fuel / maxFuel;
+        fuelHUD.localScale = hudScale;
     }
 
     public void AddFuel(int fuel) {
-        this.fuel += fuel;
-        UpdateFuelBar();
+        this.fuel = Mathf.Min(maxFuel, this.fuel + fuel);
+        UpdateHuD();
     }
 }

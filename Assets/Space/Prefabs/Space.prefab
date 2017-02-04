@@ -1095,7 +1095,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.76713985, g: 0.39705884, b: 1, a: 1}
+  m_Color: {r: 0.8, g: 0, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1121,10 +1121,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shield: {fileID: 1000010289471140}
-  startingTime: 0
-  minAlpha: 0.75
-  maxAlpha: 0.85
-  alphaSpeed: 0.5
+  shieldHUD: {fileID: 224000010180397628}
+  maxTime: 5
+  startingTime: 0.5
 --- !u!114 &114000010656401352
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1345,9 +1344,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4a2d8a8c5146c6418340b6456dd8073, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fuelHUD: {fileID: 224000011497925600}
   primaryParticles: {fileID: 198000013350517554}
   reserveParticles: {fileID: 198000012763321616}
-  startingFuel: 1000
+  maxFuel: 30
+  startingFuel: 0.5
   primaryThrusterPower: 500
   reserveThrusterPower: 100
   maxSpeed: 100000
