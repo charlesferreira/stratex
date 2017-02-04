@@ -3,7 +3,7 @@
 public class ShipWeapons: MonoBehaviour {
 
     public SingleUnityLayer projectilesLayer;
-    public Transform enemyShip;
+    public MissileLockOn enemyShip;
 
     [Header("Weapons")]
     public Weapon weapon1;

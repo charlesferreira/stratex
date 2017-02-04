@@ -393,6 +393,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b94ae89da0949294fb85a2e633377cee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &112880924 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000013824545914, guid: 2322e1e76bfe8294ab088f48b544bec4,
+    type: 2}
+  m_PrefabInternal: {fileID: 170361343}
+  m_Script: {fileID: 11500000, guid: 9119ec7e20a163c4eba826faf1680c78, type: 3}
 --- !u!1 &131963152
 GameObject:
   m_ObjectHideFlags: 0
@@ -661,7 +667,7 @@ Prefab:
         type: 2}
       propertyPath: enemyShip
       value: 
-      objectReference: {fileID: 1280237744}
+      objectReference: {fileID: 1342028404}
     - target: {fileID: 1000010815338804, guid: 2322e1e76bfe8294ab088f48b544bec4, type: 2}
       propertyPath: m_Name
       value: Space 2
@@ -1020,6 +1026,18 @@ Prefab:
     - target: {fileID: 4000011911758738, guid: 2322e1e76bfe8294ab088f48b544bec4, type: 2}
       propertyPath: m_LocalRotation.z
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012535641018, guid: 2322e1e76bfe8294ab088f48b544bec4, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000014164030202, guid: 2322e1e76bfe8294ab088f48b544bec4, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000014164030202, guid: 2322e1e76bfe8294ab088f48b544bec4, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2322e1e76bfe8294ab088f48b544bec4, type: 2}
@@ -2134,77 +2152,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alliedShip: {fileID: 565884901}
---- !u!1 &765822870
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 1000010675794416, guid: 2322e1e76bfe8294ab088f48b544bec4,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 224: {fileID: 765822871}
-  - 222: {fileID: 765822873}
-  - 114: {fileID: 765822872}
-  m_Layer: 5
-  m_Name: Enemy Neon
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &765822871
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 224000011955014314, guid: 2322e1e76bfe8294ab088f48b544bec4,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 765822870}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 1328088226}
-  m_RootOrder: 0
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -277.00003, y: -316.5}
-  m_SizeDelta: {x: 78, y: 43}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &765822872
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114000012348358064, guid: 2322e1e76bfe8294ab088f48b544bec4,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 765822870}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -98529514, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Texture: {fileID: 2800000, guid: 7dfbcdff4979bc3409a144243bf51976, type: 3}
-  m_UVRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
---- !u!222 &765822873
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 222000012480736224, guid: 2322e1e76bfe8294ab088f48b544bec4,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 765822870}
 --- !u!1 &781675912
 GameObject:
   m_ObjectHideFlags: 0
@@ -3181,11 +3128,6 @@ MonoBehaviour:
   randomStartSpacing: 0.2
   drawLimits: 0
   drawPoints: 1
---- !u!224 &1328088226 stripped
-RectTransform:
-  m_PrefabParentObject: {fileID: 224000011955014314, guid: 2322e1e76bfe8294ab088f48b544bec4,
-    type: 2}
-  m_PrefabInternal: {fileID: 1329070213}
 --- !u!1001 &1329070213
 Prefab:
   m_ObjectHideFlags: 0
@@ -3234,7 +3176,7 @@ Prefab:
         type: 2}
       propertyPath: enemyShip
       value: 
-      objectReference: {fileID: 565884901}
+      objectReference: {fileID: 112880924}
     - target: {fileID: 1000010815338804, guid: 2322e1e76bfe8294ab088f48b544bec4, type: 2}
       propertyPath: m_Name
       value: Space 1
@@ -3242,6 +3184,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2322e1e76bfe8294ab088f48b544bec4, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1342028404 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000013824545914, guid: 2322e1e76bfe8294ab088f48b544bec4,
+    type: 2}
+  m_PrefabInternal: {fileID: 1329070213}
+  m_Script: {fileID: 11500000, guid: 9119ec7e20a163c4eba826faf1680c78, type: 3}
 --- !u!1 &1365381260
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,19 +6,24 @@ public class Missile : Bullet {
     ParticleSystem trail;
     BoxCollider2D boxCollider;
 
-    Transform target;
+    MissileLockOn target;
 
     protected override void Start() {
         base.Start();
         boxCollider = GetComponent<BoxCollider2D>();
         sprite = GetComponentInChildren<SpriteRenderer>();
         trail = GetComponentInChildren<ParticleSystem>();
+
+        // pinta o rastro com a cor do time
         trail.startColor = Color;
+
+        // ativa o efeito de lock-on
+        target.OnEngage();
     }
 
     void FixedUpdate() {
         // Acelera em direção ao alvo
-        var direction = target.position - transform.position;
+        var direction = target.transform.position - transform.position;
         var steeringForce = direction.normalized * info.steeringStrength * Time.fixedDeltaTime;
         rb.AddForce(steeringForce);
     }
@@ -32,6 +37,9 @@ public class Missile : Bullet {
     }
 
     protected override void DestroyProjectile() {
+        // desativa o efeito de lock-on
+        target.OnDisengage();
+
         // desabilita colisor e sprite
         // todo: verificar por que o sprite às vezes é null
         sprite.enabled = false;
@@ -45,7 +53,7 @@ public class Missile : Bullet {
         info.PlayOnHitEffects(transform.position);
     }
 
-    public void SetTarget(Transform target) {
+    public void SetTarget(MissileLockOn target) {
         this.target = target;
     }
 }
