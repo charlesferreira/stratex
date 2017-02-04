@@ -22,7 +22,7 @@ GameObject:
   - 82: {fileID: 82000010849552378}
   - 114: {fileID: 114000010270822984}
   m_Layer: 0
-  m_Name: Bullet Hit
+  m_Name: Bullet Shot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53,7 +53,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: ee30e79aaeb90b04aa83f5165ea5bd67, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
-  m_Pitch: 3
+  m_Pitch: 2.6
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -126,4 +126,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2631d382dd7daf84ea951bbe797499a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pitchRange: 0.5
+  pitchRange: 0.8

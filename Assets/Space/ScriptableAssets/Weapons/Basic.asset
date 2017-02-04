@@ -20,5 +20,5 @@ MonoBehaviour:
   screenShakeOnFire:
     time: 0.1
     strength: 0.1
-  soundEffectOnFire: {fileID: 114000010270822984, guid: 1f9375827b343284aa5eb31be82c002b,
+  soundEffectOnFire: {fileID: 114000010270822984, guid: f548fb5c883270749af958d11dc74126,
     type: 2}
