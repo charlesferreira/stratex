@@ -28,6 +28,7 @@ public class Grid : MonoBehaviour
     {
         DecreaseBlocks();
 
+        /*
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             InsertBlock(PuzzlesManager.Instance.GetBlockInfo(BlockColor.Eletric));
@@ -56,6 +57,7 @@ public class Grid : MonoBehaviour
             InsertBlock(PuzzlesManager.Instance.GetBlockInfo(BlockColor.Laser));
             InsertBlock(PuzzlesManager.Instance.GetBlockInfo(BlockColor.Shield));
         }
+        */
     }
 
     public bool InsertBlock(BlockInfo blockInfo)

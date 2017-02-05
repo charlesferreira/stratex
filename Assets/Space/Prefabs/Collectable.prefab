@@ -21,8 +21,8 @@ GameObject:
   - 4: {fileID: 4000010360225174}
   - 212: {fileID: 212000012270343642}
   - 95: {fileID: 95000011780588964}
-  - 114: {fileID: 114000011392851666}
   - 61: {fileID: 61000010960577714}
+  - 114: {fileID: 114000011392851666}
   m_Layer: 14
   m_Name: Collectable
   m_TagString: Untagged
@@ -38,7 +38,7 @@ Transform:
   m_GameObject: {fileID: 1000011784928998}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
@@ -85,8 +85,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5e5e3e09a1199a448f2722f6a224ce5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swingRadius: 0.5
-  swingSpeed: 2
+  swingRadius: 0.3
+  swingSpeed: 1
 --- !u!212 &212000012270343642
 SpriteRenderer:
   m_ObjectHideFlags: 1

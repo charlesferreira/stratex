@@ -7,7 +7,6 @@ namespace Space.Arena.BlocksDistribution {
         public float swingSpeed;
 
         BlockInfo info;
-        Vector2 startingPosition;
         Vector2 phase;
         Vector2 speed;
         Vector2 swing;
@@ -15,26 +14,25 @@ namespace Space.Arena.BlocksDistribution {
         public void Init(BlockInfo info, Vector2 position) {
             this.info = info;
             GetComponent<Animator>().Play(info.name);
-
-            startingPosition = position;
+            
             transform.localPosition = position;
             phase = new Vector2(
                 Random.Range(0f, 360f),
                 Random.Range(0f, 360f));
             speed = new Vector2(
-                Random.Range(-swingSpeed, swingSpeed),
-                Random.Range(-swingSpeed, swingSpeed));
+                Random.Range(-1f, 1f),
+                Random.Range(-1f, 1f));
             swing = new Vector2();
         }
 
-        void Update() {
+        void FixedUpdate() {
             swing.Set(
-                Mathf.Cos(Time.time * speed.x + phase.x),
-                Mathf.Sin(Time.time * speed.y + phase.y));
-            transform.localPosition = startingPosition + swing * swingRadius;
+                Mathf.Cos(Time.time + phase.x) * speed.x,
+                Mathf.Sin(Time.time + phase.y) * speed.y);
+            transform.Translate(swing * swingSpeed * swingRadius * Time.fixedDeltaTime);
         }
 
-        void OnTriggerEnter2D(Collider2D other) {
+        void OnTriggerStay2D(Collider2D other) {
             var shipToPuzzle = other.GetComponent<ShipToPuzzleInterface>();
             if (shipToPuzzle == null) return;
 
