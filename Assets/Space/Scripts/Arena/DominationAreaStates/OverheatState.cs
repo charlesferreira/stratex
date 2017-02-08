@@ -17,7 +17,7 @@ namespace DominationAreaStates {
         public override void Update() {
             base.Update();
 
-            var blink = Mathf.PingPong(elapsedTime, dominationArea.OverheatedBlinkTime) / dominationArea.OverheatedBlinkTime;
+            var blink = Mathf.PingPong(elapsedTime, dominationArea.overheatedBlinkTime) / dominationArea.overheatedBlinkTime;
             var color = dominationArea.overheatedColorRange.Lerp(blink);
             dominationArea.Color = color;
         }

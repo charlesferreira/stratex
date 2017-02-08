@@ -3,69 +3,41 @@ using DominationAreaStates;
 
 public class DominationArea : MonoBehaviour {
 
-    // Inspector
+    [Header("References")]
+    public SpriteRenderer background;
+    public Rotor rotor;
+    public Rings rings;
 
-    [Header("General")]
-    public SpriteRenderer sprite;
-    public float pointDuration;
-
-    [Header("Rotator")]
-    public Transform rotator;
-    public float rotatorSpeed;
-
-    [Header("Cold State")]
+    [Header("Dominations Settings")]
     public Color coldColor;
+    public float timeToWarmUp;
+    public float timeToCoolDown;
 
-    [Header("Warming Up State")]
-    public float pointsTillWarmUp;
-
-    [Header("Hot State")]
-    public float hotGlowSpeed;
-    public Color hotGlowColor;
-
-    [Header("Cooling Down State")]
-    public float pointsTillCoolDown;
-
-    [Header("Overheated State")]
-    public float OverheatedBlinkSpeed;
+    [Header("Overheated Settings")]
     public ColorRange overheatedColorRange;
-
-
-    // Properties
-
-    public TeamFlags CurrentTeam { get; private set; }
+    public float overheatedBlinkTime;
 
     public Color Color {
-        get { return sprite.material.color; }
-        set { sprite.material.color = value; }
+        get { return background.color; }
+        set { background.color = value; }
     }
 
-    public float HotGlowTime { get { return pointDuration / (hotGlowSpeed * 2f); } }
-
-    public float OverheatedBlinkTime { get { return pointDuration / (OverheatedBlinkSpeed * 2f); } }
-
-    public float TimeToWarmUp { get { return pointsTillWarmUp * pointDuration; } }
-
-    public float TimeToCoolDown { get { return pointsTillCoolDown * pointDuration; } }
-
-
-    // States
-                      
+    public TeamFlags CurrentTeam { get; private set; }
+    
     [HideInInspector] public IDominationAreaState coldState;
     [HideInInspector] public IDominationAreaState warmingUpState;
     [HideInInspector] public IDominationAreaState hotState;
+    [HideInInspector] public IDominationAreaState movingState;
     [HideInInspector] public IDominationAreaState overheatedState;
     [HideInInspector] public IDominationAreaState coolingDownState;
     
     IDominationAreaState currentState;
-
-
-    // Methods
-
+    
     void Awake() {
         coldState        = new ColdState(this);
         warmingUpState   = new WarmingUpState(this);
         hotState         = new HotState(this);
+        movingState      = new MovingState(this);
         overheatedState  = new OverheatedState(this);
         coolingDownState = new CoolingDownState(this);
 
@@ -74,13 +46,12 @@ public class DominationArea : MonoBehaviour {
 
     void Update() {
         currentState.Update();
-        rotator.Rotate(Vector3.forward, rotatorSpeed * Time.deltaTime * Time.timeScale);
     }
 
     void OnTriggerEnter2D(Collider2D other) {
         var id = other.GetComponent<TeamIdentity>();
-        if (id == null) return;
-
+        if (id == null)
+            return;
         var team = id.info;
 
         // Se já contou a entrada da nave, não informa o estado
@@ -91,16 +62,16 @@ public class DominationArea : MonoBehaviour {
     }
 
     void OnTriggerExit2D(Collider2D other) {
-        var team = other.GetComponent<TeamIdentity>();
-        if (team == null)
+        var id = other.GetComponent<TeamIdentity>();
+        if (id == null)
             return;
-        var teamInfo = team.info;
+        var team = id.info;
         
         // Se já contou a saída da nave, não informa o estado
-        if ((CurrentTeam & ~teamInfo.flag) == CurrentTeam) return;
+        if ((CurrentTeam & ~team.flag) == CurrentTeam) return;
 
-        CurrentTeam &= ~teamInfo.flag;
-        currentState.ShipHasLeft(teamInfo);
+        CurrentTeam &= ~team.flag;
+        currentState.ShipHasLeft(team);
     }
 
     public void SetState(IDominationAreaState state) {

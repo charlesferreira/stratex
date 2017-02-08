@@ -9,7 +9,7 @@ public class CameraFollowShip : MonoBehaviour {
     public float damping;
     public Vector2 offset;
 
-    void LateUpdate() {
+    void FixedUpdate() {
         transform.position = Vector2.Lerp(transform.position, ship.position + (Vector3)offset, damping);
     }
 }

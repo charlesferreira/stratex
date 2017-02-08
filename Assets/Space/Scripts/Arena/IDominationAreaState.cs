@@ -8,6 +8,8 @@
 
     void ToHotState(TeamInfo team);
 
+    void ToMovingState();
+
     void ToOverheatedState();
 
     void ToCoolingDownState();

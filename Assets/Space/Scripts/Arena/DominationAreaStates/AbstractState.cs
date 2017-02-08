@@ -29,6 +29,10 @@ namespace DominationAreaStates {
             dominationArea.SetState(state);
         }
 
+        public void ToMovingState() {
+            dominationArea.SetState(dominationArea.movingState);
+        }
+
         public void ToOverheatedState() {
             dominationArea.SetState(dominationArea.overheatedState);
         }
@@ -50,6 +54,5 @@ namespace DominationAreaStates {
 
         public abstract void ShipHasEntered(TeamInfo team);
         public abstract void ShipHasLeft(TeamInfo team);
-
     }
 }

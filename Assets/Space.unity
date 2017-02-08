@@ -675,7 +675,7 @@ Prefab:
         type: 2}
       propertyPath: joystick
       value: 
-      objectReference: {fileID: 11400000, guid: c80977e133260364488be73bb7e89300,
+      objectReference: {fileID: 11400000, guid: 68b8e946a974eed42a1dddb4ab96fc33,
         type: 2}
     - target: {fileID: 114000010656401352, guid: 2322e1e76bfe8294ab088f48b544bec4,
         type: 2}
@@ -1803,6 +1803,26 @@ Prefab:
     - target: {fileID: 4000014178535930, guid: 442ca56677005984da886db8037b5069, type: 2}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012443659714, guid: 442ca56677005984da886db8037b5069,
+        type: 2}
+      propertyPath: timeToWarmUp
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012443659714, guid: 442ca56677005984da886db8037b5069,
+        type: 2}
+      propertyPath: timeToCoolDown
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012443659714, guid: 442ca56677005984da886db8037b5069,
+        type: 2}
+      propertyPath: overheatedBlinkTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010296964060, guid: 442ca56677005984da886db8037b5069,
+        type: 2}
+      propertyPath: damping
+      value: 0.013
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 442ca56677005984da886db8037b5069, type: 2}
@@ -3361,10 +3381,6 @@ Prefab:
     - target: {fileID: 1000010815338804, guid: 2322e1e76bfe8294ab088f48b544bec4, type: 2}
       propertyPath: m_Name
       value: Space 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012737707518, guid: 2322e1e76bfe8294ab088f48b544bec4, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2322e1e76bfe8294ab088f48b544bec4, type: 2}

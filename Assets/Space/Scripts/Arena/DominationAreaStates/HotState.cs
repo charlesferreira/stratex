@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace DominationAreaStates {
 
@@ -13,7 +12,7 @@ namespace DominationAreaStates {
             base.OnStateEnter();
 
             Score();
-            timeToScoreNextPoint = dominationArea.pointDuration;
+            timeToScoreNextPoint = dominationArea.timeToWarmUp;
         }
 
         public override void ShipHasEntered(TeamInfo team) {
@@ -27,15 +26,7 @@ namespace DominationAreaStates {
         public override void Update() {
             base.Update();
 
-            timeToScoreNextPoint -= Time.deltaTime;
-            if (timeToScoreNextPoint <= 0f) {
-                timeToScoreNextPoint += dominationArea.pointDuration;
-                Score();
-            }
-
-            var glow = Mathf.PingPong(elapsedTime, dominationArea.HotGlowTime) / dominationArea.HotGlowTime;
-            var glowColor = (DominatingTeam.color + dominationArea.hotGlowColor) / 2f;
-            dominationArea.Color = Color.Lerp(DominatingTeam.color, glowColor, glow);
+            Debug.Log("Marcou um ponto!");
         }
 
         private void Score() {

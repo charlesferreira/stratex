@@ -5,6 +5,7 @@ namespace DominationAreaStates {
     public class CoolingDownState : AbstractState {
 
         Color startingColor;
+        float timeToUpdateRotorSpeed;
 
         public CoolingDownState(DominationArea dominationArea) : base(dominationArea) { }
 
@@ -24,7 +25,7 @@ namespace DominationAreaStates {
         public override void Update() {
             base.Update();
 
-            var rate = elapsedTime / dominationArea.TimeToCoolDown;
+            var rate = elapsedTime / dominationArea.timeToCoolDown;
             var color = Color.Lerp(startingColor, dominationArea.coldColor, rate);
             dominationArea.Color = color;
 
@@ -35,10 +36,18 @@ namespace DominationAreaStates {
 
         private void ToNextState() {
             var flag = dominationArea.CurrentTeam;
-            if (flag == TeamFlags.Team1 || flag == TeamFlags.Team2)
-                ToWarmingUpState(TeamsManager.Instance.GetTeamInfo(flag));
-            else
+            if (flag == TeamFlags.None)
                 ToColdState();
+            else
+                ToWarmingUpState(TeamsManager.Instance.GetTeamInfo(flag));
+        }
+
+        void UpdateRotorSpeed(float deltaTime) {
+            timeToUpdateRotorSpeed -= deltaTime;
+            if (timeToUpdateRotorSpeed > 0) return;
+
+            timeToUpdateRotorSpeed += dominationArea.timeToCoolDown / dominationArea.rings.frames;
+            dominationArea.rotor.SlowDown();
         }
     }
 }

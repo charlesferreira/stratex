@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class DominationAreaAnimation : MonoBehaviour {
+public class Rings : MonoBehaviour {
 
     [Range(0, 1)]
     public float speed;
@@ -19,6 +19,7 @@ public class DominationAreaAnimation : MonoBehaviour {
     }
 
     // todo: rever esse método inteiro, escrevi morrendo de sono desmaiando sobre o teclado
+    // todo: passando por aqui dias depois, nas mesmas condições da vez anterior
     void Update() {
         anim.speed = speed;
         
