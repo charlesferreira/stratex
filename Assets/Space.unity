@@ -4614,6 +4614,10 @@ Prefab:
       propertyPath: m_Name
       value: Space 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4000012737707518, guid: 2322e1e76bfe8294ab088f48b544bec4, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2322e1e76bfe8294ab088f48b544bec4, type: 2}
   m_IsPrefabParent: 0
