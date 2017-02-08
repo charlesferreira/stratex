@@ -4,6 +4,7 @@ public class ShipEngine : MonoBehaviour {
 
     [Header("References")]
     public Transform fuelHUD;
+    public ParticleSystem neutralParticles;
     public ParticleSystem primaryParticles;
     public ParticleSystem reserveParticles;
 
@@ -49,6 +50,7 @@ public class ShipEngine : MonoBehaviour {
 
         var primaryEmission = primaryParticles.emission;
         var reserveEmission = reserveParticles.emission;
+        var neutralEmission = neutralParticles.emission;
 
         primaryEmission.enabled = false;
         reserveEmission.enabled = false;
@@ -59,6 +61,9 @@ public class ShipEngine : MonoBehaviour {
 
             var emission = fuel > 0 ? primaryEmission : reserveEmission;
             emission.enabled = true;
+            neutralEmission.enabled = false;
+        } else {
+            neutralEmission.enabled = true;
         }
 
         Steer();

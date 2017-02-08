@@ -5,18 +5,22 @@ public class Rotor : MonoBehaviour {
     public float baseSpeed;
     [Range(0, 1)]
     public float damping;
+    [Range(0, 100)]
     public float speedUpFactor;
+    [Range(0, 100)]
+    public float overheatMultiplier;
 
     float targetSpeed;
     float currentSpeed;
-    public float speedMultiplier;
+    float speedMultiplier;
+
+    public float SpeedMultiplier { get { return speedMultiplier; } }
 
     void Start() {
         targetSpeed = currentSpeed = baseSpeed;
     }
 
     void Update() {
-        UpdateTargetSpeed();
         currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, damping);
         transform.Rotate(Vector3.forward, currentSpeed * Time.deltaTime * Time.timeScale);
     }
@@ -28,6 +32,11 @@ public class Rotor : MonoBehaviour {
 
     public void SlowDown() {
         speedMultiplier = Mathf.Max(0f, --speedMultiplier);
+        UpdateTargetSpeed();
+    }
+
+    public void OverHeat() {
+        speedMultiplier = overheatMultiplier;
         UpdateTargetSpeed();
     }
 

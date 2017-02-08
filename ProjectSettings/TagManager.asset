@@ -52,6 +52,9 @@ TagManager:
   - name: Projectiles
     uniqueID: 1995983487
     locked: 0
+  - name: Thruster Particles
+    uniqueID: 2621490847
+    locked: 0
   - name: Player
     uniqueID: 2605574273
     locked: 0

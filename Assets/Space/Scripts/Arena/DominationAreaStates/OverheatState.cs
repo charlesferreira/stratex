@@ -6,6 +6,13 @@ namespace DominationAreaStates {
 
         public OverheatedState(DominationArea dominationArea) : base(dominationArea) { }
 
+        public override void OnStateEnter() {
+            base.OnStateEnter();
+
+            dominationArea.rotor.OverHeat();
+            dominationArea.rings.OverHeat();
+        }
+
         public override void ShipHasEntered(TeamInfo team) {
             Debug.LogError("overheating && ship entered");
         }

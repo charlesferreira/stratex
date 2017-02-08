@@ -11,6 +11,8 @@ namespace DominationAreaStates {
         public override void OnStateEnter() {
             base.OnStateEnter();
 
+            Debug.Log("Marcou um ponto!");
+
             Score();
             timeToScoreNextPoint = dominationArea.timeToWarmUp;
         }
@@ -25,8 +27,6 @@ namespace DominationAreaStates {
 
         public override void Update() {
             base.Update();
-
-            Debug.Log("Marcou um ponto!");
         }
 
         private void Score() {

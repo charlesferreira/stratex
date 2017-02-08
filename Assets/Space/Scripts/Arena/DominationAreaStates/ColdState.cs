@@ -23,13 +23,11 @@ namespace DominationAreaStates {
                 return;
             }
 
-            // define a cor "fria"
-            dominationArea.Color = dominationArea.coldColor;
-
-            // redefine a velocidade do rotor
+            // redefine a velocidade do rotor e dos anéis
             dominationArea.rotor.ResetSpeed();
+            dominationArea.rings.ResetSpeed();
         }
-        
+
         public override void ShipHasEntered(TeamInfo team) {
             ToWarmingUpState(team);
         }
@@ -38,5 +36,12 @@ namespace DominationAreaStates {
             Debug.LogError("cold && ship left");
         }
 
+        public override void Update() {
+            base.Update();
+
+            var damping = 0.01f;
+            var color = Color.Lerp(dominationArea.Color, dominationArea.coldColor, damping);
+            dominationArea.Color = color;
+        }
     }
 }

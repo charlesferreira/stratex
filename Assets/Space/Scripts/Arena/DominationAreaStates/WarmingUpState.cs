@@ -12,6 +12,7 @@ namespace DominationAreaStates {
         public override void OnStateEnter() {
             base.OnStateEnter();
 
+            timeToUpdateRotorSpeed = dominationArea.timeToWarmUp / 10;
             startingColor = dominationArea.Color;
         }
 
@@ -38,11 +39,11 @@ namespace DominationAreaStates {
         }
 
         void UpdateRotorSpeed(float deltaTime) {
-            timeToUpdateRotorSpeed -= deltaTime;
-            if (timeToUpdateRotorSpeed > 0) return;
+            if (elapsedTime % timeToUpdateRotorSpeed >= deltaTime)
+                return;
 
-            timeToUpdateRotorSpeed += dominationArea.timeToWarmUp / dominationArea.rings.frames;
             dominationArea.rotor.SpeedUp();
+            dominationArea.rings.SpeedUp();
         }
     }
 }

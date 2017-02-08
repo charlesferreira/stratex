@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: a3bf5a009bc0a6544a146add84776523
-timeCreated: 1486566344
+guid: 7409b6ba2a3df5745a253db8a672b621
+timeCreated: 1486566358
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: nave-3_0
-    21300002: nave-3_1
-    21300004: nave-3_2
-    21300006: nave-3_3
+    21300000: nave-4_0
+    21300002: nave-4_1
+    21300004: nave-4_2
+    21300006: nave-4_3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -57,52 +57,52 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: nave-3_0
+      name: nave-4_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 100
-        height: 102
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: nave-3_1
+      name: nave-4_1
       rect:
         serializedVersion: 2
         x: 100
         y: 0
         width: 100
-        height: 102
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: nave-3_2
+      name: nave-4_2
       rect:
         serializedVersion: 2
         x: 200
         y: 0
         width: 100
-        height: 102
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: nave-3_3
+      name: nave-4_3
       rect:
         serializedVersion: 2
         x: 300
         y: 0
         width: 100
-        height: 102
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
