@@ -3,6 +3,8 @@ using DominationAreaStates;
 
 public class DominationArea : MonoBehaviour {
 
+    // Public
+
     [Header("References")]
     public SpriteRenderer background;
     public Rotor rotor;
@@ -17,21 +19,22 @@ public class DominationArea : MonoBehaviour {
     public ColorRange overheatedColorRange;
     public float overheatedBlinkTime;
 
+    // Properties
+
     public Color Color {
         get { return background.color; }
         set { background.color = value; }
     }
 
     public TeamFlags CurrentTeam { get; private set; }
-    
-    [HideInInspector] public IDominationAreaState coldState;
-    [HideInInspector] public IDominationAreaState warmingUpState;
-    [HideInInspector] public IDominationAreaState hotState;
-    [HideInInspector] public IDominationAreaState movingState;
-    [HideInInspector] public IDominationAreaState overheatedState;
-    [HideInInspector] public IDominationAreaState coolingDownState;
-    
+        
+    // States
+
+    //[HideInInspector]
+    public IDominationAreaState coldState, warmingUpState, hotState, movingState, overheatedState, coolingDownState;
     IDominationAreaState currentState;
+
+    // Methods
     
     void Awake() {
         coldState        = new ColdState(this);

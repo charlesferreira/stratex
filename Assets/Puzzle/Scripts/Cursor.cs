@@ -3,20 +3,23 @@
 public class Cursor : MonoBehaviour {
 
     public int column, row;
-    Grid grid;
 
-    void Start() {
+    Grid grid;
+    SpriteRenderer sprite;
+
+    void Awake() {
         grid = GetComponentInParent<Grid>();
-        StartPosition();
-        GetComponent<SpriteRenderer>().enabled = false;
-        Invoke("ShowCursor", 1.8f);
+        sprite = GetComponent<SpriteRenderer>();
     }
 
-    void Update() {
-        
+    void Start() {
+        column = row = 0;
+        transform.localPosition = grid.GetGridCoord(new Vector3(column, row, -1)) + new Vector3(.5f, 0, 0);
     }
 
     public void Move(CursorMovement direction) {
+        if (!enabled) return;
+
         switch (direction) {
             case CursorMovement.Up:
                 row++;
@@ -41,6 +44,8 @@ public class Cursor : MonoBehaviour {
     }
 
     public void Swap(SwapDirection direction) {
+        if (!enabled) return;
+
         switch (direction) {
             case SwapDirection.Up:
                 if (row < GridManager.Instance.rows - 1) {
@@ -67,15 +72,11 @@ public class Cursor : MonoBehaviour {
         }
     }
 
-    void StartPosition() {
-        column = 0;
-        row = 0;
-
-        transform.localPosition = grid.GetGridCoord(new Vector3(column, row, -1)) + new Vector3(.5f, 0, 0);
+    public void Show() {
+        sprite.enabled = enabled = true;
     }
 
-    private void ShowCursor()
-    {
-        GetComponent<SpriteRenderer>().enabled = true;
+    public void Hide() {
+        sprite.enabled = enabled = false;
     }
 }

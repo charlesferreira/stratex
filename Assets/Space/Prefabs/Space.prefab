@@ -423,6 +423,7 @@ GameObject:
   - 114: {fileID: 114000012529646804}
   - 114: {fileID: 114000012213749594}
   - 114: {fileID: 114000013579371934}
+  - 114: {fileID: 114000010953680386}
   - 114: {fileID: 114000012525207274}
   - 114: {fileID: 114000010656401352}
   - 114: {fileID: 114000010119349532}
@@ -1480,6 +1481,17 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!114 &114000010953680386
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011920643630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ee42e701a5e69a4cb6e13ed01748031, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000011068667828
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1491,7 +1503,7 @@ MonoBehaviour:
   m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: bdc7d1ae660306c46acf8c261dbe9699, type: 2}
   m_Color: {r: 0, g: 0.8745098, b: 0.26666668, a: 0.803}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
@@ -1572,7 +1584,7 @@ MonoBehaviour:
   m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: bdc7d1ae660306c46acf8c261dbe9699, type: 2}
   m_Color: {r: 0.08235294, g: 0.8745098, b: 0.9254902, a: 0.8039216}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
@@ -1659,7 +1671,7 @@ MonoBehaviour:
   primaryParticles: {fileID: 198000013350517554}
   reserveParticles: {fileID: 198000012763321616}
   maxFuel: 60
-  startingFuel: 0
+  startingFuel: 0.4
   primaryThrusterPower: 500
   reserveThrusterPower: 100
   maxSpeed: 100000
@@ -1800,7 +1812,7 @@ MonoBehaviour:
   m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: bdc7d1ae660306c46acf8c261dbe9699, type: 2}
   m_Color: {r: 1, g: 0.29411763, b: 0.29411763, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
@@ -1859,7 +1871,7 @@ MonoBehaviour:
   m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: bdc7d1ae660306c46acf8c261dbe9699, type: 2}
   m_Color: {r: 1, g: 1, b: 0.49264705, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:

@@ -1,17 +1,9 @@
 ﻿public interface IGameState {
 
-    // Transitions
-    void ToStartingState();
-    void ToPlayingState();
-    void ToScoringState();
-    void ToRestartingState();
-    void ToEndingState();
-    void ToEndedState();
-
     // Callbacks
-    void OnStateEnter();
-    void OnStateExit();
+    void OnStateEnter(GameStateManager game);
+    void OnStateExit(GameStateManager game);
 
     // Messages
-    void Update();
+    void Update(GameStateManager game);
 }
