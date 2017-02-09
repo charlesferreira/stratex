@@ -565,7 +565,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
+  m_TargetTexture: {fileID: 8400000, guid: 7d8c969652d91354da9a23723b3402f8, type: 2}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0
@@ -1551,6 +1551,10 @@ Prefab:
         type: 2}
       propertyPath: m_TargetTexture
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000012957682778, guid: b23473ffe268a914e97f97775ddd9ddb, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b23473ffe268a914e97f97775ddd9ddb, type: 2}
@@ -3263,7 +3267,7 @@ Prefab:
       objectReference: {fileID: 80200908}
     - target: {fileID: 1000013392417682, guid: 7a2ee6599908cea4d8b04f39c49c4f02, type: 2}
       propertyPath: m_Name
-      value: Result Interface
+      value: Final Interface
       objectReference: {fileID: 0}
     - target: {fileID: 223000011190735236, guid: 7a2ee6599908cea4d8b04f39c49c4f02,
         type: 2}
@@ -3998,7 +4002,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
+  m_TargetTexture: {fileID: 8400000, guid: 04e26cdba00ab7740b2743de1de52c6d, type: 2}
   m_TargetDisplay: 1
   m_TargetEye: 3
   m_HDR: 0
