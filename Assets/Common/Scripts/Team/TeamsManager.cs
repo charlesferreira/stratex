@@ -3,9 +3,6 @@ using System.Collections.Generic;
 
 public class TeamsManager : MonoBehaviour {
 
-    [Range(0, 100)]
-    public int startingPoints;
-
     [Header("Teams")]
     [SerializeField] TeamInfo team1Info;
     [SerializeField] TeamInfo team2Info;
@@ -24,8 +21,8 @@ public class TeamsManager : MonoBehaviour {
 
     void Awake() {
         teams = new Dictionary<TeamFlags, Team>(2);
-        teams.Add(team1Info.flag, new Team(team1Info, startingPoints));
-        teams.Add(team2Info.flag, new Team(team2Info, startingPoints));
+        teams.Add(team1Info.flag, new Team(team1Info));
+        teams.Add(team2Info.flag, new Team(team2Info));
     }
 
     public TeamInfo GetTeamInfo(TeamFlags flag) {

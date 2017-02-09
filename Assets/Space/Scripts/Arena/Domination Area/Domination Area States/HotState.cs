@@ -3,8 +3,6 @@
 namespace DominationAreaStates {
 
     public class HotState : AbstractState {
-        
-        private float timeToScoreNextPoint;
 
         public HotState(DominationArea dominationArea) : base(dominationArea) { }
 
@@ -14,7 +12,6 @@ namespace DominationAreaStates {
             Debug.Log("Marcou um ponto!");
 
             Score();
-            timeToScoreNextPoint = dominationArea.timeToWarmUp;
         }
 
         public override void ShipHasEntered(TeamInfo team) {

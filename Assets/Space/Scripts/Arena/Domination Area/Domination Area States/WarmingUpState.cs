@@ -14,6 +14,9 @@ namespace DominationAreaStates {
 
             timeToUpdateRotorSpeed = dominationArea.timeToWarmUp / 10;
             startingColor = dominationArea.Color;
+
+            dominationArea.rotor.ResetSpeed();
+            dominationArea.rings.ResetSpeed();
         }
 
         public override void ShipHasEntered(TeamInfo team) {

@@ -15,7 +15,7 @@ public class TeamHUD : MonoBehaviour, IScoreObserver {
         allyFlag = GetComponent<TeamIdentity>().info.flag;
         TeamsManager.Instance.RegisterObserver(this);
 
-        var score = TeamsManager.Instance.startingPoints.ToString();
+        var score = "0";
         var allyInfo = TeamsManager.Instance.GetTeamInfo(allyFlag);
         var enemyInfo = TeamsManager.Instance.GetEnemyTeam(allyFlag);
 

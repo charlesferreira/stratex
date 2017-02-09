@@ -47,8 +47,6 @@ namespace DominationAreaStates {
 
         public virtual void OnStateEnter() {
             elapsedTime = 0f;
-            dominationArea.rotor.ResetSpeed();
-            dominationArea.rings.ResetSpeed();
         }
 
         public virtual void OnStateExit() {

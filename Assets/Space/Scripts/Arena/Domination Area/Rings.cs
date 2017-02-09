@@ -2,13 +2,13 @@
 
 public class Rings : MonoBehaviour {
 
-    [Range(0.001f, 100)]
+    [Range(0.001f, 10)]
     public float baseSpeed;
-    [Range(0, 1)]
+    [Range(0, 0.1f)]
     public float damping;
-    [Range(0, 100)]
+    [Range(0, 10)]
     public float speedUpFactor;
-    [Range(0, 100)]
+    [Range(0, 10)]
     public float overheatMultiplier;
 
     SpriteRenderer[] children;

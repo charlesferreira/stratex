@@ -7,16 +7,12 @@ public class Team {
 
     public int Points { get; private set; }
 
-    public Team(TeamInfo info, int startingPoints) {
+    public Team(TeamInfo info) {
         this.info = info;
-        Points = startingPoints;
     }
 
     public int Score() {
-        if (Points > 0)
-            Points--;
-
-        return Points;
+        return ++Points;
     }
 
 }

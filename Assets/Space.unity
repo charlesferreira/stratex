@@ -2421,6 +2421,7 @@ GameObject:
   - 114: {fileID: 1547478508}
   - 114: {fileID: 1547478510}
   - 114: {fileID: 1547478511}
+  - 114: {fileID: 1547478512}
   m_Layer: 0
   m_Name: Game Managers
   m_TagString: Untagged
@@ -2439,7 +2440,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2caabb22c8305984ba3c12a0038b8a2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingPoints: 100
   team1Info: {fileID: 11400000, guid: baf43abac98b4e34b9f7171ae732ac2f, type: 2}
   team2Info: {fileID: 11400000, guid: 30a67cc9b55c1a24dbf9b58793f07e04, type: 2}
 --- !u!4 &1547478509
@@ -2490,6 +2490,17 @@ MonoBehaviour:
   finalImageTeam2: {fileID: 296438808}
   resultPanel: {fileID: 355678912}
   resultMenu: {fileID: 55700507}
+--- !u!114 &1547478512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1547478507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de5fabf5ea457804aacd2d270ec71d5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1602474630
 Prefab:
   m_ObjectHideFlags: 0

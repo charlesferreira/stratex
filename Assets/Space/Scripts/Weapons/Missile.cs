@@ -42,8 +42,8 @@ public class Missile : Bullet {
 
         // desabilita colisor e sprite
         // todo: verificar por que o sprite às vezes é null
-        sprite.enabled = false;
-        boxCollider.enabled = false;
+        if (sprite != null) sprite.enabled = false;
+        if (boxCollider != null) boxCollider.enabled = false;
 
         // aguarda o sistema de partículas do rastro terminar para então destruir o objeto
         trail.Stop();

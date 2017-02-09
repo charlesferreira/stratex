@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 
 public class Rotor : MonoBehaviour {
-    
+
+    [Range(0, 100)]
     public float baseSpeed;
-    [Range(0, 1)]
+    [Range(0, 0.1f)]
     public float damping;
-    [Range(0, 100)]
+    [Range(0, 10)]
     public float speedUpFactor;
-    [Range(0, 100)]
+    [Range(0, 10)]
     public float overheatMultiplier;
 
     float targetSpeed;

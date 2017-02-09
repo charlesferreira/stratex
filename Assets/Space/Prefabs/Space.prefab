@@ -1391,7 +1391,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 5810d829be8d127499dd61dc9cf06d28, type: 3}
-    m_FontSize: 54
+    m_FontSize: 56
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -1402,7 +1402,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 100
+  m_Text: 0
 --- !u!114 &114000011803510816
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1472,7 +1472,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 5810d829be8d127499dd61dc9cf06d28, type: 3}
-    m_FontSize: 54
+    m_FontSize: 56
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -1483,7 +1483,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 100
+  m_Text: 0
 --- !u!114 &114000012213749594
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1954,7 +1954,7 @@ ParticleSystem:
   moveWithTransform: 0
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: 77095045
+  randomSeed: -1591343798
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -2096,8 +2096,8 @@ ParticleSystem:
         atime7: 0
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
-      minColor: {r: 0.5803922, g: 0.14117648, b: 0, a: 0.16470589}
-      maxColor: {r: 0.23921569, g: 0.09019608, b: 0, a: 0.21568628}
+      minColor: {r: 0.03137255, g: 0.03529412, b: 0.25490198, a: 0.22745098}
+      maxColor: {r: 0.003921569, g: 0.22745098, b: 0.39607844, a: 0.13333334}
       minMaxState: 2
     startSize:
       scalar: 0.4
@@ -7606,7 +7606,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -664.3, y: -628}
+  m_AnchoredPosition: {x: -664.3, y: -626}
   m_SizeDelta: {x: 160, y: 120}
   m_Pivot: {x: 1, y: 1}
 --- !u!224 &224000011699487560
@@ -7831,7 +7831,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 288, y: -628}
+  m_AnchoredPosition: {x: 288, y: -626}
   m_SizeDelta: {x: 160, y: 120}
   m_Pivot: {x: 0, y: 1}
 --- !u!224 &224000013776994400
