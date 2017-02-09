@@ -642,7 +642,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 32768
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 8400000, guid: 0e69ce4a579518b42b5a7e94d0755c05, type: 2}
+  m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0
@@ -1197,7 +1197,7 @@ AudioListener:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012893342734}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!92 &92000010880451950
 Behaviour:
   m_ObjectHideFlags: 1
@@ -1254,11 +1254,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000011759509374}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2ae6a27957bd5f4d8703250b82e4a91, type: 3}
+  m_Script: {fileID: 11500000, guid: 53c7ada3591c84a4b91f73858a73987a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   randomStartAngle: 0
-  speed: -1
+  speed: 0
 --- !u!114 &114000012443659714
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1301,11 +1301,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000012626290024}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2ae6a27957bd5f4d8703250b82e4a91, type: 3}
+  m_Script: {fileID: 11500000, guid: 53c7ada3591c84a4b91f73858a73987a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  randomStartAngle: 1
-  speed: 1
+  randomStartAngle: 0
+  speed: 0
 --- !u!114 &114000014293297098
 MonoBehaviour:
   m_ObjectHideFlags: 1

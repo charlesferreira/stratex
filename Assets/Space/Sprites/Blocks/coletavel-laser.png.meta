@@ -1,12 +1,12 @@
 fileFormatVersion: 2
-guid: ce92e6c31aca0dc48a543b0d300b5f75
-timeCreated: 1486168699
+guid: 36c9b069c7b83674ba4f2ab9151909e0
+timeCreated: 1486168738
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: coletavel-laser_0
-    21300002: coletavel-laser_1
-    21300004: coletavel-laser_2
+    21300000: coletavel-missile_0
+    21300002: coletavel-missile_1
+    21300004: coletavel-missile_2
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -56,7 +56,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: coletavel-laser_0
+      name: coletavel-missile_0
       rect:
         serializedVersion: 2
         x: 0
@@ -69,7 +69,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: coletavel-laser_1
+      name: coletavel-missile_1
       rect:
         serializedVersion: 2
         x: 18
@@ -82,7 +82,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: coletavel-laser_2
+      name: coletavel-missile_2
       rect:
         serializedVersion: 2
         x: 36
