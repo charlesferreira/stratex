@@ -10,6 +10,10 @@ public class GameStateManager : MonoBehaviour {
     public ShipOnOffSwitch ship2;
     public PuzzleOnOffSwitch puzzle1;
     public PuzzleOnOffSwitch puzzle2;
+    public CameraMan shipCamera1;
+    public CameraMan shipCamera2;
+    public CameraMan hudCamera1;
+    public CameraMan hudCamera2;
 
     [Header("Starting State")]
     [Range(0, 10)]
