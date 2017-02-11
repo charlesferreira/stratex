@@ -7,4 +7,5 @@ public class TeamInfo : ScriptableObject {
 
     public Color color;
 
+    public Sprite teamCard;
 }

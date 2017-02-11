@@ -29,7 +29,7 @@ public class Pause : MonoBehaviour {
         {
             if (Input.GetButtonDown(joystick.StartButton))
             {
-                transform.GetChild(0).GetComponent<MainMenuInput>().joystick = joystick;
+                transform.GetChild(0).GetComponent<MenuInput>().joysticks[0] = joystick;
                 DoPause();
             }
         }

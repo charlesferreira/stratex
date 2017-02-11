@@ -5,12 +5,12 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour {
 
     List<Button> buttons = new List<Button>();
-    MainMenuInput input;
+    MenuInput input;
     int currentIndexButton = 0;
 
     void Awake()
     {
-        input = GetComponent<MainMenuInput>();
+        input = GetComponent<MenuInput>();
 
         foreach (Transform child in transform)
         {
@@ -36,11 +36,11 @@ public class MainMenu : MonoBehaviour {
         buttons[1].Select();
         buttons[currentIndexButton].Select();
 
-        if (input.ConfirmButton)
+        if (input.Confirm)
         {
             buttons[currentIndexButton].onClick.Invoke();
         }
-        if (input.CancelButton || input.StartButton)
+        if (input.Cancel || input.Start)
         {
             Pause.Instance.DoPause();
         }
