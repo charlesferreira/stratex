@@ -60,4 +60,8 @@ public class CameraMan : MonoBehaviour {
         zoomSpeed = speed;
         return this;
     }
+
+    public CameraMan Zoom(float scale) {
+        return Zoom(scale, Mathf.Infinity);
+    }
 }

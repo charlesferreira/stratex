@@ -2,24 +2,23 @@
 
 namespace DominationAreaStates {
 
-    public class ColdState : AbstractState {
+    [System.Serializable]
+    public class ColdState : IDominationAreaState {
 
-        public ColdState(DominationArea dominationArea) : base(dominationArea) { }
+        public Color coldColor;
 
-        public override void OnStateEnter() {
-            base.OnStateEnter();
-
+        public void OnStateEnter(DominationArea dominationArea) {
             // se tem duas naves, sobrecarrega
             var flag = dominationArea.CurrentTeam;
             if (flag == TeamFlags.Both) {
-                ToOverheatedState();
+                dominationArea.ToOverheatedState();
                 return;
             }
 
             // se tem uma nave, começa a aquecer
             if (flag == (TeamFlags.Team1 ^ TeamFlags.Team2)) {
                 var team = TeamsManager.Instance.GetTeamInfo(flag);
-                ToWarmingUpState(team);
+                dominationArea.ToWarmingUpState(team);
                 return;
             }
 
@@ -28,19 +27,19 @@ namespace DominationAreaStates {
             dominationArea.rings.ResetSpeed();
         }
 
-        public override void ShipHasEntered(TeamInfo team) {
-            ToWarmingUpState(team);
+        public void OnStateExit(DominationArea dominationArea) { }
+
+        public void ShipHasEntered(DominationArea dominationArea, TeamInfo team) {
+            dominationArea.ToWarmingUpState(team);
         }
 
-        public override void ShipHasLeft(TeamInfo team) {
+        public void ShipHasLeft(DominationArea dominationArea, TeamInfo team) {
             Debug.LogError("cold && ship left");
         }
 
-        public override void Update() {
-            base.Update();
-
+        public void Update(DominationArea dominationArea) {
             var damping = 0.01f;
-            var color = Color.Lerp(dominationArea.Color, dominationArea.coldColor, damping);
+            var color = Color.Lerp(dominationArea.Color, coldColor, damping);
             dominationArea.Color = color;
         }
     }

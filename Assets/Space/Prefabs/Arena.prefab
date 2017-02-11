@@ -642,7 +642,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 32768
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
+  m_TargetTexture: {fileID: 8400000, guid: 0e69ce4a579518b42b5a7e94d0755c05, type: 2}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0
@@ -1258,7 +1258,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   randomStartAngle: 0
-  speed: 0
+  speed: -1
 --- !u!114 &114000012443659714
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1273,13 +1273,19 @@ MonoBehaviour:
   background: {fileID: 212000010264597068}
   rotor: {fileID: 114000010296964060}
   rings: {fileID: 114000014293297098}
-  coldColor: {r: 0.1586206, g: 1, b: 0, a: 0.247}
-  timeToWarmUp: 7
-  timeToCoolDown: 0.5
-  overheatedColorRange:
-    start: {r: 1, g: 0, b: 0, a: 0.634}
-    end: {r: 1, g: 0.8482758, b: 0, a: 0.789}
-  overheatedBlinkTime: 0.2
+  coldState:
+    coldColor: {r: 0.13333334, g: 1, b: 0, a: 0.27058825}
+  warmingUpState:
+    timeToWarmUp: 6
+  hotState:
+    gameStateManager: {fileID: 0}
+  overheatedState:
+    overheatedColorRange:
+      start: {r: 1, g: 0, b: 0, a: 0.6313726}
+      end: {r: 1, g: 0.84705883, b: 0, a: 0.7882353}
+    overheatedBlinkTime: 0.2
+  coolingDownState:
+    timeToCoolDown: 0.5
 --- !u!114 &114000012847153640
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1304,8 +1310,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53c7ada3591c84a4b91f73858a73987a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  randomStartAngle: 0
-  speed: 0
+  randomStartAngle: 1
+  speed: 1
 --- !u!114 &114000014293297098
 MonoBehaviour:
   m_ObjectHideFlags: 1

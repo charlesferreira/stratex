@@ -2,53 +2,56 @@
 
 namespace DominationAreaStates {
 
-    public class CoolingDownState : AbstractState {
+    [System.Serializable]
+    public class CoolingDownState : IDominationAreaState {
+
+        [Range(0, 10)]
+        public float timeToCoolDown;
 
         Color startingColor;
+        float elapsedTime;
         float timeToUpdateRotorSpeed;
 
-        public CoolingDownState(DominationArea dominationArea) : base(dominationArea) { }
-
-        public override void OnStateEnter() {
-            base.OnStateEnter();
-
-            timeToUpdateRotorSpeed = dominationArea.timeToCoolDown / (dominationArea.rotor.SpeedMultiplier + 1);
+        public void OnStateEnter(DominationArea dominationArea) {
+            elapsedTime = 0;
+            timeToUpdateRotorSpeed = timeToCoolDown / (dominationArea.rotor.SpeedMultiplier + 1);
             startingColor = dominationArea.Color;
         }
 
-        public override void ShipHasEntered(TeamInfo team) {
+        public void ShipHasEntered(DominationArea dominationArea, TeamInfo team) {
             if (dominationArea.CurrentTeam == TeamFlags.Both)
-                ToOverheatedState();
+                dominationArea.ToOverheatedState();
         }
 
-        public override void ShipHasLeft(TeamInfo team) { }
+        public void ShipHasLeft(DominationArea dominationArea, TeamInfo team) { }
 
-        public override void Update() {
-            base.Update();
-
-            var rate = elapsedTime / dominationArea.timeToCoolDown;
-            var color = Color.Lerp(startingColor, dominationArea.coldColor, rate);
+        public void Update(DominationArea dominationArea) {
+            elapsedTime += Time.deltaTime;
+            var rate = elapsedTime / timeToCoolDown;
+            var color = Color.Lerp(startingColor, dominationArea.ColdColor, rate);
             dominationArea.Color = color;
 
             if (rate >= 1f) {
-                ToNextState();
+                ToNextState(dominationArea);
             }
         }
 
-        private void ToNextState() {
+        private void ToNextState(DominationArea dominationArea) {
             var flag = dominationArea.CurrentTeam;
             if (flag == TeamFlags.None)
-                ToColdState();
+                dominationArea.ToColdState();
             else
-                ToWarmingUpState(TeamsManager.Instance.GetTeamInfo(flag));
+                dominationArea.ToWarmingUpState(TeamsManager.Instance.GetTeamInfo(flag));
         }
 
-        void UpdateRotorSpeed(float deltaTime) {
+        void UpdateRotorSpeed(DominationArea dominationArea, float deltaTime) {
             if (elapsedTime % timeToUpdateRotorSpeed >= deltaTime)
                 return;
-            
+
             dominationArea.rotor.SlowDown();
             dominationArea.rings.SlowDown();
         }
+
+        public void OnStateExit(DominationArea dominationArea) { }
     }
 }

@@ -2,46 +2,49 @@
 
 namespace DominationAreaStates {
 
-    public class WarmingUpState : AbstractState {
+    [System.Serializable]
+    public class WarmingUpState : IDominationAreaState {
+
+        [Range(0, 10)]
+        public float timeToWarmUp;
 
         Color startingColor;
+        float elapsedTime;
         float timeToUpdateRotorSpeed;
 
-        public WarmingUpState(DominationArea dominationArea) : base(dominationArea) { }
-
-        public override void OnStateEnter() {
-            base.OnStateEnter();
-
-            timeToUpdateRotorSpeed = dominationArea.timeToWarmUp / 10;
+        public void OnStateEnter(DominationArea dominationArea) {
             startingColor = dominationArea.Color;
+            elapsedTime = 0;
+            timeToUpdateRotorSpeed = timeToWarmUp / 10;
 
             dominationArea.rotor.ResetSpeed();
             dominationArea.rings.ResetSpeed();
         }
 
-        public override void ShipHasEntered(TeamInfo team) {
-            ToOverheatedState();
+        public void OnStateExit(DominationArea dominationArea) { }
+
+        public void ShipHasEntered(DominationArea dominationArea, TeamInfo team) {
+            dominationArea.ToOverheatedState();
         }
 
-        public override void ShipHasLeft(TeamInfo team) {
-            ToColdState();
+        public void ShipHasLeft(DominationArea dominationArea, TeamInfo team) {
+            dominationArea.ToColdState();
         }
 
-        public override void Update() {
-            base.Update();
-
-            var rate = elapsedTime / dominationArea.timeToWarmUp;
-            var color = Color.Lerp(startingColor, DominatingTeam.color, rate);
+        public void Update(DominationArea dominationArea) {
+            elapsedTime += Time.deltaTime;
+            var rate = elapsedTime / timeToWarmUp;
+            var color = Color.Lerp(startingColor, dominationArea.DominatingTeam.color, rate);
             dominationArea.Color = color;
 
             if (rate >= 1f) {
-                ToHotState(DominatingTeam);
+                dominationArea.ToHotState();
             }
 
-            UpdateRotorSpeed(Time.deltaTime);
+            UpdateRotorSpeed(dominationArea, Time.deltaTime);
         }
 
-        void UpdateRotorSpeed(float deltaTime) {
+        void UpdateRotorSpeed(DominationArea dominationArea, float deltaTime) {
             if (elapsedTime % timeToUpdateRotorSpeed >= deltaTime)
                 return;
 

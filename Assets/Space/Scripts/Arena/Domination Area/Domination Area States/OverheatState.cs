@@ -2,30 +2,33 @@
 
 namespace DominationAreaStates {
 
-    public class OverheatedState : AbstractState {
+    [System.Serializable]
+    public class OverheatedState : IDominationAreaState {
 
-        public OverheatedState(DominationArea dominationArea) : base(dominationArea) { }
+        public ColorRange overheatedColorRange;
+        [Range(0, 1)]
+        public float overheatedBlinkTime;
 
-        public override void OnStateEnter() {
-            base.OnStateEnter();
+        float elapsedTime;
 
+        public void OnStateEnter(DominationArea dominationArea) {
+            elapsedTime = 0;
             dominationArea.rotor.OverHeat();
             dominationArea.rings.OverHeat();
         }
 
-        public override void ShipHasEntered(TeamInfo team) {
-            Debug.LogError("overheating && ship entered");
+        public void OnStateExit(DominationArea dominationArea) { }
+
+        public void ShipHasEntered(DominationArea dominationArea, TeamInfo team) { }
+
+        public void ShipHasLeft(DominationArea dominationArea, TeamInfo team) {
+            dominationArea.ToCoolingDownState();
         }
 
-        public override void ShipHasLeft(TeamInfo team) {
-            ToCoolingDownState();
-        }
-
-        public override void Update() {
-            base.Update();
-
-            var blink = Mathf.PingPong(elapsedTime, dominationArea.overheatedBlinkTime) / dominationArea.overheatedBlinkTime;
-            var color = dominationArea.overheatedColorRange.Lerp(blink);
+        public void Update(DominationArea dominationArea) {
+            elapsedTime += Time.deltaTime;
+            var blink = Mathf.PingPong(elapsedTime, overheatedBlinkTime) / overheatedBlinkTime;
+            var color = overheatedColorRange.Lerp(blink);
             dominationArea.Color = color;
         }
     }
