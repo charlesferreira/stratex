@@ -9,8 +9,7 @@ public class Pause : MonoBehaviour {
     static Pause instance;
     public static Pause Instance
     {
-        get
-        {
+        get {
             if (instance == null)
                 instance = FindObjectOfType<Pause>();
             return instance;

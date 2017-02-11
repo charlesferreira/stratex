@@ -1,11 +1,12 @@
-﻿namespace GameStates {
+﻿using UnityEngine;
 
+namespace GameStates {
+
+    [System.Serializable]
     public class ScoringState : IGameState {
 
         public void OnStateEnter(GameStateManager game) {
-        }
-
-        public void OnStateExit(GameStateManager game) {
+            Debug.Log(game.ScoringTeam);
         }
 
         public void Update(GameStateManager game) {

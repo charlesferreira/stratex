@@ -1,20 +1,40 @@
-﻿namespace GameStates {
+﻿using System.Collections;
+using UnityEngine;
 
+namespace GameStates {
+
+    [System.Serializable]
     public class PlayingState : IGameState {
+
+        [Range(0, 1)]
+        public float maxAlpha;
+        [Range(0, 2)]
+        public float goFadeIn;
+        [Range(0, 2)]
+        public float goStay;
+        [Range(0, 2)]
+        public float goFadeOut;
 
         public void OnStateEnter(GameStateManager game) {
             TurnOnControls(game);
-            FocusPlayerShip(game);
-            ShowHUD(game);
+            ShowStartMessage();
+            game.StartCoroutine(HideStartMessage());
+            game.StartCoroutine(TurnOnControls(game));
         }
 
-        public void OnStateExit(GameStateManager game) {
+        void ShowStartMessage() {
+            var messages = CommonMessages.Instance;
+            messages.SetMessage(CommonMessages.MessageType.Go);
+            messages.Show(goFadeIn, new Color(1, 1, 1, maxAlpha));
         }
 
-        public void Update(GameStateManager game) {
+        IEnumerator HideStartMessage() {
+            yield return new WaitForSeconds(goFadeIn + goStay);
+            CommonMessages.Instance.Hide(goFadeOut, new Color(1, 1, 1, 0));
         }
 
-        void TurnOnControls(GameStateManager game) {
+        IEnumerator TurnOnControls(GameStateManager game) {
+            yield return new WaitForSeconds(goFadeIn + goStay / 3);
             // habilita os controles das naves e dos puzzles
             game.ship1.TurnOn();
             game.ship2.TurnOn();
@@ -22,16 +42,7 @@
             game.puzzle2.TurnOn();
         }
 
-        void FocusPlayerShip(GameStateManager game) {
-            // retorna os focos das câmeras para as naves
-            game.shipCamera1.ResetTarget().Zoom(1, 1);
-            game.shipCamera2.ResetTarget().Zoom(1, 1);
-        }
-
-        void ShowHUD(GameStateManager game) {
-            // exibe a HUD
-            game.hudCamera1.Zoom(1, 1);
-            game.hudCamera2.Zoom(1, 1);
+        public void Update(GameStateManager game) {
         }
     }
 }

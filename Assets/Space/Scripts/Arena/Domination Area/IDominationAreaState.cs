@@ -1,19 +1,10 @@
 ﻿public interface IDominationAreaState {
-
-    // State Transitions
-    void ToColdState();
-    void ToWarmingUpState(TeamInfo team);
-    void ToHotState(TeamInfo team);
-    void ToMovingState();
-    void ToOverheatedState();
-    void ToCoolingDownState();
-    
     // Callbacks
-    void OnStateEnter();
-    void OnStateExit();
+    void OnStateEnter(DominationArea dominationArea);
+    void OnStateExit(DominationArea dominationArea);
 
     // Messages
-    void ShipHasEntered(TeamInfo team);
-    void ShipHasLeft(TeamInfo team);
-    void Update();
+    void ShipHasEntered(DominationArea dominationArea, TeamInfo team);
+    void ShipHasLeft(DominationArea dominationArea, TeamInfo team);
+    void Update(DominationArea dominationArea);
 }

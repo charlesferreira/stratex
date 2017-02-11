@@ -2,32 +2,26 @@
 
 namespace DominationAreaStates {
 
-    public class HotState : AbstractState {
+    [System.Serializable]
+    public class HotState : IDominationAreaState {
 
-        public HotState(DominationArea dominationArea) : base(dominationArea) { }
+        public GameStateManager gameStateManager;
 
-        public override void OnStateEnter() {
-            base.OnStateEnter();
-
-            Debug.Log("Marcou um ponto!");
-
-            Score();
-        }
-
-        public override void ShipHasEntered(TeamInfo team) {
-            ToOverheatedState();
-        }
-
-        public override void ShipHasLeft(TeamInfo team) {
-            ToColdState();
-        }
-
-        public override void Update() {
-            base.Update();
-        }
-
-        private void Score() {
+        public void OnStateEnter(DominationArea dominationArea) {
+            gameStateManager.ToScoringState(dominationArea.DominatingTeam);
             TeamsManager.Instance.Score(dominationArea.CurrentTeam);
         }
+
+        public void OnStateExit(DominationArea dominationArea) { }
+
+        public void ShipHasEntered(DominationArea dominationArea, TeamInfo team) {
+            dominationArea.ToOverheatedState();
+        }
+
+        public void ShipHasLeft(DominationArea dominationArea, TeamInfo team) {
+            dominationArea.ToColdState();
+        }
+
+        public void Update(DominationArea dominationArea) { }
     }
 }

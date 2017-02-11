@@ -4,6 +4,9 @@ using UnityEngine;
 public class GameStateManager : MonoBehaviour {
 
     // Public
+    [Header("Debug")]
+    public bool skipIntro;
+
     [Header("References")]
     public DominationArea dominationArea;
     public ShipOnOffSwitch ship1;
@@ -15,17 +18,14 @@ public class GameStateManager : MonoBehaviour {
     public CameraMan hudCamera1;
     public CameraMan hudCamera2;
 
-    [Header("Starting State")]
-    [Range(0, 10)]
-    public float startingDuration;
-
     // States
-    IGameState startingState = new StartingState();
-    IGameState playingState = new PlayingState();   
-    IGameState scoringState = new ScoringState();   
-    IGameState restartingState = new RestartingState();
-    IGameState endingState = new EndingState();    
-    IGameState endedState = new EndedState();     
+    [Header("States")]
+    [SerializeField] StartingState startingState;
+    [SerializeField] PlayingState playingState;
+    [SerializeField] ScoringState scoringState;
+    [SerializeField] RestartingState restartingState;
+    [SerializeField] EndingState endingState;
+    [SerializeField] EndedState endedState;
     IGameState currentState;
 
     // Private
@@ -36,7 +36,10 @@ public class GameStateManager : MonoBehaviour {
 
     // Methods
     void Start () {
-        ToStartingState();
+        if (skipIntro)
+            ToPlayingState();
+        else
+            ToStartingState();
     }
 
     void Update () {
@@ -44,8 +47,6 @@ public class GameStateManager : MonoBehaviour {
 	}
 
     void SetState(IGameState state) {
-        if (currentState != null)
-            currentState.OnStateExit(this);
         currentState = state;
         currentState.OnStateEnter(this);
     }

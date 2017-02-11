@@ -2,22 +2,19 @@
 using DominationAreaStates;
 
 public class DominationArea : MonoBehaviour {
-
-    // Public
-
+    
     [Header("References")]
     public SpriteRenderer background;
     public Rotor rotor;
     public Rings rings;
-
-    [Header("Dominations Settings")]
-    public Color coldColor;
-    public float timeToWarmUp;
-    public float timeToCoolDown;
-
-    [Header("Overheated Settings")]
-    public ColorRange overheatedColorRange;
-    public float overheatedBlinkTime;
+    
+    [Header("States")]
+    [SerializeField] ColdState coldState;
+    [SerializeField] WarmingUpState warmingUpState;
+    [SerializeField] HotState hotState;
+    [SerializeField] OverheatedState overheatedState;
+    [SerializeField] CoolingDownState coolingDownState;
+    IDominationAreaState currentState;
 
     // Properties
 
@@ -25,30 +22,18 @@ public class DominationArea : MonoBehaviour {
         get { return background.color; }
         set { background.color = value; }
     }
-
+    public Color ColdColor { get { return coldState.coldColor; } }
     public TeamFlags CurrentTeam { get; private set; }
-        
-    // States
-
-    //[HideInInspector]
-    public IDominationAreaState coldState, warmingUpState, hotState, movingState, overheatedState, coolingDownState;
-    IDominationAreaState currentState;
+    public TeamInfo DominatingTeam { get; private set; }
 
     // Methods
     
     void Awake() {
-        coldState        = new ColdState(this);
-        warmingUpState   = new WarmingUpState(this);
-        hotState         = new HotState(this);
-        movingState      = new MovingState(this);
-        overheatedState  = new OverheatedState(this);
-        coolingDownState = new CoolingDownState(this);
-
         SetState(coldState);
     }
 
     void Update() {
-        currentState.Update();
+        currentState.Update(this);
     }
 
     void OnTriggerEnter2D(Collider2D other) {
@@ -61,7 +46,7 @@ public class DominationArea : MonoBehaviour {
         if ((CurrentTeam & team.flag) != 0) return;
 
         CurrentTeam |= team.flag;
-        currentState.ShipHasEntered(team);
+        currentState.ShipHasEntered(this, team);
     }
 
     void OnTriggerExit2D(Collider2D other) {
@@ -74,14 +59,37 @@ public class DominationArea : MonoBehaviour {
         if ((CurrentTeam & ~team.flag) == CurrentTeam) return;
 
         CurrentTeam &= ~team.flag;
-        currentState.ShipHasLeft(team);
+        currentState.ShipHasLeft(this, team);
     }
 
     public void SetState(IDominationAreaState state) {
         if (currentState != null)
-            currentState.OnStateExit();
+            currentState.OnStateExit(this);
 
         currentState = state;
-        currentState.OnStateEnter();
+        currentState.OnStateEnter(this);
+    }
+
+    // State transitions
+
+    public void ToColdState() {
+        SetState(coldState);
+    }
+
+    public void ToWarmingUpState(TeamInfo team) {
+        DominatingTeam = team;
+        SetState(warmingUpState);
+    }
+
+    public void ToHotState() {
+        SetState(hotState);
+    }
+
+    public void ToOverheatedState() {
+        SetState(overheatedState);
+    }
+
+    public void ToCoolingDownState() {
+        SetState(coolingDownState);
     }
 }
