@@ -196,6 +196,7 @@ MonoBehaviour:
   - {r: 0.87667334, g: 0.44117647, b: 1, a: 1}
   - {r: 0.95098037, g: 0.7794118, b: 1, a: 1}
   timeInterval: 0.3
+  isFirstCursor: 0
 --- !u!4 &275846699
 Transform:
   m_ObjectHideFlags: 0
@@ -203,7 +204,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 275846696}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.27, y: 4.54, z: 0}
+  m_LocalPosition: {x: 4.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -292,14 +293,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edfb1e91c0436b4abd8803c3b56b219, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursor1: {fileID: 1455181739}
-  cursor2: {fileID: 275846696}
-  movementDuration: 0.2
   cards:
   - {fileID: 1276073822}
   - {fileID: 1454502195}
   - {fileID: 334837761}
   - {fileID: 874303640}
+  cursors:
+  - {fileID: 1455181739}
+  - {fileID: 275846696}
+  movementDuration: 0.2
 --- !u!114 &583231307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -313,7 +315,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joysticks:
   - {fileID: 11400000, guid: 68b8e946a974eed42a1dddb4ab96fc33, type: 2}
-  - {fileID: 11400000, guid: 0ff2643e72d66394fb5d4112fc996cf2, type: 2}
+  - {fileID: 11400000, guid: f69a6126bb88cba4da3504e269b24121, type: 2}
   cursorMovementsPerSecond: 6
   firstCooldown: 0.5
   cursorThreshold: 0.65
@@ -329,7 +331,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   joysticks:
-  - {fileID: 11400000, guid: f69a6126bb88cba4da3504e269b24121, type: 2}
+  - {fileID: 11400000, guid: 0ff2643e72d66394fb5d4112fc996cf2, type: 2}
   - {fileID: 11400000, guid: c80977e133260364488be73bb7e89300, type: 2}
   cursorMovementsPerSecond: 6
   firstCooldown: 0.5
@@ -384,7 +386,7 @@ Prefab:
     - target: {fileID: 224000011687323256, guid: 9c3bedfae7c76a740920d02646b3585c,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 2.9
+      value: -1.5
       objectReference: {fileID: 0}
     - target: {fileID: 224000011687323256, guid: 9c3bedfae7c76a740920d02646b3585c,
         type: 2}
@@ -724,7 +726,7 @@ Prefab:
     - target: {fileID: 224000011687323256, guid: 9c3bedfae7c76a740920d02646b3585c,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 9.15
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 224000011687323256, guid: 9c3bedfae7c76a740920d02646b3585c,
         type: 2}
@@ -832,6 +834,7 @@ MonoBehaviour:
   - {r: 0, g: 0.503448, b: 1, a: 1}
   - {r: 0, g: 0.7931037, b: 1, a: 1}
   timeInterval: 0.3
+  isFirstCursor: 1
 --- !u!4 &1455181741
 Transform:
   m_ObjectHideFlags: 0
@@ -839,7 +842,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1455181739}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.96, y: 5.38, z: 0}
+  m_LocalPosition: {x: -4.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -970,7 +973,7 @@ Prefab:
     - target: {fileID: 224000011687323256, guid: 9c3bedfae7c76a740920d02646b3585c,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 5.9
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 224000011687323256, guid: 9c3bedfae7c76a740920d02646b3585c,
         type: 2}
@@ -1085,7 +1088,7 @@ Prefab:
     - target: {fileID: 224000011687323256, guid: 9c3bedfae7c76a740920d02646b3585c,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -4.5
       objectReference: {fileID: 0}
     - target: {fileID: 224000011687323256, guid: 9c3bedfae7c76a740920d02646b3585c,
         type: 2}
@@ -1135,6 +1138,10 @@ Prefab:
     - target: {fileID: 1000013549178374, guid: 9c3bedfae7c76a740920d02646b3585c, type: 2}
       propertyPath: m_Name
       value: Team1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000011850050952, guid: 9c3bedfae7c76a740920d02646b3585c, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9c3bedfae7c76a740920d02646b3585c, type: 2}

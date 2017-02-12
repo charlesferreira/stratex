@@ -6,56 +6,78 @@ using System;
 public class CharacterManager : MonoBehaviour {
 
     public List<GameObject> cursors;
-    public List<GameObject> cards;
+    public List<GameObject> cardsGameObjects;
 
-    MenuInput menuInput1;
-    MenuInput menuInput2;
-
-    Movement movement1;
-    Movement movement2;
+    List<Vector3> cardsPositions = new List<Vector3>();
+    List<CharacterCard> cards = new List<CharacterCard>();
+    List<MenuInput> menuInput = new List<MenuInput>();
+    List<Movement> movement = new List<Movement>();
+    List<int> indexCursor = new List<int>();
 
     public float movementDuration = .1f;
 
-    int indexCursor1 = 0;
-    int indexCursor2 = 1;
-
     void Start () {
 
-        movement1 = cursors[0].GetComponent<Movement>();
-        movement2 = cursors[1].GetComponent<Movement>();
-
-        menuInput1 = GetComponents<MenuInput>()[0];
-        menuInput2 = GetComponents<MenuInput>()[1];
-
-        cursors[0].transform.position = cards[0].transform.position;
-        cursors[1].transform.position = cards[1].transform.position;
+        for (int i = 0; i < 2; i++)
+        {
+            cards.Add(cardsGameObjects[i].GetComponent<CharacterCard>());
+            cardsPositions.Add(cardsGameObjects[i].transform.localPosition);
+            movement.Add(cursors[i].GetComponent<Movement>());
+            menuInput.Add(GetComponents<MenuInput>()[i]);
+            cursors[i].transform.localPosition = cardsPositions[i];
+            indexCursor.Add(i);
+        }
     }
 	
 	void Update () {
 
-        CheckInpputs(menuInput1, movement1, ref indexCursor1);
+        for (int index = 0; index < 2; index++)
+            CheckInputs(index, 1 - index);
 	}
 
-    private void CheckInpputs(MenuInput menuInput, Movement movement, ref int indexCursor)
+    private void CheckInputs(int index, int indexOther)
     {
-        if (menuInput.Up || menuInput.Down)
+        if (menuInput[index].Up || menuInput[index].Down)
+            SwitchIndex(index);
+
+        if (menuInput[index].Confirm)
         {
-            indexCursor = indexCursor == 0 ? 1 : 0;
-            movement.MoveTo(cards[indexCursor].transform.localPosition, movementDuration);
+            cards[indexCursor[index]].SetSelected();
+
+            if (indexCursor[index] == indexCursor[indexOther])
+            {
+                indexCursor[indexOther] = (indexCursor[indexOther] + 1) % 2;
+                movement[indexOther].MoveTo(cardsPositions[indexCursor[indexOther]], movementDuration);
+            }
         }
-        if (menuInput.Cancel)
+        else  if (menuInput[index].Cancel)
         {
-            GetComponentInParent<TeamCard>().HideCharacters();
+            if (cards[indexCursor[index]].selected)
+                cards[indexCursor[index]].Deselect();
+            else if (!cards[indexCursor[indexOther]].selected)
+                GetComponentInParent<TeamCard>().HideCharacters();
         }
+    }
+
+    private void SwitchIndex(int index)
+    {
+        if (cards[indexCursor[index]].selected)
+            return;
+
+        indexCursor[index] = (indexCursor[index] + 1) % 2;
+        if (cards[indexCursor[index]].selected)
+            indexCursor[index] = (indexCursor[index] + 1) % 2;
+
+        movement[index].MoveTo(cardsPositions[indexCursor[index]], movementDuration);
     }
 
     internal void ShowCharacters(List<Joystick> joysticks, List<Color> colors)
     {
-        GetComponents<MenuInput>()[0].joysticks[0] = joysticks[0];
-        GetComponents<MenuInput>()[1].joysticks[0] = joysticks[1];
-
-        cursors[0].GetComponentInChildren<SpriteRenderer>().color = colors[0];
-        cursors[1].GetComponentInChildren<SpriteRenderer>().color = colors[1];
+        for (int i = 0; i < 2; i++)
+        {
+            GetComponents<MenuInput>()[i].joysticks[0] = joysticks[i];
+            cursors[i].GetComponentInChildren<SpriteRenderer>().color = colors[i];
+        }
     }
 
     public void SetCharactersSprites(Sprite character1, Sprite character2)

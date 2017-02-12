@@ -10,7 +10,11 @@ public class TeamCursor : MonoBehaviour {
 
     [Range(0.1f, 1f)]
     public float timeInterval = 0.2f;
-    float elapsedTime = 0;
+    float elapsedTimeColor = 0;
+    float elapsedTimeZPosition = 0;
+    public bool isFirstCursor = false;
+    bool positiveZ = true;
+    bool changeZPosition = false;
 
     SpriteRenderer sprite;
 
@@ -21,14 +25,33 @@ public class TeamCursor : MonoBehaviour {
 
     void Update () {
 
-        elapsedTime += Time.deltaTime;
+        elapsedTimeColor += Time.deltaTime;
+        elapsedTimeZPosition += Time.deltaTime;
 
-        if (elapsedTime > timeInterval)
+        if (elapsedTimeColor > timeInterval)
         {
             ChangeColor();
-            elapsedTime -= timeInterval;
+            elapsedTimeColor -= timeInterval;
         }
-	}
+        if (!isFirstCursor)
+            return;
+
+        if (elapsedTimeZPosition > timeInterval * 2)
+        {
+            ChangeZPosition();
+            elapsedTimeZPosition -= timeInterval * 2;
+        }
+    }
+
+    private void ChangeZPosition()
+    {
+        if (positiveZ)
+            transform.position = new Vector3(transform.position.x, transform.position.y, -1);
+        else
+            transform.position = new Vector3(transform.position.x, transform.position.y, 1);
+
+        positiveZ = !positiveZ;
+    }
 
     public void ChangeColor()
     {

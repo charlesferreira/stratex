@@ -5,116 +5,67 @@ using System;
 
 public class CursorManager : MonoBehaviour {
 
-    MenuInput menuInput1;
-    MenuInput menuInput2;
+    public List<TeamCard> cards;
 
-    public GameObject cursor1;
-    public GameObject cursor2;
+    public List<GameObject> cursors = new List<GameObject>();
+    List<MenuInput> menuInput = new List<MenuInput>();
+    List<Movement> movementCursor = new List<Movement>();
+    List<TeamCursor> teamCursor = new List<TeamCursor>();
+    List<int> indexCursor = new List<int>();
 
     public float movementDuration = .1f;
 
-    Movement movementCursor1;
-    Movement movementCursor2;
-
-    TeamCursor teamCursor1;
-    TeamCursor teamCursor2;
-
-    public List<TeamCard> cards;
-
-    int indexCursor1;
-    int indexCursor2;
-
-    bool sameIndex = false;
-
     void Start () {
 
-        menuInput1 = GetComponents<MenuInput>()[0];
-        menuInput2 = GetComponents<MenuInput>()[1];
-
-        movementCursor1 = cursor1.GetComponent<Movement>();
-        movementCursor2 = cursor2.GetComponent<Movement>();
-
-        teamCursor1 = cursor1.GetComponent<TeamCursor>();
-        teamCursor2 = cursor2.GetComponent<TeamCursor>();
-
-        indexCursor1 = 0;
-        indexCursor2 = cards.Count - 1;
-
-        cursor1.transform.position = cards[indexCursor1].transform.position;
-        cursor2.transform.position = cards[indexCursor2].transform.position;
+        for (int i = 0; i < cursors.Count; i++)
+        {
+            menuInput.Add(GetComponents<MenuInput>()[i]);
+            movementCursor.Add(cursors[i].GetComponent<Movement>());
+            teamCursor.Add(cursors[i].GetComponent<TeamCursor>());
+            indexCursor.Add(i * (cards.Count - 1));
+            cursors[i].transform.position = cards[indexCursor[i]].transform.position;
+        }
     }
 
     void Update ()
     {
-        CheckInputs(cursor1, menuInput1, movementCursor1, movementCursor2, ref indexCursor1, ref indexCursor2);
-        CheckInputs(cursor2, menuInput2, movementCursor2, movementCursor1, ref indexCursor2, ref indexCursor1);
+        for (int index = 0; index < 2; index++)
+        {
+            CheckInputs(index, 1 - index);
+        }
     }
 
-    private void CheckInputs(GameObject cursor, MenuInput menuInput, Movement movementCursor, Movement movementCursorOther, ref int indexCursor, ref int indexCursorOther)
+    private void CheckInputs(int index, int indexOther)
     {
-        if (menuInput.Right)
-        {
-            indexCursor = CheckIndexCursor(movementCursor, ref indexCursor, 1);
-        }
-        else if (menuInput.Left)
-        {
-            indexCursor = CheckIndexCursor(movementCursor, ref indexCursor, -1);
-        }
-        if (menuInput.Confirm)
-        {
-            cards[indexCursor].ShowCharacters(menuInput.joysticks, cursor);
+        if (menuInput[index].Right)
+            CheckIndexCursor(index, 1);
 
-            if (indexCursorOther == indexCursor)
+        else if (menuInput[index].Left)
+            CheckIndexCursor(index, -1);
+
+        if (menuInput[index].Confirm)
+        {
+            cards[indexCursor[index]].ShowCharacters(menuInput[index].joysticks, cursors[index]);
+
+            if (indexCursor[index] == indexCursor[indexOther])
             {
-                ShowSecondCursor();
-                if (indexCursorOther == cards.Count - 1)
-                    indexCursorOther = (cards.Count + indexCursorOther - 1) % cards.Count;
+                if (indexCursor[indexOther] == cards.Count - 1)
+                    indexCursor[indexOther] = (cards.Count + indexCursor[indexOther] - 1) % cards.Count;
                 else
-                    indexCursorOther = (indexCursorOther + 1) % cards.Count;
-                movementCursorOther.MoveTo(cards[indexCursorOther].transform.localPosition, movementDuration);
+                    indexCursor[indexOther] = (indexCursor[indexOther] + 1) % cards.Count;
+                movementCursor[indexOther].MoveTo(cards[indexCursor[indexOther]].transform.localPosition, movementDuration);
             }
         }
     }
 
-    private int CheckIndexCursor(Movement movementCursor, ref int indexCursor, int step)
+    private void CheckIndexCursor(int index, int step)
     {
-        if (cards[indexCursor].selected)
-            return indexCursor;
+        if (cards[indexCursor[index]].selected)
+            return;
         
-        indexCursor = (cards.Count + indexCursor + step) % cards.Count;
-        if (cards[indexCursor].selected)
-            indexCursor = (indexCursor + step) % cards.Count;
-        movementCursor.MoveTo(cards[indexCursor].transform.localPosition, movementDuration);
-        Invoke("CheckSameSelection", movementDuration);
-        return indexCursor;
-    }
-
-    void CheckSameSelection()
-    {
-        if (indexCursor1 == indexCursor2 && !sameIndex)
-        {
-            HideSecondCursor();
-        }
-        else if (sameIndex)
-        {
-            ShowSecondCursor();
-        }
-    }
-
-    private void ShowSecondCursor()
-    {
-        // Ativar cursor 2
-        teamCursor1.colors.RemoveRange(2, 2);
-        teamCursor1.ChangeColor();
-        cursor2.SetActive(true);
-        sameIndex = false;
-    }
-
-    private void HideSecondCursor()
-    {
-        // Desativar cursor 2
-        teamCursor1.colors.AddRange(teamCursor2.colors);
-        cursor2.SetActive(false);
-        sameIndex = true;
+        indexCursor[index] = (cards.Count + indexCursor[index] + step) % cards.Count;
+        if (cards[indexCursor[index]].selected)
+            indexCursor[index] = (indexCursor[index] + step) % cards.Count;
+        movementCursor[index].MoveTo(cards[indexCursor[index]].transform.localPosition, movementDuration);
     }
 }
