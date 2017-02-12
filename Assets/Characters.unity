@@ -196,6 +196,7 @@ MonoBehaviour:
   - {r: 0.87667334, g: 0.44117647, b: 1, a: 1}
   - {r: 0.95098037, g: 0.7794118, b: 1, a: 1}
   timeInterval: 0.3
+  isFirstCursor: 0
 --- !u!4 &275846699
 Transform:
   m_ObjectHideFlags: 0
@@ -292,14 +293,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edfb1e91c0436b4abd8803c3b56b219, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursor1: {fileID: 1455181739}
-  cursor2: {fileID: 275846696}
-  movementDuration: 0.2
   cards:
   - {fileID: 1276073822}
   - {fileID: 1454502195}
   - {fileID: 334837761}
   - {fileID: 874303640}
+  cursors:
+  - {fileID: 1455181739}
+  - {fileID: 275846696}
+  movementDuration: 0.2
 --- !u!114 &583231307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -832,6 +834,7 @@ MonoBehaviour:
   - {r: 0, g: 0.503448, b: 1, a: 1}
   - {r: 0, g: 0.7931037, b: 1, a: 1}
   timeInterval: 0.3
+  isFirstCursor: 1
 --- !u!4 &1455181741
 Transform:
   m_ObjectHideFlags: 0

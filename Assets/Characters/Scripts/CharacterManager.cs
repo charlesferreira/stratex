@@ -8,42 +8,37 @@ public class CharacterManager : MonoBehaviour {
     public List<GameObject> cursors;
     public List<GameObject> cards;
 
-    MenuInput menuInput1;
-    MenuInput menuInput2;
-
-    Movement movement1;
-    Movement movement2;
+    List<MenuInput> menuInput = new List<MenuInput>();
+    List<Movement> movement = new List<Movement>();
+    List<int> indexCursor = new List<int>();
 
     public float movementDuration = .1f;
 
-    int indexCursor1 = 0;
-    int indexCursor2 = 1;
-
     void Start () {
 
-        movement1 = cursors[0].GetComponent<Movement>();
-        movement2 = cursors[1].GetComponent<Movement>();
-
-        menuInput1 = GetComponents<MenuInput>()[0];
-        menuInput2 = GetComponents<MenuInput>()[1];
-
-        cursors[0].transform.position = cards[0].transform.position;
-        cursors[1].transform.position = cards[1].transform.position;
+        for (int i = 0; i < 2; i++)
+        {
+            movement.Add(cursors[i].GetComponent<Movement>());
+            menuInput.Add(GetComponents<MenuInput>()[i]);
+            cursors[i].transform.position = cards[i].transform.position;
+            indexCursor.Add(i);
+        }
     }
 	
 	void Update () {
 
-        CheckInpputs(menuInput1, movement1, ref indexCursor1);
+        for (int index = 0; index < 2; index++)
+            CheckInpputs(index);
 	}
 
-    private void CheckInpputs(MenuInput menuInput, Movement movement, ref int indexCursor)
+    private void CheckInpputs(int index)
     {
-        if (menuInput.Up || menuInput.Down)
+        if (menuInput[index].Up || menuInput[index].Down)
         {
-            indexCursor = indexCursor == 0 ? 1 : 0;
-            movement.MoveTo(cards[indexCursor].transform.localPosition, movementDuration);
+            indexCursor[index] = indexCursor[index] == 0 ? 1 : 0;
+            movement[index].MoveTo(cards[indexCursor[index]].transform.localPosition, movementDuration);
         }
-        if (menuInput.Cancel)
+        if (menuInput[index].Cancel)
         {
             GetComponentInParent<TeamCard>().HideCharacters();
         }
@@ -51,11 +46,11 @@ public class CharacterManager : MonoBehaviour {
 
     internal void ShowCharacters(List<Joystick> joysticks, List<Color> colors)
     {
-        GetComponents<MenuInput>()[0].joysticks[0] = joysticks[0];
-        GetComponents<MenuInput>()[1].joysticks[0] = joysticks[1];
-
-        cursors[0].GetComponentInChildren<SpriteRenderer>().color = colors[0];
-        cursors[1].GetComponentInChildren<SpriteRenderer>().color = colors[1];
+        for (int i = 0; i < 2; i++)
+        {
+            GetComponents<MenuInput>()[i].joysticks[0] = joysticks[i];
+            cursors[i].GetComponentInChildren<SpriteRenderer>().color = colors[i];
+        }
     }
 
     public void SetCharactersSprites(Sprite character1, Sprite character2)
