@@ -1,12 +1,12 @@
-﻿namespace GameStates {
+﻿using System.Collections;
+
+namespace GameStates {
 
     [System.Serializable]
     public class EndedState : IGameState {
 
-        public void OnStateEnter(GameStateManager game) {
-        }
-
-        public void Update(GameStateManager game) {
+        public IEnumerator Play(GameStateManager game) {
+            yield return null;
         }
     }
 }

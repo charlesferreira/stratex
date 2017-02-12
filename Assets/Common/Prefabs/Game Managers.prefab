@@ -105,7 +105,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skipIntro: 1
-  dominationArea: {fileID: 0}
+  startingState:
+    zoomIn: 2.5
+    zoomInDuration: 3
+    showRolesDuration: 2
+  playingState:
+    messageFadeInDuration: 0.5
+    messageStayDuration: 0.5
+    goFadeOut: 0.8
+  scoringState:
+    zoomIn: 1.5
+    scoreFadeInDuration: 1
+    scoreStayDuration: 2
+    scoreFadeOutDuration: 1
+  restartingState:
+    movingDuration: 4
+    timeBeforeCoolDown: 0.5
+  stratex: {fileID: 0}
   ship1: {fileID: 0}
   ship2: {fileID: 0}
   puzzle1: {fileID: 0}
@@ -114,15 +130,6 @@ MonoBehaviour:
   shipCamera2: {fileID: 0}
   hudCamera1: {fileID: 0}
   hudCamera2: {fileID: 0}
-  startingState:
-    zoomIn: 2.5
-    zoomInDuration: 3
-    showRolesDuration: 2
-  playingState:
-    maxAlpha: 1
-    goFadeIn: 0.3
-    goStay: 0.6
-    goFadeOut: 0.8
 --- !u!114 &114000014069788168
 MonoBehaviour:
   m_ObjectHideFlags: 1

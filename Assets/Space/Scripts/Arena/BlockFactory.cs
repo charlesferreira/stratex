@@ -6,6 +6,7 @@ namespace Space.Arena.BlocksDistribution {
 
         // Inspector
         public SpaceBlock blockPrefab;
+        public Transform blocksContainer;
 
         // Private
         Histogram histogram;
@@ -34,6 +35,7 @@ namespace Space.Arena.BlocksDistribution {
         public void CreateBlock(BlockInfo info) {
             var block = (SpaceBlock)Instantiate(blockPrefab, transform);
             block.Init(info, RandomPosition());
+            block.transform.SetParent(blocksContainer);
         }
 
         // Private methods
