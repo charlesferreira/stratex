@@ -4,9 +4,10 @@ using System.Collections.Generic;
 
 public class CommonMessages : MonoBehaviour {
 
-    public enum MessageType { None, Go, Score }
+    public enum MessageType { None, Go, Score, TimeUp }
     public Canvas go;
     public Canvas score;
+    public Canvas timeUp;
     public RawImage outputImage;
 
     Dictionary<MessageType, Canvas> messages = new Dictionary<MessageType, Canvas>();
@@ -27,6 +28,7 @@ public class CommonMessages : MonoBehaviour {
     void Awake() {
         messages.Add(MessageType.Go, go);
         messages.Add(MessageType.Score, score);
+        messages.Add(MessageType.TimeUp, timeUp);
         outputImage.color = Color.clear;
     }
 

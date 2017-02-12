@@ -1598,7 +1598,7 @@ MonoBehaviour:
       end: {r: 1, g: 0.84705883, b: 0, a: 0.7882353}
     overheatedBlinkTime: 0.2
   coolingDownState:
-    timeToCoolDown: 0.5
+    timeToCoolDown: 1
 --- !u!114 &114000012847153640
 MonoBehaviour:
   m_ObjectHideFlags: 1

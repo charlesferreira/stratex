@@ -16,6 +16,10 @@ public class DominationArea : MonoBehaviour {
     [SerializeField] CoolingDownState coolingDownState;
     IDominationAreaState currentState;
 
+    // Private
+
+    bool idle;
+
     // Properties
 
     public Color Color {
@@ -63,11 +67,20 @@ public class DominationArea : MonoBehaviour {
     }
 
     public void SetState(IDominationAreaState state) {
+        if (idle) return;
+
         if (currentState != null)
             currentState.OnStateExit(this);
 
         currentState = state;
         currentState.OnStateEnter(this);
+    }
+
+    public void TurnOff() {
+        ToCoolingDownState();
+        idle = true;
+        StartCoroutine(rotor.Stop());
+        StartCoroutine(rings.Stop());
     }
 
     // State transitions

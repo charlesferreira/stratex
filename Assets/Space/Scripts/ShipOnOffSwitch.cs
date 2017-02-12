@@ -2,6 +2,8 @@
 
 public class ShipOnOffSwitch : MonoBehaviour {
 
+    public Magnet magnet;
+
     ShipInput input;
 
 	void Awake () {
@@ -9,10 +11,10 @@ public class ShipOnOffSwitch : MonoBehaviour {
 	}
 
     public void TurnOn() {
-        input.enabled = true;
+        input.enabled = magnet.enabled = true;
     }
 
     public void TurnOff() {
-        input.enabled = false;
+        input.enabled = magnet.enabled = false;
     }
 }

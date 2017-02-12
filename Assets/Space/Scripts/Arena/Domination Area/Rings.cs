@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class Rings : MonoBehaviour {
 
@@ -16,7 +17,7 @@ public class Rings : MonoBehaviour {
     float elapsed;
     float targetSpeed;
     float currentSpeed;
-    float speedMultiplier;
+    float speedMultiplier = 1;
     bool overheating;
 
     public float TimePerRing { get { return 1f / currentSpeed; } }
@@ -73,11 +74,28 @@ public class Rings : MonoBehaviour {
 
     public void ResetSpeed() {
         overheating = false;
-        speedMultiplier = 0;
+        speedMultiplier = 1;
         UpdateTargetSpeed();
     }
 
     void UpdateTargetSpeed() {
-        targetSpeed = baseSpeed * (1 + speedMultiplier * speedUpFactor);
+        targetSpeed = baseSpeed * (speedMultiplier * speedUpFactor);
+    }
+
+    public IEnumerator Stop() {
+        // pára o anel
+        while (speedMultiplier > 0) {
+            SlowDown();
+            yield return new WaitForSeconds(0.25f);
+        }
+
+        // apaga o anel
+        var ring = children[currentRing];
+        var color = ring.color;
+        while (color.a > 0.0001f) {
+            color.a -= Time.fixedDeltaTime * color.a / 2;
+            ring.color = color;
+            yield return new WaitForFixedUpdate();
+        }
     }
 }

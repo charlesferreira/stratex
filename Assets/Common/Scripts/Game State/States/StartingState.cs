@@ -14,6 +14,9 @@ namespace GameStates {
         public float showRolesDuration;
 
         public IEnumerator Play(GameStateManager game) {
+            // zera o timer
+            GameTimer.Instance.Reset();
+
             // oculta quaisquer mensagens
             CommonMessages.Instance.SetMessage(CommonMessages.MessageType.None);
             

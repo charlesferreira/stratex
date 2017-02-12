@@ -24,7 +24,11 @@ namespace GameStates {
             game.FocusPlayers();
 
             // próximo estado
-            game.ToPlayingState();
+            if (GameTimer.Instance.TimeUp)
+                game.ToTimeUpState();
+            else {
+                game.ToPlayingState();
+            }
         }
     }
 }
