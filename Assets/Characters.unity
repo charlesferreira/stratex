@@ -315,7 +315,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joysticks:
   - {fileID: 11400000, guid: 68b8e946a974eed42a1dddb4ab96fc33, type: 2}
-  - {fileID: 11400000, guid: c80977e133260364488be73bb7e89300, type: 2}
+  - {fileID: 11400000, guid: f69a6126bb88cba4da3504e269b24121, type: 2}
   cursorMovementsPerSecond: 6
   firstCooldown: 0.5
   cursorThreshold: 0.65
@@ -331,8 +331,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   joysticks:
-  - {fileID: 11400000, guid: f69a6126bb88cba4da3504e269b24121, type: 2}
   - {fileID: 11400000, guid: 0ff2643e72d66394fb5d4112fc996cf2, type: 2}
+  - {fileID: 11400000, guid: c80977e133260364488be73bb7e89300, type: 2}
   cursorMovementsPerSecond: 6
   firstCooldown: 0.5
   cursorThreshold: 0.65
