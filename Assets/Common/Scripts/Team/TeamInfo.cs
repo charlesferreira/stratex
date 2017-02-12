@@ -8,4 +8,8 @@ public class TeamInfo : ScriptableObject {
     public Color color;
 
     public Sprite teamCard;
+    public Sprite character1;
+    public Sprite character2;
+
+
 }

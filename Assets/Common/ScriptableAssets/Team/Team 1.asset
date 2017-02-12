@@ -14,3 +14,5 @@ MonoBehaviour:
   flag: 1
   color: {r: 0.08235294, g: 0.8745098, b: 0.9254902, a: 0.8039216}
   teamCard: {fileID: 21300000, guid: 08d8391926e375d40ae1e249845f7eef, type: 3}
+  character1: {fileID: 21300000, guid: a99c0acc45fa9244491698399c6dd734, type: 3}
+  character2: {fileID: 21300000, guid: 59855925bce8e0a4da40d5b43a9fff62, type: 3}

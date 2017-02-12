@@ -49,11 +49,11 @@ public class CursorManager : MonoBehaviour {
 
     void Update ()
     {
-        CheckInputs(ref cursorSelected1, menuInput1, movementCursor1, movementCursor2, ref indexCursor1, ref indexCursor2);
-        CheckInputs(ref cursorSelected2, menuInput2, movementCursor2, movementCursor1, ref indexCursor2, ref indexCursor1);
+        CheckInputs(cursor1, ref cursorSelected1, menuInput1, movementCursor1, movementCursor2, ref indexCursor1, ref indexCursor2);
+        CheckInputs(cursor2, ref cursorSelected2, menuInput2, movementCursor2, movementCursor1, ref indexCursor2, ref indexCursor1);
     }
 
-    private void CheckInputs(ref bool cursorSelected, MenuInput menuInput, Movement movementCursor, Movement movementCursorOther, ref int indexCursor, ref int indexCursorOther)
+    private void CheckInputs(GameObject cursor, ref bool cursorSelected, MenuInput menuInput, Movement movementCursor, Movement movementCursorOther, ref int indexCursor, ref int indexCursorOther)
     {
         if (!cursorSelected)
         {
@@ -67,8 +67,10 @@ public class CursorManager : MonoBehaviour {
             }
             if (menuInput.Confirm)
             {
+                cards[indexCursor].ShowCharacters(menuInput.joysticks, cursor.GetComponent<TeamCursor>().colors);
+
                 cursorSelected = true;
-                cards[indexCursor].selected = true;
+                cursor.SetActive(false);
                 if (indexCursorOther == indexCursor)
                 {
                     ShowSecondCursor();

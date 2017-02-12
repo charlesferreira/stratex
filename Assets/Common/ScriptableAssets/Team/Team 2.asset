@@ -13,3 +13,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flag: 2
   color: {r: 0, g: 0.8745098, b: 0.26666668, a: 0.803}
+  teamCard: {fileID: 21300000, guid: 7254fc1710a666142ba34aaaf9541616, type: 3}
+  character1: {fileID: 21300000, guid: 2b2e349843bd90245afdc294355fcd3b, type: 3}
+  character2: {fileID: 21300000, guid: d5bb4436106a3484d94cd8a3374af4e7, type: 3}
