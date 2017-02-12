@@ -1,14 +1,21 @@
-﻿using GameStates;
-using UnityEngine;
+﻿using UnityEngine;
+using GameStates;
 
 public class GameStateManager : MonoBehaviour {
-
-    // Public
+    
     [Header("Debug")]
     public bool skipIntro;
+    
+    [Header("States")]
+    [SerializeField] StartingState startingState;
+    [SerializeField] PlayingState playingState;
+    [SerializeField] ScoringState scoringState;
+    [SerializeField] RestartingState restartingState;
+    [SerializeField] EndingState endingState;
+    [SerializeField] EndedState endedState;
 
     [Header("References")]
-    public DominationArea dominationArea;
+    public DominationArea stratex;
     public ShipOnOffSwitch ship1;
     public ShipOnOffSwitch ship2;
     public PuzzleOnOffSwitch puzzle1;
@@ -18,37 +25,26 @@ public class GameStateManager : MonoBehaviour {
     public CameraMan hudCamera1;
     public CameraMan hudCamera2;
 
-    // States
-    [Header("States")]
-    [SerializeField] StartingState startingState;
-    [SerializeField] PlayingState playingState;
-    [SerializeField] ScoringState scoringState;
-    [SerializeField] RestartingState restartingState;
-    [SerializeField] EndingState endingState;
-    [SerializeField] EndedState endedState;
-    IGameState currentState;
-
     // Private
     TeamInfo scoringTeam;
+    DominationAreaMover stratexMover;
 
     // Properties
     public TeamInfo ScoringTeam { get { return scoringTeam; } }
 
     // Methods
     void Start () {
+        stratexMover = stratex.GetComponent<DominationAreaMover>();
+
         if (skipIntro)
             ToPlayingState();
         else
             ToStartingState();
     }
 
-    void Update () {
-        currentState.Update(this);
-	}
-
     void SetState(IGameState state) {
-        currentState = state;
-        currentState.OnStateEnter(this);
+        StopAllCoroutines();
+        StartCoroutine(state.Play(this));
     }
 
     // Transitions
@@ -75,5 +71,48 @@ public class GameStateManager : MonoBehaviour {
 
     public void ToEndedState() {
         SetState(endedState);
+    }
+
+    // Helpers
+    public void TurnOffControls() {
+        ship1.TurnOff();
+        ship2.TurnOff();
+        puzzle1.TurnOff();
+        puzzle2.TurnOff();
+    }
+
+    public void TurnOnControls() {
+        ship1.TurnOn();
+        ship2.TurnOn();
+        puzzle1.TurnOn();
+        puzzle2.TurnOn();
+    }
+
+    public void FocusStratex(float zoomScale, float hudZoomSpeed) {
+        // faz as câmeras focarem o Stratex, com zoom
+        shipCamera1.SetTarget(stratex.transform).Zoom(zoomScale, 0.15f);
+        shipCamera2.SetTarget(stratex.transform).Zoom(zoomScale, 0.15f);
+
+        // oculta a HUD, aumentando o zoom da câmera
+        hudCamera1.Zoom(3, hudZoomSpeed);
+        hudCamera2.Zoom(3, hudZoomSpeed);
+    }
+
+    public void FocusStratex(float zoomScale) {
+        FocusStratex(zoomScale, Mathf.Infinity);
+    }
+
+    public void FocusPlayers() {
+        // retorna os focos das câmeras para as naves
+        shipCamera1.ResetTarget().Zoom(1, 1);
+        shipCamera2.ResetTarget().Zoom(1, 1);
+
+        // exibe a HUD
+        hudCamera1.Zoom(1, 1);
+        hudCamera2.Zoom(1, 1);
+    }
+
+    public void MoveStratex() {
+        stratexMover.SelectNextPoint();
     }
 }

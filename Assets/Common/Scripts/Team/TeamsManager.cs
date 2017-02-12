@@ -39,6 +39,10 @@ public class TeamsManager : MonoBehaviour {
         NotifyScoreObservers(flag, score);
     }
 
+    public int GetTeamScore(TeamFlags flag) {
+        return teams[flag].Points;
+    }
+
     void NotifyScoreObservers(TeamFlags flag, int score) {
         foreach (var observer in scoreObservers) {
             observer.ScoreHasChanged(flag, score);

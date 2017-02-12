@@ -1,8 +1,10 @@
-﻿public interface IGameState {
+﻿using System.Collections;
+
+public interface IGameState {
 
     // Callbacks
-    void OnStateEnter(GameStateManager game);
+    IEnumerator Play(GameStateManager game);
 
     // Messages
-    void Update(GameStateManager game);
+    //void Update(GameStateManager game);
 }

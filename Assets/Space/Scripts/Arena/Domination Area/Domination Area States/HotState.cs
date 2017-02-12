@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace DominationAreaStates {
+﻿namespace DominationAreaStates {
 
     [System.Serializable]
     public class HotState : IDominationAreaState {
@@ -14,13 +12,9 @@ namespace DominationAreaStates {
 
         public void OnStateExit(DominationArea dominationArea) { }
 
-        public void ShipHasEntered(DominationArea dominationArea, TeamInfo team) {
-            dominationArea.ToOverheatedState();
-        }
+        public void ShipHasEntered(DominationArea dominationArea, TeamInfo team) { }
 
-        public void ShipHasLeft(DominationArea dominationArea, TeamInfo team) {
-            dominationArea.ToColdState();
-        }
+        public void ShipHasLeft(DominationArea dominationArea, TeamInfo team) { }
 
         public void Update(DominationArea dominationArea) { }
     }
