@@ -296,7 +296,7 @@ MonoBehaviour:
   cards:
   - {fileID: 1000014041763184}
   - {fileID: 1000010467610604}
-  movementDuration: 0.2
+  movementDuration: 0.15
 --- !u!114 &114000011179137312
 MonoBehaviour:
   m_ObjectHideFlags: 1

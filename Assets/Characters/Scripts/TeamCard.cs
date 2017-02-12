@@ -8,6 +8,7 @@ public class TeamCard : MonoBehaviour {
     public TeamInfo info;
     CharacterManager characterManager;
     [HideInInspector] public bool selected = false;
+    GameObject cursor;
 
 	void Start () {
 
@@ -21,15 +22,26 @@ public class TeamCard : MonoBehaviour {
 	
 	}
 
-    internal void ShowCharacters(List<Joystick> joysticks, List<Color> colors)
+    internal void ShowCharacters(List<Joystick> joysticks, GameObject cursor)
     {
-        characterManager.GetComponents<MenuInput>()[0].joysticks[0] = joysticks[0];
-        characterManager.GetComponents<MenuInput>()[1].joysticks[0] = joysticks[1];
+        this.cursor = cursor;
+        cursor.SetActive(false);
 
-        characterManager.cursors[0].GetComponentInChildren<SpriteRenderer>().color = colors[0];
-        characterManager.cursors[1].GetComponentInChildren<SpriteRenderer>().color = colors[1];
+        selected = true;
 
         GetComponentInChildren<SpriteRenderer>().enabled = false;
         characterManager.gameObject.SetActive(true);
+
+        characterManager.ShowCharacters(joysticks, cursor.GetComponent<TeamCursor>().colors);
+    }
+
+    internal void HideCharacters()
+    {
+        cursor.SetActive(true);
+
+        selected = false;
+
+        GetComponentInChildren<SpriteRenderer>().enabled = true;
+        characterManager.gameObject.SetActive(false);
     }
 }

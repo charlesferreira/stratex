@@ -43,6 +43,19 @@ public class CharacterManager : MonoBehaviour {
             indexCursor = indexCursor == 0 ? 1 : 0;
             movement.MoveTo(cards[indexCursor].transform.localPosition, movementDuration);
         }
+        if (menuInput.Cancel)
+        {
+            GetComponentInParent<TeamCard>().HideCharacters();
+        }
+    }
+
+    internal void ShowCharacters(List<Joystick> joysticks, List<Color> colors)
+    {
+        GetComponents<MenuInput>()[0].joysticks[0] = joysticks[0];
+        GetComponents<MenuInput>()[1].joysticks[0] = joysticks[1];
+
+        cursors[0].GetComponentInChildren<SpriteRenderer>().color = colors[0];
+        cursors[1].GetComponentInChildren<SpriteRenderer>().color = colors[1];
     }
 
     public void SetCharactersSprites(Sprite character1, Sprite character2)
