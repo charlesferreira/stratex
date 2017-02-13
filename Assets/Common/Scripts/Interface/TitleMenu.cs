@@ -8,6 +8,8 @@ public class TitleMenu : MonoBehaviour {
     MenuInput input;
     int currentIndexButton = 0;
 
+    AudioSource switchAudio;
+
     void Awake()
     {
         input = GetComponent<MenuInput>();
@@ -16,6 +18,8 @@ public class TitleMenu : MonoBehaviour {
         {
             buttons.Add(child.GetComponent<Button>());
         }
+
+        switchAudio = GetComponents<AudioSource>()[0];
     }
 
     private void OnEnable()
@@ -27,10 +31,12 @@ public class TitleMenu : MonoBehaviour {
         if (input.Up)
         {
             currentIndexButton = (buttons.Count + currentIndexButton - 1) % buttons.Count;
+            switchAudio.Play();
         }
         else if (input.Down)
         {
             currentIndexButton = (currentIndexButton + 1) % buttons.Count;
+            switchAudio.Play();
         }
 
         buttons[1].Select();
@@ -39,6 +45,7 @@ public class TitleMenu : MonoBehaviour {
         if (input.Confirm)
         {
             buttons[currentIndexButton].onClick.Invoke();
+            SoundPlayer.Instance.confirmAudio.Play();
         }
     }
 }

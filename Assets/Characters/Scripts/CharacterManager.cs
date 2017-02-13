@@ -14,6 +14,10 @@ public class CharacterManager : MonoBehaviour {
     List<Movement> movement = new List<Movement>();
     List<int> indexCursor = new List<int>();
 
+    AudioSource switchAudio;
+    AudioSource confirmAudio;
+    AudioSource cancelAudio;
+
     public float movementDuration = .1f;
 
     void Start () {
@@ -27,6 +31,10 @@ public class CharacterManager : MonoBehaviour {
             cursors[i].transform.localPosition = cardsPositions[i];
             indexCursor.Add(i);
         }
+
+        switchAudio = GetComponents<AudioSource>()[0];
+        confirmAudio = GetComponents<AudioSource>()[1];
+        cancelAudio = GetComponents<AudioSource>()[2];
     }
 	
 	void Update () {
@@ -42,7 +50,11 @@ public class CharacterManager : MonoBehaviour {
 
         if (menuInput[index].Confirm)
         {
+            if (cards[indexCursor[index]].selected)
+                return;
+
             cards[indexCursor[index]].SetSelected();
+            confirmAudio.Play();
 
             if (indexCursor[index] == indexCursor[indexOther])
             {
@@ -52,8 +64,10 @@ public class CharacterManager : MonoBehaviour {
         }
         else  if (menuInput[index].Cancel)
         {
-            if (cards[indexCursor[index]].selected)
+            if (cards[indexCursor[index]].selected) {
                 cards[indexCursor[index]].Deselect();
+                cancelAudio.Play();
+            }
             else if (!cards[indexCursor[indexOther]].selected)
                 GetComponentInParent<TeamCard>().HideCharacters();
         }
@@ -69,6 +83,7 @@ public class CharacterManager : MonoBehaviour {
             indexCursor[index] = (indexCursor[index] + 1) % 2;
 
         movement[index].MoveTo(cardsPositions[indexCursor[index]], movementDuration);
+        switchAudio.Play();
     }
 
     internal void ShowCharacters(List<Joystick> joysticks, List<Color> colors)

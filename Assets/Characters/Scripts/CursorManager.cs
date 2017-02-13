@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using UnityEngine.SceneManagement;
 
 public class CursorManager : MonoBehaviour {
 
@@ -12,6 +13,7 @@ public class CursorManager : MonoBehaviour {
     List<Movement> movementCursor = new List<Movement>();
     List<TeamCursor> teamCursor = new List<TeamCursor>();
     List<int> indexCursor = new List<int>();
+    AudioSource switchAudio;
 
     public float movementDuration = .1f;
 
@@ -25,6 +27,8 @@ public class CursorManager : MonoBehaviour {
             indexCursor.Add(i * (cards.Count - 1));
             cursors[i].transform.position = cards[indexCursor[i]].transform.position;
         }
+
+        switchAudio = GetComponent<AudioSource>();
     }
 
     void Update ()
@@ -37,6 +41,9 @@ public class CursorManager : MonoBehaviour {
 
     private void CheckInputs(int index, int indexOther)
     {
+        if (cards[indexCursor[index]].selected)
+            return;
+
         if (menuInput[index].Right)
             CheckIndexCursor(index, 1);
 
@@ -56,6 +63,11 @@ public class CursorManager : MonoBehaviour {
                 movementCursor[indexOther].MoveTo(cards[indexCursor[indexOther]].transform.localPosition, movementDuration);
             }
         }
+        else if (menuInput[index].Cancel)
+        {
+            SoundPlayer.Instance.cancelAudio.Play();
+            SceneManager.LoadScene(0);
+        }
     }
 
     private void CheckIndexCursor(int index, int step)
@@ -66,6 +78,7 @@ public class CursorManager : MonoBehaviour {
         indexCursor[index] = (cards.Count + indexCursor[index] + step) % cards.Count;
         if (cards[indexCursor[index]].selected)
             indexCursor[index] = (indexCursor[index] + step) % cards.Count;
+        switchAudio.Play();
         movementCursor[index].MoveTo(cards[indexCursor[index]].transform.localPosition, movementDuration);
     }
 }

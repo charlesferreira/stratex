@@ -10,20 +10,34 @@ public class TeamCard : MonoBehaviour {
     [HideInInspector] public bool selected = false;
     GameObject cursor;
 
-	void Start () {
+    AudioSource confirmAudio;
+    AudioSource cancelAudio;
+
+    bool leaving;
+
+    void Start () {
 
         GetComponentInChildren<SpriteRenderer>().sprite = info.teamCard;
         characterManager = GetComponentInChildren<CharacterManager>();
         characterManager.SetCharactersSprites(info.character1, info.character2);
         characterManager.gameObject.SetActive(false);
+
+        confirmAudio = GetComponents<AudioSource>()[0];
+        cancelAudio = GetComponents<AudioSource>()[1];
     }
-	
-	void Update () {
-	
+
+    void Update () {
+
+        if (leaving)
+        {
+            selected = false;
+            leaving = false;
+        }
 	}
 
     internal void ShowCharacters(List<Joystick> joysticks, GameObject cursor)
     {
+        leaving = false;
         this.cursor = cursor;
         cursor.SetActive(false);
 
@@ -33,15 +47,17 @@ public class TeamCard : MonoBehaviour {
         characterManager.gameObject.SetActive(true);
 
         characterManager.ShowCharacters(joysticks, cursor.GetComponent<TeamCursor>().colors);
+        confirmAudio.Play();
     }
 
     internal void HideCharacters()
     {
         cursor.SetActive(true);
 
-        selected = false;
+        leaving = true;
 
         GetComponentInChildren<SpriteRenderer>().enabled = true;
         characterManager.gameObject.SetActive(false);
+        cancelAudio.Play();
     }
 }
