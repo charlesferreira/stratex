@@ -24,6 +24,7 @@ GameObject:
   - 114: {fileID: 114000011341689550}
   - 114: {fileID: 114000011194279124}
   - 114: {fileID: 114000012508478696}
+  - 114: {fileID: 114000011039765232}
   m_Layer: 0
   m_Name: Game Managers
   m_TagString: Untagged
@@ -61,6 +62,18 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5b3f2beb5ec7a714dbb91c37acb27525, type: 2}
   - {fileID: 11400000, guid: f2c78a85d9a220c4a89e574e12c1c690, type: 2}
   - {fileID: 11400000, guid: 175417d7c64cd71469283c7b5ede654d, type: 2}
+--- !u!114 &114000011039765232
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012796445886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1b5cc6520b5e4e46b72bcb4074118b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameDuration: 180
 --- !u!114 &114000011194279124
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -74,6 +87,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   go: {fileID: 0}
   score: {fileID: 0}
+  timeUp: {fileID: 0}
   outputImage: {fileID: 0}
 --- !u!114 &114000011341689550
 MonoBehaviour:
@@ -104,23 +118,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de5fabf5ea457804aacd2d270ec71d5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skipIntro: 1
+  skipIntro: 0
   startingState:
     zoomIn: 2.5
     zoomInDuration: 3
     showRolesDuration: 2
   playingState:
-    messageFadeInDuration: 0.5
-    messageStayDuration: 0.5
-    goFadeOut: 0.8
+    messageFadeInDuration: 0.125
+    messageStayDuration: 0.8
+    messageFadeOut: 1
   scoringState:
     zoomIn: 1.5
     scoreFadeInDuration: 1
-    scoreStayDuration: 2
+    scoreStayDuration: 3.5
     scoreFadeOutDuration: 1
   restartingState:
-    movingDuration: 4
-    timeBeforeCoolDown: 0.5
+    movingDuration: 3.5
+    timeBeforeCoolDown: 0.8
+  timeUpState:
+    messageFadeInDuration: 0.1
+    messageStayDuration: 3
+    messageFadeOutDuration: 0.8
+    zoomOutScale: 0.75
+    zoomOutSpeed: 0.08
+    offset: {x: 4.5, y: 0}
   stratex: {fileID: 0}
   ship1: {fileID: 0}
   ship2: {fileID: 0}

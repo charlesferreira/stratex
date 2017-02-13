@@ -11,8 +11,8 @@ public class GameStateManager : MonoBehaviour {
     [SerializeField] PlayingState playingState;
     [SerializeField] ScoringState scoringState;
     [SerializeField] RestartingState restartingState;
+    [SerializeField] TimeUpState timeUpState;
     [SerializeField] EndingState endingState;
-    [SerializeField] EndedState endedState;
 
     [Header("References")]
     public DominationArea stratex;
@@ -65,12 +65,12 @@ public class GameStateManager : MonoBehaviour {
         SetState(restartingState);
     }
 
-    public void ToEndingState() {
-        SetState(endingState);
+    public void ToTimeUpState() {
+        SetState(timeUpState);
     }
 
-    public void ToEndedState() {
-        SetState(endedState);
+    public void ToEndingState() {
+        SetState(endingState);
     }
 
     // Helpers

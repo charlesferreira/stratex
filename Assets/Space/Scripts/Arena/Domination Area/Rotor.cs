@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class Rotor : MonoBehaviour {
 
@@ -13,7 +14,7 @@ public class Rotor : MonoBehaviour {
 
     float targetSpeed;
     float currentSpeed;
-    float speedMultiplier;
+    float speedMultiplier = 1;
 
     public float SpeedMultiplier { get { return speedMultiplier; } }
 
@@ -42,11 +43,18 @@ public class Rotor : MonoBehaviour {
     }
 
     public void ResetSpeed() {
-        speedMultiplier = 0;
+        speedMultiplier = 1;
         UpdateTargetSpeed();
     }
 
     void UpdateTargetSpeed() {
-        targetSpeed = baseSpeed * (1 + speedMultiplier * speedUpFactor);
+        targetSpeed = baseSpeed * (speedMultiplier * speedUpFactor);
+    }
+
+    public IEnumerator Stop() {
+        while(speedMultiplier > 1) {
+            SlowDown();
+            yield return new WaitForSeconds(0.25f);
+        }
     }
 }
