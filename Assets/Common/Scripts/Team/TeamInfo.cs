@@ -6,10 +6,14 @@ public class TeamInfo : ScriptableObject {
     [Header("Prefabs")]
     public GameObject shipModelPrefab;
 
-    [Header("Sprites")]
+    [Header("Player Selection")]
     public Sprite teamCard;
     public Sprite pilot;
     public Sprite engineer;
+
+    [Header("Instructions")]
+    public Sprite instructionsPilot;
+    public Sprite instructionsEngineer;
 
     [Header("Colors")]
     public Color neonColor;

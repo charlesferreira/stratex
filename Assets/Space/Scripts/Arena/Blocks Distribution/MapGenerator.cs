@@ -15,7 +15,7 @@ namespace Space {
 
                 [Header("Output")]
                 [SerializeField]
-                readonly string outputPath = "/Common/Textures/Generated/DistributionMap.png";
+                string outputPath = "/Common/Sprites/Generated/DistributionMap.png";
                 [Range(0, 8)]
                 public byte compression = 2;
 

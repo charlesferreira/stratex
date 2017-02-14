@@ -88,6 +88,7 @@ MonoBehaviour:
   go: {fileID: 0}
   score: {fileID: 0}
   timeUp: {fileID: 0}
+  instructionsStratex: {fileID: 0}
   outputImage: {fileID: 0}
 --- !u!114 &114000011341689550
 MonoBehaviour:
@@ -118,11 +119,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de5fabf5ea457804aacd2d270ec71d5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skipIntro: 1
+  skipIntro: 0
   startingState:
-    zoomIn: 2.5
+    zoomIn: 2.125
     zoomInDuration: 3
     showRolesDuration: 2
+    pilot1: {fileID: 0}
+    pilot2: {fileID: 0}
+    engineer1: {fileID: 0}
+    engineer2: {fileID: 0}
   playingState:
     messageFadeInDuration: 0.125
     messageStayDuration: 0.8
@@ -143,6 +148,7 @@ MonoBehaviour:
     zoomOutSpeed: 0.08
     offset: {x: 4.5, y: 0}
   stratex: {fileID: 0}
+  stratexZoomFocus: {fileID: 0}
   ship1: {fileID: 0}
   ship2: {fileID: 0}
   puzzle1: {fileID: 0}
@@ -162,3 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2caabb22c8305984ba3c12a0038b8a2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pilotFrame1: {fileID: 0}
+  engineerFrame1: {fileID: 0}
+  pilotFrame2: {fileID: 0}
+  engineerFrame2: {fileID: 0}

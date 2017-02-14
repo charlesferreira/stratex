@@ -4,13 +4,14 @@ using System.Collections.Generic;
 
 public class CommonMessages : MonoBehaviour {
 
-    public enum MessageType { None, Go, Score, TimeUp }
-    public Canvas go;
-    public Canvas score;
-    public Canvas timeUp;
+    public enum MessageType { None, InstructionsStratex, Go, Score, TimeUp }
+    public GameObject go;
+    public GameObject score;
+    public GameObject timeUp;
+    public GameObject instructionsStratex;
     public RawImage outputImage;
 
-    Dictionary<MessageType, Canvas> messages = new Dictionary<MessageType, Canvas>();
+    Dictionary<MessageType, GameObject> messages = new Dictionary<MessageType, GameObject>();
     Color targetColor;
     Color previousColor;
     float timer;
@@ -29,6 +30,7 @@ public class CommonMessages : MonoBehaviour {
         messages.Add(MessageType.Go, go);
         messages.Add(MessageType.Score, score);
         messages.Add(MessageType.TimeUp, timeUp);
+        messages.Add(MessageType.InstructionsStratex, instructionsStratex);
         outputImage.color = Color.clear;
     }
 

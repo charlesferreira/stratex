@@ -16,6 +16,7 @@ public class GameStateManager : MonoBehaviour {
 
     [Header("References")]
     public DominationArea stratex;
+    public Transform stratexZoomFocus;
     public ShipOnOffSwitch ship1;
     public ShipOnOffSwitch ship2;
     public PuzzleOnOffSwitch puzzle1;
@@ -88,14 +89,22 @@ public class GameStateManager : MonoBehaviour {
         puzzle2.TurnOn();
     }
 
-    public void FocusStratex(float zoomScale, float hudZoomSpeed) {
+    public void Focus(Transform focus, float zoomScale, float hudZoomSpeed) {
         // faz as câmeras focarem o Stratex, com zoom
-        shipCamera1.SetTarget(stratex.transform).Zoom(zoomScale, 0.15f);
-        shipCamera2.SetTarget(stratex.transform).Zoom(zoomScale, 0.15f);
+        shipCamera1.SetTarget(focus).Zoom(zoomScale, 0.15f);
+        shipCamera2.SetTarget(focus).Zoom(zoomScale, 0.15f);
 
         // oculta a HUD, aumentando o zoom da câmera
         hudCamera1.Zoom(3, hudZoomSpeed);
         hudCamera2.Zoom(3, hudZoomSpeed);
+    }
+
+    public void Focus(Transform focus, float zoomScale) {
+        Focus(focus, zoomScale, Mathf.Infinity);
+    }
+
+    public void FocusStratex(float zoomScale, float hudZoomSpeed) {
+        Focus(stratex.transform, zoomScale, Mathf.Infinity);
     }
 
     public void FocusStratex(float zoomScale) {

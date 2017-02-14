@@ -13,7 +13,6 @@ public class Cursor : MonoBehaviour {
     }
 
     void Start() {
-        column = row = 0;
         transform.localPosition = grid.GetGridCoord(new Vector3(column, row, -1)) + new Vector3(.5f, 0, 0);
     }
 

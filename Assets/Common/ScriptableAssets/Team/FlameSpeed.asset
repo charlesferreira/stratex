@@ -14,8 +14,11 @@ MonoBehaviour:
   shipModelPrefab: {fileID: 1000012941165454, guid: 4a7a5dfe78489cb42931c76fefb3261b,
     type: 2}
   teamCard: {fileID: 21300000, guid: 08d8391926e375d40ae1e249845f7eef, type: 3}
-  character1: {fileID: 21300000, guid: a99c0acc45fa9244491698399c6dd734, type: 3}
-  character2: {fileID: 21300000, guid: 59855925bce8e0a4da40d5b43a9fff62, type: 3}
+  pilot: {fileID: 21300000, guid: a99c0acc45fa9244491698399c6dd734, type: 3}
+  engineer: {fileID: 21300000, guid: 59855925bce8e0a4da40d5b43a9fff62, type: 3}
+  instructionsPilot: {fileID: 21300000, guid: f5e72231e2c7d4b458d4efaa59746e4e, type: 3}
+  instructionsEngineer: {fileID: 21300000, guid: c802e2bf3f3e3fd49afad28dc315ce1f,
+    type: 3}
   neonColor: {r: 1, g: 0, b: 0, a: 0.972549}
   scoreColor: {r: 1, g: 0, b: 0, a: 0.972549}
   bulletColor: {r: 1, g: 0, b: 0, a: 0.972549}

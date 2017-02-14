@@ -35,14 +35,14 @@ public class GridManager : MonoBehaviour {
         foreach (Transform child in transform)
             grids.Add(child.GetComponent<Grid>());
 
-        StartGrids();
+        //StartGrids();
     }
 
     void Update () {
 	
 	}
 
-    private void StartGrids()
+    public void StartGrids()
     {
         for (int column = 0; column < columns; column++)
         {
