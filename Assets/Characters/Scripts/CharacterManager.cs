@@ -60,6 +60,7 @@ public class CharacterManager : MonoBehaviour {
         }
         else  if (menuInput[index].Cancel)
         {
+            menuInput[index].ResetInputs();
             if (cards[indexCursor[index]].selected) {
                 cards[indexCursor[index]].Deselect();
             }

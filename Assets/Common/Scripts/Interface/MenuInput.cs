@@ -63,4 +63,9 @@ public class MenuInput : MonoBehaviour
         }
         currentCooldown = firstCooldown;
     }
+
+    public void ResetInputs()
+    {
+        Up = Down = Left = Right = Confirm = Cancel = Start = false;
+    }
 }
