@@ -17,8 +17,7 @@ namespace DominationAreaStates {
 
             // se tem uma nave, começa a aquecer
             if (flag == (TeamFlags.Team1 ^ TeamFlags.Team2)) {
-                var team = TeamsManager.Instance.GetTeamInfo(flag);
-                dominationArea.ToWarmingUpState(team);
+                dominationArea.ToWarmingUpState(flag);
                 return;
             }
 
@@ -29,11 +28,11 @@ namespace DominationAreaStates {
 
         public void OnStateExit(DominationArea dominationArea) { }
 
-        public void ShipHasEntered(DominationArea dominationArea, TeamInfo team) {
+        public void ShipHasEntered(DominationArea dominationArea, TeamFlags team) {
             dominationArea.ToWarmingUpState(team);
         }
 
-        public void ShipHasLeft(DominationArea dominationArea, TeamInfo team) {
+        public void ShipHasLeft(DominationArea dominationArea, TeamFlags team) {
             Debug.LogError("cold && ship left");
         }
 

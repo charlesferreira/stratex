@@ -44,26 +44,26 @@ public class DominationArea : MonoBehaviour {
         var id = other.GetComponent<TeamIdentity>();
         if (id == null)
             return;
-        var team = id.info;
+        var flag = id.flag;
 
         // Se já contou a entrada da nave, não informa o estado
-        if ((CurrentTeam & team.flag) != 0) return;
+        if ((CurrentTeam & flag) != 0) return;
 
-        CurrentTeam |= team.flag;
-        currentState.ShipHasEntered(this, team);
+        CurrentTeam |= flag;
+        currentState.ShipHasEntered(this, flag);
     }
 
     void OnTriggerExit2D(Collider2D other) {
         var id = other.GetComponent<TeamIdentity>();
         if (id == null)
             return;
-        var team = id.info;
+        var flag = id.flag;
         
         // Se já contou a saída da nave, não informa o estado
-        if ((CurrentTeam & ~team.flag) == CurrentTeam) return;
+        if ((CurrentTeam & ~flag) == CurrentTeam) return;
 
-        CurrentTeam &= ~team.flag;
-        currentState.ShipHasLeft(this, team);
+        CurrentTeam &= ~flag;
+        currentState.ShipHasLeft(this, flag);
     }
 
     public void SetState(IDominationAreaState state) {
@@ -89,8 +89,8 @@ public class DominationArea : MonoBehaviour {
         SetState(coldState);
     }
 
-    public void ToWarmingUpState(TeamInfo team) {
-        DominatingTeam = team;
+    public void ToWarmingUpState(TeamFlags team) {
+        DominatingTeam = TeamsManager.Instance.GetTeamInfo(team);
         SetState(warmingUpState);
     }
 

@@ -12,9 +12,9 @@
 
         public void OnStateExit(DominationArea dominationArea) { }
 
-        public void ShipHasEntered(DominationArea dominationArea, TeamInfo team) { }
+        public void ShipHasEntered(DominationArea dominationArea, TeamFlags team) { }
 
-        public void ShipHasLeft(DominationArea dominationArea, TeamInfo team) { }
+        public void ShipHasLeft(DominationArea dominationArea, TeamFlags team) { }
 
         public void Update(DominationArea dominationArea) { }
     }

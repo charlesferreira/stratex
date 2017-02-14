@@ -18,12 +18,12 @@ namespace DominationAreaStates {
             startingColor = dominationArea.Color;
         }
 
-        public void ShipHasEntered(DominationArea dominationArea, TeamInfo team) {
+        public void ShipHasEntered(DominationArea dominationArea, TeamFlags team) {
             if (dominationArea.CurrentTeam == TeamFlags.Both)
                 dominationArea.ToOverheatedState();
         }
 
-        public void ShipHasLeft(DominationArea dominationArea, TeamInfo team) { }
+        public void ShipHasLeft(DominationArea dominationArea, TeamFlags team) { }
 
         public void Update(DominationArea dominationArea) {
             elapsedTime += Time.deltaTime;
@@ -41,7 +41,7 @@ namespace DominationAreaStates {
             if (flag == TeamFlags.None)
                 dominationArea.ToColdState();
             else
-                dominationArea.ToWarmingUpState(TeamsManager.Instance.GetTeamInfo(flag));
+                dominationArea.ToWarmingUpState(flag);
         }
 
         void UpdateRotorSpeed(DominationArea dominationArea, float deltaTime) {

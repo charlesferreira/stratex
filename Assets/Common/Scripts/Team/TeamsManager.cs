@@ -3,11 +3,9 @@ using System.Collections.Generic;
 
 public class TeamsManager : MonoBehaviour {
 
-    [Header("Teams")]
-    [SerializeField] TeamInfo team1Info;
-    [SerializeField] TeamInfo team2Info;
-
-    Dictionary<TeamFlags, Team> teams;
+    Dictionary<TeamFlags, Team> teams = new Dictionary<TeamFlags, Team>(2);
+    Dictionary<TeamFlags, Joystick> pilots = new Dictionary<TeamFlags, Joystick>(2);
+    Dictionary<TeamFlags, Joystick> engineers = new Dictionary<TeamFlags, Joystick>(2);
     List<IScoreObserver> scoreObservers = new List<IScoreObserver>();
 
     static TeamsManager instance;
@@ -19,10 +17,21 @@ public class TeamsManager : MonoBehaviour {
         }
     }
 
-    void Awake() {
-        teams = new Dictionary<TeamFlags, Team>(2);
-        teams.Add(team1Info.flag, new Team(team1Info));
-        teams.Add(team2Info.flag, new Team(team2Info));
+    public void Init(TeamInfo team1, Joystick pilot1, Joystick engineer1, TeamInfo team2, Joystick pilot2, Joystick engineer2) {
+        // cria os times
+        teams.Clear();
+        teams.Add(TeamFlags.Team1, new Team(team1));
+        teams.Add(TeamFlags.Team2, new Team(team2));
+
+        // controles das naves
+        pilots.Clear();
+        pilots.Add(TeamFlags.Team1, pilot1);
+        pilots.Add(TeamFlags.Team2, pilot2);
+
+        // controles dos puzzles
+        engineers.Clear();
+        engineers.Add(TeamFlags.Team1, engineer1);
+        engineers.Add(TeamFlags.Team2, engineer2);
     }
 
     public TeamInfo GetTeamInfo(TeamFlags flag) {
@@ -34,6 +43,14 @@ public class TeamsManager : MonoBehaviour {
         return teams[enemy].info;
     }
 
+    public Joystick GetPilot(TeamFlags flag) {
+        return pilots[flag];
+    }
+
+    public Joystick GetEngineer(TeamFlags flag) {
+        return engineers[flag];
+    }
+
     public void Score(TeamFlags flag) {
         var score = teams[flag].Score();
         NotifyScoreObservers(flag, score);
@@ -42,6 +59,8 @@ public class TeamsManager : MonoBehaviour {
     public int GetTeamScore(TeamFlags flag) {
         return teams[flag].Points;
     }
+
+    // Score observers
 
     void NotifyScoreObservers(TeamFlags flag, int score) {
         foreach (var observer in scoreObservers) {

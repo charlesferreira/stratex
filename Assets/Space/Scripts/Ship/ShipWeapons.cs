@@ -19,10 +19,11 @@ public class ShipWeapons: MonoBehaviour {
     }
 
     void InitializeWeapons() {
-        var color = GetComponent<TeamIdentity>().info.color;
+        var bulletColor = GetComponent<TeamIdentity>().Info.bulletColor;
+        var missileColor = GetComponent<TeamIdentity>().Info.missileColor;
         var screenShaker = GetComponent<ScreenShaker>();
-        weapon1.Init(color, projectilesLayer, rb, screenShaker);
-        weapon2.Init(color, projectilesLayer, rb, screenShaker);
+        weapon1.Init(bulletColor, projectilesLayer, rb, screenShaker);
+        weapon2.Init(missileColor, projectilesLayer, rb, screenShaker);
     }
 
     void FixedUpdate () {

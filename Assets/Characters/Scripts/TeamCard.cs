@@ -22,7 +22,7 @@ public class TeamCard : MonoBehaviour {
 
         GetComponentInChildren<SpriteRenderer>().sprite = info.teamCard;
         characterManager = GetComponentInChildren<CharacterManager>();
-        characterManager.SetCharactersSprites(info.character1, info.character2);
+        characterManager.SetCharactersSprites(info.pilot, info.engineer);
         characterManager.gameObject.SetActive(false);
 
         confirmAudio = GetComponents<AudioSource>()[0];

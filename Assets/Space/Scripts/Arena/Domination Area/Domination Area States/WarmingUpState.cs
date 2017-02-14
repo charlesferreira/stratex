@@ -23,18 +23,18 @@ namespace DominationAreaStates {
 
         public void OnStateExit(DominationArea dominationArea) { }
 
-        public void ShipHasEntered(DominationArea dominationArea, TeamInfo team) {
+        public void ShipHasEntered(DominationArea dominationArea, TeamFlags team) {
             dominationArea.ToOverheatedState();
         }
 
-        public void ShipHasLeft(DominationArea dominationArea, TeamInfo team) {
+        public void ShipHasLeft(DominationArea dominationArea, TeamFlags team) {
             dominationArea.ToColdState();
         }
 
         public void Update(DominationArea dominationArea) {
             elapsedTime += Time.deltaTime;
             var rate = elapsedTime / timeToWarmUp;
-            var color = Color.Lerp(startingColor, dominationArea.DominatingTeam.color, rate);
+            var color = Color.Lerp(startingColor, dominationArea.DominatingTeam.stratexColor, rate);
             dominationArea.Color = color;
 
             if (rate >= 1f) {

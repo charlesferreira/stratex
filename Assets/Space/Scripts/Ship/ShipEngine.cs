@@ -4,9 +4,6 @@ public class ShipEngine : MonoBehaviour {
 
     [Header("References")]
     public Transform fuelHUD;
-    public ParticleSystem neutralParticles;
-    public ParticleSystem primaryParticles;
-    public ParticleSystem reserveParticles;
 
     [Header("Capacity")]
     public float maxFuel;
@@ -29,6 +26,7 @@ public class ShipEngine : MonoBehaviour {
     Vector3 hudScale = Vector3.one;
 
     public bool IsThrusting { get { return input.Thrusting; } }
+    public ShipParticles Particles { get; set; }
 
     void Start() {
         rb = GetComponent<Rigidbody2D>();
@@ -48,25 +46,23 @@ public class ShipEngine : MonoBehaviour {
 
         if (Pause.Instance.pause) return;
 
-        var primaryEmission = primaryParticles.emission;
-        var reserveEmission = reserveParticles.emission;
-        var neutralEmission = neutralParticles.emission;
+        Steer();
 
-        primaryEmission.enabled = false;
-        reserveEmission.enabled = false;
+        if (Particles == null) return;
+
+        Particles.Disable(Particles.neutralEngine);
+        Particles.Disable(Particles.primaryEngine);
+        Particles.Disable(Particles.reserveEngine);
 
         if (IsThrusting) {
             fuel = Mathf.Max(0f, fuel - Time.deltaTime);
             UpdateHuD();
 
-            var emission = fuel > 0 ? primaryEmission : reserveEmission;
-            emission.enabled = true;
-            neutralEmission.enabled = false;
+            var emission = fuel > 0 ? Particles.primaryEngine : Particles.reserveEngine;
+            Particles.Enable(emission);
         } else {
-            neutralEmission.enabled = true;
+            Particles.Enable(Particles.neutralEngine);
         }
-
-        Steer();
     }
 
     void LateUpdate() {

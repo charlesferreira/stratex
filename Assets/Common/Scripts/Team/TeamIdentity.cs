@@ -2,6 +2,12 @@
 
 public class TeamIdentity : MonoBehaviour {
 
-    public TeamInfo info;
+    public TeamFlags flag;
+
+    public TeamInfo Info {
+        get {
+            return TeamsManager.Instance.GetTeamInfo(flag);
+        }
+    }
 
 }

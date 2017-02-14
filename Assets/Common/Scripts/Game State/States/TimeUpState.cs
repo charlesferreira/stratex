@@ -52,12 +52,8 @@ namespace GameStates {
 
         void FocusArena(GameStateManager game) {
             // faz as câmeras focarem o Stratex, com zoom
-            game.shipCamera1/*.SetTarget(game.stratex.transform, offset, zoomOutSpeed)*/.Zoom(zoomOutScale, zoomOutSpeed);
-            game.shipCamera2/*.SetTarget(game.stratex.transform, offset, zoomOutSpeed)*/.Zoom(zoomOutScale, zoomOutSpeed);
-
-            // oculta a HUD, aumentando o zoom da câmera
-            //game.hudCamera1.Zoom(3, zoomOutSpeed);
-            //game.hudCamera2.Zoom(3, zoomOutSpeed);
+            game.shipCamera1.Zoom(zoomOutScale, zoomOutSpeed);
+            game.shipCamera2.Zoom(zoomOutScale, zoomOutSpeed);
         }
     }
 }
