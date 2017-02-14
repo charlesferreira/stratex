@@ -15,8 +15,6 @@ public class CharacterManager : MonoBehaviour {
     List<int> indexCursor = new List<int>();
 
     AudioSource switchAudio;
-    AudioSource confirmAudio;
-    AudioSource cancelAudio;
 
     public float movementDuration = .1f;
 
@@ -33,8 +31,7 @@ public class CharacterManager : MonoBehaviour {
         }
 
         switchAudio = GetComponents<AudioSource>()[0];
-        confirmAudio = GetComponents<AudioSource>()[1];
-        cancelAudio = GetComponents<AudioSource>()[2];
+
     }
 	
 	void Update () {
@@ -54,7 +51,6 @@ public class CharacterManager : MonoBehaviour {
                 return;
 
             cards[indexCursor[index]].SetSelected();
-            confirmAudio.Play();
 
             if (indexCursor[index] == indexCursor[indexOther])
             {
@@ -66,7 +62,6 @@ public class CharacterManager : MonoBehaviour {
         {
             if (cards[indexCursor[index]].selected) {
                 cards[indexCursor[index]].Deselect();
-                cancelAudio.Play();
             }
             else if (!cards[indexCursor[indexOther]].selected)
                 GetComponentInParent<TeamCard>().HideCharacters();
