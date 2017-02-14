@@ -3,13 +3,19 @@
 [CreateAssetMenu(menuName = "Common/Team")]
 public class TeamInfo : ScriptableObject {
 
-    public TeamFlags flag;
+    [Header("Prefabs")]
+    public GameObject shipModelPrefab;
 
-    public Color color;
-
+    [Header("Sprites")]
     public Sprite teamCard;
-    public Sprite character1;
-    public Sprite character2;
+    public Sprite pilot;
+    public Sprite engineer;
 
+    [Header("Colors")]
+    public Color neonColor;
+    public Color scoreColor;
+    public Color bulletColor;
+    public Color missileColor;
+    public Color stratexColor;
 
 }

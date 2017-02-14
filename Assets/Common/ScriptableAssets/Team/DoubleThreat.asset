@@ -9,10 +9,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a2c5bfad57fbca42bed194738f89fe8, type: 3}
-  m_Name: Team 3
+  m_Name: DoubleThreat
   m_EditorClassIdentifier: 
-  flag: 2
-  color: {r: 0, g: 0.8745098, b: 0.26666668, a: 0.803}
+  shipModelPrefab: {fileID: 1000012950437064, guid: 3d7bd8638b8f0374da4747bf16434175,
+    type: 2}
   teamCard: {fileID: 21300000, guid: faed395753820c3428462cfe87e3c5df, type: 3}
   character1: {fileID: 21300000, guid: a59ae332d33584649b0311ba04fd800b, type: 3}
   character2: {fileID: 21300000, guid: 9ef0e1a7f19694a4680568368cbda10a, type: 3}
+  neonColor: {r: 0, g: 1, b: 0, a: 0.972549}
+  scoreColor: {r: 0, g: 1, b: 0, a: 0.972549}
+  bulletColor: {r: 0, g: 1, b: 0, a: 0.972549}
+  missileColor: {r: 0, g: 1, b: 0, a: 0.972549}
+  stratexColor: {r: 0, g: 1, b: 0, a: 0.972549}

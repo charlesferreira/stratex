@@ -12,7 +12,7 @@ public class TeamHUD : MonoBehaviour, IScoreObserver {
     TeamFlags allyFlag;
 
     void Start() {
-        allyFlag = GetComponent<TeamIdentity>().info.flag;
+        allyFlag = GetComponent<TeamIdentity>().flag;
         TeamsManager.Instance.RegisterObserver(this);
 
         var score = "0";
@@ -20,13 +20,13 @@ public class TeamHUD : MonoBehaviour, IScoreObserver {
         var enemyInfo = TeamsManager.Instance.GetEnemyTeam(allyFlag);
 
         allyScore.text = score;
-        allyScore.color = allyInfo.color;
-        neonBorder.color = allyInfo.color;
-        neonAllyDetail.color = allyInfo.color;
+        allyScore.color = allyInfo.scoreColor;
+        neonBorder.color = allyInfo.neonColor;
+        neonAllyDetail.color = allyInfo.neonColor;
 
         enemyScore.text = score;
-        enemyScore.color = enemyInfo.color;
-        neonEnemyDetail.color = enemyInfo.color;
+        enemyScore.color = enemyInfo.scoreColor;
+        neonEnemyDetail.color = enemyInfo.neonColor;
     }
 
     public void ScoreHasChanged(TeamFlags flag, int score) {

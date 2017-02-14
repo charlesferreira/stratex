@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
 
 public class PuzzleInput : MonoBehaviour {
-
-    [Header("References")]
-    public Joystick joystick;
+    
 
     [Header("Tunning")]
     [Range(1f, 60f)]
@@ -13,9 +11,15 @@ public class PuzzleInput : MonoBehaviour {
     [Range(0f, 1f)]
     public float cursorThreshold = 0.5f;
 
+    Joystick joystick;
     enum Direction { Up, Down, Left, Right, Center }
     float currentCooldown;
     float DefaultCooldown { get { return 1f / cursorMovementsPerSecond; } }
+
+    void Start() {
+        var flag = GetComponent<TeamIdentity>().flag;
+        joystick = TeamsManager.Instance.GetEngineer(flag);
+    }
 
     void Update() {
 

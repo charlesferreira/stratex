@@ -9,10 +9,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a2c5bfad57fbca42bed194738f89fe8, type: 3}
-  m_Name: Team 4
+  m_Name: BlueWhale
   m_EditorClassIdentifier: 
-  flag: 2
-  color: {r: 0, g: 0.8745098, b: 0.26666668, a: 0.803}
+  shipModelPrefab: {fileID: 1000013199218816, guid: ff24ff3aa522d7d4a918e1b6a8f52c18,
+    type: 2}
   teamCard: {fileID: 21300000, guid: 65da3bab7ad962849b9957132340aa08, type: 3}
   character1: {fileID: 21300000, guid: a9160b6fd37c3cc4dbd2d5755a366085, type: 3}
   character2: {fileID: 21300000, guid: 879506fe5838634488024ba01be64f05, type: 3}
+  neonColor: {r: 0, g: 1, b: 1, a: 0.972549}
+  scoreColor: {r: 0, g: 1, b: 1, a: 0.972549}
+  bulletColor: {r: 0, g: 1, b: 1, a: 0.972549}
+  missileColor: {r: 0, g: 1, b: 1, a: 0.972549}
+  stratexColor: {r: 0, g: 1, b: 1, a: 0.972549}

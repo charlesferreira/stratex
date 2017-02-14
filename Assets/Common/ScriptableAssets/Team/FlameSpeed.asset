@@ -9,10 +9,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a2c5bfad57fbca42bed194738f89fe8, type: 3}
-  m_Name: Team 1
+  m_Name: FlameSpeed
   m_EditorClassIdentifier: 
-  flag: 1
-  color: {r: 0.08235294, g: 0.8745098, b: 0.9254902, a: 0.8039216}
+  shipModelPrefab: {fileID: 1000012941165454, guid: 4a7a5dfe78489cb42931c76fefb3261b,
+    type: 2}
   teamCard: {fileID: 21300000, guid: 08d8391926e375d40ae1e249845f7eef, type: 3}
   character1: {fileID: 21300000, guid: a99c0acc45fa9244491698399c6dd734, type: 3}
   character2: {fileID: 21300000, guid: 59855925bce8e0a4da40d5b43a9fff62, type: 3}
+  neonColor: {r: 1, g: 0, b: 0, a: 0.972549}
+  scoreColor: {r: 1, g: 0, b: 0, a: 0.972549}
+  bulletColor: {r: 1, g: 0, b: 0, a: 0.972549}
+  missileColor: {r: 1, g: 0, b: 0, a: 0.972549}
+  stratexColor: {r: 1, g: 0, b: 0, a: 0.972549}

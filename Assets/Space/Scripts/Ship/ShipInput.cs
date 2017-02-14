@@ -2,12 +2,18 @@
 
 public class ShipInput : MonoBehaviour {
 
-    public Joystick joystick;
     public bool usingLegacyControls;
 
     public bool Thrusting { get { return enabled && Input.GetButton(joystick.AButton); } }
     public bool Fire1 { get { return enabled && Input.GetButton(joystick.XButton); } }
     public bool Fire2 { get { return enabled && Input.GetButtonDown(joystick.BButton); } }
+
+    Joystick joystick;
+    
+    void Start() {
+        var flag = GetComponent<TeamIdentity>().flag;
+        joystick = TeamsManager.Instance.GetEngineer(flag);
+    }
 
     public Vector2 SteeringTarget {
         get {
