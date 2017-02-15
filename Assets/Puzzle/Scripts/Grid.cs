@@ -11,6 +11,7 @@ public class Grid : MonoBehaviour
 
     StatePatternBlock[,] grid;
     List<StatePatternBlock> matchingBlocks;
+    public MatchSounds matchSounds;
 
     float comboSequence;
 
@@ -174,6 +175,7 @@ public class Grid : MonoBehaviour
 
             //Debug.Log("Match " + info + ", size: " + matchSize + ", combo: " + comboSequence);
             ship.NotifyMatch(new Match(info, matchSize));
+            matchSounds.Play(matchSize);
 
             DestroyMatchingBlocks();
         }
