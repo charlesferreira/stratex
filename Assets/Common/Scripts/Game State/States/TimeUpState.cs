@@ -5,14 +5,8 @@ namespace GameStates {
 
     [System.Serializable]
     public class TimeUpState : IGameState {
-
-        [Header("Message")]
-        [Range(0, 5)]
-        public float messageFadeInDuration;
-        [Range(0, 5)]
-        public float messageStayDuration;
-        [Range(0, 5)]
-        public float messageFadeOutDuration;
+        
+        public MessageInfo message;
 
         [Header("Zoom out")]
         [Range(0.1f, 1)]
@@ -30,24 +24,25 @@ namespace GameStates {
 
             // exibe a mensagem de tempo esgotado
             ShowStartMessage();
-            yield return new WaitForSeconds(messageFadeInDuration + messageStayDuration);
+            yield return new WaitForSeconds(message.fadeIn + message.slideIn + message.stay);
+
+            // aguarda a mensagem desaparecer para mudar de estado
+            yield return new WaitForSeconds(message.fadeOut + message.slideOut);
 
             // oculta a mensagem
             HideStartMessage();
 
-            // aguarda a mensagem desaparecer para mudar de estado
-            yield return new WaitForSeconds(messageFadeOutDuration);
             game.ToEndingState();
         }
 
         void ShowStartMessage() {
             var messages = CommonMessages.Instance;
             messages.SetMessage(CommonMessages.MessageType.TimeUp);
-            messages.Show(messageFadeInDuration);
+            messages.Show();
         }
 
         void HideStartMessage() {
-            CommonMessages.Instance.Hide(messageFadeOutDuration, new Color(1, 1, 1, 0));
+            CommonMessages.Instance.Hide();
         }
 
         void FocusArena(GameStateManager game) {

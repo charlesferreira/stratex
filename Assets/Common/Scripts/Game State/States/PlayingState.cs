@@ -5,13 +5,8 @@ namespace GameStates {
 
     [System.Serializable]
     public class PlayingState : IGameState {
-        
-        [Range(0, 5)]
-        public float messageFadeInDuration;
-        [Range(0, 2)]
-        public float messageStayDuration;
-        [Range(0, 2)]
-        public float messageFadeOut;
+
+        public MessageInfo message;
 
         bool paused;
 
@@ -19,7 +14,7 @@ namespace GameStates {
             // caso esteja voltando da tela de pause, não exibe a mensagem "Go!"
             if (!paused) {
                 ShowStartMessage();
-                yield return new WaitForSeconds(messageFadeInDuration + messageStayDuration / 3);
+                yield return new WaitForSeconds(message.fadeIn + message.slideIn);
             }
 
             // habilita controles e Stratex, se necessário
@@ -30,7 +25,7 @@ namespace GameStates {
             GameTimer.Instance.Play();
 
             if (!paused) {
-                yield return new WaitForSeconds(messageStayDuration * 2 / 3);
+                yield return new WaitForSeconds(message.stay + message.slideOut + message.fadeOut);
             
                 // oculta a mensagem de início
                 HideStartMessage();
@@ -52,11 +47,11 @@ namespace GameStates {
         void ShowStartMessage() {
             var messages = CommonMessages.Instance;
             messages.SetMessage(CommonMessages.MessageType.Go);
-            messages.Show(messageFadeInDuration);
+            messages.Show();
         }
 
         void HideStartMessage() {
-            CommonMessages.Instance.Hide(messageFadeOut, new Color(1, 1, 1, 0));
+            CommonMessages.Instance.Hide();
         }
     }
 }

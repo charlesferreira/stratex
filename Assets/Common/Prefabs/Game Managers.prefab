@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1b5cc6520b5e4e46b72bcb4074118b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameDuration: 1
+  gameDuration: 3
 --- !u!114 &114000011194279124
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de5fabf5ea457804aacd2d270ec71d5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skipIntro: 1
+  skipIntro: 0
   startingState:
     zoomIn: 2.125
     zoomInDuration: 3
@@ -153,9 +153,7 @@ MonoBehaviour:
     engineer1: {fileID: 0}
     engineer2: {fileID: 0}
   playingState:
-    messageFadeInDuration: 0.125
-    messageStayDuration: 0.8
-    messageFadeOut: 1
+    message: {fileID: 11400000, guid: dad4fc17560f8cf498cf3477e4208935, type: 2}
   scoringState:
     zoomIn: 1.5
     scoreFadeInDuration: 1
@@ -165,9 +163,7 @@ MonoBehaviour:
     movingDuration: 3.5
     timeBeforeCoolDown: 0.8
   timeUpState:
-    messageFadeInDuration: 0.1
-    messageStayDuration: 3
-    messageFadeOutDuration: 0.8
+    message: {fileID: 11400000, guid: 06703ee2a5b4c73489944d0dd2f7160b, type: 2}
     zoomOutScale: 0.75
     zoomOutSpeed: 0.08
     offset: {x: 4.5, y: 0}
