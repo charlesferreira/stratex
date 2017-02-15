@@ -33,7 +33,7 @@ public class DominationArea : MonoBehaviour {
     // Methods
     
     void Awake() {
-        SetState(coldState);
+        SetIdle(true);
     }
 
     void Update() {
@@ -76,9 +76,14 @@ public class DominationArea : MonoBehaviour {
         currentState.OnStateEnter(this);
     }
 
+    public void SetIdle(bool idle) {
+        if (idle)
+            ToCoolingDownState();
+        this.idle = idle;
+    }
+
     public void TurnOff() {
-        ToCoolingDownState();
-        idle = true;
+        SetIdle(true);
         StartCoroutine(rotor.Stop());
         StartCoroutine(rings.Stop());
     }

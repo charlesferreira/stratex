@@ -25,7 +25,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000011149095626
 GameObject:
   m_ObjectHideFlags: 1
@@ -254,7 +254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d438f5ffc601234d9f2c7cb2da65a44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  joystick: {fileID: 11400000, guid: c80977e133260364488be73bb7e89300, type: 2}
+  joysticks: []
   cursorMovementsPerSecond: 6
   firstCooldown: 0.5
   cursorThreshold: 0.65
@@ -588,7 +588,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c80977e133260364488be73bb7e89300, type: 2}
   - {fileID: 11400000, guid: f69a6126bb88cba4da3504e269b24121, type: 2}
   - {fileID: 11400000, guid: 0ff2643e72d66394fb5d4112fc996cf2, type: 2}
-  pause: 0
+  pause: 1
 --- !u!114 &114000014109304746
 MonoBehaviour:
   m_ObjectHideFlags: 1

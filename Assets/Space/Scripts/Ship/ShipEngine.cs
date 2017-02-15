@@ -36,7 +36,7 @@ public class ShipEngine : MonoBehaviour {
     }
 
     void FixedUpdate() {
-        if (Pause.Instance.pause) return;
+        if (PauseController.Instance.IsPaused) return;
 
         if (IsThrusting)
             Accelerate();
@@ -44,7 +44,7 @@ public class ShipEngine : MonoBehaviour {
 
     void Update() {
 
-        if (Pause.Instance.pause) return;
+        if (PauseController.Instance.IsPaused) return;
 
         Steer();
 
@@ -66,7 +66,7 @@ public class ShipEngine : MonoBehaviour {
     }
 
     void LateUpdate() {
-        if (Pause.Instance.pause) return;
+        if (PauseController.Instance.IsPaused) return;
 
         if (rb.velocity.sqrMagnitude > maxSpeed * maxSpeed) {
             rb.velocity = rb.velocity.normalized * maxSpeed;

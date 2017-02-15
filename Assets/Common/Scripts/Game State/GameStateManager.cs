@@ -13,6 +13,7 @@ public class GameStateManager : MonoBehaviour {
     [SerializeField] RestartingState restartingState;
     [SerializeField] TimeUpState timeUpState;
     [SerializeField] EndingState endingState;
+    [SerializeField] PausedState pausedState;
 
     [Header("References")]
     public DominationArea stratex;
@@ -72,6 +73,10 @@ public class GameStateManager : MonoBehaviour {
 
     public void ToEndingState() {
         SetState(endingState);
+    }
+
+    public void ToPausedState() {
+        SetState(pausedState);
     }
 
     // Helpers

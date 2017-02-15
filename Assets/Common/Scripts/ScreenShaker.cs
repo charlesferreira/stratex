@@ -9,6 +9,8 @@ public class ScreenShaker : MonoBehaviour {
     List<Tremor> tremorsDone = new List<Tremor>();
 
     void Update() {
+        if (PauseController.Instance.IsPaused) return;
+
         var position = Vector2.zero;
         foreach (var tremor in tremors) {
             position += tremor.Shake();

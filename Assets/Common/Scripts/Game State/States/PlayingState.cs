@@ -13,23 +13,39 @@ namespace GameStates {
         [Range(0, 2)]
         public float messageFadeOut;
 
+        bool paused;
+
         public IEnumerator Play(GameStateManager game) {
-            // exibe mensagem de início ("Go!")
-            ShowStartMessage();
-            yield return new WaitForSeconds(messageFadeInDuration + messageStayDuration / 3);
+            // caso esteja voltando da tela de pause, não exibe a mensagem "Go!"
+            if (!paused) {
+                ShowStartMessage();
+                yield return new WaitForSeconds(messageFadeInDuration + messageStayDuration / 3);
+            }
 
-            // habilita controles
+            // habilita controles e Stratex, se necessário
             game.TurnOnControls();
+            game.stratex.SetIdle(false);
 
-            // inicia o timer, caso ainda não tenha sido iniciado
+            // (re)inicia o timer
             GameTimer.Instance.Play();
-            yield return new WaitForSeconds(messageStayDuration * 2 / 3);
-            
-            // oculta a mensagem de início
-            HideStartMessage();
 
-            // aguarda o fim da partida para mudar de estado
-            yield return new WaitForSeconds(GameTimer.Instance.TimeLeft);
+            if (!paused) {
+                yield return new WaitForSeconds(messageStayDuration * 2 / 3);
+            
+                // oculta a mensagem de início
+                HideStartMessage();
+            }
+            paused = false;
+
+            // aguarda o fim da partida ou Pause para mudar de estado
+            PauseController.Instance.Resume();
+            while (GameTimer.Instance.TimeLeft > 0) {
+                if (PauseController.Instance.IsPaused) {
+                    paused = true;
+                    game.ToPausedState();
+                }
+                yield return new WaitForFixedUpdate();
+            }
             game.ToTimeUpState();
         }
 

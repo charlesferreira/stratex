@@ -13,6 +13,10 @@ public class TeamsManager : MonoBehaviour {
         get {
             if (instance == null)
                 instance = FindObjectOfType<TeamsManager>();
+            if (instance == null) {
+                var obj = new GameObject();
+                instance = obj.AddComponent<TeamsManager>();
+            }
             return instance;
         }
     }

@@ -4,11 +4,12 @@ using System.Collections.Generic;
 
 public class CommonMessages : MonoBehaviour {
 
-    public enum MessageType { None, InstructionsStratex, Go, Score, TimeUp }
+    public enum MessageType { None, InstructionsStratex, Go, Score, TimeUp, Pause }
     public GameObject go;
     public GameObject score;
     public GameObject timeUp;
     public GameObject instructionsStratex;
+    public GameObject pause;
     public RawImage outputImage;
 
     Dictionary<MessageType, GameObject> messages = new Dictionary<MessageType, GameObject>();
@@ -31,11 +32,12 @@ public class CommonMessages : MonoBehaviour {
         messages.Add(MessageType.Score, score);
         messages.Add(MessageType.TimeUp, timeUp);
         messages.Add(MessageType.InstructionsStratex, instructionsStratex);
+        messages.Add(MessageType.Pause, pause);
         outputImage.color = Color.clear;
     }
 
     void Update() {
-        timer -= Time.deltaTime;
+        timer -= Time.unscaledDeltaTime;
         var delta = 1 - timer / startTime;
         outputImage.color = Color.Lerp(previousColor, targetColor, delta);
     }

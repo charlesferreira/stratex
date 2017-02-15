@@ -1,20 +1,9 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 
 public class MenuInput : MonoBehaviour
 {
-
-    public bool Up { get; set; }
-    public bool Down { get; set; }
-    public bool Left { get; set; }
-    public bool Right { get; set; }
-    public bool Confirm { get; set; }
-    public bool Cancel { get; set; }
-    public bool Start { get; set; }
-
     [Header("References")]
-
     public List<Joystick> joysticks;
 
     [Header("Tunning")]
@@ -25,17 +14,22 @@ public class MenuInput : MonoBehaviour
     [Range(0f, 1f)]
     public float cursorThreshold = 0.65f;
 
-    enum Direction { Up, Down, Left, Right, Center }
+
+    public bool Up { get; private set; }
+    public bool Down { get; private set; }
+    public bool Left { get; private set; }
+    public bool Right { get; private set; }
+    public bool Confirm { get; private set; }
+    public bool Cancel { get; private set; }
+    public bool Start { get; private set; }
+
     float currentCooldown;
     float DefaultCooldown { get { return 1f / cursorMovementsPerSecond; } }
 
-    void Update()
-    {
+    void Update() {
+        ResetInputs();
 
-        Up = Down = Left = Right = Confirm = Cancel = Start = false;
-
-        foreach (var joystick in joysticks)
-        {
+        foreach (var joystick in joysticks) {
             if (Input.GetAxisRaw(joystick.Vertical) > cursorThreshold) Up = true;
             if (Input.GetAxisRaw(joystick.Vertical) < -cursorThreshold) Down = true;
             if (Input.GetAxisRaw(joystick.Horizontal) > cursorThreshold) Right = true;
@@ -45,17 +39,14 @@ public class MenuInput : MonoBehaviour
             if (Input.GetButtonDown(joystick.StartButton)) Start = true;
         }
 
-        if (Up || Down || Right || Left)
-        {
-            if (currentCooldown == firstCooldown)
-            {
-                currentCooldown -= Time.deltaTime;
+        if (Up || Down || Right || Left) {
+            if (currentCooldown == firstCooldown) {
+                currentCooldown -= Time.unscaledDeltaTime;
                 return;
             }
-            if (currentCooldown > 0)
-            {
+            if (currentCooldown > 0) {
                 Up = Down = Left = Right = false;
-                currentCooldown -= Time.deltaTime;
+                currentCooldown -= Time.unscaledDeltaTime;
                 return;
             }
             currentCooldown += DefaultCooldown;
@@ -64,8 +55,7 @@ public class MenuInput : MonoBehaviour
         currentCooldown = firstCooldown;
     }
 
-    public void ResetInputs()
-    {
+    public void ResetInputs() {
         Up = Down = Left = Right = Confirm = Cancel = Start = false;
     }
 }
