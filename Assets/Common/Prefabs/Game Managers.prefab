@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1b5cc6520b5e4e46b72bcb4074118b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameDuration: 60
+  gameDuration: 1
 --- !u!114 &114000011194279124
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -91,6 +91,7 @@ MonoBehaviour:
   go: {fileID: 0}
   score: {fileID: 0}
   timeUp: {fileID: 0}
+  result: {fileID: 0}
   instructionsStratex: {fileID: 0}
   pause: {fileID: 0}
   outputImage: {fileID: 0}
