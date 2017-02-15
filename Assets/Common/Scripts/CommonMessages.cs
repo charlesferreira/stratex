@@ -4,10 +4,11 @@ using System.Collections.Generic;
 
 public class CommonMessages : MonoBehaviour {
 
-    public enum MessageType { None, InstructionsStratex, Go, Score, TimeUp, Pause }
+    public enum MessageType { None, InstructionsStratex, Go, Score, TimeUp, Result, Pause }
     public GameObject go;
     public GameObject score;
     public GameObject timeUp;
+    public GameObject result;
     public GameObject instructionsStratex;
     public GameObject pause;
     public RawImage outputImage;
@@ -31,6 +32,7 @@ public class CommonMessages : MonoBehaviour {
         messages.Add(MessageType.Go, go);
         messages.Add(MessageType.Score, score);
         messages.Add(MessageType.TimeUp, timeUp);
+        messages.Add(MessageType.Result, result);
         messages.Add(MessageType.InstructionsStratex, instructionsStratex);
         messages.Add(MessageType.Pause, pause);
         outputImage.color = Color.clear;

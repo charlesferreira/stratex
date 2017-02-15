@@ -35,7 +35,5 @@ public class MainMenu : MonoBehaviour {
         if (input.Cancel || input.Start) {
             PauseController.Instance.Resume();
         }
-        /*
-        */
     }
 }

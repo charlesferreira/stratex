@@ -16,6 +16,8 @@ namespace GameStates {
         public RuntimeAnimatorController draw;
 
         public IEnumerator Play(GameStateManager game) {
+            ShowResultMenu();
+
             var score1 = TeamsManager.Instance.GetTeamScore(TeamFlags.Team1);
             var score2 = TeamsManager.Instance.GetTeamScore(TeamFlags.Team2);
 
@@ -29,6 +31,12 @@ namespace GameStates {
             result2.gameObject.SetActive(true);
 
             yield return null;
+        }
+
+        void ShowResultMenu() {
+            var messages = CommonMessages.Instance;
+            messages.SetMessage(CommonMessages.MessageType.Result);
+            messages.Show();
         }
     }
 }
