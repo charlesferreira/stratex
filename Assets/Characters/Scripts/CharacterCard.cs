@@ -3,6 +3,8 @@
 public class CharacterCard : MonoBehaviour {
 
     [HideInInspector] public bool selected = false;
+    [HideInInspector] public Joystick joystick;
+    public bool isPilot;
 
     public float flashDuration = 0.4f;
 
@@ -23,8 +25,9 @@ public class CharacterCard : MonoBehaviour {
 	
 	}
 
-    public void SetSelected()
+    public void SetSelected(Joystick joystick)
     {
+        this.joystick = joystick;
         selected = true;
         GetComponentInChildren<FlashSprite>().StartFlash();
         flashing = true;
@@ -38,6 +41,11 @@ public class CharacterCard : MonoBehaviour {
         GetComponentInChildren<FlashSprite>().StopFlash();
         GetComponentInChildren<MeshRenderer>().enabled = false;
         GetComponentInChildren<SpriteRenderer>().color = finalColor;
+
+        if (isPilot)
+            TeamsSelectionManager.Instance.SetPilot(joystick);
+        else
+            TeamsSelectionManager.Instance.SetEngineer(joystick);
     }
 
     internal void Deselect()
@@ -48,5 +56,6 @@ public class CharacterCard : MonoBehaviour {
         GetComponentInChildren<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
         GetComponentInChildren<MeshRenderer>().enabled = true;
         cancelAudio.Play();
+        TeamsSelectionManager.Instance.UnsetCharacter();
     }
 }
