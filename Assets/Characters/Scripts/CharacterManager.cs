@@ -50,7 +50,7 @@ public class CharacterManager : MonoBehaviour {
             if (cards[indexCursor[index]].selected)
                 return;
 
-            cards[indexCursor[index]].SetSelected();
+            cards[indexCursor[index]].SetSelected(menuInput[index].joysticks[0]);
 
             if (indexCursor[index] == indexCursor[indexOther])
             {

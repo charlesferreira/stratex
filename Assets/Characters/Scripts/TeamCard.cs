@@ -43,6 +43,8 @@ public class TeamCard : MonoBehaviour {
         this.cursor = cursor;
         this.joysticks = joysticks;
 
+        TeamsSelectionManager.Instance.SetTeamInfo(joysticks[0], info);
+
         cursor.SetActive(false);
 
         selected = true;
