@@ -6,6 +6,8 @@ public class CharacterCard : MonoBehaviour {
 
     public float flashDuration = 0.4f;
 
+    public Color finalColor;
+
     bool flashing = false;
 
     AudioSource confirmAudio;
@@ -35,7 +37,7 @@ public class CharacterCard : MonoBehaviour {
         flashing = false;
         GetComponentInChildren<FlashSprite>().StopFlash();
         GetComponentInChildren<MeshRenderer>().enabled = false;
-        GetComponentInChildren<SpriteRenderer>().color = new Color(.5f, .5f, .5f, .5f);
+        GetComponentInChildren<SpriteRenderer>().color = finalColor;
     }
 
     internal void Deselect()
