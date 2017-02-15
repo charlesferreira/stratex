@@ -15,6 +15,9 @@ public class TeamInfo : ScriptableObject {
     public Sprite instructionsPilot;
     public Sprite instructionsEngineer;
 
+    [Header("HUD")]
+    public Texture teamName;
+
     [Header("Colors")]
     public Color neonColor;
     public Color scoreColor;

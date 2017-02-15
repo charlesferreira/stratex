@@ -12,7 +12,7 @@ namespace GameStates {
         [Range(0, 5)]
         public float zoomInDuration;
 
-        [Header("Roles")]
+        [Header("Portraits")]
         [Range(0, 5)]
         public float showRolesDuration;
         public GameObject pilot1;

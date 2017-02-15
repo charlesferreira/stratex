@@ -19,6 +19,7 @@ MonoBehaviour:
   instructionsPilot: {fileID: 21300000, guid: f5e72231e2c7d4b458d4efaa59746e4e, type: 3}
   instructionsEngineer: {fileID: 21300000, guid: c802e2bf3f3e3fd49afad28dc315ce1f,
     type: 3}
+  teamName: {fileID: 2800000, guid: 478ef690759f99f46bd1982b547d9e39, type: 3}
   neonColor: {r: 1, g: 0, b: 0, a: 0.972549}
   scoreColor: {r: 1, g: 0, b: 0, a: 0.972549}
   bulletColor: {r: 1, g: 0, b: 0, a: 0.972549}

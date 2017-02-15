@@ -20,6 +20,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013631744972}
   - 114: {fileID: 114000014069788168}
+  - 114: {fileID: 114000012745248250}
+  - 114: {fileID: 114000013748769556}
   - 114: {fileID: 114000010129700718}
   - 114: {fileID: 114000011341689550}
   - 114: {fileID: 114000011194279124}
@@ -119,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de5fabf5ea457804aacd2d270ec71d5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skipIntro: 0
+  skipIntro: 1
   startingState:
     zoomIn: 2.125
     zoomInDuration: 3
@@ -157,6 +159,40 @@ MonoBehaviour:
   shipCamera2: {fileID: 0}
   hudCamera1: {fileID: 0}
   hudCamera2: {fileID: 0}
+--- !u!114 &114000012745248250
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012796445886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69a233242d81c254f9e421790f7667d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flag: 1
+  instructionsPilot: {fileID: 0}
+  instructionsEngineer: {fileID: 0}
+  teamName: {fileID: 0}
+  engine: {fileID: 0}
+  shipModelPlaceholder: {fileID: 0}
+--- !u!114 &114000013748769556
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012796445886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69a233242d81c254f9e421790f7667d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flag: 2
+  instructionsPilot: {fileID: 0}
+  instructionsEngineer: {fileID: 0}
+  teamName: {fileID: 0}
+  engine: {fileID: 0}
+  shipModelPlaceholder: {fileID: 0}
 --- !u!114 &114000014069788168
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -168,7 +204,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2caabb22c8305984ba3c12a0038b8a2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pilotFrame1: {fileID: 0}
-  engineerFrame1: {fileID: 0}
-  pilotFrame2: {fileID: 0}
-  engineerFrame2: {fileID: 0}
