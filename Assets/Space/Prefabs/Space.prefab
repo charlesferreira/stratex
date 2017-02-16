@@ -1336,7 +1336,7 @@ CircleCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012016645796}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -1547,7 +1547,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pulse: {fileID: 114000011803510816}
   minForce: 0
-  maxForce: 15
+  maxForce: 25
   baseDamageTime: 1.25
   shakeConfig:
     time: 0.5
@@ -1964,8 +1964,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fuelHUD: {fileID: 224000011497925600}
-  maxFuel: 60
-  startingFuel: 0.5
+  maxFuel: 45
+  startingFuel: 0.2
   primaryThrusterPower: 500
   reserveThrusterPower: 100
   maxSpeed: 100000
@@ -7684,7 +7684,7 @@ SpriteRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012016645796}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_MotionVectors: 1

@@ -7,6 +7,7 @@ public class DominationArea : MonoBehaviour {
     public SpriteRenderer background;
     public Rotor rotor;
     public Rings rings;
+    public float blocksAttraction;
     
     [Header("States")]
     [SerializeField] ColdState coldState;
@@ -15,6 +16,8 @@ public class DominationArea : MonoBehaviour {
     [SerializeField] OverheatedState overheatedState;
     [SerializeField] CoolingDownState coolingDownState;
     IDominationAreaState currentState;
+
+    public bool Overheating { get; private set; }
 
     // Private
 
@@ -85,6 +88,7 @@ public class DominationArea : MonoBehaviour {
 
         currentState = state;
         currentState.OnStateEnter(this);
+        Overheating = false;
     }
 
     public void SetIdle(bool idle) {
@@ -116,6 +120,7 @@ public class DominationArea : MonoBehaviour {
 
     public void ToOverheatedState() {
         SetState(overheatedState);
+        Overheating = true;
     }
 
     public void ToCoolingDownState() {

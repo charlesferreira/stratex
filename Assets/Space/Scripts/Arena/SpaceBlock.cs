@@ -10,6 +10,7 @@ namespace Space.Arena.BlocksDistribution {
         Vector2 phase;
         Vector2 speed;
         Vector2 swing;
+        DominationArea stratex;
 
         public void Init(BlockInfo info, Vector2 position) {
             this.info = info;
@@ -23,6 +24,8 @@ namespace Space.Arena.BlocksDistribution {
                 Random.Range(-1f, 1f),
                 Random.Range(-1f, 1f));
             swing = new Vector2();
+
+            stratex = FindObjectOfType<DominationArea>();
         }
 
         void FixedUpdate() {
@@ -30,6 +33,12 @@ namespace Space.Arena.BlocksDistribution {
                 Mathf.Cos(Time.time + phase.x) * speed.x,
                 Mathf.Sin(Time.time + phase.y) * speed.y);
             transform.Translate(swing * swingSpeed * swingRadius * Time.fixedDeltaTime);
+
+            if (stratex.Overheating) {
+                var distance = stratex.transform.position - transform.position;
+                var direction = distance.normalized;
+                transform.Translate(direction * stratex.blocksAttraction * Time.fixedDeltaTime);
+            }
         }
 
         void OnTriggerStay2D(Collider2D other) {

@@ -21,6 +21,7 @@ public class TeamsSelectionManager : MonoBehaviour {
             return instance;
         }
     }
+
     public void SetTeamInfo(Joystick joystick, TeamInfo teamInfo)
     {
         if (joystick == team1.P1 || joystick == team1.P2)
@@ -53,7 +54,9 @@ public class TeamsSelectionManager : MonoBehaviour {
         playersReady++;
         if (playersReady == 4)
         {
-            TeamsManager.Instance.Init(team1.teamInfo, team1.Pilot, team1.Engineer, team2.teamInfo, team2.Pilot, team2.Engineer);
+            TeamsManager.Instance.Init(
+                team1.teamInfo, team1.Pilot, team1.Engineer, 
+                team2.teamInfo, team2.Pilot, team2.Engineer);
             SceneManager.LoadScene(2);
         }
     }

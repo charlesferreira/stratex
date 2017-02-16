@@ -1712,6 +1712,7 @@ MonoBehaviour:
   background: {fileID: 212000010264597068}
   rotor: {fileID: 114000010296964060}
   rings: {fileID: 114000014293297098}
+  blocksAttraction: 1
   coldState:
     coldColor: {r: 0.13333334, g: 1, b: 0, a: 0.27058825}
   warmingUpState:
@@ -1726,7 +1727,6 @@ MonoBehaviour:
     overheatedBlinkTime: 0.2
   coolingDownState:
     timeToCoolDown: 1
-    minPitch: 1
 --- !u!114 &114000012847153640
 MonoBehaviour:
   m_ObjectHideFlags: 1
