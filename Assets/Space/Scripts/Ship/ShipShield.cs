@@ -58,8 +58,6 @@ public class ShipShield : MonoBehaviour {
     }
 
     IEnumerator PlayShieldDown() {
-        print(time);
-        print(shieldDown.Length);
         float delay = time - shieldDown.Length / 3;
         yield return new WaitForSeconds(delay);
         shieldDown.Play(transform.position);

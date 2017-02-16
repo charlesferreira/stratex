@@ -26,6 +26,9 @@ namespace DominationAreaStates {
         }
 
         public void Update(DominationArea dominationArea) {
+            if (!SoundPlayer.Instance.stratexOverheat.isPlaying)
+                dominationArea.PlaySound(SoundPlayer.Instance.stratexOverheat);
+
             elapsedTime += Time.deltaTime;
             var blink = Mathf.PingPong(elapsedTime, overheatedBlinkTime) / overheatedBlinkTime;
             var color = overheatedColorRange.Lerp(blink);

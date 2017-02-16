@@ -31,6 +31,17 @@ public class DominationArea : MonoBehaviour {
     public TeamInfo DominatingTeam { get; private set; }
 
     // Methods
+
+    public void PlaySound(AudioSource sound) {
+        StopSounds();
+        sound.Play();
+    }
+
+    public void StopSounds() {
+        SoundPlayer.Instance.stratexHot.Stop();
+        SoundPlayer.Instance.stratexOverheat.Stop();
+        SoundPlayer.Instance.stratexWarmingUp.Stop();
+    }
     
     void Awake() {
         SetIdle(true);

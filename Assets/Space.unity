@@ -2199,7 +2199,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1787395352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2335,11 +2335,6 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010773062392, guid: 854897f1cfdbc66479a60a65c8b43069,
-        type: 2}
-      propertyPath: muteMusic
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 854897f1cfdbc66479a60a65c8b43069, type: 2}
@@ -2539,6 +2534,41 @@ Prefab:
     - target: {fileID: 1000012382584864, guid: c54aeb83638c39a45a1d153d67dc05ce, type: 2}
       propertyPath: m_Name
       value: Puzzle 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 82000014108510958, guid: c54aeb83638c39a45a1d153d67dc05ce,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.125
+      objectReference: {fileID: 0}
+    - target: {fileID: 82000013148509842, guid: c54aeb83638c39a45a1d153d67dc05ce,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.125
+      objectReference: {fileID: 0}
+    - target: {fileID: 82000011113577426, guid: c54aeb83638c39a45a1d153d67dc05ce,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.125
+      objectReference: {fileID: 0}
+    - target: {fileID: 82000010777460352, guid: c54aeb83638c39a45a1d153d67dc05ce,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.125
+      objectReference: {fileID: 0}
+    - target: {fileID: 82000014098071056, guid: c54aeb83638c39a45a1d153d67dc05ce,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.125
+      objectReference: {fileID: 0}
+    - target: {fileID: 82000010127287284, guid: c54aeb83638c39a45a1d153d67dc05ce,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.125
+      objectReference: {fileID: 0}
+    - target: {fileID: 82000014247935692, guid: c54aeb83638c39a45a1d153d67dc05ce,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.125
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c54aeb83638c39a45a1d153d67dc05ce, type: 2}

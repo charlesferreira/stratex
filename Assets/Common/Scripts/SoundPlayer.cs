@@ -14,6 +14,11 @@ public class SoundPlayer : MonoBehaviour {
     public AudioSource confirmAudio;
     public AudioSource cancelAudio;
 
+    [Header("Stratex")]
+    public AudioSource stratexWarmingUp;
+    public AudioSource stratexHot;
+    public AudioSource stratexOverheat;
+
     AudioSource currentMusic;
 
     static SoundPlayer instance;

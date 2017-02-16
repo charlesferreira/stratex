@@ -6,6 +6,8 @@
         public GameStateManager gameStateManager;
 
         public void OnStateEnter(DominationArea dominationArea) {
+            dominationArea.PlaySound(SoundPlayer.Instance.stratexHot);
+
             gameStateManager.ToScoringState(dominationArea.DominatingTeam);
             TeamsManager.Instance.Score(dominationArea.CurrentTeam);
         }

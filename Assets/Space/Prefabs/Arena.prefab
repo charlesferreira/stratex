@@ -1716,6 +1716,7 @@ MonoBehaviour:
     coldColor: {r: 0.13333334, g: 1, b: 0, a: 0.27058825}
   warmingUpState:
     timeToWarmUp: 4
+    maxPitch: 2
   hotState:
     gameStateManager: {fileID: 0}
   overheatedState:
@@ -1725,6 +1726,7 @@ MonoBehaviour:
     overheatedBlinkTime: 0.2
   coolingDownState:
     timeToCoolDown: 1
+    minPitch: 1
 --- !u!114 &114000012847153640
 MonoBehaviour:
   m_ObjectHideFlags: 1

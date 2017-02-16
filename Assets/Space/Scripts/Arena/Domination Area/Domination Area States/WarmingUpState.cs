@@ -8,11 +8,19 @@ namespace DominationAreaStates {
         [Range(0, 10)]
         public float timeToWarmUp;
 
+        [Range(1, 3)]
+        public float maxPitch;
+
         Color startingColor;
         float elapsedTime;
         float timeToUpdateRotorSpeed;
+        float basePitch;
 
         public void OnStateEnter(DominationArea dominationArea) {
+            if (basePitch == 0)
+                basePitch = SoundPlayer.Instance.stratexWarmingUp.pitch;
+            SoundPlayer.Instance.stratexWarmingUp.pitch = basePitch;
+
             startingColor = dominationArea.Color;
             elapsedTime = 0;
             timeToUpdateRotorSpeed = timeToWarmUp / 10;
@@ -32,10 +40,15 @@ namespace DominationAreaStates {
         }
 
         public void Update(DominationArea dominationArea) {
+            if (!SoundPlayer.Instance.stratexWarmingUp.isPlaying)
+                dominationArea.PlaySound(SoundPlayer.Instance.stratexWarmingUp);
+
             elapsedTime += Time.deltaTime;
             var rate = elapsedTime / timeToWarmUp;
             var color = Color.Lerp(startingColor, dominationArea.DominatingTeam.stratexColor, rate);
             dominationArea.Color = color;
+
+            SoundPlayer.Instance.stratexWarmingUp.pitch = basePitch + rate * (maxPitch - 1);
 
             if (rate >= 1f) {
                 dominationArea.ToHotState();

@@ -8,6 +8,8 @@ namespace DominationAreaStates {
         public Color coldColor;
 
         public void OnStateEnter(DominationArea dominationArea) {
+            dominationArea.StopSounds();
+
             // se tem duas naves, sobrecarrega
             var flag = dominationArea.CurrentTeam;
             if (flag == TeamFlags.Both) {
