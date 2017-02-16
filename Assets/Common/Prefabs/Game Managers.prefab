@@ -25,9 +25,10 @@ GameObject:
   - 114: {fileID: 114000010129700718}
   - 114: {fileID: 114000011341689550}
   - 114: {fileID: 114000011194279124}
+  - 114: {fileID: 114000012242389572}
   - 114: {fileID: 114000012508478696}
   - 114: {fileID: 114000011039765232}
-  - 114: {fileID: 114000012242389572}
+  - 114: {fileID: 114000012424178110}
   m_Layer: 0
   m_Name: Game Managers
   m_TagString: Untagged
@@ -76,7 +77,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1b5cc6520b5e4e46b72bcb4074118b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameDuration: 3
+  gameDuration: 180
 --- !u!114 &114000011194279124
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -132,6 +133,18 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f69a6126bb88cba4da3504e269b24121, type: 2}
   - {fileID: 11400000, guid: 68b8e946a974eed42a1dddb4ab96fc33, type: 2}
   - {fileID: 11400000, guid: 0ff2643e72d66394fb5d4112fc996cf2, type: 2}
+--- !u!114 &114000012424178110
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012796445886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c09fccad39ff9844aa162d0a0278ffac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: {fileID: 0}
 --- !u!114 &114000012508478696
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -143,11 +156,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de5fabf5ea457804aacd2d270ec71d5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skipIntro: 0
+  skipIntro: 1
   startingState:
     zoomIn: 2.125
-    zoomInDuration: 3
-    showRolesDuration: 2
+    zoomInDuration: 2.5
+    showRolesDuration: 1.5
     pilot1: {fileID: 0}
     pilot2: {fileID: 0}
     engineer1: {fileID: 0}
@@ -155,13 +168,11 @@ MonoBehaviour:
   playingState:
     message: {fileID: 11400000, guid: dad4fc17560f8cf498cf3477e4208935, type: 2}
   scoringState:
+    message: {fileID: 11400000, guid: 605623eae12ec1b4ab3597552b3d1aac, type: 2}
     zoomIn: 1.5
-    scoreFadeInDuration: 1
-    scoreStayDuration: 3.5
-    scoreFadeOutDuration: 1
   restartingState:
-    movingDuration: 3.5
-    timeBeforeCoolDown: 0.8
+    movingDuration: 2.8
+    timeBeforeCoolDown: 0.6
   timeUpState:
     message: {fileID: 11400000, guid: 06703ee2a5b4c73489944d0dd2f7160b, type: 2}
     zoomOutScale: 0.75
@@ -198,8 +209,12 @@ MonoBehaviour:
   instructionsPilot: {fileID: 0}
   instructionsEngineer: {fileID: 0}
   teamName: {fileID: 0}
+  teamScore: {fileID: 0}
+  shipInput: {fileID: 0}
   engine: {fileID: 0}
+  damage: {fileID: 0}
   shipModelPlaceholder: {fileID: 0}
+  puzzleInput: {fileID: 0}
 --- !u!114 &114000013748769556
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -215,8 +230,12 @@ MonoBehaviour:
   instructionsPilot: {fileID: 0}
   instructionsEngineer: {fileID: 0}
   teamName: {fileID: 0}
+  teamScore: {fileID: 0}
+  shipInput: {fileID: 0}
   engine: {fileID: 0}
+  damage: {fileID: 0}
   shipModelPlaceholder: {fileID: 0}
+  puzzleInput: {fileID: 0}
 --- !u!114 &114000014069788168
 MonoBehaviour:
   m_ObjectHideFlags: 1

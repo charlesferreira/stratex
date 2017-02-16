@@ -25,6 +25,10 @@ public class Bullet : MonoBehaviour {
         var screenShaker = other.gameObject.GetComponent<ScreenShaker>();
         if (screenShaker != null)
             screenShaker.Shake(info.onHitScreenShake);
+
+        var shipDamage = other.gameObject.GetComponent<ShipDamage>();
+        if (shipDamage != null)
+            shipDamage.AddDamage(info.damageTime);
     }
 
     protected virtual void DestroyProjectile() {

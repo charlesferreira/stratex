@@ -6,14 +6,10 @@ namespace GameStates {
     [System.Serializable]
     public class ScoringState : IGameState {
 
+        public MessageInfo message;
         [Range(1, 5)]
         public float zoomIn;
-        [Range(0, 5)]
-        public float scoreFadeInDuration;
-        [Range(0, 5)]
-        public float scoreStayDuration;
-        [Range(0, 5)]
-        public float scoreFadeOutDuration;
+
 
         public IEnumerator Play(GameStateManager game) {
             // desliga os controles e foca no Stratex
@@ -22,11 +18,8 @@ namespace GameStates {
 
             // exibe o placar
             ShowScoreboard();
-            yield return new WaitForSeconds(scoreFadeInDuration + scoreStayDuration);
-
-            // oculta o placar
+            yield return new WaitForSeconds(message.TotalDuration);
             HideScoreboard();
-            yield return new WaitForSeconds(scoreFadeOutDuration);
 
             // próximo estado
             game.ToRestartingState();
@@ -35,11 +28,11 @@ namespace GameStates {
         void ShowScoreboard() {
             var messages = CommonMessages.Instance;
             messages.SetMessage(CommonMessages.MessageType.Score);
-            messages.Show(scoreFadeInDuration);
+            messages.Show();
         }
 
         void HideScoreboard() {
-            CommonMessages.Instance.Hide(scoreFadeOutDuration, new Color(1, 1, 1, 0));
+            CommonMessages.Instance.Hide();
         }
     }
 }

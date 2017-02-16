@@ -1715,7 +1715,7 @@ MonoBehaviour:
   coldState:
     coldColor: {r: 0.13333334, g: 1, b: 0, a: 0.27058825}
   warmingUpState:
-    timeToWarmUp: 5
+    timeToWarmUp: 4
   hotState:
     gameStateManager: {fileID: 0}
   overheatedState:

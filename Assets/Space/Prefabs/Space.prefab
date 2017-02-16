@@ -303,7 +303,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013924759588}
   - 114: {fileID: 114000010012721912}
-  m_Layer: 8
+  m_Layer: 17
   m_Name: Pilot Portrait
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -495,6 +495,7 @@ GameObject:
   - 114: {fileID: 114000010551374700}
   - 114: {fileID: 114000010113662322}
   - 114: {fileID: 114000013824545914}
+  - 114: {fileID: 114000012043521418}
   m_Layer: 8
   m_Name: Ship 1
   m_TagString: Untagged
@@ -613,7 +614,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013379549320}
   - 212: {fileID: 212000010274194686}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Pilot Photo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -843,7 +844,7 @@ GameObject:
   - 4: {fileID: 4000011300972362}
   - 212: {fileID: 212000013221469988}
   - 95: {fileID: 95000013781513824}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Pilot Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1237,7 +1238,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294934527
+    m_Bits: 4294672383
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: dd909d9e49c6f9a40b4d82ea3d0b26a6, type: 2}
   m_TargetDisplay: 0
@@ -1547,6 +1548,7 @@ MonoBehaviour:
   pulse: {fileID: 114000011803510816}
   minForce: 0
   maxForce: 15
+  baseDamageTime: 1.25
   shakeConfig:
     time: 0.5
     strength: 0.05
@@ -1848,6 +1850,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5011e94ba4a2fc4a99bfc4f1203aff0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114000012043521418
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011920643630}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 248cf7c539825f54da80321a41049821, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shipModel: {fileID: 4000011361982848}
+  flashSpeed: 15
 --- !u!114 &114000012068055610
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1943,7 +1958,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fuelHUD: {fileID: 224000011497925600}
   maxFuel: 60
-  startingFuel: 0.4
+  startingFuel: 0.5
   primaryThrusterPower: 500
   reserveThrusterPower: 100
   maxSpeed: 100000
@@ -2050,7 +2065,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b69b1566f8708247bd6618fed861df5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  intensity: 7
+  intensity: 10
   minRadius: 1.5
 --- !u!114 &114000013005757212
 MonoBehaviour:

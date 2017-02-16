@@ -11,9 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ff7ef5fde6f01241b971003cfb12a98, type: 3}
   m_Name: Time Up
   m_EditorClassIdentifier: 
-  startingX: -1280
-  fadeIn: 0.25
-  slideIn: 1
-  stay: 2
-  slideOut: 1
-  fadeOut: 0.25
+  startingX: 1280
+  fadeIn: 0.225
+  slideIn: 0.5
+  stay: 1.5
+  slideOut: 0.5
+  fadeOut: 0.225

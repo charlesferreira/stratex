@@ -11,9 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ff7ef5fde6f01241b971003cfb12a98, type: 3}
   m_Name: Go!
   m_EditorClassIdentifier: 
-  startingX: -1280
-  fadeIn: 0.25
+  startingX: 1280
+  fadeIn: 0.225
   slideIn: 0.25
   stay: 0.5
   slideOut: 0.25
-  fadeOut: 0.25
+  fadeOut: 0.225

@@ -17,29 +17,37 @@ public class MessageBoard : MonoBehaviour {
     }
 
     IEnumerator Play() {
-        content.Translate(Vector2.right * info.startingX, UnityEngine.Space.Self);
+        // corrige a posição inicial
+        var startingPosition = content.localPosition;
+        startingPosition.x = info.startingX;
+        content.localPosition = startingPosition;
 
+        // abre o quadro
         anim.SetTrigger("Open");
         yield return new WaitForSeconds(info.fadeIn);
 
+        // slide in
         var speed = -info.startingX / info.slideIn;
-        while (content.localPosition.x < 0) {
-            content.Translate(Vector2.right * speed * Time.deltaTime);
-            yield return null;
+        var slideIn = info.slideIn;
+        while (slideIn > 0) {
+            yield return new WaitForFixedUpdate();
+            slideIn -= Time.fixedDeltaTime;
+            content.Translate(Vector2.right * speed * Time.fixedDeltaTime, UnityEngine.Space.Self);
         }
 
-        var position = content.localPosition;
-        position.x = 0;
-        content.localPosition = position;
-
+        // wait
         yield return new WaitForSeconds(info.stay);
 
+        // slide out
+        var slideOut = info.slideOut;
         speed = -info.startingX / info.slideOut;
-        while (content.localPosition.x < -info.startingX) {
-            content.Translate(Vector2.right * speed * Time.deltaTime);
-            yield return null;
+        while (slideOut > 0) {
+            yield return new WaitForFixedUpdate();
+            slideOut -= Time.fixedDeltaTime;
+            content.Translate(Vector2.right * speed * Time.fixedDeltaTime, UnityEngine.Space.Self);
         }
 
+        // fecha o quadro
         anim.SetTrigger("Close");
         yield return new WaitForSeconds(info.fadeOut);
 

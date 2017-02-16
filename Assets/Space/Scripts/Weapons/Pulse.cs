@@ -3,6 +3,7 @@
 public class Pulse : MonoBehaviour {
     SpriteRenderer sprite;
     CircleCollider2D circle;
+    float baseDamageTime;
     float minForce;
     float maxForce;
     float matchSize;
@@ -22,9 +23,10 @@ public class Pulse : MonoBehaviour {
         baseRadius = circle.radius;
     }
 
-    public void Init(float minForce, float maxForce) {
+    public void Init(float minForce, float maxForce, float baseDamageTime) {
         this.minForce = minForce;
         this.maxForce = maxForce;
+        this.baseDamageTime = baseDamageTime;
     }
 
     public void SetMatchSize(float matchSize) {
@@ -53,5 +55,10 @@ public class Pulse : MonoBehaviour {
 
         var force = direction * intensity * RelativeSize;
         otherRB.AddForce(force, ForceMode2D.Impulse);
+
+        var shipDamage = other.GetComponent<ShipDamage>();
+        if (shipDamage != null) {
+            shipDamage.AddDamage(baseDamageTime * RelativeSize);
+        }
     }
 }

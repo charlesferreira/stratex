@@ -4,32 +4,39 @@ public class ShipInput : MonoBehaviour {
 
     public bool usingLegacyControls;
 
-    public bool Thrusting { get { return enabled && Input.GetButton(joystick.AButton); } }
-    public bool Fire1 { get { return enabled && Input.GetButton(joystick.XButton); } }
-    public bool Fire2 { get { return enabled && Input.GetButtonDown(joystick.BButton); } }
+    public bool Thrusting { get { return Enabled && Input.GetButton(Joystick.AButton); } }
+    public bool Fire1 { get { return Enabled && Input.GetButton(Joystick.XButton); } }
+    public bool Fire2 { get { return Enabled && Input.GetButtonDown(Joystick.BButton); } }
 
-    Joystick joystick;
-    
+    public Joystick Joystick { get; set; }
+
+    bool Enabled {
+        get {
+            return enabled && !(damage.enabled && damage.Flashing);
+        }
+    }
+
+    ShipDamage damage;
+
     void Start() {
-        var flag = GetComponent<TeamIdentity>().flag;
-        joystick = TeamsManager.Instance.GetEngineer(flag);
+        damage = GetComponent<ShipDamage>();
     }
 
     public Vector2 SteeringTarget {
         get {
-            if (!enabled)
+            if (!Enabled)
                 return Vector2.zero;
 
             return new Vector2(
-                Input.GetAxis(joystick.Horizontal),
-                Input.GetAxis(joystick.Vertical)
+                Input.GetAxis(Joystick.Horizontal),
+                Input.GetAxis(Joystick.Vertical)
             );
         }
     }
 
     public float LegacySteering {
         get {
-            return enabled ? Input.GetAxis(joystick.Horizontal) : 0;
+            return Enabled ? Input.GetAxis(Joystick.Horizontal) : 0;
         }
     }
 }

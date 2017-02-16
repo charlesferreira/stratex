@@ -16,11 +16,13 @@ MonoBehaviour:
   teamCard: {fileID: 21300000, guid: 65da3bab7ad962849b9957132340aa08, type: 3}
   pilot: {fileID: 21300000, guid: a9160b6fd37c3cc4dbd2d5755a366085, type: 3}
   engineer: {fileID: 21300000, guid: 879506fe5838634488024ba01be64f05, type: 3}
-  instructionsPilot: {fileID: 0}
-  instructionsEngineer: {fileID: 0}
-  teamName: {fileID: 0}
-  neonColor: {r: 1, g: 0.9724138, b: 0, a: 0.972549}
-  scoreColor: {r: 1, g: 0.9724138, b: 0, a: 0.972549}
-  bulletColor: {r: 1, g: 0.9724138, b: 0, a: 0.972549}
-  missileColor: {r: 1, g: 0.9724138, b: 0, a: 0.972549}
-  stratexColor: {r: 1, g: 0.9724138, b: 0, a: 0.972549}
+  instructionsPilot: {fileID: 21300000, guid: fbb433a6f03eb4544a64ddc7c28151de, type: 3}
+  instructionsEngineer: {fileID: 21300000, guid: c82ad4800d1fa504682ee28f914c4b26,
+    type: 3}
+  teamName: {fileID: 2800000, guid: 3538fac6eb04f23449011c775e51a380, type: 3}
+  teamScore: {fileID: 21300000, guid: c32f0fa735bbb4a458e4c3434d265fef, type: 3}
+  neonColor: {r: 0.641, g: 0, b: 0.84827566, a: 0.972549}
+  scoreColor: {r: 1, g: 0, b: 1, a: 1}
+  bulletColor: {r: 0.88322926, g: 0.466, b: 0.89705884, a: 0.899}
+  missileColor: {r: 0.6392157, g: 0, b: 0.84705883, a: 0.7529412}
+  stratexColor: {r: 0.6392157, g: 0, b: 0.84705883, a: 0.88235295}

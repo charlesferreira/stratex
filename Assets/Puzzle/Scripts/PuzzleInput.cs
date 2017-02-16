@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 
 public class PuzzleInput : MonoBehaviour {
-    
 
     [Header("Tunning")]
     [Range(1f, 60f)]
@@ -11,24 +10,20 @@ public class PuzzleInput : MonoBehaviour {
     [Range(0f, 1f)]
     public float cursorThreshold = 0.5f;
 
-    Joystick joystick;
     enum Direction { Up, Down, Left, Right, Center }
     float currentCooldown;
+
     float DefaultCooldown { get { return 1f / cursorMovementsPerSecond; } }
-
-    void Start() {
-        var flag = GetComponent<TeamIdentity>().flag;
-        joystick = TeamsManager.Instance.GetEngineer(flag);
-    }
-
+    public Joystick Joystick { get; set; }
+    
     void Update() {
 
         Up = Down = Left = Right = false;
 
-        if (Input.GetAxisRaw(joystick.Vertical) > cursorThreshold) Up = true;
-        if (Input.GetAxisRaw(joystick.Vertical) < -cursorThreshold) Down = true;
-        if (Input.GetAxisRaw(joystick.Horizontal) > cursorThreshold) Right = true;
-        if (Input.GetAxisRaw(joystick.Horizontal) < -cursorThreshold) Left = true;
+        if (Input.GetAxisRaw(Joystick.Vertical) > cursorThreshold) Up = true;
+        if (Input.GetAxisRaw(Joystick.Vertical) < -cursorThreshold) Down = true;
+        if (Input.GetAxisRaw(Joystick.Horizontal) > cursorThreshold) Right = true;
+        if (Input.GetAxisRaw(Joystick.Horizontal) < -cursorThreshold) Left = true;
 
         if (Up || Down || Right || Left)
         {
@@ -54,8 +49,8 @@ public class PuzzleInput : MonoBehaviour {
     public bool Left { get; set; }
     public bool Right { get; set; }
 
-    public bool SwapRight { get { return Input.GetButtonDown(joystick.BButton)
-                                      || Input.GetButtonDown(joystick.XButton)
-                                      || Input.GetButtonDown(joystick.AButton)
-                                      || Input.GetButtonDown(joystick.YButton); } }
+    public bool SwapRight { get { return Input.GetButtonDown(Joystick.BButton)
+                                      || Input.GetButtonDown(Joystick.XButton)
+                                      || Input.GetButtonDown(Joystick.AButton)
+                                      || Input.GetButtonDown(Joystick.YButton); } }
 }

@@ -14,7 +14,6 @@ public class TeamCursor : MonoBehaviour {
     float elapsedTimeZPosition = 0;
     public bool isFirstCursor = false;
     bool positiveZ = true;
-    bool changeZPosition = false;
 
     SpriteRenderer sprite;
 

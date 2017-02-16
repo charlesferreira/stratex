@@ -6,6 +6,7 @@ public class ProjectileInfo : ScriptableObject {
     [Header("Basics")]
     public float speed;
     public float lifeTime;
+    public float damageTime;
 
     [Header("Steering")]
     public float steeringStrength;

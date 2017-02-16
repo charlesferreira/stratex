@@ -20,8 +20,9 @@ MonoBehaviour:
   instructionsEngineer: {fileID: 21300000, guid: c82ad4800d1fa504682ee28f914c4b26,
     type: 3}
   teamName: {fileID: 2800000, guid: 3538fac6eb04f23449011c775e51a380, type: 3}
+  teamScore: {fileID: 21300000, guid: d8db6c93bbfd0ac4dbf6041b11e7faa7, type: 3}
   neonColor: {r: 0, g: 1, b: 0, a: 0.972549}
-  scoreColor: {r: 0, g: 1, b: 0, a: 0.972549}
-  bulletColor: {r: 0, g: 1, b: 0, a: 0.972549}
-  missileColor: {r: 0, g: 1, b: 0, a: 0.972549}
-  stratexColor: {r: 0, g: 1, b: 0, a: 0.972549}
+  scoreColor: {r: 0, g: 1, b: 0, a: 0.7529412}
+  bulletColor: {r: 0, g: 1, b: 0, a: 0.8039216}
+  missileColor: {r: 0, g: 1, b: 0, a: 0.7529412}
+  stratexColor: {r: 0, g: 1, b: 0, a: 0.8784314}

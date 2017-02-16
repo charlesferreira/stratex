@@ -28,25 +28,26 @@ public class PuzzleToShipInterface : MonoBehaviour {
                 BlockFactory.Instance.CreateBlock(match.info);
         }
 
+        var power = match.info.Power(match.size);
         switch (match.info.color) {
             case BlockColor.Eletric:
                 pulse.Fire(match.size);
                 break;
 
             case BlockColor.Missile:
-                weapon2.AddAmmo(match.size - 2);
+                weapon2.AddAmmo(power);
                 break;
 
             case BlockColor.Fuel:
-                engine.AddFuel(match.size);
+                engine.AddFuel(power);
                 break;
 
             case BlockColor.Shield:
-                shield.AddTime(match.size - 1);
+                shield.AddTime(power);
                 break;
 
             case BlockColor.Laser:
-                weapon1.AddAmmo(match.size);
+                weapon1.AddAmmo(power);
                 break;
         }
     }

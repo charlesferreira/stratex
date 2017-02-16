@@ -14,3 +14,8 @@ MonoBehaviour:
   color: 4
   puzzleSprite: {fileID: 21300000, guid: 8b253e9a6f3b4ec4fb438a565e389010, type: 3}
   realColor: {r: 0.79215693, g: 0.4039216, b: 0.86274517, a: 1}
+  powerX3: 3
+  powerX4: 5
+  powerX5: 7
+  powerX6: 10
+  powerX7: 15
