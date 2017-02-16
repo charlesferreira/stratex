@@ -16,11 +16,11 @@ MonoBehaviour:
   teamCard: {fileID: 21300000, guid: 65da3bab7ad962849b9957132340aa08, type: 3}
   pilot: {fileID: 21300000, guid: a9160b6fd37c3cc4dbd2d5755a366085, type: 3}
   engineer: {fileID: 21300000, guid: 879506fe5838634488024ba01be64f05, type: 3}
-  instructionsPilot: {fileID: 21300000, guid: fbb433a6f03eb4544a64ddc7c28151de, type: 3}
-  instructionsEngineer: {fileID: 21300000, guid: c82ad4800d1fa504682ee28f914c4b26,
+  instructionsPilot: {fileID: 21300000, guid: 7ec36340e4f530543af1d00f8e697996, type: 3}
+  instructionsEngineer: {fileID: 21300000, guid: 118be1144af1ac24a9e9aa89210b6f00,
     type: 3}
-  teamName: {fileID: 2800000, guid: 3538fac6eb04f23449011c775e51a380, type: 3}
-  teamScore: {fileID: 21300000, guid: c32f0fa735bbb4a458e4c3434d265fef, type: 3}
+  teamName: {fileID: 0}
+  teamScore: {fileID: 21300000, guid: d453a3de4ea36e143bc7d8d4c574d98a, type: 3}
   neonColor: {r: 0.641, g: 0, b: 0.84827566, a: 0.972549}
   scoreColor: {r: 1, g: 0, b: 1, a: 1}
   bulletColor: {r: 0.88322926, g: 0.466, b: 0.89705884, a: 0.899}

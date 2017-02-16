@@ -57,7 +57,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Shield Block
+  m_Name: Shield
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -80,7 +80,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Missile Block
+  m_Name: Missile
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -103,7 +103,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Fuel Block
+  m_Name: Fuel
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -126,7 +126,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Laser Block
+  m_Name: Laser
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -149,7 +149,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Eletric Block
+  m_Name: Eletric
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []

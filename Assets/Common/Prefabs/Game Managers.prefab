@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de5fabf5ea457804aacd2d270ec71d5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skipIntro: 1
+  skipIntro: 0
   startingState:
     zoomIn: 2.125
     zoomInDuration: 2.5

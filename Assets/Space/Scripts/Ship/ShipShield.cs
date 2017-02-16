@@ -5,17 +5,19 @@ public class ShipShield : MonoBehaviour {
     [Header("References")]
     public GameObject shield;
     public Transform shieldHUD;
+    public BlockInfo info;
 
     [Header("Duration")]
-    public float maxTime;
     [Range(0, 1)]
-    public float startingTime;
+    public float startingShield;
     
     float time;
     Vector3 hudScale = Vector3.one;
 
+    float MaxTime { get { return info.powerX7; } }
+
     void Start() {
-        time = maxTime * startingTime;
+        time = MaxTime * startingShield;
         // Define o escudo na mesma layer que a nave.
         // É isso que permite bloquear os tiros inimigos.
         shield.layer = gameObject.layer;
@@ -31,11 +33,11 @@ public class ShipShield : MonoBehaviour {
     }
 
     void UpdateHUD() {
-        hudScale.x = time / maxTime;
+        hudScale.x = time / MaxTime;
         shieldHUD.localScale = hudScale;
     }
 
     public void AddTime(int time) {
-        this.time = Mathf.Min(maxTime, this.time + time);
+        this.time = Mathf.Min(MaxTime, this.time + time);
     }
 }

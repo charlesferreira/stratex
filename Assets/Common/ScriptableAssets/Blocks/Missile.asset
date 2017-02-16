@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 82fe866211d73bd4987e86dc0f628d4c, type: 3}
-  m_Name: Missile Block
+  m_Name: Missile
   m_EditorClassIdentifier: 
   color: 2
   puzzleSprite: {fileID: 21300000, guid: 3d5430af1ca00d2448794b3fb48cfb73, type: 3}

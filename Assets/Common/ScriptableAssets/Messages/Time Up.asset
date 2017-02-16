@@ -14,6 +14,6 @@ MonoBehaviour:
   startingX: 1280
   fadeIn: 0.225
   slideIn: 0.5
-  stay: 1.5
+  stay: 2
   slideOut: 0.5
-  fadeOut: 0.225
+  fadeOut: 0.7

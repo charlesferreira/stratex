@@ -51,9 +51,10 @@ public class TeamSetup : MonoBehaviour {
 
         // cria o novo model
         var prefab = info.shipModelPrefab;
-        Instantiate(prefab,
+        var model = (GameObject)Instantiate(prefab,
             shipModelPlaceholder.position,
             shipModelPlaceholder.rotation * prefab.transform.rotation,
             shipModelPlaceholder);
+        engine.Particles = model.GetComponent<ShipParticles>();
     }
 }

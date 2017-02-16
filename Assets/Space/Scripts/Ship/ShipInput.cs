@@ -10,11 +10,7 @@ public class ShipInput : MonoBehaviour {
 
     public Joystick Joystick { get; set; }
 
-    bool Enabled {
-        get {
-            return enabled && !(damage.enabled && damage.Flashing);
-        }
-    }
+    bool Enabled { get { return enabled && !(damage.enabled && damage.Flashing); } }
 
     ShipDamage damage;
 

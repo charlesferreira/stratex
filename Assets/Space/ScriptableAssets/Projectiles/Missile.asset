@@ -14,7 +14,7 @@ MonoBehaviour:
   speed: 5
   lifeTime: 10
   damageTime: 1.5
-  steeringStrength: 75000
+  steeringStrength: 5000
   onHitScreenShake:
     time: 1.5
     strength: 0.2

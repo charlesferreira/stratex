@@ -1656,8 +1656,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shield: {fileID: 1000010289471140}
   shieldHUD: {fileID: 224000010180397628}
-  maxTime: 7
-  startingTime: 0
+  info: {fileID: 11400000, guid: 175417d7c64cd71469283c7b5ede654d, type: 2}
+  startingShield: 0
 --- !u!114 &114000010656401352
 MonoBehaviour:
   m_ObjectHideFlags: 1

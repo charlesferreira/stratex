@@ -16,7 +16,7 @@ MonoBehaviour:
   cooldown: 0.2
   startingAmmo: 3
   spreadAngle: 90
-  recoil: 2
+  recoil: 2.5
   screenShakeOnFire:
     time: 1
     strength: 0.1

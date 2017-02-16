@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 20
   lifeTime: 5
-  damageTime: 0.15
+  damageTime: 0.2
   steeringStrength: 0
   onHitScreenShake:
     time: 0.2
