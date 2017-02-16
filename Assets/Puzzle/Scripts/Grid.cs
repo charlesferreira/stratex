@@ -13,6 +13,8 @@ public class Grid : MonoBehaviour
     List<StatePatternBlock> matchingBlocks;
     public MatchSounds matchSounds;
 
+    AudioSource audioNewBlock;
+
     float comboSequence;
 
     void Awake()
@@ -23,6 +25,7 @@ public class Grid : MonoBehaviour
     void Start()
     {
         ship = GetComponent<PuzzleToShipInterface>();
+        audioNewBlock = GetComponent<AudioSource>();
     }
 
     public void Update()
@@ -71,6 +74,9 @@ public class Grid : MonoBehaviour
         var index = UnityEngine.Random.Range(0, columnsNotFull.Count);
         var column = columnsNotFull.ElementAt(index);
         CreateNewBlock(column, GridManager.Instance.rows - 1, blockInfo, 0);
+
+        audioNewBlock.Play();
+
         return true;
     }
 
