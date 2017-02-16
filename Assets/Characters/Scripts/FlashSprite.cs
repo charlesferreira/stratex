@@ -11,7 +11,6 @@ public class FlashSprite : MonoBehaviour {
 
     bool flash = false;
 
-    float elapsedTime = 0;
     bool up = false;
 
 	void Update () {
