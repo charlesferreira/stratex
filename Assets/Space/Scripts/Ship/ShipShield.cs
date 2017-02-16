@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class ShipShield : MonoBehaviour {
 
@@ -10,9 +11,14 @@ public class ShipShield : MonoBehaviour {
     [Header("Duration")]
     [Range(0, 1)]
     public float startingShield;
-    
+
+    [Header("Effects")]
+    public SoundFX shieldUp;
+    public SoundFX shieldDown;
+
     float time;
     Vector3 hudScale = Vector3.one;
+    Coroutine playShieldDown;
 
     float MaxTime { get { return info.powerX7; } }
 
@@ -39,5 +45,23 @@ public class ShipShield : MonoBehaviour {
 
     public void AddTime(int time) {
         this.time = Mathf.Min(MaxTime, this.time + time);
+
+        shieldUp.Play(transform.position);
+        ScheduleShieldDown();
+    }
+
+    void ScheduleShieldDown() {
+        if (playShieldDown != null) {
+            StopCoroutine(playShieldDown);
+        }
+        playShieldDown = StartCoroutine(PlayShieldDown());
+    }
+
+    IEnumerator PlayShieldDown() {
+        print(time);
+        print(shieldDown.Length);
+        float delay = time - shieldDown.Length / 3;
+        yield return new WaitForSeconds(delay);
+        shieldDown.Play(transform.position);
     }
 }

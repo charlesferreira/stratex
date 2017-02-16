@@ -10,8 +10,9 @@ public class ShipPulse : MonoBehaviour {
     public float maxForce;
     public float baseDamageTime;
 
-    [Header("Screen Shake")]
+    [Header("Effects")]
     public Tremor shakeConfig;
+    public SoundFX sound;
 
     Animator anim;
     ScreenShaker screenShaker;
@@ -26,5 +27,6 @@ public class ShipPulse : MonoBehaviour {
         pulse.SetMatchSize(matchSize);
         anim.SetTrigger("Pulse");
         screenShaker.Shake(shakeConfig);
+        sound.Play(transform.position);
     }
 }

@@ -1,15 +1,18 @@
 ﻿using UnityEngine;
 
 public class GameTimer : MonoBehaviour {
-    
-    [Range(0, 300)]
-    public int gameDuration;
 
-    float time;
+    [Range(1, 300)]
+    public int fakeDuration;
+    [Range(1, 300)]
+    public int realDuration;
+
+    float fakeTime;
+    float fakeScale;
     bool playing;
 
-    public float TimeLeft { get { return time; } }
-    public bool TimeUp { get { return time <= 0; } }
+    public float TimeLeft { get { return fakeTime; } }
+    public bool TimeUp { get { return fakeTime <= 0; } }
 
     static GameTimer instance;
     public static GameTimer Instance {
@@ -27,9 +30,9 @@ public class GameTimer : MonoBehaviour {
 	void Update () {
         if (!playing) return;
 
-        time -= Time.deltaTime;
-        if (time <= 0) {
-            time = 0;
+        fakeTime -= Time.deltaTime * fakeScale;
+        if (fakeTime <= 0) {
+            fakeTime = 0;
             Pause();
         }
 	}
@@ -44,12 +47,13 @@ public class GameTimer : MonoBehaviour {
 
     public void Reset() {
         playing = false;
-        time = gameDuration;
+        fakeTime = fakeDuration;
+        fakeScale = fakeDuration / (float)realDuration;
     }
 
     public override string ToString() {
-        var mins = Mathf.Floor(time / 60);
-        var secs = Mathf.Floor(time - (mins * 60));
+        var mins = Mathf.Floor(fakeTime / 60);
+        var secs = Mathf.Floor(fakeTime - (mins * 60));
         return mins + ":" + secs.ToString("00");
     }
 }

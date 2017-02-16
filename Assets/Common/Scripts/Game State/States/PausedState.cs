@@ -16,6 +16,9 @@ namespace GameStates {
         }
 
         void Pause(GameStateManager game) {
+            // pára a música
+            SoundPlayer.Pause();
+
             // pára o tempo e exibe a tela de pause
             Time.timeScale = 0;
             GameTimer.Instance.Pause();
@@ -26,9 +29,14 @@ namespace GameStates {
         }
 
         void Resume(GameStateManager game) {
-            // oculta tela de pause e volta pro estado "jogando"
+            // oculta tela de pause
             CommonMessages.Instance.Hide();
             Time.timeScale = 1;
+
+            // retoma a música
+            SoundPlayer.UnPause();
+
+            // volta pro estado "jogando"
             game.ToPlayingState();
         }
 

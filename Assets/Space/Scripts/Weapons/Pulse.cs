@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 
 public class Pulse : MonoBehaviour {
+
+    [Header("Effects")]
+    public Tremor shakeConfig;
+
     SpriteRenderer sprite;
     CircleCollider2D circle;
     float baseDamageTime;
@@ -59,6 +63,11 @@ public class Pulse : MonoBehaviour {
         var shipDamage = other.GetComponent<ShipDamage>();
         if (shipDamage != null) {
             shipDamage.AddDamage(baseDamageTime * RelativeSize);
+        }
+
+        var screenShaker = other.GetComponent<ScreenShaker>();
+        if (screenShaker != null) {
+            screenShaker.Shake(shakeConfig);
         }
     }
 }

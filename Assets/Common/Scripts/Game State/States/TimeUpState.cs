@@ -18,6 +18,7 @@ namespace GameStates {
             // pára o jogo
             game.TurnOffControls();
             game.stratex.TurnOff();
+            SoundPlayer.StopAll();
 
             // foca o stratex lentamente com zoom out
             FocusArena(game);
@@ -25,6 +26,9 @@ namespace GameStates {
             // exibe a mensagem de tempo esgotado
             ShowStartMessage();
             yield return new WaitForSeconds(message.fadeIn + message.slideIn + message.stay);
+
+            // antes da mensagem sair, começa música de resultado
+            SoundPlayer.PlayResultMusic();
 
             // aguarda a mensagem desaparecer para mudar de estado
             yield return new WaitForSeconds(message.fadeOut + message.slideOut);

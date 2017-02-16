@@ -5,6 +5,8 @@ public class SoundFX : MonoBehaviour {
     [Range(0, 3)]
     public float pitchRange;
 
+    public float Length { get { return GetComponent<AudioSource>().clip.length; } }
+
     void Start() {
         var audio = GetComponent<AudioSource>();
         audio.pitch += Random.Range(-pitchRange, pitchRange) / 2f;

@@ -1552,6 +1552,7 @@ MonoBehaviour:
   shakeConfig:
     time: 0.5
     strength: 0.05
+  sound: {fileID: 114000010270822984, guid: b9ad4a10dcaf3a548b37bd4a10f4daa4, type: 2}
 --- !u!114 &114000010340210640
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1658,6 +1659,9 @@ MonoBehaviour:
   shieldHUD: {fileID: 224000010180397628}
   info: {fileID: 11400000, guid: 175417d7c64cd71469283c7b5ede654d, type: 2}
   startingShield: 0
+  shieldUp: {fileID: 114000010270822984, guid: e179f25d5d5d22d47beb2dac66ede855, type: 2}
+  shieldDown: {fileID: 114000010270822984, guid: 448e44912ac152747aa17aaeeaa99123,
+    type: 2}
 --- !u!114 &114000010656401352
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1797,6 +1801,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3546d5179da3d054dab4b2b2577448f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shakeConfig:
+    time: 1.25
+    strength: 0.25
 --- !u!114 &114000011819930186
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8198,7 +8205,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 337, y: 336.7}
-  m_SizeDelta: {x: 105, y: 20}
+  m_SizeDelta: {x: 110, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000011880825260
 RectTransform:

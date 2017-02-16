@@ -5,7 +5,8 @@ public class GameStateManager : MonoBehaviour {
     
     [Header("Debug")]
     public bool skipIntro;
-    
+    public bool skipGameplay;
+
     [Header("States")]
     [SerializeField] StartingState startingState;
     [SerializeField] PlayingState playingState;
@@ -38,7 +39,9 @@ public class GameStateManager : MonoBehaviour {
     void Start () {
         stratexMover = stratex.GetComponent<DominationAreaMover>();
 
-        if (skipIntro)
+        if (skipGameplay)
+            ToTimeUpState();
+        else if (skipIntro)
             ToPlayingState();
         else
             ToStartingState();

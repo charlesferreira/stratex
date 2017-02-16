@@ -19,9 +19,11 @@ public class MainMenu : MonoBehaviour {
 
     void Update() {
         if (input.Up) {
+            SoundPlayer.Instance.menuSwitchAudio.Play();
             currentIndexButton = (buttons.Count + currentIndexButton - 1) % buttons.Count;
         }
         else if (input.Down) {
+            SoundPlayer.Instance.menuSwitchAudio.Play();
             currentIndexButton = (currentIndexButton + 1) % buttons.Count;
         }
 
@@ -29,10 +31,12 @@ public class MainMenu : MonoBehaviour {
         buttons[currentIndexButton].Select();
 
         if (input.Confirm) {
+            SoundPlayer.Instance.confirmAudio.Play();
             buttons[currentIndexButton].onClick.Invoke();
         }
 
         if (input.Cancel || input.Start) {
+            SoundPlayer.Instance.cancelAudio.Play();
             PauseController.Instance.Resume();
         }
     }

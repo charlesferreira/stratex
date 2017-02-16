@@ -21,8 +21,9 @@ namespace GameStates {
         public GameObject engineer2;
 
         public IEnumerator Play(GameStateManager game) {
-            // zera o timer
+            // zera o timer e toca a música
             GameTimer.Instance.Reset();
+            SoundPlayer.PlayGameMusic();
 
             // oculta quaisquer mensagens
             HideRoles();
