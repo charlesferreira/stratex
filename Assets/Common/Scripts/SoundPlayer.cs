@@ -5,6 +5,7 @@ public class SoundPlayer : MonoBehaviour {
 
     public AudioSource introMusic;
     public AudioSource gameMusic;
+    public AudioSource resultMusic;
     public AudioSource confirmAudio;
     public AudioSource cancelAudio;
 
@@ -33,13 +34,26 @@ public class SoundPlayer : MonoBehaviour {
 
     public void PlayIntroMusic()
     {
-        gameMusic.Stop();
+        StopAll();
         introMusic.Play();
     }
 
     public void PlayGameMusic()
     {
-        introMusic.Stop();
+        StopAll();
         gameMusic.Play();
+    }
+
+    public void PlayResultMusic()
+    {
+        StopAll();
+        resultMusic.Play();
+    }
+
+    void StopAll()
+    {
+        introMusic.Stop();
+        gameMusic.Stop();
+        resultMusic.Stop();
     }
 }
