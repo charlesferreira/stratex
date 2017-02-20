@@ -44,10 +44,11 @@ public class Missile : Bullet {
         // todo: verificar por que o sprite às vezes é null
         if (sprite != null) sprite.enabled = false;
         if (boxCollider != null) boxCollider.enabled = false;
-
-        // aguarda o sistema de partículas do rastro terminar para então destruir o objeto
-        trail.Stop();
-        Destroy(gameObject, trail.duration);
+        if (trail != null) {
+            // aguarda o sistema de partículas do rastro terminar para então destruir o objeto
+            trail.Stop();
+            Destroy(gameObject, trail.duration);
+        }
 
         // cria explosão
         info.PlayOnHitEffects(transform.position);

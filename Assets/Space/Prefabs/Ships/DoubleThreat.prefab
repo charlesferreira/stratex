@@ -248,7 +248,7 @@ ParticleSystem:
   moveWithTransform: 0
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: -703427807
+  randomSeed: 1400756175
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -1962,7 +1962,7 @@ ParticleSystem:
   moveWithTransform: 0
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: -1507588893
+  randomSeed: -1262727920
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -2104,8 +2104,8 @@ ParticleSystem:
         atime7: 0
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
-      minColor: {r: 0.03137255, g: 0.03529412, b: 0.25490198, a: 0.22745098}
-      maxColor: {r: 0.003921569, g: 0.22745098, b: 0.39607844, a: 0.13333334}
+      minColor: {r: 0.03137255, g: 0.08235294, b: 0.25490198, a: 0.23921569}
+      maxColor: {r: 0.003921569, g: 0.22745098, b: 0.39607844, a: 0.1764706}
       minMaxState: 2
     startSize:
       scalar: 0.4
@@ -3676,7 +3676,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: 1427901732
+  randomSeed: 128620725
   InitialModule:
     serializedVersion: 2
     enabled: 1
