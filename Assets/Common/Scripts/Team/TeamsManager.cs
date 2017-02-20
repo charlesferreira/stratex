@@ -75,4 +75,9 @@ public class TeamsManager : MonoBehaviour {
     public void RegisterObserver(IScoreObserver observer) {
         Instance.scoreObservers.Add(observer);
     }
+
+    public void RemoveObserver(IScoreObserver observer) {
+        if (Instance.scoreObservers.Contains(observer))
+            Instance.scoreObservers.Remove(observer);
+    }
 }

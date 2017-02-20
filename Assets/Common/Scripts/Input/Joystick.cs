@@ -24,4 +24,14 @@ public class Joystick : ScriptableObject {
     public string Horizontal { get { return horizontal; } }
     public string Vertical { get { return vertical; } }
 
+    public void Incorporate(Joystick other) {
+        horizontal = other.horizontal;
+        vertical = other.vertical;
+        aButton = other.aButton;
+        bButton = other.bButton;
+        xButton = other.xButton;
+        yButton = other.yButton;
+        startButton = other.startButton;
+    }
+
 }

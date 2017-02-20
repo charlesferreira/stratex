@@ -36,7 +36,7 @@ namespace GameStates {
 
             // zoom out exibindo papéis dos jogadores
             CommonMessages.Instance.SetMessage(CommonMessages.MessageType.None);
-            GridManager.Instance.StartGrids();
+            GridManager.Instance.StartGrids(true);
             ShowRoles();
             game.FocusPlayers();
             yield return new WaitForSeconds(showRolesDuration);

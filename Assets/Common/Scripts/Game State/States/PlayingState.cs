@@ -13,6 +13,10 @@ namespace GameStates {
         public IEnumerator Play(GameStateManager game) {
             // caso esteja voltando da tela de pause, não exibe a mensagem "Go!"
             if (!paused) {
+                // dá uma chance para iniciar o puzzle caso ainda não tenha iniciado
+                // (por exemplo: se a opção de debug "skip intro" estiver habilitada)
+                GridManager.Instance.StartGrids(false);
+
                 ShowStartMessage();
                 yield return new WaitForSeconds(message.fadeIn + message.slideIn);
             }

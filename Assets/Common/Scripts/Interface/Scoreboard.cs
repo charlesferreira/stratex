@@ -14,4 +14,9 @@ public class Scoreboard : MonoBehaviour, IScoreObserver {
 
         this.score.text = score1 + " x " + score2;
     }
+    
+    void OnDestroy() {
+        if (TeamsManager.Instance != null)
+            TeamsManager.Instance.RemoveObserver(this);
+    }
 }

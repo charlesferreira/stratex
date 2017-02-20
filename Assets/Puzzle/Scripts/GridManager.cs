@@ -18,6 +18,7 @@ public class GridManager : MonoBehaviour {
     public bool drawPoints;
 
     List<Grid> grids = new List<Grid>();
+    bool started;
 
     static GridManager instance;
     public static GridManager Instance
@@ -34,16 +35,22 @@ public class GridManager : MonoBehaviour {
 
         foreach (Transform child in transform)
             grids.Add(child.GetComponent<Grid>());
-
-        //StartGrids();
     }
 
     void Update () {
 	
 	}
 
-    public void StartGrids()
+    public void Reset() {
+        started = false;
+    }
+
+    public void StartGrids(bool reset)
     {
+        if (reset) Reset();
+        else if (started) return;
+        started = true;
+
         for (int column = 0; column < columns; column++)
         {
             for (int row = 0; row < Mathf.Min(startFullRows, rows); row++)

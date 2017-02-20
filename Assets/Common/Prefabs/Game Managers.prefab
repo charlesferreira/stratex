@@ -19,11 +19,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000013631744972}
-  - 114: {fileID: 114000014069788168}
   - 114: {fileID: 114000012745248250}
   - 114: {fileID: 114000013748769556}
   - 114: {fileID: 114000010129700718}
-  - 114: {fileID: 114000011341689550}
   - 114: {fileID: 114000011194279124}
   - 114: {fileID: 114000012242389572}
   - 114: {fileID: 114000012508478696}
@@ -77,7 +75,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1b5cc6520b5e4e46b72bcb4074118b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fakeDuration: 184
+  fakeDuration: 150
   realDuration: 146
 --- !u!114 &114000011194279124
 MonoBehaviour:
@@ -97,24 +95,6 @@ MonoBehaviour:
   instructionsStratex: {fileID: 0}
   pause: {fileID: 0}
   outputImage: {fileID: 0}
---- !u!114 &114000011341689550
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012796445886}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 862c290c9f120984ab2d2a8e011fcb32, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  delayShowMenu: 1
-  finalWinImage: {fileID: 21300000, guid: 3258b5c61b730774f9cca69c58fd0909, type: 3}
-  finalLoseImage: {fileID: 21300000, guid: bed75a0337e53df42ba764fd4c325e37, type: 3}
-  finalImageTeam1: {fileID: 0}
-  finalImageTeam2: {fileID: 0}
-  resultPanel: {fileID: 0}
-  resultMenu: {fileID: 0}
 --- !u!114 &114000012242389572
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -238,14 +218,3 @@ MonoBehaviour:
   damage: {fileID: 0}
   shipModelPlaceholder: {fileID: 0}
   puzzleInput: {fileID: 0}
---- !u!114 &114000014069788168
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012796445886}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2caabb22c8305984ba3c12a0038b8a2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

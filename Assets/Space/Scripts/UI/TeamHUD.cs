@@ -33,4 +33,9 @@ public class TeamHUD : MonoBehaviour, IScoreObserver {
         var scoreText = flag == allyFlag ? allyScore : enemyScore;
         scoreText.text = score.ToString();
     }
+
+    void OnDestroy() {
+        if (TeamsManager.Instance != null)
+            TeamsManager.Instance.RemoveObserver(this);
+    }
 }
