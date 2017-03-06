@@ -937,6 +937,12 @@ Prefab:
       value: 
       objectReference: {fileID: 11400000, guid: 0080aab6d718e5f4480d860075fa900a,
         type: 2}
+    - target: {fileID: 212000011804702274, guid: 9c3bedfae7c76a740920d02646b3585c,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7254fc1710a666142ba34aaaf9541616,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9c3bedfae7c76a740920d02646b3585c, type: 2}
   m_IsPrefabParent: 0
@@ -1090,7 +1096,7 @@ Prefab:
     - target: {fileID: 224000010529103310, guid: 9c3bedfae7c76a740920d02646b3585c,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 1
+      value: 1.05
       objectReference: {fileID: 0}
     - target: {fileID: 224000013541187502, guid: 9c3bedfae7c76a740920d02646b3585c,
         type: 2}
@@ -1100,7 +1106,7 @@ Prefab:
     - target: {fileID: 224000013541187502, guid: 9c3bedfae7c76a740920d02646b3585c,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -1
+      value: -1.05
       objectReference: {fileID: 0}
     - target: {fileID: 4000013946173452, guid: 9c3bedfae7c76a740920d02646b3585c, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1250,6 +1256,18 @@ Prefab:
       propertyPath: m_Name
       value: Team1
       objectReference: {fileID: 0}
+    - target: {fileID: 212000010799510624, guid: 9c3bedfae7c76a740920d02646b3585c,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a99c0acc45fa9244491698399c6dd734,
+        type: 3}
+    - target: {fileID: 212000010677667322, guid: 9c3bedfae7c76a740920d02646b3585c,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 59855925bce8e0a4da40d5b43a9fff62,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9c3bedfae7c76a740920d02646b3585c, type: 2}
   m_IsPrefabParent: 0
@@ -2013,7 +2031,7 @@ Prefab:
         type: 2}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 08d8391926e375d40ae1e249845f7eef,
+      objectReference: {fileID: 21300000, guid: 65da3bab7ad962849b9957132340aa08,
         type: 3}
     - target: {fileID: 212000010799510624, guid: 9c3bedfae7c76a740920d02646b3585c,
         type: 2}
