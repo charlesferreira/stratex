@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class CameraFits : MonoBehaviour {
 
-    new Camera camera;
+    Camera cameraRef;
     int displayHeight = 720;
     int displayWidth = 1280;
 
@@ -12,7 +11,7 @@ public class CameraFits : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
-        camera = GetComponent<Camera>();
+        cameraRef = GetComponent<Camera>();
 
         SetCameraSize();
     }
@@ -27,9 +26,9 @@ public class CameraFits : MonoBehaviour {
     private void SetCameraSize()
     {
         if (Screen.height / Screen.width > displayHeight / displayWidth)
-            camera.orthographicSize = displayWidth * Screen.height / Screen.width * 0.5f;
+            cameraRef.orthographicSize = displayWidth * Screen.height / Screen.width * 0.5f;
         else
-            camera.orthographicSize = displayHeight * 0.5f;
+            cameraRef.orthographicSize = displayHeight * 0.5f;
 
         lastScreenWidth = Screen.width;
         lastScreenHeight = Screen.height;

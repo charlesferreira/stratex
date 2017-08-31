@@ -23,7 +23,7 @@ public class ArenaBoundaries : MonoBehaviour {
         }
         positions[positions.Length - 1] = path[0];
         
-        lr.SetVertexCount(positions.Length);
+        lr.positionCount = positions.Length;
         lr.SetPositions(positions);
     }
 

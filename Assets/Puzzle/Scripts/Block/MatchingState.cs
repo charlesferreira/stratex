@@ -11,11 +11,10 @@ public class MatchingState : IBlockState
 
     public void Update()
     {
-        //Object.Destroy(block.gameObject);
-
         ParticleSystem particle = Object.Instantiate(block.blockParticle, block.transform.position + new Vector3(0, 0, -1), Quaternion.identity) as ParticleSystem;
-        particle.startColor = block.Info.realColor;
-        Object.Destroy(particle.gameObject, particle.duration + particle.startLifetime);
+        var main = particle.main;
+        main.startColor = block.Info.realColor;
+        Object.Destroy(particle.gameObject, main.duration + main.startLifetime.constant);
         Object.Destroy(block.gameObject);
     }
 

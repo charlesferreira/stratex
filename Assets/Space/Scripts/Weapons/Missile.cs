@@ -15,7 +15,8 @@ public class Missile : Bullet {
         trail = GetComponentInChildren<ParticleSystem>();
 
         // pinta o rastro com a cor do time
-        trail.startColor = Color;
+        var main = trail.main;
+        main.startColor = Color;
 
         // ativa o efeito de lock-on
         target.OnEngage();
@@ -47,7 +48,8 @@ public class Missile : Bullet {
         if (trail != null) {
             // aguarda o sistema de partículas do rastro terminar para então destruir o objeto
             trail.Stop();
-            Destroy(gameObject, trail.duration);
+            var main = trail.main;
+            Destroy(gameObject, main.duration);
         }
 
         // cria explosão

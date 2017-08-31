@@ -14,13 +14,12 @@ namespace Space {
                 public Texture2D inputTexture;
 
                 [Header("Output")]
-                [SerializeField]
-                string outputPath = "/Common/Sprites/Generated/DistributionMap.png";
+                [SerializeField] string _outputFile = "DistributionMap.png";
                 [Range(0, 8)]
                 public byte compression = 2;
 
                 // Properties
-                public string OutputPath { get { return Application.dataPath + outputPath; } }
+                public string OutputPath { get { return Application.streamingAssetsPath + "/" + _outputFile; } }
                 [SerializeField]
                 [HideInInspector]
                 Histogram histogram;
@@ -33,14 +32,8 @@ namespace Space {
 
                 public Texture2D GetOutputImage() {
                     Texture2D tex = new Texture2D(1, 1);
-                    try {
-                        tex.LoadImage(File.ReadAllBytes(OutputPath));
-                        tex.filterMode = FilterMode.Point;
-                    }
-                    catch (Exception) {
-                        return null;
-                    }
-
+                    tex.LoadImage(File.ReadAllBytes(OutputPath));
+                    tex.filterMode = FilterMode.Point;
                     tex.Apply();
                     return tex;
                 }

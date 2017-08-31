@@ -22,7 +22,8 @@ public class ProjectileInfo : ScriptableObject {
         if (onHitAnimation != null) onHitAnimation.Play(position);
         if (onHitParticles != null) {
             var explosion = Instantiate(onHitParticles, position, Quaternion.identity) as ParticleSystem;
-            Destroy(explosion.gameObject, explosion.duration);
+            var main = explosion.main;
+            Destroy(explosion.gameObject, main.duration);
         }
     }
 }

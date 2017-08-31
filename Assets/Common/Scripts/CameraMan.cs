@@ -3,7 +3,7 @@
 public class CameraMan : MonoBehaviour {
 
     [Header("References")]
-    public new Camera camera;
+    public Camera cameraRef;
     public Transform target;
 
     [Header("Movement")]
@@ -21,7 +21,7 @@ public class CameraMan : MonoBehaviour {
     void Awake() {
         SetTarget(target, offset, speed);
         Zoom(1, 1);
-        originalSize = camera.orthographicSize;
+        originalSize = cameraRef.orthographicSize;
     }
 
     void FixedUpdate() {
@@ -36,7 +36,7 @@ public class CameraMan : MonoBehaviour {
 
     void UpdateZoom() {
         var desiredSize = originalSize / zoomScale;
-        camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, desiredSize, damping * zoomSpeed);
+        cameraRef.orthographicSize = Mathf.Lerp(cameraRef.orthographicSize, desiredSize, damping * zoomSpeed);
     }
 
     public CameraMan SetTarget(Transform target) {
